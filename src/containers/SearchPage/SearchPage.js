@@ -52,16 +52,16 @@ export class SearchPageComponent extends Component {
   }
 
   filters() {
-    const { categories, amenities } = this.props;
+    const { categories, goals } = this.props;
 
     return {
       categoryFilter: {
         paramName: 'pub_category',
         options: categories,
       },
-      amenitiesFilter: {
-        paramName: 'pub_amenities',
-        options: amenities,
+      goalsFilter: {
+        paramName: 'pub_goals',
+        options: goals,
       },
     };
   }
@@ -204,7 +204,7 @@ export class SearchPageComponent extends Component {
             showAsModalMaxWidth={MODAL_BREAKPOINT}
             primaryFilters={{
               categoryFilter: filters.categoryFilter,
-              amenitiesFilter: filters.amenitiesFilter,
+              goalsFilter: filters.goalsFilter,
             }}
           />
           <ModalInMobile
@@ -248,7 +248,7 @@ SearchPageComponent.defaultProps = {
   searchParams: {},
   tab: 'listings',
   categories: config.custom.categories,
-  amenities: config.custom.amenities,
+  goals: config.custom.goals,
   activeListingId: null,
 };
 
@@ -267,7 +267,7 @@ SearchPageComponent.propTypes = {
   searchParams: object,
   tab: oneOf(['filters', 'listings', 'map']).isRequired,
   categories: array,
-  amenities: array,
+  goals: array,
 
   // from withRouter
   history: shape({

@@ -8,7 +8,7 @@ import { requiredFieldArrayCheckbox } from '../../util/validators';
 const formName = 'Styleguide.FieldCheckboxGroup';
 const formNameRequired = 'Styleguide.FieldCheckboxGroupRequired';
 
-const label = <h3>Amenities</h3>;
+const label = <h3>Goals</h3>;
 
 const commonProps = {
   label: label,
@@ -50,14 +50,14 @@ const commonProps = {
 };
 
 const optionalProps = {
-  name: 'amenities-optional',
-  id: 'amenities-optional',
+  name: 'goals-optional',
+  id: 'goals-optional',
   ...commonProps,
 };
 
 const requiredProps = {
-  name: 'amenities-required',
-  id: `${formNameRequired}.amenities-required`,
+  name: 'goals-required',
+  id: `${formNameRequired}.goals-required`,
   ...commonProps,
   validate: requiredFieldArrayCheckbox('this is required'),
 };

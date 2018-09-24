@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import SelectMultipleFilterPlain from './SelectMultipleFilterPlain';
 import { stringify, parse } from '../../util/urlHelpers';
 
-const URL_PARAM = 'pub_amenities';
+const URL_PARAM = 'pub_goals';
 
 const options = [
   {
@@ -46,19 +46,19 @@ const handleSelect = (urlParam, values, history) => {
   history.push(`${window.location.pathname}${queryParams}`);
 };
 
-const AmenitiesFilterComponent = props => {
+const GoalsFilterComponent = props => {
   const { history, location } = props;
 
   const params = parse(location.search);
-  const amenities = params[URL_PARAM];
-  const initialValues = !!amenities ? amenities.split(',') : [];
+  const goals = params[URL_PARAM];
+  const initialValues = !!goals ? goals.split(',') : [];
 
   return (
     <SelectMultipleFilterPlain
       id="SelectMultipleFilterPlainExample"
-      name="amenities"
+      name="goals"
       urlParam={URL_PARAM}
-      label="Amenities"
+      label="Goals"
       options={options}
       onSelect={(urlParam, values) => handleSelect(urlParam, values, history)}
       initialValues={initialValues}
@@ -66,8 +66,8 @@ const AmenitiesFilterComponent = props => {
   );
 };
 
-export const AmenitiesFilter = {
-  component: withRouter(AmenitiesFilterComponent),
+export const GoalsFilter = {
+  component: withRouter(GoalsFilterComponent),
   props: {},
   group: 'misc',
 };

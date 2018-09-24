@@ -2,38 +2,74 @@
  * Marketplace specific configuration.
  */
 
-export const amenities = [
+export const goals = [
   {
-    key: "towels",
-    label: "Towels"
+    key: "no_poverty",
+    label: "No poverty"
   },
   {
-    key: "bathroom",
-    label: "Bathroom"
+    key: "zero_hunger",
+    label: "Zero hunger"
   },
   {
-    key: "swimming_pool",
-    label: "Swimming pool"
+    key: "good_health",
+    label: "Good health and well being"
   },
   {
-    key: "own_drinks",
-    label: "Own drinks allowed"
+    key: "quality_education",
+    label: "Quality education"
   },
   {
-    key: "jacuzzi",
-    label: "Jacuzzi"
+    key: "gender_equality",
+    label: "Gender equality"
   },
   {
-    key: "audiovisual_entertainment",
-    label: "Audiovisual entertainment"
+    key: "clean_water",
+    label: "Clean water and sanitation"
   },
   {
-    key: "barbeque",
-    label: "Barbeque"
+    key: "affordable_energy",
+    label: "Affordable and clean energy"
   },
   {
-    key: "own_food_allowed",
-    label: "Own food allowed"
+    key: "decent_work",
+    label: "Decent work and economic growth"
+  },
+  {
+    key: "industry_innovation_infrastructure",
+    label: "Industry, innovation and infrastructure"
+  },
+  {
+    key: "reduced_inequalities",
+    label: "Reduced inequalities"
+  },
+  {
+    key: "sustainable_cities",
+    label: "Sustainable cities and communities"
+  },
+  {
+    key: "reponsible_production",
+    label: "Responsible production and consumption"
+  },
+  {
+    key: "climate_action",
+    label: "Climate action"
+  },
+  {
+    key: "life_below_water",
+    label: "Life below water"
+  },
+  {
+    key: "life_on_land",
+    label: "Life on land"
+  },
+  {
+    key: "peace_justice",
+    label: "Peace, justice and strong institutions"
+  },
+  {
+    key: "partnerships",
+    label: "Partnerships for the goals"
   }
 ];
 

@@ -114,7 +114,7 @@ the configuration object in `filters`.
   ...
   primaryFilters={{
     categoryFilter: filters.categoryFilter,
-    amenitiesFilter: filters.amenitiesFilter,
+    goalsFilter: filters.goalsFilter,
   }}
   secondaryFilters={{
     capacityFilter: filters.capacityFilter,

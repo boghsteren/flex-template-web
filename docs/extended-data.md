@@ -31,7 +31,7 @@ listings query endpoint. Contact Sharetribe team if you need to add a schema to 
 ## Extended data in Flex template app
 
 The Flex web template uses extended data by default with listing and user resources. In case of the
-listings, category and amenities information is stored in the `publicData` attribute. For the users,
+listings, category and goals information is stored in the `publicData` attribute. For the users,
 phone number is stored in the `protectedData` attribute. As for indexed data, the template app
-relies on data schemas for categories and amenities to be configured for the marketplace in the API
+relies on data schemas for categories and goals to be configured for the marketplace in the API
 as those values are used as filters in the listing search.

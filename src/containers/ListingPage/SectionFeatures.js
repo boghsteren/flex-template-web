@@ -12,7 +12,7 @@ const SectionFeatures = props => {
         <FormattedMessage id="ListingPage.featuresTitle" />
       </h2>
       <PropertyGroup
-        id="ListingPage.amenities"
+        id="ListingPage.goals"
         options={options}
         selectedOptions={selectedOptions}
         twoColumns={true}

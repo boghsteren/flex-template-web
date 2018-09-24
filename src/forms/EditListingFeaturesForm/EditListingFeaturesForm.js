@@ -48,7 +48,7 @@ const EditListingFeaturesFormComponent = props => (
             className={css.features}
             id={name}
             name={name}
-            options={config.custom.amenities}
+            options={config.custom.goals}
           />
 
           <Button

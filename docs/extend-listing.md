@@ -50,8 +50,8 @@ export const capacityOptions = [
 
 Next step is to add means for modifying the attribute data in listings. This is achieved by adding
 proper inputs to the `EditListingWizard`. It could probably make sense to add the input to the
-_description_ tab or modify the _amenities_ tab to also include capacity but for the sake of clarity
-let's add a new tab to the wizard. The new tab will be placed between the _amenities_ and _policy_
+_description_ tab or modify the _goals_ tab to also include capacity but for the sake of clarity
+let's add a new tab to the wizard. The new tab will be placed between the _goals_ and _policy_
 tabs.
 
 First lets declare the tab in `EditListingWizardTab`:
@@ -124,7 +124,7 @@ const tabCompleted = (tab, listing) => {
     case DESCRIPTION:
       return !!(description && title);
     case FEATURES:
-      return !!(publicData && publicData.amenities);
+      return !!(publicData && publicData.goals);
     case CAPACITY:
       return !!(publicData && publicData.capacity);
     case POLICY:

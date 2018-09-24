@@ -200,7 +200,7 @@ export class ListingPageComponent extends Component {
       timeSlots,
       fetchTimeSlotsError,
       categoriesConfig,
-      amenitiesConfig,
+      goalsConfig,
     } = this.props;
 
     const isBook = !!parse(location.search).book;
@@ -440,8 +440,8 @@ export class ListingPageComponent extends Component {
                   />
                   <SectionDescription description={description} />
                   <SectionFeatures
-                    options={amenitiesConfig}
-                    selectedOptions={publicData.amenities}
+                    options={goalsConfig}
+                    selectedOptions={publicData.goals}
                   />
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
@@ -505,7 +505,7 @@ ListingPageComponent.defaultProps = {
   fetchTimeSlotsError: null,
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
-  amenitiesConfig: config.custom.amenities,
+  goalsConfig: config.custom.goals,
 };
 
 ListingPageComponent.propTypes = {
@@ -545,7 +545,7 @@ ListingPageComponent.propTypes = {
   onSendEnquiry: func.isRequired,
 
   categoriesConfig: array,
-  amenitiesConfig: array,
+  goalsConfig: array,
 };
 
 const mapStateToProps = state => {
