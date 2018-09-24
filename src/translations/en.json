@@ -378,7 +378,7 @@
   "ListingPage.viewImagesButton": "View photos ({count})",
   "ListingPage.yourHostHeading": "Your host",
   "LocationAutocompleteInput.currentLocation": "Current location",
-  "LocationSearchForm.placeholder": "Search experiences...",
+  "LocationSearchForm.placeholder": "Go explore!",
   "LoginForm.emailInvalid": "A valid email address is required",
   "LoginForm.emailLabel": "Email",
   "LoginForm.emailPlaceholder": "john.doe@example.com",
@@ -850,7 +850,7 @@
   "TopbarMobileMenu.unauthorizedGreeting":
     "Hello there,{lineBreak}would you like to {signupOrLogin}?",
   "TopbarMobileMenu.yourListingsLink": "Your listings",
-  "TopbarSearchForm.placeholder": "Search experiences...",
+  "TopbarSearchForm.placeholder": "Go explore!",
   "TopbarSearchForm.searchHelp":
     "Tip: You can also search experiences by city \"London\".",
   "TransactionPage.deletedListing": "deleted listing",
