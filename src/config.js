@@ -1,12 +1,12 @@
-import * as custom from './marketplace-custom-config.js';
-import defaultLocationSearches from './default-location-searches';
+import * as custom from "./marketplace-custom-config.js";
+import defaultLocationSearches from "./default-location-searches";
 
 const env = process.env.REACT_APP_ENV;
-const dev = process.env.REACT_APP_ENV === 'development';
+const dev = process.env.REACT_APP_ENV === "development";
 
 // If you want to change the language, remember to also change the
 // locale data and the messages in the app.js file.
-const locale = 'en';
+const locale = "en";
 const i18n = {
   /*
     0: Sunday
@@ -14,7 +14,7 @@ const i18n = {
     ...
     6: Saturday
   */
-  firstDayOfWeek: 0,
+  firstDayOfWeek: 1
 };
 
 // Should search results be ordered by distance to origin.
@@ -26,7 +26,7 @@ const sortSearchByDistance = false;
 //
 // In a way, 'processAlias' defines which transaction process (or processes)
 // this particular web application is able to handle.
-const bookingProcessAlias = 'preauth-with-nightly-booking/release-1';
+const bookingProcessAlias = "preauth-with-nightly-booking/release-1";
 
 // The transaction line item code for the main unit type in bookings.
 //
@@ -35,11 +35,12 @@ const bookingProcessAlias = 'preauth-with-nightly-booking/release-1';
 // Note: if you change this, many of the generic translations will
 // still show information about nights. Make sure to go through the
 // translations when the unit is changed.
-const bookingUnitType = 'line-item/night';
+const bookingUnitType = "line-item/unit";
 
 // Should the application fetch available time slots (currently defined as
 // start and end dates) to be shown on listing page.
-const fetchAvailableTimeSlots = process.env.REACT_APP_AVAILABILITY_ENABLED === 'true';
+const fetchAvailableTimeSlots =
+  process.env.REACT_APP_AVAILABILITY_ENABLED === "true";
 
 // A maximum number of days forwards during which a booking can be made.
 // This is limited due to Stripe holding funds up to 90 days from the
@@ -53,7 +54,8 @@ const dayCountAvailableForBooking = 90;
 // exposing server secrets to the client side.
 const sdkClientId = process.env.REACT_APP_SHARETRIBE_SDK_CLIENT_ID;
 const sdkBaseUrl = process.env.REACT_APP_SHARETRIBE_SDK_BASE_URL;
-const sdkTransitVerbose = process.env.REACT_APP_SHARETRIBE_SDK_TRANSIT_VERBOSE === 'true';
+const sdkTransitVerbose =
+  process.env.REACT_APP_SHARETRIBE_SDK_TRANSIT_VERBOSE === "true";
 
 const currency = process.env.REACT_APP_SHARETRIBE_MARKETPLACE_CURRENCY;
 
@@ -65,19 +67,19 @@ const listingMinimumPriceSubUnits = 0;
 const sentryDsn = process.env.REACT_APP_PUBLIC_SENTRY_DSN;
 
 // If webapp is using SSL (i.e. it's behind 'https' protocol)
-const usingSSL = process.env.REACT_APP_SHARETRIBE_USING_SSL === 'true';
+const usingSSL = process.env.REACT_APP_SHARETRIBE_USING_SSL === "true";
 
 // Currency formatting options.
 // See: https://github.com/yahoo/react-intl/wiki/API#formatnumber
 //
 // TODO: Remove this and hide formating within the util/currency module
 const currencyConfig = {
-  style: 'currency',
+  style: "currency",
   currency,
-  currencyDisplay: 'symbol',
+  currencyDisplay: "symbol",
   useGrouping: true,
   minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
+  maximumFractionDigits: 2
 };
 
 const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
@@ -89,173 +91,173 @@ const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
 const stripeSupportedCountries = [
   {
     // Australia
-    code: 'AU',
-    currency: 'AUD',
+    code: "AU",
+    currency: "AUD",
     payoutAddressRequired: false,
     accountConfig: {
       bsb: true,
-      accountNumber: true,
-    },
+      accountNumber: true
+    }
   },
   {
     // Austria
-    code: 'AT',
-    currency: 'EUR',
+    code: "AT",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Belgium
-    code: 'BE',
-    currency: 'EUR',
+    code: "BE",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Denmark
-    code: 'DK',
-    currency: 'DKK',
+    code: "DK",
+    currency: "DKK",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Finland
-    code: 'FI',
-    currency: 'EUR',
+    code: "FI",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // France
-    code: 'FR',
-    currency: 'EUR',
+    code: "FR",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Germany
-    code: 'DE',
-    currency: 'EUR',
+    code: "DE",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Ireland
-    code: 'IE',
-    currency: 'EUR',
+    code: "IE",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Italy
-    code: 'IT',
-    currency: 'EUR',
+    code: "IT",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Luxembourg
-    code: 'LU',
-    currency: 'EUR',
+    code: "LU",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Netherlands
-    code: 'NL',
-    currency: 'EUR',
+    code: "NL",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Portugal
-    code: 'PT',
-    currency: 'EUR',
+    code: "PT",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Spain
-    code: 'ES',
-    currency: 'EUR',
+    code: "ES",
+    currency: "EUR",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // Sweden
-    code: 'SE',
-    currency: 'SEK',
+    code: "SE",
+    currency: "SEK",
     payoutAddressRequired: true,
     accountConfig: {
-      iban: true,
-    },
+      iban: true
+    }
   },
   {
     // United Kingdom
-    code: 'GB',
-    currency: 'GBP',
+    code: "GB",
+    currency: "GBP",
     payoutAddressRequired: true,
     accountConfig: {
       sortCode: true,
-      accountNumber: true,
-    },
+      accountNumber: true
+    }
   },
   {
     // United States
-    code: 'US',
-    currency: 'USD',
+    code: "US",
+    currency: "USD",
     payoutAddressRequired: false,
     accountConfig: {
       routingNumber: true,
-      accountNumber: true,
-    },
-  },
+      accountNumber: true
+    }
+  }
 ];
 
 // Address information is used in SEO schema for Organization (http://schema.org/PostalAddress)
-const addressCountry = 'FI';
-const addressRegion = 'Helsinki';
-const postalCode = '00100';
-const streetAddress = 'Bulevardi 14';
+const addressCountry = "DK";
+const addressRegion = "Copenhagen V";
+const postalCode = "1610";
+const streetAddress = "Gammel Kongevej 3B";
 
 // Canonical root url is needed in social media sharing and SEO optimization purposes.
 const canonicalRootURL = process.env.REACT_APP_CANONICAL_ROOT_URL;
 
 // Site title is needed in meta tags (bots and social media sharing reads those)
-const siteTitle = 'Saunatime';
+const siteTitle = "Goodwings Experiences";
 
 // Twitter handle is needed in meta tags (twitter:site). Start it with '@' character
-const siteTwitterHandle = '@sharetribe';
+const siteTwitterHandle = "@GoodwingsTravel";
 
 // Instagram page is used in SEO schema (http://schema.org/Organization)
 const siteInstagramPage = null;
 
 // Facebook page is used in SEO schema (http://schema.org/Organization)
-const siteFacebookPage = 'https://www.facebook.com/Sharetribe/';
+const siteFacebookPage = "https://www.facebook.com/goodwingstravel/";
 
 // Facebook counts shares with app or page associated by this id
 // Currently it is unset, but you can read more about fb:app_id from
@@ -275,7 +277,8 @@ const maps = {
     // When enabled, the first suggestion is "Current location" that
     // uses the browser Geolocation API to query the user's current
     // location.
-    suggestCurrentLocation: process.env.REACT_APP_DEFAULT_SEARCHES_ENABLED === 'true',
+    suggestCurrentLocation:
+      process.env.REACT_APP_DEFAULT_SEARCHES_ENABLED === "true",
 
     // Distance in meters for calculating the bounding box around the
     // current location.
@@ -284,7 +287,9 @@ const maps = {
     // Example location can be edited in the
     // `default-location-searches.js` file.
     defaults:
-      process.env.REACT_APP_DEFAULT_SEARCHES_ENABLED === 'true' ? defaultLocationSearches : [],
+      process.env.REACT_APP_DEFAULT_SEARCHES_ENABLED === "true"
+        ? defaultLocationSearches
+        : []
   },
 
   // When fuzzy locations are enabled, coordinates on maps are
@@ -307,7 +312,7 @@ const maps = {
     defaultZoomLevel: 13,
 
     // Color of the circle on the Map component.
-    circleColor: '#c0392b',
+    circleColor: "#c0392b"
   },
 
   // Custom marker image to use in the Map component.
@@ -330,8 +335,8 @@ const maps = {
     // Position to anchor the image in relation to the coordinates,
     // ignored when using Mapbox.
     anchorX: 16,
-    anchorY: 32,
-  },
+    anchorY: 32
+  }
 };
 
 // NOTE: only expose configuration that should be visible in the
@@ -348,19 +353,22 @@ const config = {
   sdk: {
     clientId: sdkClientId,
     baseUrl: sdkBaseUrl,
-    transitVerbose: sdkTransitVerbose,
+    transitVerbose: sdkTransitVerbose
   },
   sortSearchByDistance,
   currency,
   listingMinimumPriceSubUnits,
   currencyConfig,
-  stripe: { publishableKey: stripePublishableKey, supportedCountries: stripeSupportedCountries },
+  stripe: {
+    publishableKey: stripePublishableKey,
+    supportedCountries: stripeSupportedCountries
+  },
   canonicalRootURL,
   address: {
     addressCountry,
     addressRegion,
     postalCode,
-    streetAddress,
+    streetAddress
   },
   siteTitle,
   siteFacebookPage,
@@ -370,7 +378,7 @@ const config = {
   sentryDsn,
   usingSSL,
   maps,
-  custom,
+  custom
 };
 
 export default config;
