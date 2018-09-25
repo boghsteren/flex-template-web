@@ -1,21 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
-import { stringify } from '../../util/urlHelpers';
-import { createResourceLocatorString } from '../../util/routes';
-import routeConfiguration from '../../routeConfiguration';
-import { IconSearch, Button } from '../../components';
-import { LocationSearchForm } from '../../forms';
-import config from '../../config';
+import React from "react";
+import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
+import classNames from "classnames";
+import { stringify } from "../../util/urlHelpers";
+import { createResourceLocatorString } from "../../util/routes";
+import routeConfiguration from "../../routeConfiguration";
+import { IconSearch, Button } from "../../components";
+import { LocationSearchForm } from "../../forms";
+import config from "../../config";
 
-import css from './SectionHero.css';
+import css from "./SectionHero.css";
 
 const SectionHero = props => {
   const { rootClassName, className, history, location } = props;
 
   const handleMobileSearchClick = () => {
-    const params = { mobilesearch: 'open' };
+    const params = { mobilesearch: "open" };
     const path = `${location.pathname}?${stringify(params)}`;
     history.push(path);
   };
@@ -25,7 +25,14 @@ const SectionHero = props => {
     const { origin, bounds } = selectedPlace;
     const originMaybe = config.sortSearchByDistance ? { origin } : {};
     const searchParams = { ...originMaybe, address: search, bounds };
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, searchParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        searchParams
+      )
+    );
   };
 
   const classes = classNames(rootClassName || css.root, className);
@@ -38,11 +45,17 @@ const SectionHero = props => {
       <h2 className={css.heroSubTitle}>
         <FormattedMessage id="SectionHero.subTitle" />
       </h2>
-      <Button className={css.mobileSearchButton} onClick={handleMobileSearchClick}>
+      <Button
+        className={css.mobileSearchButton}
+        onClick={handleMobileSearchClick}
+      >
         <IconSearch rootClassName={css.searchIcon} />
         <FormattedMessage id="SectionHero.mobileSearchButtonText" />
       </Button>
-      <LocationSearchForm className={css.desktopSearchForm} onSubmit={handleSearchSubmit} />
+      <LocationSearchForm
+        className={css.desktopSearchForm}
+        onSubmit={handleSearchSubmit}
+      />
     </div>
   );
 };
@@ -56,11 +69,11 @@ SectionHero.propTypes = {
   className: string,
 
   history: shape({
-    push: func.isRequired,
+    push: func.isRequired
   }).isRequired,
   location: shape({
-    search: string.isRequired,
-  }).isRequired,
+    search: string.isRequired
+  }).isRequired
 };
 
 export default SectionHero;

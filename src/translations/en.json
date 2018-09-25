@@ -686,8 +686,9 @@
   "SearchResultsPanel.nextPage": "Next page",
   "SearchResultsPanel.previousPage": "Previous page",
   "SectionHero.mobileSearchButtonText": "Search experiences",
-  "SectionHero.subTitle": "Experiences that make the world a better place.",
-  "SectionHero.title": "Experience a better world.",
+  "SectionHero.subTitle":
+    "The largest marketplace for impact experiences worldwide",
+  "SectionHero.title": "Book experiences that matter",
   "SectionHowItWorks.createListingLink":
     "Everytime you book through Goodwings Experience our partners receive money to make the world a better place",
   "SectionHowItWorks.part1Text":
@@ -701,10 +702,10 @@
   "SectionHowItWorks.part3Title": "3. Review the host",
   "SectionHowItWorks.titleLineOne": "Experiencing a better world",
   "SectionHowItWorks.titleLineTwo": "(or how Goodwings Experiences works).",
-  "SectionLocations.listingsInLocation": "Experiences in {location}",
+  "SectionLocations.listingsInLocation": "Experience {location}",
   "SectionLocations.subtitle":
     "Our global network of partners offer fantastic experiences that make the world a better place.",
-  "SectionLocations.title": "Partners across the world.",
+  "SectionLocations.title": "Experiences for all occasions.",
   "SelectMultipleFilter.labelSelected": "{labelText} • {count}",
   "SelectMultipleFilterForm.cancel": "Cancel",
   "SelectMultipleFilterForm.clear": "Clear",
