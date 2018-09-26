@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import config from "../../config";
 import IconLogo from "./IconLogo";
-import LogoImage from "./goodwings_logo.png";
+import LogoImage from "./experiences-logo.png";
 import css from "./Logo.css";
 
 const Logo = props => {

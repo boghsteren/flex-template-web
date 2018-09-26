@@ -176,7 +176,9 @@ export {
 export {
   default as SectionAllOverTheWorld
 } from "./SectionAllOverTheWorld/SectionAllOverTheWorld";
-
+export {
+  default as SectionHighlightsOfTheMonth
+} from "./SectionHighlightsOfTheMonth/SectionHighlightsOfTheMonth";
 export {
   default as SectionThumbnailLinks
 } from "./SectionThumbnailLinks/SectionThumbnailLinks";

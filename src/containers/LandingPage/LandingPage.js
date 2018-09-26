@@ -12,6 +12,7 @@ import {
   SectionHowItWorks,
   SectionLocations,
   SectionAllOverTheWorld,
+  SectionHighlightsOfTheMonth,
   LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
@@ -84,6 +85,11 @@ export const LandingPageComponent = props => {
             <li className={css.section}>
               <div className={css.sectionContent}>
                 <SectionAllOverTheWorld />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContent}>
+                <SectionHighlightsOfTheMonth />
               </div>
             </li>
             <li className={css.section}>

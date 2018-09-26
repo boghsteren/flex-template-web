@@ -42,7 +42,7 @@
 
   /* ================ Colors ================ */
 
-  --marketplaceColor: #c0392b;
+  --marketplaceColor: #3E3E3E;
   --marketplaceColorLight: #ff4c38;
   --marketplaceColorDark: #8c291e;
 
@@ -52,7 +52,7 @@
   --successColor: #2ecc71;
   --successColorDark: #239954;
   --failColor: #ff0000;
-  --attentionColor: #ffaa00;
+  --attentionColor: #78BEB0;
   --bannedColorLight: var(--marketplaceColorLight);
   --bannedColorDark: var(--marketplaceColor);
 
