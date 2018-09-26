@@ -52,10 +52,9 @@ const SectionHero = props => {
         <IconSearch rootClassName={css.searchIcon} />
         <FormattedMessage id="SectionHero.mobileSearchButtonText" />
       </Button>
-      <LocationSearchForm
-        className={css.desktopSearchForm}
-        onSubmit={handleSearchSubmit}
-      />
+      <Button className={css.deskTopButton} onClick={() => history.push("/s")}>
+        Get started
+      </Button>
     </div>
   );
 };

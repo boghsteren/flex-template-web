@@ -1,4 +1,4 @@
-@import './marketplaceFonts.css';
+@import "./marketplaceFonts.css";
 
 /* ================ Custom properties aka variables ================ */
 
@@ -23,7 +23,7 @@
   --backgroundImage: {
     /* Gradient direction and overlaying the black color on top of the image for better readability */
     background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-      url('../../assets/background-1440.jpg');
+      url("../../assets/background-1440.jpg");
 
     /* Add loading color for the div */
     background-color: var(--matterColor);
@@ -42,7 +42,7 @@
 
   /* ================ Colors ================ */
 
-  --marketplaceColor: #3E3E3E;
+  --marketplaceColor: #3e3e3e;
   --marketplaceColorLight: #ff4c38;
   --marketplaceColorDark: #8c291e;
 
@@ -52,7 +52,7 @@
   --successColor: #2ecc71;
   --successColorDark: #239954;
   --failColor: #ff0000;
-  --attentionColor: #78BEB0;
+  --attentionColor: #78beb0;
   --bannedColorLight: var(--marketplaceColorLight);
   --bannedColorDark: var(--marketplaceColor);
 
@@ -125,7 +125,7 @@
 
   --clearfix {
     &:after {
-      content: '';
+      content: "";
       display: table;
       clear: both;
     }
@@ -157,7 +157,7 @@
   /* ================ Buttons ================ */
 
   --marketplaceButtonFontStyles: {
-    font-family: 'sofiapro', Helvetica, Arial, sans-serif;
+    font-family: "sofiapro", Helvetica, Arial, sans-serif;
     font-weight: var(--fontWeightSemiBold);
     font-size: 18px;
     line-height: 24px;
