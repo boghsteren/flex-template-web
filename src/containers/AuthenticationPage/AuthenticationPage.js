@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import classNames from 'classnames';
-import config from '../../config';
-import { propTypes } from '../../util/types';
-import { ensureCurrentUser } from '../../util/data';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { withRouter, Redirect } from "react-router-dom";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import classNames from "classnames";
+import config from "../../config";
+import { propTypes } from "../../util/types";
+import { ensureCurrentUser } from "../../util/data";
 import {
   isSignupEmailTakenError,
-  isTooManyEmailVerificationRequestsError,
-} from '../../util/errors';
+  isTooManyEmailVerificationRequestsError
+} from "../../util/errors";
 import {
   Page,
   NamedLink,
@@ -26,16 +26,16 @@ import {
   LayoutWrapperFooter,
   Footer,
   Modal,
-  TermsOfService,
-} from '../../components';
-import { LoginForm, SignupForm } from '../../forms';
-import { TopbarContainer } from '../../containers';
-import { login, authenticationInProgress, signup } from '../../ducks/Auth.duck';
-import { isScrollingDisabled } from '../../ducks/UI.duck';
-import { sendVerificationEmail } from '../../ducks/user.duck';
-import { manageDisableScrolling } from '../../ducks/UI.duck';
+  TermsOfService
+} from "../../components";
+import { LoginForm, SignupForm } from "../../forms";
+import { TopbarContainer } from "../../containers";
+import { login, authenticationInProgress, signup } from "../../ducks/Auth.duck";
+import { isScrollingDisabled } from "../../ducks/UI.duck";
+import { sendVerificationEmail } from "../../ducks/user.duck";
+import { manageDisableScrolling } from "../../ducks/UI.duck";
 
-import css from './AuthenticationPage.css';
+import css from "./AuthenticationPage.css";
 
 export class AuthenticationPageComponent extends Component {
   constructor(props) {
@@ -58,10 +58,11 @@ export class AuthenticationPageComponent extends Component {
       sendVerificationEmailInProgress,
       sendVerificationEmailError,
       onResendVerificationEmail,
-      onManageDisableScrolling,
+      onManageDisableScrolling
     } = this.props;
-    const isLogin = tab === 'login';
-    const from = location.state && location.state.from ? location.state.from : null;
+    const isLogin = tab === "login";
+    const from =
+      location.state && location.state.from ? location.state.from : null;
 
     const user = ensureCurrentUser(currentUser);
     const currentUserLoaded = !!user.id;
@@ -70,7 +71,8 @@ export class AuthenticationPageComponent extends Component {
     // tab if the user isn't being redirected somewhere else
     // (i.e. `from` is present). We must also check the `emailVerified`
     // flag only when the current user is fully loaded.
-    const showEmailVerification = !isLogin && currentUserLoaded && !user.attributes.emailVerified;
+    const showEmailVerification =
+      !isLogin && currentUserLoaded && !user.attributes.emailVerified;
 
     // Already authenticated, redirect away from auth page
     if (isAuthenticated && from) {
@@ -112,9 +114,9 @@ export class AuthenticationPageComponent extends Component {
         ),
         selected: !isLogin,
         linkProps: {
-          name: 'SignupPage',
-          to: fromState,
-        },
+          name: "SignupPage",
+          to: fromState
+        }
       },
       {
         text: (
@@ -124,15 +126,20 @@ export class AuthenticationPageComponent extends Component {
         ),
         selected: isLogin,
         linkProps: {
-          name: 'LoginPage',
-          to: fromState,
-        },
-      },
+          name: "LoginPage",
+          to: fromState
+        }
+      }
     ];
 
     const handleSubmitSignup = values => {
-      const { fname, lname, ...rest } = values;
-      const params = { firstName: fname.trim(), lastName: lname.trim(), ...rest };
+      const { fname, lname, organisation, ...rest } = values;
+      const params = {
+        firstName: fname.trim(),
+        lastName: lname.trim(),
+        publicData: { organisation },
+        ...rest
+      };
       submitSignup(params);
     };
 
@@ -141,7 +148,11 @@ export class AuthenticationPageComponent extends Component {
         <LinkTabNavHorizontal className={css.tabs} tabs={tabs} />
         {loginOrSignupError}
         {isLogin ? (
-          <LoginForm className={css.form} onSubmit={submitLogin} inProgress={authInProgress} />
+          <LoginForm
+            className={css.form}
+            onSubmit={submitLogin}
+            inProgress={authInProgress}
+          />
         ) : (
           <SignupForm
             className={css.form}
@@ -157,7 +168,10 @@ export class AuthenticationPageComponent extends Component {
     const email = <span className={css.email}>{user.attributes.email}</span>;
 
     const resendEmailLink = (
-      <InlineTextButton className={css.modalHelperLink} onClick={onResendVerificationEmail}>
+      <InlineTextButton
+        className={css.modalHelperLink}
+        onClick={onResendVerificationEmail}
+      >
         <FormattedMessage id="AuthenticationPage.resendEmailLinkText" />
       </InlineTextButton>
     );
@@ -170,8 +184,8 @@ export class AuthenticationPageComponent extends Component {
     const resendErrorTranslationId = isTooManyEmailVerificationRequestsError(
       sendVerificationEmailError
     )
-      ? 'AuthenticationPage.resendFailedTooManyRequests'
-      : 'AuthenticationPage.resendFailed';
+      ? "AuthenticationPage.resendFailedTooManyRequests"
+      : "AuthenticationPage.resendFailed";
     const resendErrorMessage = sendVerificationEmailError ? (
       <p className={css.error}>
         <FormattedMessage id={resendErrorTranslationId} />
@@ -188,10 +202,16 @@ export class AuthenticationPageComponent extends Component {
         </NamedLink>
         <IconEmailSent className={css.modalIcon} />
         <h1 className={css.modalTitle}>
-          <FormattedMessage id="AuthenticationPage.verifyEmailTitle" values={{ name }} />
+          <FormattedMessage
+            id="AuthenticationPage.verifyEmailTitle"
+            values={{ name }}
+          />
         </h1>
         <p className={css.modalMessage}>
-          <FormattedMessage id="AuthenticationPage.verifyEmailText" values={{ email }} />
+          <FormattedMessage
+            id="AuthenticationPage.verifyEmailText"
+            values={{ email }}
+          />
         </p>
         {resendErrorMessage}
 
@@ -200,11 +220,17 @@ export class AuthenticationPageComponent extends Component {
             {sendVerificationEmailInProgress ? (
               <FormattedMessage id="AuthenticationPage.sendingEmail" />
             ) : (
-              <FormattedMessage id="AuthenticationPage.resendEmail" values={{ resendEmailLink }} />
+              <FormattedMessage
+                id="AuthenticationPage.resendEmail"
+                values={{ resendEmailLink }}
+              />
             )}
           </p>
           <p className={css.modalHelperText}>
-            <FormattedMessage id="AuthenticationPage.fixEmail" values={{ fixEmailLink }} />
+            <FormattedMessage
+              id="AuthenticationPage.fixEmail"
+              values={{ fixEmailLink }}
+            />
           </p>
         </div>
       </div>
@@ -212,11 +238,17 @@ export class AuthenticationPageComponent extends Component {
 
     const siteTitle = config.siteTitle;
     const schemaTitle = isLogin
-      ? intl.formatMessage({ id: 'AuthenticationPage.schemaTitleLogin' }, { siteTitle })
-      : intl.formatMessage({ id: 'AuthenticationPage.schemaTitleSignup' }, { siteTitle });
+      ? intl.formatMessage(
+          { id: "AuthenticationPage.schemaTitleLogin" },
+          { siteTitle }
+        )
+      : intl.formatMessage(
+          { id: "AuthenticationPage.schemaTitleSignup" },
+          { siteTitle }
+        );
 
     const topbarClasses = classNames({
-      [css.hideOnMobile]: showEmailVerification,
+      [css.hideOnMobile]: showEmailVerification
     });
 
     return (
@@ -224,9 +256,9 @@ export class AuthenticationPageComponent extends Component {
         title={schemaTitle}
         scrollingDisabled={scrollingDisabled}
         schema={{
-          '@context': 'http://schema.org',
-          '@type': 'WebPage',
-          name: schemaTitle,
+          "@context": "http://schema.org",
+          "@type": "WebPage",
+          name: schemaTitle
         }}
       >
         <LayoutSingleColumn>
@@ -264,8 +296,8 @@ AuthenticationPageComponent.defaultProps = {
   currentUser: null,
   loginError: null,
   signupError: null,
-  tab: 'signup',
-  sendVerificationEmailError: null,
+  tab: "signup",
+  sendVerificationEmailError: null
 };
 
 const { bool, func, object, oneOf, shape } = PropTypes;
@@ -279,7 +311,7 @@ AuthenticationPageComponent.propTypes = {
   signupError: propTypes.error,
   submitLogin: func.isRequired,
   submitSignup: func.isRequired,
-  tab: oneOf(['login', 'signup']),
+  tab: oneOf(["login", "signup"]),
 
   sendVerificationEmailInProgress: bool.isRequired,
   sendVerificationEmailError: propTypes.error,
@@ -290,12 +322,16 @@ AuthenticationPageComponent.propTypes = {
   location: shape({ state: object }).isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const mapStateToProps = state => {
   const { isAuthenticated, loginError, signupError } = state.Auth;
-  const { currentUser, sendVerificationEmailInProgress, sendVerificationEmailError } = state.user;
+  const {
+    currentUser,
+    sendVerificationEmailInProgress,
+    sendVerificationEmailError
+  } = state.user;
   return {
     authInProgress: authenticationInProgress(state),
     currentUser,
@@ -304,7 +340,7 @@ const mapStateToProps = state => {
     scrollingDisabled: isScrollingDisabled(state),
     signupError,
     sendVerificationEmailInProgress,
-    sendVerificationEmailError,
+    sendVerificationEmailError
   };
 };
 
@@ -313,7 +349,7 @@ const mapDispatchToProps = dispatch => ({
   submitSignup: params => dispatch(signup(params)),
   onResendVerificationEmail: () => dispatch(sendVerificationEmail()),
   onManageDisableScrolling: (componentId, disableScrolling) =>
-    dispatch(manageDisableScrolling(componentId, disableScrolling)),
+    dispatch(manageDisableScrolling(componentId, disableScrolling))
 });
 
 // Note: it is important that the withRouter HOC is **outside** the

@@ -1,30 +1,31 @@
-import isEmpty from 'lodash/isEmpty';
-import { clearCurrentUser, fetchCurrentUser } from './user.duck';
-import { storableError } from '../util/errors';
-import * as log from '../util/log';
+import isEmpty from "lodash/isEmpty";
+import { clearCurrentUser, fetchCurrentUser } from "./user.duck";
+import { storableError } from "../util/errors";
+import * as log from "../util/log";
 
-const authenticated = authInfo => authInfo && authInfo.grantType === 'refresh_token';
+const authenticated = authInfo =>
+  authInfo && authInfo.grantType === "refresh_token";
 
 // ================ Action types ================ //
 
-export const AUTH_INFO_REQUEST = 'app/Auth/AUTH_INFO_REQUEST';
-export const AUTH_INFO_SUCCESS = 'app/Auth/AUTH_INFO_SUCCESS';
+export const AUTH_INFO_REQUEST = "app/Auth/AUTH_INFO_REQUEST";
+export const AUTH_INFO_SUCCESS = "app/Auth/AUTH_INFO_SUCCESS";
 
-export const LOGIN_REQUEST = 'app/Auth/LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'app/Auth/LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'app/Auth/LOGIN_ERROR';
+export const LOGIN_REQUEST = "app/Auth/LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "app/Auth/LOGIN_SUCCESS";
+export const LOGIN_ERROR = "app/Auth/LOGIN_ERROR";
 
-export const LOGOUT_REQUEST = 'app/Auth/LOGOUT_REQUEST';
-export const LOGOUT_SUCCESS = 'app/Auth/LOGOUT_SUCCESS';
-export const LOGOUT_ERROR = 'app/Auth/LOGOUT_ERROR';
+export const LOGOUT_REQUEST = "app/Auth/LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS = "app/Auth/LOGOUT_SUCCESS";
+export const LOGOUT_ERROR = "app/Auth/LOGOUT_ERROR";
 
-export const SIGNUP_REQUEST = 'app/Auth/SIGNUP_REQUEST';
-export const SIGNUP_SUCCESS = 'app/Auth/SIGNUP_SUCCESS';
-export const SIGNUP_ERROR = 'app/Auth/SIGNUP_ERROR';
+export const SIGNUP_REQUEST = "app/Auth/SIGNUP_REQUEST";
+export const SIGNUP_SUCCESS = "app/Auth/SIGNUP_SUCCESS";
+export const SIGNUP_ERROR = "app/Auth/SIGNUP_ERROR";
 
 // Generic user_logout action that can be handled elsewhere
 // E.g. src/reducers.js clears store as a consequence
-export const USER_LOGOUT = 'app/USER_LOGOUT';
+export const USER_LOGOUT = "app/USER_LOGOUT";
 
 // ================ Reducer ================ //
 
@@ -44,7 +45,7 @@ const initialState = {
 
   // signup
   signupError: null,
-  signupInProgress: false,
+  signupInProgress: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -53,7 +54,11 @@ export default function reducer(state = initialState, action = {}) {
     case AUTH_INFO_REQUEST:
       return state;
     case AUTH_INFO_SUCCESS:
-      return { ...state, authInfoLoaded: true, isAuthenticated: authenticated(payload) };
+      return {
+        ...state,
+        authInfoLoaded: true,
+        isAuthenticated: authenticated(payload)
+      };
 
     case LOGIN_REQUEST:
       return {
@@ -61,7 +66,7 @@ export default function reducer(state = initialState, action = {}) {
         loginInProgress: true,
         loginError: null,
         logoutError: null,
-        signupError: null,
+        signupError: null
       };
     case LOGIN_SUCCESS:
       return { ...state, loginInProgress: false, isAuthenticated: true };
@@ -69,14 +74,24 @@ export default function reducer(state = initialState, action = {}) {
       return { ...state, loginInProgress: false, loginError: payload };
 
     case LOGOUT_REQUEST:
-      return { ...state, logoutInProgress: true, loginError: null, logoutError: null };
+      return {
+        ...state,
+        logoutInProgress: true,
+        loginError: null,
+        logoutError: null
+      };
     case LOGOUT_SUCCESS:
       return { ...state, logoutInProgress: false, isAuthenticated: false };
     case LOGOUT_ERROR:
       return { ...state, logoutInProgress: false, logoutError: payload };
 
     case SIGNUP_REQUEST:
-      return { ...state, signupInProgress: true, loginError: null, signupError: null };
+      return {
+        ...state,
+        signupInProgress: true,
+        loginError: null,
+        signupError: null
+      };
     case SIGNUP_SUCCESS:
       return { ...state, signupInProgress: false };
     case SIGNUP_ERROR:
@@ -97,19 +112,34 @@ export const authenticationInProgress = state => {
 // ================ Action creators ================ //
 
 export const authInfoRequest = () => ({ type: AUTH_INFO_REQUEST });
-export const authInfoSuccess = info => ({ type: AUTH_INFO_SUCCESS, payload: info });
+export const authInfoSuccess = info => ({
+  type: AUTH_INFO_SUCCESS,
+  payload: info
+});
 
 export const loginRequest = () => ({ type: LOGIN_REQUEST });
 export const loginSuccess = () => ({ type: LOGIN_SUCCESS });
-export const loginError = error => ({ type: LOGIN_ERROR, payload: error, error: true });
+export const loginError = error => ({
+  type: LOGIN_ERROR,
+  payload: error,
+  error: true
+});
 
 export const logoutRequest = () => ({ type: LOGOUT_REQUEST });
 export const logoutSuccess = () => ({ type: LOGOUT_SUCCESS });
-export const logoutError = error => ({ type: LOGOUT_ERROR, payload: error, error: true });
+export const logoutError = error => ({
+  type: LOGOUT_ERROR,
+  payload: error,
+  error: true
+});
 
 export const signupRequest = () => ({ type: SIGNUP_REQUEST });
 export const signupSuccess = () => ({ type: SIGNUP_SUCCESS });
-export const signupError = error => ({ type: SIGNUP_ERROR, payload: error, error: true });
+export const signupError = error => ({
+  type: SIGNUP_ERROR,
+  payload: error,
+  error: true
+});
 
 export const userLogout = () => ({ type: USER_LOGOUT });
 
@@ -126,14 +156,14 @@ export const authInfo = () => (dispatch, getState, sdk) => {
       // circumstances. If it fails, it's due to a programming
       // error. In that case we mark the operation done and dispatch
       // `null` success action that marks the user as unauthenticated.
-      log.error(e, 'auth-info-failed');
+      log.error(e, "auth-info-failed");
       dispatch(authInfoSuccess(null));
     });
 };
 
 export const login = (username, password) => (dispatch, getState, sdk) => {
   if (authenticationInProgress(getState())) {
-    return Promise.reject(new Error('Login or logout already in progress'));
+    return Promise.reject(new Error("Login or logout already in progress"));
   }
   dispatch(loginRequest());
 
@@ -148,7 +178,7 @@ export const login = (username, password) => (dispatch, getState, sdk) => {
 
 export const logout = () => (dispatch, getState, sdk) => {
   if (authenticationInProgress(getState())) {
-    return Promise.reject(new Error('Login or logout already in progress'));
+    return Promise.reject(new Error("Login or logout already in progress"));
   }
   dispatch(logoutRequest());
 
@@ -168,14 +198,28 @@ export const logout = () => (dispatch, getState, sdk) => {
 
 export const signup = params => (dispatch, getState, sdk) => {
   if (authenticationInProgress(getState())) {
-    return Promise.reject(new Error('Login or logout already in progress'));
+    return Promise.reject(new Error("Login or logout already in progress"));
   }
   dispatch(signupRequest());
-  const { email, password, firstName, lastName, ...rest } = params;
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    organisation,
+    ...rest
+  } = params;
 
   const createUserParams = isEmpty(rest)
     ? { email, password, firstName, lastName }
-    : { email, password, firstName, lastName, protectedData: { ...rest } };
+    : {
+        email,
+        password,
+        firstName,
+        lastName,
+        publicData: { organisation: organisation },
+        protectedData: { ...rest }
+      };
 
   // We must login the user if signup succeeds since the API doesn't
   // do that automatically.
@@ -185,10 +229,10 @@ export const signup = params => (dispatch, getState, sdk) => {
     .then(() => dispatch(login(email, password)))
     .catch(e => {
       dispatch(signupError(storableError(e)));
-      log.error(e, 'signup-failed', {
+      log.error(e, "signup-failed", {
         email: params.email,
         firstName: params.firstName,
-        lastName: params.lastName,
+        lastName: params.lastName
       });
     });
 };

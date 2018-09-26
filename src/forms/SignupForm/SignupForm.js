@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { Form as FinalForm } from 'react-final-form';
-import classNames from 'classnames';
-import * as validators from '../../util/validators';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import React from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { Form as FinalForm } from "react-final-form";
+import classNames from "classnames";
+import * as validators from "../../util/validators";
+import { Form, PrimaryButton, FieldTextInput } from "../../components";
 
-import css from './SignupForm.css';
+import css from "./SignupForm.css";
 
 const KEY_CODE_ENTER = 13;
 
@@ -23,49 +23,49 @@ const SignupFormComponent = props => (
         inProgress,
         invalid,
         intl,
-        onOpenTermsOfService,
+        onOpenTermsOfService
       } = fieldRenderProps;
 
       // email
       const emailLabel = intl.formatMessage({
-        id: 'SignupForm.emailLabel',
+        id: "SignupForm.emailLabel"
       });
       const emailPlaceholder = intl.formatMessage({
-        id: 'SignupForm.emailPlaceholder',
+        id: "SignupForm.emailPlaceholder"
       });
       const emailRequiredMessage = intl.formatMessage({
-        id: 'SignupForm.emailRequired',
+        id: "SignupForm.emailRequired"
       });
       const emailRequired = validators.required(emailRequiredMessage);
       const emailInvalidMessage = intl.formatMessage({
-        id: 'SignupForm.emailInvalid',
+        id: "SignupForm.emailInvalid"
       });
       const emailValid = validators.emailFormatValid(emailInvalidMessage);
 
       // password
       const passwordLabel = intl.formatMessage({
-        id: 'SignupForm.passwordLabel',
+        id: "SignupForm.passwordLabel"
       });
       const passwordPlaceholder = intl.formatMessage({
-        id: 'SignupForm.passwordPlaceholder',
+        id: "SignupForm.passwordPlaceholder"
       });
       const passwordRequiredMessage = intl.formatMessage({
-        id: 'SignupForm.passwordRequired',
+        id: "SignupForm.passwordRequired"
       });
       const passwordMinLengthMessage = intl.formatMessage(
         {
-          id: 'SignupForm.passwordTooShort',
+          id: "SignupForm.passwordTooShort"
         },
         {
-          minLength: validators.PASSWORD_MIN_LENGTH,
+          minLength: validators.PASSWORD_MIN_LENGTH
         }
       );
       const passwordMaxLengthMessage = intl.formatMessage(
         {
-          id: 'SignupForm.passwordTooLong',
+          id: "SignupForm.passwordTooLong"
         },
         {
-          maxLength: validators.PASSWORD_MAX_LENGTH,
+          maxLength: validators.PASSWORD_MAX_LENGTH
         }
       );
       const passwordMinLength = validators.minLength(
@@ -76,34 +76,49 @@ const SignupFormComponent = props => (
         passwordMaxLengthMessage,
         validators.PASSWORD_MAX_LENGTH
       );
-      const passwordRequired = validators.requiredStringNoTrim(passwordRequiredMessage);
+      const passwordRequired = validators.requiredStringNoTrim(
+        passwordRequiredMessage
+      );
       const passwordValidators = validators.composeValidators(
         passwordRequired,
         passwordMinLength,
         passwordMaxLength
       );
+      // Organisation
+      const organisationLabel = intl.formatMessage({
+        id: "SignupForm.organisationLabel"
+      });
+      const organisationPlaceholder = intl.formatMessage({
+        id: "SignupForm.organisationPlaceholder"
+      });
+      const organisationRequiredMessage = intl.formatMessage({
+        id: "SignupForm.organisationRequiredMessage"
+      });
+      const organisationRequired = validators.required(
+        organisationRequiredMessage
+      );
 
       // firstName
       const firstNameLabel = intl.formatMessage({
-        id: 'SignupForm.firstNameLabel',
+        id: "SignupForm.firstNameLabel"
       });
       const firstNamePlaceholder = intl.formatMessage({
-        id: 'SignupForm.firstNamePlaceholder',
+        id: "SignupForm.firstNamePlaceholder"
       });
       const firstNameRequiredMessage = intl.formatMessage({
-        id: 'SignupForm.firstNameRequired',
+        id: "SignupForm.firstNameRequired"
       });
       const firstNameRequired = validators.required(firstNameRequiredMessage);
 
       // lastName
       const lastNameLabel = intl.formatMessage({
-        id: 'SignupForm.lastNameLabel',
+        id: "SignupForm.lastNameLabel"
       });
       const lastNamePlaceholder = intl.formatMessage({
-        id: 'SignupForm.lastNamePlaceholder',
+        id: "SignupForm.lastNamePlaceholder"
       });
       const lastNameRequiredMessage = intl.formatMessage({
-        id: 'SignupForm.lastNameRequired',
+        id: "SignupForm.lastNameRequired"
       });
       const lastNameRequired = validators.required(lastNameRequiredMessage);
 
@@ -134,7 +149,7 @@ const SignupFormComponent = props => (
           <div>
             <FieldTextInput
               type="email"
-              id={formId ? `${formId}.email` : 'email'}
+              id={formId ? `${formId}.email` : "email"}
               name="email"
               autoComplete="email"
               label={emailLabel}
@@ -145,7 +160,7 @@ const SignupFormComponent = props => (
               <FieldTextInput
                 className={css.firstNameRoot}
                 type="text"
-                id={formId ? `${formId}.fname` : 'fname'}
+                id={formId ? `${formId}.fname` : "fname"}
                 name="fname"
                 autoComplete="given-name"
                 label={firstNameLabel}
@@ -155,7 +170,7 @@ const SignupFormComponent = props => (
               <FieldTextInput
                 className={css.lastNameRoot}
                 type="text"
-                id={formId ? `${formId}.lname` : 'lname'}
+                id={formId ? `${formId}.lname` : "lname"}
                 name="lname"
                 autoComplete="family-name"
                 label={lastNameLabel}
@@ -163,10 +178,23 @@ const SignupFormComponent = props => (
                 validate={lastNameRequired}
               />
             </div>
+            <div className={css.password}>
+              <FieldTextInput
+                type="text"
+                id={
+                  formId ? `${formId}.publicData.organisation` : "organisation"
+                }
+                name="organisation"
+                autoComplete="organisation"
+                label={organisationLabel}
+                placeholder={organisationPlaceholder}
+                validate={validators.composeValidators(organisationRequired)}
+              />
+            </div>
             <FieldTextInput
               className={css.password}
               type="password"
-              id={formId ? `${formId}.password` : 'password'}
+              id={formId ? `${formId}.password` : "password"}
               name="password"
               autoComplete="new-password"
               label={passwordLabel}
@@ -209,10 +237,10 @@ SignupFormComponent.propTypes = {
   onOpenTermsOfService: func.isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const SignupForm = compose(injectIntl)(SignupFormComponent);
-SignupForm.displayName = 'SignupForm';
+SignupForm.displayName = "SignupForm";
 
 export default SignupForm;

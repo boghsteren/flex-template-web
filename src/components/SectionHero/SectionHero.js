@@ -6,7 +6,6 @@ import { stringify } from "../../util/urlHelpers";
 import { createResourceLocatorString } from "../../util/routes";
 import routeConfiguration from "../../routeConfiguration";
 import { IconSearch, Button } from "../../components";
-import { LocationSearchForm } from "../../forms";
 import config from "../../config";
 
 import css from "./SectionHero.css";
@@ -18,21 +17,6 @@ const SectionHero = props => {
     const params = { mobilesearch: "open" };
     const path = `${location.pathname}?${stringify(params)}`;
     history.push(path);
-  };
-
-  const handleSearchSubmit = values => {
-    const { search, selectedPlace } = values.location;
-    const { origin, bounds } = selectedPlace;
-    const originMaybe = config.sortSearchByDistance ? { origin } : {};
-    const searchParams = { ...originMaybe, address: search, bounds };
-    history.push(
-      createResourceLocatorString(
-        "SearchPage",
-        routeConfiguration(),
-        {},
-        searchParams
-      )
-    );
   };
 
   const classes = classNames(rootClassName || css.root, className);
