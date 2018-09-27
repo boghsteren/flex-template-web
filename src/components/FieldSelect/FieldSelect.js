@@ -1,16 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field } from 'react-final-form';
-import classNames from 'classnames';
-import { ValidationError } from '../../components';
+import React from "react";
+import PropTypes from "prop-types";
+import { Field } from "react-final-form";
+import classNames from "classnames";
+import { ValidationError } from "../../components";
 
-import css from './FieldSelect.css';
+import css from "./FieldSelect.css";
 
 const FieldSelectComponent = props => {
-  const { rootClassName, className, id, label, input, meta, children, ...rest } = props;
+  const {
+    rootClassName,
+    className,
+    id,
+    label,
+    input,
+    meta,
+    children,
+    ...rest
+  } = props;
 
   if (label && !id) {
-    throw new Error('id required when a label is given');
+    throw new Error("id required when a label is given");
   }
 
   const { valid, invalid, touched, error } = meta;
@@ -21,7 +30,7 @@ const FieldSelectComponent = props => {
 
   const selectClasses = classNames(css.select, {
     [css.selectSuccess]: valid,
-    [css.selectError]: hasError,
+    [css.selectError]: hasError
   });
   const selectProps = { className: selectClasses, id, ...input, ...rest };
 
@@ -40,7 +49,7 @@ FieldSelectComponent.defaultProps = {
   className: null,
   id: null,
   label: null,
-  children: null,
+  children: null
 };
 
 const { string, object, node } = PropTypes;
@@ -58,7 +67,7 @@ FieldSelectComponent.propTypes = {
   input: object.isRequired,
   meta: object.isRequired,
 
-  children: node,
+  children: node
 };
 
 const FieldSelect = props => {
