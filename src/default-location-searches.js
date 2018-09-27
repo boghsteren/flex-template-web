@@ -9,57 +9,57 @@ const { LatLng, LatLngBounds } = sdkTypes;
 // `predictionPlace` (util.types.place) properties.
 export default [
   {
-    id: "default-london",
+    id: "default-capetown",
     predictionPlace: {
-      address: "London, United Kingdom",
-      origin: new LatLng(51.5074, 0.1278),
+      address: "Cape Town, South Africa",
+      origin: new LatLng(-33.92487, 18.424055),
       bounds: new LatLngBounds(
-        new LatLng(51.6074, 0.2278),
-        new LatLng(51.4074, 0.0278)
+        new LatLng(-28.82487, 18.524055),
+        new LatLng(-39.02487, 18.324055)
+      )
+    }
+  },
+  {
+    id: "default-berlin",
+    predictionPlace: {
+      address: "Berlin, Germany",
+      origin: new LatLng(52.55712045, 13.465613),
+      bounds: new LatLngBounds(
+        new LatLng(53.55712045, 13.465613),
+        new LatLng(51.55712045, 13.465613)
       )
     }
   },
   {
     id: "default-newyork",
     predictionPlace: {
-      address: "Turku, Finland",
-      origin: new LatLng(60.45181, 22.26663),
+      address: "New York, USA",
+      origin: new LatLng(40.917576401307, -73.7008392055224),
       bounds: new LatLngBounds(
-        new LatLng(60.53045, 22.38197),
-        new LatLng(60.33361, 22.06644)
+        new LatLng(41.917576401307, -72.7008392055224),
+        new LatLng(39.917576401307, -74.7008392055224)
       )
     }
   },
   {
-    id: "default-tampere",
+    id: "default-buenosaires",
     predictionPlace: {
-      address: "Tampere, Finland",
-      origin: new LatLng(61.49775, 23.76095),
+      address: "Buenos Aires, Argentina",
+      origin: new LatLng(-34.2611895, -58.105691),
       bounds: new LatLngBounds(
-        new LatLng(61.83657, 24.11838),
-        new LatLng(61.42728, 23.5422)
+        new LatLng(-33.2611895, -57.105691),
+        new LatLng(-35.2611895, -59.105691)
       )
     }
   },
   {
-    id: "default-oulu",
+    id: "default-Kathmandu",
     predictionPlace: {
-      address: "Oulu, Finland",
-      origin: new LatLng(65.01208, 25.46507),
+      address: "Kathmandu, Nepal",
+      origin: new LatLng(27.7497844696045, 85.3745880126953),
       bounds: new LatLngBounds(
-        new LatLng(65.56434, 26.77069),
-        new LatLng(64.8443, 24.11494)
-      )
-    }
-  },
-  {
-    id: "default-ruka",
-    predictionPlace: {
-      address: "Ruka, Finland",
-      origin: new LatLng(66.16546, 29.15172),
-      bounds: new LatLngBounds(
-        new LatLng(66.16997, 29.16773),
-        new LatLng(66.16095, 29.13572)
+        new LatLng(28.7497844696045, 86.3745880126953),
+        new LatLng(26.7497844696045, 84.3745880126953)
       )
     }
   }

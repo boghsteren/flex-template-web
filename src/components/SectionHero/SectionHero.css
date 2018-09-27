@@ -124,7 +124,6 @@
   }
 }
 .deskTopButton {
-  display: none;
   background-color: var(--marketplaceColor);
   border-bottom: 4px solid var(--marketplaceColor);
   border-bottom-left-radius: 2px;

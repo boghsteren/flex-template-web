@@ -2,19 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import { stringify } from "../../util/urlHelpers";
-import { IconSearch, Button } from "../../components";
+import { Button } from "../../components";
 import css from "./SectionHero.css";
 
 const SectionHero = props => {
   const { rootClassName, className, history, location } = props;
-
-  const handleMobileSearchClick = () => {
-    const params = { mobilesearch: "open" };
-    const path = `${location.pathname}?${stringify(params)}`;
-    history.push(path);
-  };
-
   const classes = classNames(rootClassName || css.root, className);
 
   return (
@@ -25,13 +17,7 @@ const SectionHero = props => {
       <h2 className={css.heroSubTitle}>
         <FormattedMessage id="SectionHero.subTitle" />
       </h2>
-      <Button
-        className={css.mobileSearchButton}
-        onClick={handleMobileSearchClick}
-      >
-        <IconSearch rootClassName={css.searchIcon} />
-        <FormattedMessage id="SectionHero.mobileSearchButtonText" />
-      </Button>
+
       <Button className={css.deskTopButton} onClick={() => history.push("/s")}>
         Get started
       </Button>
