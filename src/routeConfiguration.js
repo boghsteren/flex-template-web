@@ -28,6 +28,7 @@ import {
 // at that point css bundling / imports will happen in wrong order.
 import { NamedRedirect } from "./components";
 import CompanyPage from "./containers/CompanyPage/CompanyPage";
+import FAQPage from "./containers/FAQPage/FAQPage";
 
 export const ACCOUNT_SETTINGS_PAGES = [
   "ContactDetailsPage",
@@ -54,6 +55,11 @@ const routeConfiguration = () => {
       path: "/about",
       name: "AboutPage",
       component: CompanyPage
+    },
+    {
+      path: "/faq",
+      name: "FAQPage",
+      component: FAQPage
     },
     {
       path: "/s",

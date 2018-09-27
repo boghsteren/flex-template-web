@@ -20,7 +20,7 @@ const CompanyPage = () => {
       schema={{
         '@context': 'http://schema.org',
         '@type': 'AboutPage',
-        description: 'About Saunatime',
+        description: 'About Goodwings Experiences',
         name: 'About page',
       }}
     >
