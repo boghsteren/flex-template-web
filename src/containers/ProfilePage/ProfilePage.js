@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import classNames from 'classnames';
-import { types as sdkTypes } from '../../util/sdkLoader';
-import { REVIEW_TYPE_OF_PROVIDER, REVIEW_TYPE_OF_CUSTOMER, propTypes } from '../../util/types';
-import { ensureCurrentUser, ensureUser } from '../../util/data';
-import { withViewport } from '../../util/contextHelpers';
-import { isScrollingDisabled } from '../../ducks/UI.duck';
-import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import classNames from "classnames";
+import { types as sdkTypes } from "../../util/sdkLoader";
+import {
+  REVIEW_TYPE_OF_PROVIDER,
+  REVIEW_TYPE_OF_CUSTOMER,
+  propTypes
+} from "../../util/types";
+import { ensureCurrentUser, ensureUser } from "../../util/data";
+import { withViewport } from "../../util/contextHelpers";
+import { isScrollingDisabled } from "../../ducks/UI.duck";
+import { getMarketplaceEntities } from "../../ducks/marketplaceData.duck";
 import {
   Page,
   LayoutSideNavigation,
@@ -22,13 +26,13 @@ import {
   NamedLink,
   ListingCard,
   Reviews,
-  ButtonTabNavHorizontal,
-} from '../../components';
-import { TopbarContainer, NotFoundPage } from '../../containers';
-import { loadData } from './ProfilePage.duck';
-import config from '../../config';
+  ButtonTabNavHorizontal
+} from "../../components";
+import { TopbarContainer, NotFoundPage } from "../../containers";
+import { loadData } from "./ProfilePage.duck";
+import config from "../../config";
 
-import css from './ProfilePage.css';
+import css from "./ProfilePage.css";
 
 const { UUID } = sdkTypes;
 const MAX_MOBILE_SCREEN_WIDTH = 768;
@@ -39,7 +43,7 @@ export class ProfilePageComponent extends Component {
 
     this.state = {
       // keep track of which reviews tab to show in desktop viewport
-      showReviewsType: REVIEW_TYPE_OF_PROVIDER,
+      showReviewsType: REVIEW_TYPE_OF_PROVIDER
     };
 
     this.showOfProviderReviews = this.showOfProviderReviews.bind(this);
@@ -48,13 +52,13 @@ export class ProfilePageComponent extends Component {
 
   showOfProviderReviews() {
     this.setState({
-      showReviewsType: REVIEW_TYPE_OF_PROVIDER,
+      showReviewsType: REVIEW_TYPE_OF_PROVIDER
     });
   }
 
   showOfCustomerReviews() {
     this.setState({
-      showReviewsType: REVIEW_TYPE_OF_CUSTOMER,
+      showReviewsType: REVIEW_TYPE_OF_CUSTOMER
     });
   }
 
@@ -69,13 +73,19 @@ export class ProfilePageComponent extends Component {
       reviews,
       queryReviewsError,
       viewport,
-      intl,
+      intl
     } = this.props;
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
     const profileUser = ensureUser(user);
     const isCurrentUser =
-      ensuredCurrentUser.id && profileUser.id && ensuredCurrentUser.id.uuid === profileUser.id.uuid;
+      ensuredCurrentUser.id &&
+      profileUser.id &&
+      ensuredCurrentUser.id.uuid === profileUser.id.uuid;
     const displayName = profileUser.attributes.profile.displayName;
+    const organisation =
+      profileUser.attributes.profile.publicData &&
+      profileUser.attributes.profile.publicData.organisation;
+
     const bio = profileUser.attributes.profile.bio;
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
@@ -97,7 +107,10 @@ export class ProfilePageComponent extends Component {
         <AvatarLarge className={css.avatar} user={user} disableProfileLink />
         <h1 className={css.mobileHeading}>
           {displayName ? (
-            <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: displayName }} />
+            <FormattedMessage
+              id="ProfilePage.mobileHeading"
+              values={{ name: displayName }}
+            />
           ) : null}
         </h1>
         {editLinkMobile}
@@ -106,7 +119,7 @@ export class ProfilePageComponent extends Component {
     );
 
     const listingsContainerClasses = classNames(css.listingsContainer, {
-      [css.withBioMissingAbove]: !hasBio,
+      [css.withBioMissingAbove]: !hasBio
     });
 
     const reviewsError = (
@@ -115,9 +128,13 @@ export class ProfilePageComponent extends Component {
       </p>
     );
 
-    const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
+    const reviewsOfProvider = reviews.filter(
+      r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER
+    );
 
-    const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
+    const reviewsOfCustomer = reviews.filter(
+      r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER
+    );
 
     const mobileReviews = (
       <div className={css.mobileReviews}>
@@ -151,7 +168,7 @@ export class ProfilePageComponent extends Component {
           </h3>
         ),
         selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
-        onClick: this.showOfProviderReviews,
+        onClick: this.showOfProviderReviews
       },
       {
         text: (
@@ -163,13 +180,16 @@ export class ProfilePageComponent extends Component {
           </h3>
         ),
         selected: this.state.showReviewsType === REVIEW_TYPE_OF_CUSTOMER,
-        onClick: this.showOfCustomerReviews,
-      },
+        onClick: this.showOfCustomerReviews
+      }
     ];
 
     const desktopReviews = (
       <div className={css.desktopReviews}>
-        <ButtonTabNavHorizontal className={css.desktopReviewsTabNav} tabs={desktopReviewTabs} />
+        <ButtonTabNavHorizontal
+          className={css.desktopReviewsTabNav}
+          tabs={desktopReviewTabs}
+        />
 
         {queryReviewsError ? reviewsError : null}
 
@@ -184,7 +204,17 @@ export class ProfilePageComponent extends Component {
     const mainContent = (
       <div>
         <h1 className={css.desktopHeading}>
-          <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
+          {organisation ? (
+            <FormattedMessage
+              id="ProfilePage.desktopHeading"
+              values={{ name: displayName, organisation }}
+            />
+          ) : (
+            <FormattedMessage
+              id="ProfilePage.desktopHeadingNoOrganisation"
+              values={{ name: displayName }}
+            />
+          )}
         </h1>
         {hasBio ? <p className={css.bio}>{bio}</p> : null}
         {hasListings ? (
@@ -224,11 +254,11 @@ export class ProfilePageComponent extends Component {
 
     const schemaTitle = intl.formatMessage(
       {
-        id: 'ProfilePage.schemaTitle',
+        id: "ProfilePage.schemaTitle"
       },
       {
         name: displayName,
-        siteTitle: config.siteTitle,
+        siteTitle: config.siteTitle
       }
     );
 
@@ -237,16 +267,18 @@ export class ProfilePageComponent extends Component {
         scrollingDisabled={scrollingDisabled}
         title={schemaTitle}
         schema={{
-          '@context': 'http://schema.org',
-          '@type': 'ProfilePage',
-          name: schemaTitle,
+          "@context": "http://schema.org",
+          "@type": "ProfilePage",
+          name: schemaTitle
         }}
       >
         <LayoutSideNavigation>
           <LayoutWrapperTopbar>
             <TopbarContainer currentPage="ProfilePage" />
           </LayoutWrapperTopbar>
-          <LayoutWrapperSideNav className={css.aside}>{asideContent}</LayoutWrapperSideNav>
+          <LayoutWrapperSideNav className={css.aside}>
+            {asideContent}
+          </LayoutWrapperSideNav>
           <LayoutWrapperMain>{content}</LayoutWrapperMain>
           <LayoutWrapperFooter>
             <Footer />
@@ -263,7 +295,7 @@ ProfilePageComponent.defaultProps = {
   userShowError: null,
   queryListingsError: null,
   reviews: [],
-  queryReviewsError: null,
+  queryReviewsError: null
 };
 
 const { bool, arrayOf, number, shape } = PropTypes;
@@ -281,11 +313,11 @@ ProfilePageComponent.propTypes = {
   // form withViewport
   viewport: shape({
     width: number.isRequired,
-    height: number.isRequired,
+    height: number.isRequired
   }).isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const mapStateToProps = state => {
@@ -296,9 +328,11 @@ const mapStateToProps = state => {
     queryListingsError,
     userListingRefs,
     reviews,
-    queryReviewsError,
+    queryReviewsError
   } = state.ProfilePage;
-  const userMatches = getMarketplaceEntities(state, [{ type: 'user', id: userId }]);
+  const userMatches = getMarketplaceEntities(state, [
+    { type: "user", id: userId }
+  ]);
   const user = userMatches.length === 1 ? userMatches[0] : null;
   const listings = getMarketplaceEntities(state, userListingRefs);
   return {
@@ -309,7 +343,7 @@ const mapStateToProps = state => {
     queryListingsError,
     listings,
     reviews,
-    queryReviewsError,
+    queryReviewsError
   };
 };
 
