@@ -29,6 +29,7 @@ import {
 import { NamedRedirect } from "./components";
 import CompanyPage from "./containers/CompanyPage/CompanyPage";
 import FAQPage from "./containers/FAQPage/FAQPage";
+import HowItWorksPage from "./containers/HowItWorksPage/HowItWorksPage";
 
 export const ACCOUNT_SETTINGS_PAGES = [
   "ContactDetailsPage",
@@ -60,6 +61,11 @@ const routeConfiguration = () => {
       path: "/faq",
       name: "FAQPage",
       component: FAQPage
+    },
+    {
+      path: "/how",
+      name: "HowPage",
+      component: HowItWorksPage
     },
     {
       path: "/s",
