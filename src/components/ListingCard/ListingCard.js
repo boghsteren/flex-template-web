@@ -1,16 +1,16 @@
-import React from 'react';
-import { string, func } from 'prop-types';
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
-import classNames from 'classnames';
-import { NamedLink, ResponsiveImage } from '../../components';
-import { propTypes } from '../../util/types';
-import { formatMoney } from '../../util/currency';
-import { ensureListing, ensureUser } from '../../util/data';
-import { richText } from '../../util/richText';
-import { createSlug } from '../../util/urlHelpers';
-import config from '../../config';
+import React from "react";
+import { string, func } from "prop-types";
+import { FormattedMessage, intlShape, injectIntl } from "react-intl";
+import classNames from "classnames";
+import { NamedLink, ResponsiveImage } from "../../components";
+import { propTypes } from "../../util/types";
+import { formatMoney } from "../../util/currency";
+import { ensureListing, ensureUser } from "../../util/data";
+import { richText } from "../../util/richText";
+import { createSlug } from "../../util/urlHelpers";
+import config from "../../config";
 
-import css from './ListingCard.css';
+import css from "./ListingCard.css";
 
 const MIN_LENGTH_FOR_LONG_WORDS = 10;
 
@@ -21,29 +21,43 @@ const priceData = (price, intl) => {
   } else if (price) {
     return {
       formattedPrice: intl.formatMessage(
-        { id: 'ListingCard.unsupportedPrice' },
+        { id: "ListingCard.unsupportedPrice" },
         { currency: price.currency }
       ),
       priceTitle: intl.formatMessage(
-        { id: 'ListingCard.unsupportedPriceTitle' },
+        { id: "ListingCard.unsupportedPriceTitle" },
         { currency: price.currency }
-      ),
+      )
     };
   }
   return {};
 };
 
 export const ListingCardComponent = props => {
-  const { className, rootClassName, intl, listing, renderSizes, setActiveListing } = props;
+  const {
+    className,
+    rootClassName,
+    intl,
+    listing,
+    renderSizes,
+    setActiveListing
+  } = props;
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
-  const { title = '', price } = currentListing.attributes;
+  const { title = "", price } = currentListing.attributes;
   const slug = createSlug(title);
   const author = ensureUser(listing.author);
+
   const authorName = author.attributes.profile.displayName;
+  const authorOrganisation = author.attributes.profile.publicData.organisation
+    ? author.attributes.profile.publicData.organisation
+    : authorName;
+
   const firstImage =
-    currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+    currentListing.images && currentListing.images.length > 0
+      ? currentListing.images[0]
+      : null;
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
 
@@ -59,7 +73,7 @@ export const ListingCardComponent = props => {
             rootClassName={css.rootForImage}
             alt={title}
             image={firstImage}
-            variants={['landscape-crop', 'landscape-crop2x']}
+            variants={["landscape-crop", "landscape-crop2x"]}
             sizes={renderSizes}
           />
         </div>
@@ -77,14 +91,14 @@ export const ListingCardComponent = props => {
           <div className={css.title}>
             {richText(title, {
               longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
-              longWordClass: css.longWord,
+              longWordClass: css.longWord
             })}
           </div>
           <div className={css.authorInfo}>
             <FormattedMessage
               className={css.authorName}
               id="ListingCard.hostedBy"
-              values={{ authorName }}
+              values={{ authorName: authorOrganisation }}
             />
           </div>
         </div>
@@ -97,7 +111,7 @@ ListingCardComponent.defaultProps = {
   className: null,
   rootClassName: null,
   renderSizes: null,
-  setActiveListing: () => null,
+  setActiveListing: () => null
 };
 
 ListingCardComponent.propTypes = {
@@ -109,7 +123,7 @@ ListingCardComponent.propTypes = {
   // Responsive image sizes hint
   renderSizes: string,
 
-  setActiveListing: func,
+  setActiveListing: func
 };
 
 export default injectIntl(ListingCardComponent);

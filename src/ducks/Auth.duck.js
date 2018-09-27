@@ -200,6 +200,7 @@ export const signup = params => (dispatch, getState, sdk) => {
   if (authenticationInProgress(getState())) {
     return Promise.reject(new Error("Login or logout already in progress"));
   }
+  console.log(params);
   dispatch(signupRequest());
   const {
     email,
@@ -211,7 +212,13 @@ export const signup = params => (dispatch, getState, sdk) => {
   } = params;
 
   const createUserParams = isEmpty(rest)
-    ? { email, password, firstName, lastName }
+    ? {
+        email,
+        password,
+        firstName,
+        lastName,
+        publicData: { organisation: organisation }
+      }
     : {
         email,
         password,

@@ -1,21 +1,40 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { Component } from 'react';
-import { array, arrayOf, bool, func, shape, string, oneOf } from 'prop-types';
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import config from '../../config';
-import routeConfiguration from '../../routeConfiguration';
-import { LISTING_STATE_PENDING_APPROVAL, LISTING_STATE_CLOSED, propTypes } from '../../util/types';
-import { types as sdkTypes } from '../../util/sdkLoader';
-import { LISTING_PAGE_PENDING_APPROVAL_VARIANT, createSlug, parse } from '../../util/urlHelpers';
-import { formatMoney } from '../../util/currency';
-import { createResourceLocatorString, findRouteByRouteName } from '../../util/routes';
-import { ensureListing, ensureOwnListing, ensureUser, userDisplayName } from '../../util/data';
-import { richText } from '../../util/richText';
-import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
-import { manageDisableScrolling, isScrollingDisabled } from '../../ducks/UI.duck';
+import React, { Component } from "react";
+import { array, arrayOf, bool, func, shape, string, oneOf } from "prop-types";
+import { FormattedMessage, intlShape, injectIntl } from "react-intl";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import config from "../../config";
+import routeConfiguration from "../../routeConfiguration";
+import {
+  LISTING_STATE_PENDING_APPROVAL,
+  LISTING_STATE_CLOSED,
+  propTypes
+} from "../../util/types";
+import { types as sdkTypes } from "../../util/sdkLoader";
+import {
+  LISTING_PAGE_PENDING_APPROVAL_VARIANT,
+  createSlug,
+  parse
+} from "../../util/urlHelpers";
+import { formatMoney } from "../../util/currency";
+import {
+  createResourceLocatorString,
+  findRouteByRouteName
+} from "../../util/routes";
+import {
+  ensureListing,
+  ensureOwnListing,
+  ensureUser,
+  userDisplayName
+} from "../../util/data";
+import { richText } from "../../util/richText";
+import { getMarketplaceEntities } from "../../ducks/marketplaceData.duck";
+import {
+  manageDisableScrolling,
+  isScrollingDisabled
+} from "../../ducks/UI.duck";
 import {
   Page,
   NamedLink,
@@ -24,22 +43,22 @@ import {
   LayoutWrapperTopbar,
   LayoutWrapperMain,
   LayoutWrapperFooter,
-  Footer,
-} from '../../components';
-import { TopbarContainer, NotFoundPage } from '../../containers';
+  Footer
+} from "../../components";
+import { TopbarContainer, NotFoundPage } from "../../containers";
 
-import { sendEnquiry, loadData, setInitialValues } from './ListingPage.duck';
-import SectionImages from './SectionImages';
-import SectionAvatar from './SectionAvatar';
-import SectionHeading from './SectionHeading';
-import SectionDescription from './SectionDescription';
-import SectionFeatures from './SectionFeatures';
-import SectionReviews from './SectionReviews';
-import SectionHost from './SectionHost';
-import SectionRulesMaybe from './SectionRulesMaybe';
-import SectionMapMaybe from './SectionMapMaybe';
-import SectionBooking from './SectionBooking';
-import css from './ListingPage.css';
+import { sendEnquiry, loadData, setInitialValues } from "./ListingPage.duck";
+import SectionImages from "./SectionImages";
+import SectionAvatar from "./SectionAvatar";
+import SectionHeading from "./SectionHeading";
+import SectionDescription from "./SectionDescription";
+import SectionFeatures from "./SectionFeatures";
+import SectionReviews from "./SectionReviews";
+import SectionHost from "./SectionHost";
+import SectionRulesMaybe from "./SectionRulesMaybe";
+import SectionMapMaybe from "./SectionMapMaybe";
+import SectionBooking from "./SectionBooking";
+import css from "./ListingPage.css";
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
@@ -52,7 +71,7 @@ const priceData = (price, intl) => {
   } else if (price) {
     return {
       formattedPrice: `(${price.currency})`,
-      priceTitle: `Unsupported currency (${price.currency})`,
+      priceTitle: `Unsupported currency (${price.currency})`
     };
   }
   return {};
@@ -66,7 +85,7 @@ const openBookModal = (history, listing) => {
   const routes = routeConfiguration();
   history.push(
     createResourceLocatorString(
-      'ListingPage',
+      "ListingPage",
       routes,
       { id: listing.id.uuid, slug: createSlug(listing.attributes.title) },
       { book: true }
@@ -82,7 +101,7 @@ const closeBookModal = (history, listing) => {
   const routes = routeConfiguration();
   history.push(
     createResourceLocatorString(
-      'ListingPage',
+      "ListingPage",
       routes,
       { id: listing.id.uuid, slug: createSlug(listing.attributes.title) },
       {}
@@ -102,7 +121,7 @@ export class ListingPageComponent extends Component {
     this.state = {
       pageClassNames: [],
       imageCarouselOpen: false,
-      enquiryModalOpen: enquiryModalOpenForListingId === params.id,
+      enquiryModalOpen: enquiryModalOpenForListingId === params.id
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -122,19 +141,19 @@ export class ListingPageComponent extends Component {
       bookingData,
       bookingDates: {
         bookingStart: bookingDates.startDate,
-        bookingEnd: bookingDates.endDate,
-      },
+        bookingEnd: bookingDates.endDate
+      }
     };
 
     const routes = routeConfiguration();
     // Customize checkout page state with current listing and selected bookingDates
-    const { setInitialValues } = findRouteByRouteName('CheckoutPage', routes);
+    const { setInitialValues } = findRouteByRouteName("CheckoutPage", routes);
     useInitialValues(setInitialValues, initialValues);
 
     // Redirect to CheckoutPage
     history.push(
       createResourceLocatorString(
-        'CheckoutPage',
+        "CheckoutPage",
         routes,
         { id: listing.id.uuid, slug: createSlug(listing.attributes.title) },
         {}
@@ -143,17 +162,30 @@ export class ListingPageComponent extends Component {
   }
 
   onContactUser() {
-    const { currentUser, history, useInitialValues, params, location } = this.props;
+    const {
+      currentUser,
+      history,
+      useInitialValues,
+      params,
+      location
+    } = this.props;
 
     if (!currentUser) {
-      const state = { from: `${location.pathname}${location.search}${location.hash}` };
+      const state = {
+        from: `${location.pathname}${location.search}${location.hash}`
+      };
 
       // We need to log in before showing the modal, but first we need to ensure
       // that modal does open when user is redirected back to this listingpage
-      useInitialValues(setInitialValues, { enquiryModalOpenForListingId: params.id });
+      useInitialValues(setInitialValues, {
+        enquiryModalOpenForListingId: params.id
+      });
 
       // signup and return back to listingPage.
-      history.push(createResourceLocatorString('SignupPage', routeConfiguration(), {}, {}), state);
+      history.push(
+        createResourceLocatorString("SignupPage", routeConfiguration(), {}, {}),
+        state
+      );
     } else {
       this.setState({ enquiryModalOpen: true });
     }
@@ -171,7 +203,12 @@ export class ListingPageComponent extends Component {
 
         // Redirect to OrderDetailsPage
         history.push(
-          createResourceLocatorString('OrderDetailsPage', routes, { id: txId.uuid }, {})
+          createResourceLocatorString(
+            "OrderDetailsPage",
+            routes,
+            { id: txId.uuid },
+            {}
+          )
         );
       })
       .catch(() => {
@@ -200,21 +237,24 @@ export class ListingPageComponent extends Component {
       timeSlots,
       fetchTimeSlotsError,
       categoriesConfig,
-      goalsConfig,
+      goalsConfig
     } = this.props;
 
     const isBook = !!parse(location.search).book;
     const listingId = new UUID(rawParams.id);
-    const isPendingApprovalVariant = rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
+    const isPendingApprovalVariant =
+      rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
     const currentListing = isPendingApprovalVariant
       ? ensureOwnListing(getOwnListing(listingId))
       : ensureListing(getListing(listingId));
 
-    const listingSlug = rawParams.slug || createSlug(currentListing.attributes.title || '');
+    const listingSlug =
+      rawParams.slug || createSlug(currentListing.attributes.title || "");
     const params = { slug: listingSlug, ...rawParams };
 
     const isApproved =
-      currentListing.id && currentListing.attributes.state !== LISTING_STATE_PENDING_APPROVAL;
+      currentListing.id &&
+      currentListing.attributes.state !== LISTING_STATE_PENDING_APPROVAL;
 
     const pendingIsApproved = isPendingApprovalVariant && isApproved;
 
@@ -224,26 +264,35 @@ export class ListingPageComponent extends Component {
     // another user. We use this information to try to fetch the
     // public listing.
     const pendingOtherUsersListing =
-      isPendingApprovalVariant && showListingError && showListingError.status === 403;
-    const shouldShowPublicListingPage = pendingIsApproved || pendingOtherUsersListing;
+      isPendingApprovalVariant &&
+      showListingError &&
+      showListingError.status === 403;
+    const shouldShowPublicListingPage =
+      pendingIsApproved || pendingOtherUsersListing;
 
     if (shouldShowPublicListingPage) {
-      return <NamedRedirect name="ListingPage" params={params} search={location.search} />;
+      return (
+        <NamedRedirect
+          name="ListingPage"
+          params={params}
+          search={location.search}
+        />
+      );
     }
 
     const {
-      description = '',
+      description = "",
       geolocation = null,
       price = null,
-      title = '',
-      publicData,
+      title = "",
+      publicData
     } = currentListing.attributes;
 
     const richTitle = (
       <span>
         {richText(title, {
           longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE,
-          longWordClass: css.longWord,
+          longWordClass: css.longWord
         })}
       </span>
     );
@@ -258,7 +307,7 @@ export class ListingPageComponent extends Component {
       // Other error in fetching listing
 
       const errorTitle = intl.formatMessage({
-        id: 'ListingPage.errorLoadingListingTitle',
+        id: "ListingPage.errorLoadingListingTitle"
       });
 
       return (
@@ -280,7 +329,7 @@ export class ListingPageComponent extends Component {
       // Still loading the listing
 
       const loadingTitle = intl.formatMessage({
-        id: 'ListingPage.loadingListingTitle',
+        id: "ListingPage.loadingListingTitle"
       });
 
       return (
@@ -305,13 +354,14 @@ export class ListingPageComponent extends Component {
       // trying to open the carousel as well.
       e.stopPropagation();
       this.setState({
-        imageCarouselOpen: true,
+        imageCarouselOpen: true
       });
     };
     const authorAvailable = currentListing && currentListing.author;
     const userAndListingAuthorAvailable = !!(currentUser && authorAvailable);
     const isOwnListing =
-      userAndListingAuthorAvailable && currentListing.author.id.uuid === currentUser.id.uuid;
+      userAndListingAuthorAvailable &&
+      currentListing.author.id.uuid === currentUser.id.uuid;
     const isClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
     const showContactUser = !currentUser || (currentUser && !isOwnListing);
 
@@ -319,9 +369,14 @@ export class ListingPageComponent extends Component {
     const ensuredAuthor = ensureUser(currentAuthor);
 
     const bannedUserDisplayName = intl.formatMessage({
-      id: 'ListingPage.bannedUserDisplayName',
+      id: "ListingPage.bannedUserDisplayName"
     });
-    const authorDisplayName = userDisplayName(ensuredAuthor, bannedUserDisplayName);
+    const authorDisplayName = userDisplayName(
+      ensuredAuthor,
+      bannedUserDisplayName
+    );
+    const authorOrganisation =
+      currentListing.author.attributes.profile.publicData.organisation;
 
     const { formattedPrice, priceTitle } = priceData(price, intl);
 
@@ -330,7 +385,8 @@ export class ListingPageComponent extends Component {
     };
 
     const handleBookingSubmit = values => {
-      const isCurrentlyClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
+      const isCurrentlyClosed =
+        currentListing.attributes.state === LISTING_STATE_CLOSED;
       if (isOwnListing || isCurrentlyClosed) {
         window.scrollTo(0, 0);
       } else {
@@ -339,7 +395,8 @@ export class ListingPageComponent extends Component {
     };
 
     const handleBookButtonClick = () => {
-      const isCurrentlyClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
+      const isCurrentlyClosed =
+        currentListing.attributes.state === LISTING_STATE_CLOSED;
       if (isOwnListing || isCurrentlyClosed) {
         window.scrollTo(0, 0);
       } else {
@@ -362,12 +419,12 @@ export class ListingPageComponent extends Component {
         })
         .filter(variant => variant != null);
 
-    const facebookImages = listingImages(currentListing, 'facebook');
-    const twitterImages = listingImages(currentListing, 'twitter');
+    const facebookImages = listingImages(currentListing, "facebook");
+    const twitterImages = listingImages(currentListing, "twitter");
     const schemaImages = JSON.stringify(facebookImages.map(img => img.url));
     const siteTitle = config.siteTitle;
     const schemaTitle = intl.formatMessage(
-      { id: 'ListingPage.schemaTitle' },
+      { id: "ListingPage.schemaTitle" },
       { title, price: formattedPrice, siteTitle }
     );
 
@@ -376,9 +433,9 @@ export class ListingPageComponent extends Component {
         className={css.authorNameLink}
         name="ListingPage"
         params={params}
-        to={{ hash: '#host' }}
+        to={{ hash: "#host" }}
       >
-        {authorDisplayName}
+        {authorOrganisation ? authorOrganisation : authorDisplayName}
       </NamedLink>
     );
 
@@ -400,11 +457,11 @@ export class ListingPageComponent extends Component {
         facebookImages={facebookImages}
         twitterImages={twitterImages}
         schema={{
-          '@context': 'http://schema.org',
-          '@type': 'ItemPage',
+          "@context": "http://schema.org",
+          "@type": "ItemPage",
           description: description,
           name: schemaTitle,
-          image: schemaImages,
+          image: schemaImages
         }}
       >
         <LayoutSingleColumn className={css.pageRoot}>
@@ -418,11 +475,13 @@ export class ListingPageComponent extends Component {
                 editParams={{
                   id: listingId.uuid,
                   slug: listingSlug,
-                  type: 'edit',
-                  tab: 'description',
+                  type: "edit",
+                  tab: "description"
                 }}
                 imageCarouselOpen={this.state.imageCarouselOpen}
-                onImageCarouselClose={() => this.setState({ imageCarouselOpen: false })}
+                onImageCarouselClose={() =>
+                  this.setState({ imageCarouselOpen: false })
+                }
                 handleViewPhotosClick={handleViewPhotosClick}
                 onManageDisableScrolling={onManageDisableScrolling}
               />
@@ -449,14 +508,21 @@ export class ListingPageComponent extends Component {
                     publicData={publicData}
                     listingId={currentListing.id}
                   />
-                  <SectionReviews reviews={reviews} fetchReviewsError={fetchReviewsError} />
+                  <SectionReviews
+                    reviews={reviews}
+                    fetchReviewsError={fetchReviewsError}
+                  />
                   <SectionHost
                     title={title}
                     listing={currentListing}
                     authorDisplayName={authorDisplayName}
                     onContactUser={this.onContactUser}
-                    isEnquiryModalOpen={isAuthenticated && this.state.enquiryModalOpen}
-                    onCloseEnquiryModal={() => this.setState({ enquiryModalOpen: false })}
+                    isEnquiryModalOpen={
+                      isAuthenticated && this.state.enquiryModalOpen
+                    }
+                    onCloseEnquiryModal={() =>
+                      this.setState({ enquiryModalOpen: false })
+                    }
                     sendEnquiryError={sendEnquiryError}
                     sendEnquiryInProgress={sendEnquiryInProgress}
                     onSubmitEnquiry={this.onSubmitEnquiry}
@@ -505,16 +571,16 @@ ListingPageComponent.defaultProps = {
   fetchTimeSlotsError: null,
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
-  goalsConfig: config.custom.goals,
+  goalsConfig: config.custom.goals
 };
 
 ListingPageComponent.propTypes = {
   // from withRouter
   history: shape({
-    push: func.isRequired,
+    push: func.isRequired
   }).isRequired,
   location: shape({
-    search: string,
+    search: string
   }).isRequired,
 
   unitType: propTypes.bookingUnitType,
@@ -524,7 +590,7 @@ ListingPageComponent.propTypes = {
   params: shape({
     id: string.isRequired,
     slug: string,
-    variant: oneOf([LISTING_PAGE_PENDING_APPROVAL_VARIANT]),
+    variant: oneOf([LISTING_PAGE_PENDING_APPROVAL_VARIANT])
   }).isRequired,
 
   isAuthenticated: bool.isRequired,
@@ -545,7 +611,7 @@ ListingPageComponent.propTypes = {
   onSendEnquiry: func.isRequired,
 
   categoriesConfig: array,
-  goalsConfig: array,
+  goalsConfig: array
 };
 
 const mapStateToProps = state => {
@@ -558,18 +624,18 @@ const mapStateToProps = state => {
     fetchTimeSlotsError,
     sendEnquiryInProgress,
     sendEnquiryError,
-    enquiryModalOpenForListingId,
+    enquiryModalOpenForListingId
   } = state.ListingPage;
   const { currentUser } = state.user;
 
   const getListing = id => {
-    const ref = { id, type: 'listing' };
+    const ref = { id, type: "listing" };
     const listings = getMarketplaceEntities(state, [ref]);
     return listings.length === 1 ? listings[0] : null;
   };
 
   const getOwnListing = id => {
-    const ref = { id, type: 'ownListing' };
+    const ref = { id, type: "ownListing" };
     const listings = getMarketplaceEntities(state, [ref]);
     return listings.length === 1 ? listings[0] : null;
   };
@@ -587,15 +653,17 @@ const mapStateToProps = state => {
     timeSlots,
     fetchTimeSlotsError,
     sendEnquiryInProgress,
-    sendEnquiryError,
+    sendEnquiryError
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onManageDisableScrolling: (componentId, disableScrolling) =>
     dispatch(manageDisableScrolling(componentId, disableScrolling)),
-  useInitialValues: (setInitialValues, values) => dispatch(setInitialValues(values)),
-  onSendEnquiry: (listingId, message) => dispatch(sendEnquiry(listingId, message)),
+  useInitialValues: (setInitialValues, values) =>
+    dispatch(setInitialValues(values)),
+  onSendEnquiry: (listingId, message) =>
+    dispatch(sendEnquiry(listingId, message))
 });
 
 // Note: it is important that the withRouter HOC is **outside** the
@@ -604,9 +672,11 @@ const mapDispatchToProps = dispatch => ({
 // lifecycle hook.
 //
 // See: https://github.com/ReactTraining/react-router/issues/4671
-const ListingPage = compose(withRouter, connect(mapStateToProps, mapDispatchToProps), injectIntl)(
-  ListingPageComponent
-);
+const ListingPage = compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+  injectIntl
+)(ListingPageComponent);
 
 ListingPage.setInitialValues = initialValues => setInitialValues(initialValues);
 ListingPage.loadData = loadData;

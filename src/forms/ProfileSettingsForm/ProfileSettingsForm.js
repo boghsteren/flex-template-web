@@ -1,19 +1,26 @@
-import React, { Component } from 'react';
-import { bool, string } from 'prop-types';
-import { compose } from 'redux';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { Field, Form as FinalForm } from 'react-final-form';
-import isEqual from 'lodash/isEqual';
-import classNames from 'classnames';
-import { ensureCurrentUser } from '../../util/data';
-import { propTypes } from '../../util/types';
-import * as validators from '../../util/validators';
-import { isUploadImageOverLimitError } from '../../util/errors';
-import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput } from '../../components';
+import React, { Component } from "react";
+import { bool, string } from "prop-types";
+import { compose } from "redux";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { Field, Form as FinalForm } from "react-final-form";
+import isEqual from "lodash/isEqual";
+import classNames from "classnames";
+import { ensureCurrentUser } from "../../util/data";
+import { propTypes } from "../../util/types";
+import * as validators from "../../util/validators";
+import { isUploadImageOverLimitError } from "../../util/errors";
+import {
+  Form,
+  Avatar,
+  Button,
+  ImageFromFile,
+  IconSpinner,
+  FieldTextInput
+} from "../../components";
 
-import css from './ProfileSettingsForm.css';
+import css from "./ProfileSettingsForm.css";
 
-const ACCEPT_IMAGES = 'image/*';
+const ACCEPT_IMAGES = "image/*";
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
 
 class ProfileSettingsFormComponent extends Component {
@@ -60,41 +67,57 @@ class ProfileSettingsFormComponent extends Component {
             uploadImageError,
             uploadInProgress,
             form,
-            values,
+            values
           } = fieldRenderProps;
 
           const user = ensureCurrentUser(currentUser);
 
           // First name
           const firstNameLabel = intl.formatMessage({
-            id: 'ProfileSettingsForm.firstNameLabel',
+            id: "ProfileSettingsForm.firstNameLabel"
           });
           const firstNamePlaceholder = intl.formatMessage({
-            id: 'ProfileSettingsForm.firstNamePlaceholder',
+            id: "ProfileSettingsForm.firstNamePlaceholder"
           });
           const firstNameRequiredMessage = intl.formatMessage({
-            id: 'ProfileSettingsForm.firstNameRequired',
+            id: "ProfileSettingsForm.firstNameRequired"
           });
-          const firstNameRequired = validators.required(firstNameRequiredMessage);
+          const firstNameRequired = validators.required(
+            firstNameRequiredMessage
+          );
 
           // Last name
           const lastNameLabel = intl.formatMessage({
-            id: 'ProfileSettingsForm.lastNameLabel',
+            id: "ProfileSettingsForm.lastNameLabel"
           });
           const lastNamePlaceholder = intl.formatMessage({
-            id: 'ProfileSettingsForm.lastNamePlaceholder',
+            id: "ProfileSettingsForm.lastNamePlaceholder"
           });
           const lastNameRequiredMessage = intl.formatMessage({
-            id: 'ProfileSettingsForm.lastNameRequired',
+            id: "ProfileSettingsForm.lastNameRequired"
           });
           const lastNameRequired = validators.required(lastNameRequiredMessage);
 
+          // Organisation
+          const organisationLabel = intl.formatMessage({
+            id: "ProfileSettingsForm.organisationLabel"
+          });
+          const organisationPlaceholder = intl.formatMessage({
+            id: "ProfileSettingsForm.organisationPlaceholder"
+          });
+          const organisationRequiredMessage = intl.formatMessage({
+            id: "ProfileSettingsForm.organisationRequiredMessage"
+          });
+          const organisationRequired = validators.required(
+            organisationRequiredMessage
+          );
+
           // Bio
           const bioLabel = intl.formatMessage({
-            id: 'ProfileSettingsForm.bioLabel',
+            id: "ProfileSettingsForm.bioLabel"
           });
           const bioPlaceholder = intl.formatMessage({
-            id: 'ProfileSettingsForm.bioPlaceholder',
+            id: "ProfileSettingsForm.bioPlaceholder"
           });
 
           const uploadingOverlay =
@@ -105,14 +128,21 @@ class ProfileSettingsFormComponent extends Component {
             ) : null;
 
           const hasUploadError = !!uploadImageError && !uploadInProgress;
-          const errorClasses = classNames({ [css.avatarUploadError]: hasUploadError });
-          const transientUserProfileImage = profileImage.uploadedImage || user.profileImage;
-          const transientUser = { ...user, profileImage: transientUserProfileImage };
+          const errorClasses = classNames({
+            [css.avatarUploadError]: hasUploadError
+          });
+          const transientUserProfileImage =
+            profileImage.uploadedImage || user.profileImage;
+          const transientUser = {
+            ...user,
+            profileImage: transientUserProfileImage
+          };
 
           // Ensure that file exists if imageFromFile is used
           const fileExists = !!profileImage.file;
           const fileUploadInProgress = uploadInProgress && fileExists;
-          const delayAfterUpload = profileImage.imageId && this.state.uploadDelay;
+          const delayAfterUpload =
+            profileImage.imageId && this.state.uploadDelay;
           const imageFromFile =
             fileExists && (fileUploadInProgress || delayAfterUpload) ? (
               <ImageFromFile
@@ -130,7 +160,7 @@ class ProfileSettingsFormComponent extends Component {
           // Upload delay smoothes image change process:
           // responsive img has time to load srcset stuff before it is shown to user.
           const avatarClasses = classNames(errorClasses, css.avatar, {
-            [css.avatarInvisible]: this.state.uploadDelay,
+            [css.avatarInvisible]: this.state.uploadDelay
           });
           const avatarComponent =
             !fileUploadInProgress && profileImage.imageId ? (
@@ -171,9 +201,14 @@ class ProfileSettingsFormComponent extends Component {
           const classes = classNames(rootClassName || css.root, className);
           const submitInProgress = updateInProgress;
           const submittedOnce = Object.keys(this.submittedValues).length > 0;
-          const pristineSinceLastSubmit = submittedOnce && isEqual(values, this.submittedValues);
+          const pristineSinceLastSubmit =
+            submittedOnce && isEqual(values, this.submittedValues);
           const submitDisabled =
-            invalid || pristine || pristineSinceLastSubmit || uploadInProgress || submitInProgress;
+            invalid ||
+            pristine ||
+            pristineSinceLastSubmit ||
+            uploadInProgress ||
+            submitInProgress;
 
           return (
             <Form
@@ -205,7 +240,7 @@ class ProfileSettingsFormComponent extends Component {
                       label,
                       type,
                       disabled,
-                      uploadImageError,
+                      uploadImageError
                     } = fieldProps;
                     const { name } = input;
                     const onChange = e => {
@@ -284,8 +319,27 @@ class ProfileSettingsFormComponent extends Component {
                     validate={lastNameRequired}
                   />
                 </div>
+                <div className={classNames(css.sectionContainer)}>
+                  <h3 className={css.sectionTitle}>
+                    <FormattedMessage id="ProfileSettingsForm.yourName" />
+                  </h3>
+
+                  <FieldTextInput
+                    type="text"
+                    id={"organisation"}
+                    name="organisation"
+                    autoComplete="organisation"
+                    label={organisationLabel}
+                    placeholder={organisationPlaceholder}
+                    validate={validators.composeValidators(
+                      organisationRequired
+                    )}
+                  />
+                </div>
               </div>
-              <div className={classNames(css.sectionContainer, css.lastSection)}>
+              <div
+                className={classNames(css.sectionContainer, css.lastSection)}
+              >
                 <h3 className={css.sectionTitle}>
                   <FormattedMessage id="ProfileSettingsForm.bioHeading" />
                 </h3>
@@ -323,7 +377,7 @@ ProfileSettingsFormComponent.defaultProps = {
   className: null,
   uploadImageError: null,
   updateProfileError: null,
-  updateProfileReady: false,
+  updateProfileReady: false
 };
 
 ProfileSettingsFormComponent.propTypes = {
@@ -337,11 +391,11 @@ ProfileSettingsFormComponent.propTypes = {
   updateProfileReady: bool,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const ProfileSettingsForm = compose(injectIntl)(ProfileSettingsFormComponent);
 
-ProfileSettingsForm.displayName = 'ProfileSettingsForm';
+ProfileSettingsForm.displayName = "ProfileSettingsForm";
 
 export default ProfileSettingsForm;

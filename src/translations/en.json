@@ -628,6 +628,10 @@
   "ProfileSettingsForm.lastNameLabel": "Last name",
   "ProfileSettingsForm.lastNamePlaceholder": "Doe",
   "ProfileSettingsForm.lastNameRequired": "This field is required",
+  "ProfileSettingsForm.organisationLabel": "Organisation",
+  "ProfileSettingsForm.organisationPlaceholder": "Acme Corp",
+  "ProfileSettingsForm.organisationRequiredMessage":
+    "You need to add an organisation.",
   "ProfileSettingsForm.saveChanges": "Save changes",
   "ProfileSettingsForm.tip":
     "Tip: Choose an image where your face is recognizable.",

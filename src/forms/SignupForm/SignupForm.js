@@ -181,9 +181,7 @@ const SignupFormComponent = props => (
             <div className={css.password}>
               <FieldTextInput
                 type="text"
-                id={
-                  formId ? `${formId}.publicData.organisation` : "organisation"
-                }
+                id={"organisation"}
                 name="organisation"
                 autoComplete="organisation"
                 label={organisationLabel}

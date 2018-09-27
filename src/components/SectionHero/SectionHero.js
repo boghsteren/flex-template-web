@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
 import { stringify } from "../../util/urlHelpers";
-import { createResourceLocatorString } from "../../util/routes";
-import routeConfiguration from "../../routeConfiguration";
 import { IconSearch, Button } from "../../components";
-import config from "../../config";
-
 import css from "./SectionHero.css";
 
 const SectionHero = props => {

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import { propTypes } from '../../util/types';
-import { ensureCurrentUser } from '../../util/data';
-import { isScrollingDisabled } from '../../ducks/UI.duck';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { propTypes } from "../../util/types";
+import { ensureCurrentUser } from "../../util/data";
+import { isScrollingDisabled } from "../../ducks/UI.duck";
 import {
   Page,
   UserNav,
@@ -14,13 +14,13 @@ import {
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
-  NamedLink,
-} from '../../components';
-import { ProfileSettingsForm } from '../../forms';
-import { TopbarContainer } from '../../containers';
+  NamedLink
+} from "../../components";
+import { ProfileSettingsForm } from "../../forms";
+import { TopbarContainer } from "../../containers";
 
-import { updateProfile, uploadImage } from './ProfileSettingsPage.duck';
-import css from './ProfileSettingsPage.css';
+import { updateProfile, uploadImage } from "./ProfileSettingsPage.duck";
+import css from "./ProfileSettingsPage.css";
 
 const onImageUploadHandler = (values, fn) => {
   const { id, imageId, file } = values;
@@ -41,19 +41,20 @@ export class ProfileSettingsPageComponent extends Component {
       updateProfileError,
       uploadImageError,
       uploadInProgress,
-      intl,
+      intl
     } = this.props;
 
     const handleSubmit = values => {
-      const { firstName, lastName, bio: rawBio } = values;
+      const { firstName, lastName, organisation, bio: rawBio } = values;
 
       // Ensure that the optional bio is a string
-      const bio = rawBio || '';
+      const bio = rawBio || "";
 
       const profile = {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
-        bio,
+        publicData: { organisation },
+        bio
       };
       const uploadedImage = this.props.image;
 
@@ -68,6 +69,10 @@ export class ProfileSettingsPageComponent extends Component {
 
     const user = ensureCurrentUser(currentUser);
     const { firstName, lastName, bio } = user.attributes.profile;
+    const organisation = user.attributes.profile.publicData
+      ? user.attributes.profile.publicData.organisation
+      : "";
+
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
 
@@ -75,7 +80,13 @@ export class ProfileSettingsPageComponent extends Component {
       <ProfileSettingsForm
         className={css.form}
         currentUser={currentUser}
-        initialValues={{ firstName, lastName, bio, profileImage: user.profileImage }}
+        initialValues={{
+          firstName,
+          lastName,
+          bio,
+          organisation,
+          profileImage: user.profileImage
+        }}
         profileImage={profileImage}
         onImageUpload={e => onImageUploadHandler(e, onImageUpload)}
         uploadInProgress={uploadInProgress}
@@ -86,10 +97,14 @@ export class ProfileSettingsPageComponent extends Component {
       />
     ) : null;
 
-    const title = intl.formatMessage({ id: 'ProfileSettingsPage.title' });
+    const title = intl.formatMessage({ id: "ProfileSettingsPage.title" });
 
     return (
-      <Page className={css.root} title={title} scrollingDisabled={scrollingDisabled}>
+      <Page
+        className={css.root}
+        title={title}
+        scrollingDisabled={scrollingDisabled}
+      >
         <LayoutSingleColumn>
           <LayoutWrapperTopbar>
             <TopbarContainer currentPage="ProfileSettingsPage" />
@@ -127,7 +142,7 @@ ProfileSettingsPageComponent.defaultProps = {
   currentUser: null,
   uploadImageError: null,
   updateProfileError: null,
-  image: null,
+  image: null
 };
 
 const { bool, func, object, shape, string } = PropTypes;
@@ -138,7 +153,7 @@ ProfileSettingsPageComponent.propTypes = {
     id: string,
     imageId: propTypes.uuid,
     file: object,
-    uploadedImage: propTypes.image,
+    uploadedImage: propTypes.image
   }),
   onImageUpload: func.isRequired,
   onUpdateProfile: func.isRequired,
@@ -149,7 +164,7 @@ ProfileSettingsPageComponent.propTypes = {
   uploadInProgress: bool.isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const mapStateToProps = state => {
@@ -159,7 +174,7 @@ const mapStateToProps = state => {
     uploadImageError,
     uploadInProgress,
     updateInProgress,
-    updateProfileError,
+    updateProfileError
   } = state.ProfileSettingsPage;
   return {
     currentUser,
@@ -168,17 +183,18 @@ const mapStateToProps = state => {
     updateInProgress,
     updateProfileError,
     uploadImageError,
-    uploadInProgress,
+    uploadInProgress
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onImageUpload: data => dispatch(uploadImage(data)),
-  onUpdateProfile: data => dispatch(updateProfile(data)),
+  onUpdateProfile: data => dispatch(updateProfile(data))
 });
 
-const ProfileSettingsPage = compose(connect(mapStateToProps, mapDispatchToProps), injectIntl)(
-  ProfileSettingsPageComponent
-);
+const ProfileSettingsPage = compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  injectIntl
+)(ProfileSettingsPageComponent);
 
 export default ProfileSettingsPage;
