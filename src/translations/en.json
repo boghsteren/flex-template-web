@@ -629,6 +629,7 @@
   "ProfileSettingsForm.lastNameLabel": "Last name",
   "ProfileSettingsForm.lastNamePlaceholder": "Doe",
   "ProfileSettingsForm.lastNameRequired": "This field is required",
+  "ProfileSettingsForm.organisationName": "Organisation",
   "ProfileSettingsForm.organisationLabel": "Organisation",
   "ProfileSettingsForm.organisationPlaceholder": "Acme Corp",
   "ProfileSettingsForm.organisationRequiredMessage":
@@ -746,6 +747,7 @@
     "The password should be at most {maxLength} characters.",
   "SignupForm.passwordTooShort":
     "The password should be at least {minLength} characters.",
+  "SignupForm.providerForm": "PROVIDER",
   "SignupForm.signUp": "Sign up",
   "SignupForm.termsAndConditionsAcceptText":
     "By signing up you accept the {termsLink}",

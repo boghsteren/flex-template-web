@@ -208,6 +208,7 @@ export const signup = params => (dispatch, getState, sdk) => {
     firstName,
     lastName,
     organisation,
+    provider,
     ...rest
   } = params;
 
@@ -217,14 +218,14 @@ export const signup = params => (dispatch, getState, sdk) => {
         password,
         firstName,
         lastName,
-        publicData: { organisation: organisation }
+        publicData: { organisation: organisation, provider: provider }
       }
     : {
         email,
         password,
         firstName,
         lastName,
-        publicData: { organisation: organisation },
+        publicData: { organisation: organisation, provider: provider },
         protectedData: { ...rest }
       };
 

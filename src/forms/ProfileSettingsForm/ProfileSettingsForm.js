@@ -15,7 +15,8 @@ import {
   Button,
   ImageFromFile,
   IconSpinner,
-  FieldTextInput
+  FieldTextInput,
+  FieldBoolean
 } from "../../components";
 
 import css from "./ProfileSettingsForm.css";
@@ -336,6 +337,13 @@ class ProfileSettingsFormComponent extends Component {
                     )}
                   />
                 </div>
+
+                <FieldBoolean
+                  id={"provider"}
+                  name="provider"
+                  label="Provider"
+                  placeholder="Choose yes/no"
+                />
               </div>
               <div
                 className={classNames(css.sectionContainer, css.lastSection)}

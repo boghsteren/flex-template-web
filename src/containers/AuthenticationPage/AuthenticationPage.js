@@ -137,6 +137,7 @@ export class AuthenticationPageComponent extends Component {
       const params = {
         firstName: fname.trim(),
         lastName: lname.trim(),
+        provider: this.props.provider,
         ...rest
       };
       submitSignup(params);
@@ -157,6 +158,7 @@ export class AuthenticationPageComponent extends Component {
             className={css.form}
             onSubmit={handleSubmitSignup}
             inProgress={authInProgress}
+            provider={this.props.provider}
             onOpenTermsOfService={() => this.setState({ tosModalOpen: true })}
           />
         )}

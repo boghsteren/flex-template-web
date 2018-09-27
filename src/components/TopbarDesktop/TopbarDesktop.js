@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FormattedMessage, intlShape } from 'react-intl';
-import classNames from 'classnames';
-import { ACCOUNT_SETTINGS_PAGES } from '../../routeConfiguration';
-import { propTypes } from '../../util/types';
+import React from "react";
+import PropTypes from "prop-types";
+import { FormattedMessage, intlShape } from "react-intl";
+import classNames from "classnames";
+import { ACCOUNT_SETTINGS_PAGES } from "../../routeConfiguration";
+import { propTypes } from "../../util/types";
 import {
   Avatar,
   InlineTextButton,
@@ -12,11 +12,11 @@ import {
   MenuLabel,
   MenuContent,
   MenuItem,
-  NamedLink,
-} from '../../components';
-import { TopbarSearchForm } from '../../forms';
+  NamedLink
+} from "../../components";
+import { TopbarSearchForm } from "../../forms";
 
-import css from './TopbarDesktop.css';
+import css from "./TopbarDesktop.css";
 
 const TopbarDesktop = props => {
   const {
@@ -30,7 +30,7 @@ const TopbarDesktop = props => {
     isAuthenticated,
     onLogout,
     onSearchSubmit,
-    initialSearchFormValues,
+    initialSearchFormValues
   } = props;
 
   const classes = classNames(rootClassName || css.root, className);
@@ -45,13 +45,14 @@ const TopbarDesktop = props => {
     />
   );
 
-  const notificationDot = notificationCount > 0 ? <div className={css.notificationDot} /> : null;
+  const notificationDot =
+    notificationCount > 0 ? <div className={css.notificationDot} /> : null;
 
   const inboxLink = isAuthenticated ? (
     <NamedLink
       className={css.inboxLink}
       name="InboxPage"
-      params={{ tab: currentUserHasListings ? 'sales' : 'orders' }}
+      params={{ tab: currentUserHasListings ? "sales" : "orders" }}
     >
       <span className={css.inbox}>
         <FormattedMessage id="TopbarDesktop.inbox" />
@@ -62,19 +63,28 @@ const TopbarDesktop = props => {
 
   const currentPageClass = page => {
     const isAccountSettingsPage =
-      page === 'AccountSettingsPage' && ACCOUNT_SETTINGS_PAGES.includes(currentPage);
-    return currentPage === page || isAccountSettingsPage ? css.currentPage : null;
+      page === "AccountSettingsPage" &&
+      ACCOUNT_SETTINGS_PAGES.includes(currentPage);
+    return currentPage === page || isAccountSettingsPage
+      ? css.currentPage
+      : null;
   };
 
   const profileMenu = isAuthenticated ? (
     <Menu>
-      <MenuLabel className={css.profileMenuLabel} isOpenClassName={css.profileMenuIsOpen}>
+      <MenuLabel
+        className={css.profileMenuLabel}
+        isOpenClassName={css.profileMenuIsOpen}
+      >
         <Avatar className={css.avatar} user={currentUser} disableProfileLink />
       </MenuLabel>
       <MenuContent className={css.profileMenuContent}>
         <MenuItem key="ManageListingsPage">
           <NamedLink
-            className={classNames(css.yourListingsLink, currentPageClass('ManageListingsPage'))}
+            className={classNames(
+              css.yourListingsLink,
+              currentPageClass("ManageListingsPage")
+            )}
             name="ManageListingsPage"
           >
             <span className={css.menuItemBorder} />
@@ -83,7 +93,10 @@ const TopbarDesktop = props => {
         </MenuItem>
         <MenuItem key="ProfileSettingsPage">
           <NamedLink
-            className={classNames(css.profileSettingsLink, currentPageClass('ProfileSettingsPage'))}
+            className={classNames(
+              css.profileSettingsLink,
+              currentPageClass("ProfileSettingsPage")
+            )}
             name="ProfileSettingsPage"
           >
             <span className={css.menuItemBorder} />
@@ -92,7 +105,10 @@ const TopbarDesktop = props => {
         </MenuItem>
         <MenuItem key="AccountSettingsPage">
           <NamedLink
-            className={classNames(css.yourListingsLink, currentPageClass('AccountSettingsPage'))}
+            className={classNames(
+              css.yourListingsLink,
+              currentPageClass("AccountSettingsPage")
+            )}
             name="AccountSettingsPage"
           >
             <span className={css.menuItemBorder} />
@@ -131,15 +147,18 @@ const TopbarDesktop = props => {
         <Logo
           format="desktop"
           className={css.logo}
-          alt={intl.formatMessage({ id: 'TopbarDesktop.logo' })}
+          alt={intl.formatMessage({ id: "TopbarDesktop.logo" })}
         />
       </NamedLink>
       {search}
-      <NamedLink className={css.createListingLink} name="NewListingPage">
-        <span className={css.createListing}>
-          <FormattedMessage id="TopbarDesktop.createListing" />
-        </span>
-      </NamedLink>
+      {currentUser &&
+        currentUser.attributes.profile.publicData.provider && (
+          <NamedLink className={css.createListingLink} name="NewListingPage">
+            <span className={css.createListing}>
+              <FormattedMessage id="TopbarDesktop.createListing" />
+            </span>
+          </NamedLink>
+        )}
       {inboxLink}
       {profileMenu}
       {signupLink}
@@ -156,7 +175,7 @@ TopbarDesktop.defaultProps = {
   currentUser: null,
   currentPage: null,
   notificationCount: 0,
-  initialSearchFormValues: {},
+  initialSearchFormValues: {}
 };
 
 TopbarDesktop.propTypes = {
@@ -170,7 +189,7 @@ TopbarDesktop.propTypes = {
   notificationCount: number,
   onSearchSubmit: func.isRequired,
   initialSearchFormValues: object,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default TopbarDesktop;
