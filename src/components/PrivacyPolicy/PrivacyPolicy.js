@@ -11,7 +11,7 @@ const PrivacyPolicy = props => {
   // prettier-ignore
   return (
     <div className={classes}>
-      <p className={css.lastUpdated}>Last updated: September 28th, 2018</p>
+      <p className={css.lastUpdated}>Last updated: September 28, 2018</p>
 
 
 <h2>      Registrar</h2>
