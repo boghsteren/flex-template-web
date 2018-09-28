@@ -342,6 +342,10 @@
   color: var(--matterColor);
 }
 
+.avatarNamedLink:hover {
+  text-decoration: none;
+
+}
 .contactWrapper {
   display: none;
 
