@@ -1,7 +1,10 @@
-@import '../../marketplace.css';
+@import "../../marketplace.css";
 
 .root {
   & p {
+    @apply --marketplaceH4FontStyles;
+  }
+  & li {
     @apply --marketplaceH4FontStyles;
   }
   & h2 {
