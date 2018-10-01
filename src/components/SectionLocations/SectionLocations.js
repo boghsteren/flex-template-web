@@ -44,11 +44,6 @@ const SectionLocations = props => {
       <div className={css.title}>
         <FormattedMessage id="SectionLocations.title" />
       </div>
-      <div className={css.paragraph}>
-        <p>
-          <FormattedMessage id="SectionLocations.subtitle" />
-        </p>
-      </div>
       <div className={css.locations}>
         {locationLink(
           "Team building",
@@ -66,6 +61,16 @@ const SectionLocations = props => {
           "?pub_category=giving_back"
         )}
       </div>
+      <NamedLink name="SearchPage" className={css.location}>
+        <div className={css.linkText}>
+          <p>
+            <FormattedMessage
+              id="SectionLocations.generalLink"
+              className={css.linkText}
+            />
+          </p>
+        </div>
+      </NamedLink>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { NamedLink } from "../../components";
 import css from "./SectionAllOverTheWorld.css";
 import southafricaImage from "./images/southafrica.jpg";
 import brazilImage from "./images/brazil.jpg";
-import usaImage from "./images/usa.jpg";
+import europeImage from "./images/berlin.jpg";
 
 const locationLink = (name, image, searchQuery) => {
   const nameText = <span className={css.locationName}>{name}</span>;
@@ -43,28 +43,33 @@ const SectionAllOverTheWorld = props => {
       <div className={css.title}>
         <FormattedMessage id="SectionAllOverTheWorld.title" />
       </div>
-      <div className={css.paragraph}>
-        <p>
-          <FormattedMessage id="SectionAllOverTheWorld.subtitle" />
-        </p>
-      </div>
       <div className={css.locations}>
         {locationLink(
-          "South Africa",
+          "Africa",
           southafricaImage,
-          "?address=South%20Africa&bounds=-22.125537%2C32.997178%2C-34.93388%2C16.38247"
+          "?address=Africa&bounds=40.35265004%2C51.7534497%2C-41.60124262%2C-21.70750553&mapSearch=true"
         )}
         {locationLink(
-          "Brazil",
+          "South America",
           brazilImage,
-          "?address=Brazil&bounds=5.271602%2C-28.741975%2C-33.83191%2C-73.982498"
+          "?address=address=South%20America&bounds=12.37611048%2C-38.69421601%2C-46.31822037%2C-91.63398809&mapSearch=true"
         )}
         {locationLink(
-          "USA",
-          usaImage,
-          "?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9"
+          "Europe",
+          europeImage,
+          "?address=Europe%2C%20Canton%20of%20Bern%2C%20Switzerland&bounds=72.12446531%2C48.18413823%2C21.56588484%2C-20.2903369&mapSearch=true"
         )}
       </div>
+      <NamedLink name="SearchPage" className={css.location}>
+        <div className={css.linkText}>
+          <p>
+            <FormattedMessage
+              id="SectionAllOverTheWorld.generalLink"
+              className={css.linkText}
+            />
+          </p>
+        </div>
+      </NamedLink>
     </div>
   );
 };
