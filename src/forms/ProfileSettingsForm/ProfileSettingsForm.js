@@ -341,7 +341,7 @@ class ProfileSettingsFormComponent extends Component {
                 <FieldBoolean
                   id={"provider"}
                   name="provider"
-                  label="Provider"
+                  label="Are you an experience host?"
                   placeholder="Choose yes/no"
                 />
               </div>
