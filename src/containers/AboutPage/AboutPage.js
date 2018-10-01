@@ -40,33 +40,32 @@ const AboutPage = () => {
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Did you know that Finland has 3.2 million saunas - almost one sauna per person!</p>
+              <p>Social impact activities that inspire</p>
             </div>
 
             <div className={css.contentMain}>
               <h2>
-                Most of the Finnish saunas are located at the homes of individuals - indeed, most
-                people in Finland live in an apartment with sauna in it. In addition, lots of people
-                have lakeside summer cottages, which also typically come with a separate sauna
-                building near the waterfront.
+              If you're looking for a different and meaningful experience for a study trip, a teambuilding activity, or a company event – look no further.
+
               </h2>
 
               <p>
-                To truly experience a Finnish sauna, you need to look beyond the public saunas, and
-                instead visit a real home or cottage sauna. Saunatime makes this possible for
-                everyone. All our saunas are owned by individuals willing to let tourists and other
-                curious visitors to enter their sacred spaces.
+              At Goodwings Experiences you can find and book authentic social impact activities all over the world hosted by nonprofit organisations.
+</p><p>
+              You can interact directly with the hosts, and when you've found the experience you're interested in, it's easy to book and to make a secure payment.
               </p>
-
-              <h3 className={css.subtitle}>Are you a sauna owner?</h3>
+              <div className={css.contentSide}>
+              <p>About Goodwings
+              </p>
+            </div>
 
               <p>
-                Saunatime offers you a good way to earn some extra cash! If you're not using your
-                sauna every evening, why not rent it to other people while it's free. And even if
-                you are using your sauna every evening (we understand, it's so good), why not invite
-                other people to join you when the sauna is already warm! A shared sauna experience
-                is often a more fulfilling one.
+              We're a Danish company and besides Goodwings Experiences we run www.goodwings.com – a hotel booking platform for corporate travel where every booking results in a donation to a nonprofit. 
               </p>
+              <p>
+              We don't spend any money on advertising like the other large hotel booking sites. Instead, we have a global network of nonprofit partners and they act as our marketing channel, spreading the good news about Goodwings. In return, we donate part of our commission to them. That's how we're turning the travel industry into a force for positive and sustainable change. One hotel at a time.
+</p>
+
 
               <h3 id="contact" className={css.subtitle}>
                 Create your own marketplace like Saunatime

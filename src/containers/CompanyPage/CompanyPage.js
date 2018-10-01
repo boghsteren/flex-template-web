@@ -10,7 +10,7 @@ import {
 } from "../../components";
 
 import css from "./CompanyPage.css";
-import image from "./globe.jpg";
+import image from "./about-us-1440.jpg";
 
 const CompanyPage = () => {
   // prettier-ignore
@@ -35,32 +35,47 @@ const CompanyPage = () => {
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Lorem ipsum!</p>
+              <p>Social impact activities that inspire</p>
             </div>
 
             <div className={css.contentMain}>
               <h2>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum magna ullamcorper, tincidunt nulla sed, ultrices massa. Curabitur blandit vulputate dictum. Nullam et orci in eros iaculis sollicitudin. Proin et lorem urna. Cras a odio est. Nulla volutpat, nulla quis condimentum egestas, ipsum lectus hendrerit quam, vitae ornare turpis est sit amet tortor. Pellentesque porttitor, velit in scelerisque consectetur, ex ligula fringilla tellus, nec interdum felis eros quis massa. Nullam at neque interdum, eleifend sapien in, malesuada urna. Sed quis dui consectetur, semper velit vitae, maximus est.
+              If you're looking for a different and meaningful experience for a study trip, a teambuilding activity, or a company event – look no further.
 
 
               </h2>
 
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum magna ullamcorper, tincidunt nulla sed, ultrices massa. Curabitur blandit vulputate dictum. Nullam et orci in eros iaculis sollicitudin. Proin et lorem urna. Cras a odio est. Nulla volutpat, nulla quis condimentum egestas, ipsum lectus hendrerit quam, vitae ornare turpis est sit amet tortor. Pellentesque porttitor, velit in scelerisque consectetur, ex ligula fringilla tellus, nec interdum felis eros quis massa. Nullam at neque interdum, eleifend sapien in, malesuada urna. Sed quis dui consectetur, semper velit vitae, maximus est.
+              At Goodwings Experiences you can find and book authentic social impact activities all over the world hosted by nonprofit organisations.
 
 
               </p>
-
-              <h3 className={css.subtitle}>Looking to partner with us?</h3>
+<p>You can interact directly with the hosts, and when you've found the experience you're interested in, it's easy to book and to make a secure payment.
+</p></div></div>
+<div className={css.contentWrapper}>
+<div className={css.contentSide}>
+<p>About Goodwings</p>
+</div>
+<div className={css.contentMain}>
 
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum magna ullamcorper, tincidunt nulla sed, ultrices massa. Curabitur blandit vulputate dictum. Nullam et orci in eros iaculis sollicitudin. Proin et lorem urna. Cras a odio est. Nulla volutpat, nulla quis condimentum egestas, ipsum lectus hendrerit quam, vitae ornare turpis est sit amet tortor. Pellentesque porttitor, velit in scelerisque consectetur, ex ligula fringilla tellus, nec interdum felis eros quis massa. Nullam at neque interdum, eleifend sapien in, malesuada urna. Sed quis dui consectetur, semper velit vitae, maximus est.
-
-
+              We're a Danish company and besides Goodwings Experiences we run <a href="https://www.goodwings.com">www.goodwings.com</a> – a hotel booking platform for corporate travel where every booking results in a donation to a nonprofit. 
               </p>
-
-            </div>
-          </div>
+<p>
+We don't spend any money on advertising like the other large hotel booking sites. Instead, we have a global network of nonprofit partners and they act as our marketing channel, spreading the good news about Goodwings. In return, we donate part of our commission to them. That's how we're turning the travel industry into a force for positive and sustainable change. One hotel at a time.
+</p>
+<p>
+<a href="https://www.goodwings.com/en-us/about-us/vision-mission">Read more about us.</a>
+</p>
+            </div></div>
+            <div className={css.contentWrapper}>
+            <div className={css.contentSide}>
+            <p>Contact us</p>
+</div>
+            <div className={css.contentMain}>
+<p>
+            Send us an email at <a href="mailto:experiences@goodwings.com">experiences@goodwings.com</a> or call + 45 60 73 74 75.</p>
+            </div></div>
         </LayoutWrapperMain>
 
         <LayoutWrapperFooter>

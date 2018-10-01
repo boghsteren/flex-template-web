@@ -86,7 +86,7 @@ const Footer = props => {
             </div>
             <div className={css.infoLinks}>
               <ul className={css.list}>
-                <b>Up and running</b>
+                <b>Get started</b>
                 <li className={css.listItem}>
                   <NamedLink
                     name="SearchPage"
