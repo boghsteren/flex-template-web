@@ -688,14 +688,15 @@
   "SectionHowItWorks.createListingLink":
     "Everytime you book through Goodwings Experience our partners receive money to make the world a better place",
   "SectionHowItWorks.part1Text":
-    "Start by searching for a location. Once you find an experience you like, simply check the availability, book it, and make a secure payment right away.",
-  "SectionHowItWorks.part1Title": "1. Browse and book",
+    "Goodwings’ nonprofit partners all around the world have added inspiring activities for you to easily book. You can search by location or type of experience. You can also filter by social impact focus, for example experiences focused on People or Planet.",
+  "SectionHowItWorks.part1Title": "1. Search for an experience",
   "SectionHowItWorks.part2Text":
-    "Simply show up on the agreed date and adress. We'll handle the payment to the host after your experience.",
-  "SectionHowItWorks.part2Title": "2. Have a great time",
+    "When you’ve found what you want, you simply ask about availability and get more details about the experience by reaching out to the Goodwings partner hosting the experience. All directly through this site.",
+  "SectionHowItWorks.part2Title": "2. Interact with the host",
   "SectionHowItWorks.part3Text":
-    "If you enjoyed the experience, let others know by reviewing it. Help others know how to help the world.",
-  "SectionHowItWorks.part3Title": "3. Review the host",
+    "When you’re ready, it’s fast, easy and secure to book and pay for the experience. Besides a transaction fee, the entire amount paid will go directly to the nonprofit organisation hosting the experience. Following the payment, you will receive all the necessary practical details about the experience.",
+  "SectionHowItWorks.part3Title": "3. Book the experience",
+  "SectionHowItWorks.providerSignupLink": "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
   "SectionHowItWorks.titleLineOne": "Experiencing a better world",
   "SectionHowItWorks.titleLineTwo": "(or how Goodwings Experiences works).",
   "SectionLocations.generalLink": "Browse different types of experiences.",
@@ -707,7 +708,7 @@
   "SectionAllOverTheWorld.title": "Experiences all over the world",
   "SectionAllOverTheWorld.subtitle": "Lots of places to go...",
   "SectionAllOverTheWorld.listingsInLocation": "{location}",
-  "SectionHighlightsOfTheMonth.title": "Highlights of the month",
+  "SectionHighlightsOfTheMonth.title": "Most popular experiences right now",
   "SectionHighlightsOfTheMonth.subtitle": "Exciting options right now...",
   "SectionHighlightsOfTheMonth.listingsInLocation": "{location}",
   "SelectMultipleFilter.labelSelected": "{labelText} • {count}",

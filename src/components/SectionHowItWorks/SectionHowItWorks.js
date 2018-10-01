@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
+import bookImage from './book.png'
+import interactImage from './interact.png'
+import searchImage from './search.png'
 
 import { NamedLink } from '../../components';
 
@@ -15,12 +18,15 @@ const SectionHowItWorks = props => {
     <div className={classes}>
       <div className={css.title}>
         <FormattedMessage id="SectionHowItWorks.titleLineOne" />
-        <br />
-        <FormattedMessage id="SectionHowItWorks.titleLineTwo" />
       </div>
 
       <div className={css.steps}>
         <div className={css.step}>
+        <div className={css.imageWrapper}>
+        <div className={css.aspectWrapper}>
+          <img src={searchImage} alt={"Search"} className={css.howItWorksImage} />
+        </div>
+      </div>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.part1Title" />
           </h2>
@@ -30,6 +36,11 @@ const SectionHowItWorks = props => {
         </div>
 
         <div className={css.step}>
+        <div className={css.imageWrapper}>
+        <div className={css.aspectWrapper}>
+          <img src={interactImage} alt={"Interact"} className={css.howItWorksImage} />
+        </div>
+      </div>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.part2Title" />
           </h2>
@@ -39,6 +50,12 @@ const SectionHowItWorks = props => {
         </div>
 
         <div className={css.step}>
+        <div>
+        <div className={css.imageWrapper}>
+        <div className={css.aspectWrapper}>
+          <img src={bookImage} alt={"Book"} className={css.howItWorksImage} />
+        </div></div>
+      </div>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.part3Title" />
           </h2>
@@ -47,7 +64,16 @@ const SectionHowItWorks = props => {
           </p>
         </div>
       </div>
-
+      <NamedLink name="SignupPageProvider" className={css.location}>
+        <div className={css.linkText}>
+          <p>
+            <FormattedMessage
+              id="SectionHowItWorks.providerSignupLink"
+              className={css.linkText}
+            />
+          </p>
+        </div>
+      </NamedLink>
 
     </div>
   );

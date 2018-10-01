@@ -43,11 +43,6 @@ const SectionHighlightsOfTheMonth = props => {
       <div className={css.title}>
         <FormattedMessage id="SectionHighlightsOfTheMonth.title" />
       </div>
-      <div className={css.paragraph}>
-        <p>
-          <FormattedMessage id="SectionHighlightsOfTheMonth.subtitle" />
-        </p>
-      </div>
       <div className={css.locations}>
         {locationLink(
           "Beach clean-up",
