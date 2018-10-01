@@ -6,7 +6,7 @@ import { Button } from "../../components";
 import css from "./SectionHero.css";
 
 const SectionHero = props => {
-  const { rootClassName, className, history, location } = props;
+  const { rootClassName, className, history } = props;
   const classes = classNames(rootClassName || css.root, className);
 
   return (

@@ -12,15 +12,15 @@ import {
 import css from "./HowItWorksPage.css";
 
 const HowItWorksPage = () => {
-  // prettier-ignore
+  // Prettier ignore
   return (
     <StaticPage
       title="How it works"
       schema={{
-        '@context': 'http://schema.org',
-        '@type': 'WebPage',
-        description: 'How Goodwings Experiences works',
-        name: 'How it works page',
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        description: "How Goodwings Experiences works",
+        name: "How it works page"
       }}
     >
       <LayoutSingleColumn>
@@ -30,27 +30,56 @@ const HowItWorksPage = () => {
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
           <h1 className={css.pageTitle}>How it works.</h1>
-              <h2>
-1. Create your profile
+          <h2>1. Search for an experience</h2>
 
-              </h2>
+          <p>
+            Goodwings’ nonprofit partners all around the world have added
+            inspiring activities for you to easily book. You can search by
+            location or type of experience. You can also filter by social impact
+            focus, for example experiences focused on People or Planet.
+          </p>
+          <p>
+            All experiences have been quality-assured by Goodwings, but besides
+            the payment, all practical issues surrounding the activities are
+            handled by the nonprofit organisations hosting them.
+          </p>
 
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum magna ullamcorper, tincidunt nulla sed, ultrices massa. Curabitur blandit vulputate dictum. Nullam et orci in eros iaculis sollicitudin. Proin et lorem urna. Cras a odio est. Nulla volutpat, nulla quis condimentum egestas, ipsum lectus hendrerit quam, vitae ornare turpis est sit amet tortor. Pellentesque porttitor, velit in scelerisque consectetur, ex ligula fringilla tellus, nec interdum felis eros quis massa. Nullam at neque interdum, eleifend sapien in, malesuada urna. Sed quis dui consectetur, semper velit vitae, maximus est.
+          <h2>2. Interact with the host</h2>
 
+          <p>
+            When you’ve found what you want, you simply ask about availability
+            and get more details about the experience by reaching out to the
+            Goodwings partner hosting the experience. All directly through this
+            site.
+          </p>
 
-              </p>
-              <h2>
-              2. Find your experience
-              
-                            </h2>
-              
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum magna ullamcorper, tincidunt nulla sed, ultrices massa. Curabitur blandit vulputate dictum. Nullam et orci in eros iaculis sollicitudin. Proin et lorem urna. Cras a odio est. Nulla volutpat, nulla quis condimentum egestas, ipsum lectus hendrerit quam, vitae ornare turpis est sit amet tortor. Pellentesque porttitor, velit in scelerisque consectetur, ex ligula fringilla tellus, nec interdum felis eros quis massa. Nullam at neque interdum, eleifend sapien in, malesuada urna. Sed quis dui consectetur, semper velit vitae, maximus est.
-              
-              
-                            </p>
+          <h2>3. Book the experience</h2>
 
+          <p>
+            When you’re ready, it’s fast, easy and secure to book and pay for
+            the experience. Besides a transaction fee, the entire amount paid
+            will go directly to the nonprofit organisation hosting the
+            experience. This helps the nonprofit make a real social impact in
+            their community and in the world. It's the fee that enables us to
+            run this marketplace.
+          </p>
+
+          <h2>4. Receive all practical details </h2>
+
+          <p>
+            Following your payment, you will receive all the necessary practical
+            details about the experience directly from the organisation or
+            person hosting the activity. Share these details with the
+            participants and communicate directly with the host about any
+            questions you or the participants might have.
+          </p>
+          <h2>5. Share a review </h2>
+          <p>
+            When the experience is over, please gather some feedback from the
+            participants and add a review of the host here on the site. This
+            allows the nonprofit organisations to constantly offer better and
+            more exciting experiences.{" "}
+          </p>
         </LayoutWrapperMain>
 
         <LayoutWrapperFooter>
