@@ -84,14 +84,15 @@ export const LandingPageComponent = props => {
             </li>
             <li className={css.section}>
               <div className={css.sectionContent}>
-                <SectionAllOverTheWorld />
+                <SectionHighlightsOfTheMonth />
               </div>
             </li>
             <li className={css.section}>
               <div className={css.sectionContent}>
-                <SectionHighlightsOfTheMonth />
+                <SectionAllOverTheWorld />
               </div>
             </li>
+
             <li className={css.section}>
               <div className={css.sectionContent}>
                 <SectionHowItWorks />
