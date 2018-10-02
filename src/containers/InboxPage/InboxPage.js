@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import moment from 'moment';
-import classNames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import moment from "moment";
+import classNames from "classnames";
 import {
   LINE_ITEM_DAY,
   LINE_ITEM_UNITS,
@@ -16,13 +16,13 @@ import {
   txIsEnquired,
   txIsRequested,
   txIsReviewed,
-  propTypes,
-} from '../../util/types';
-import { formatMoney } from '../../util/currency';
-import { ensureCurrentUser, userDisplayName } from '../../util/data';
-import { dateFromAPIToLocalNoon, daysBetween } from '../../util/dates';
-import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
-import { isScrollingDisabled } from '../../ducks/UI.duck';
+  propTypes
+} from "../../util/types";
+import { formatMoney } from "../../util/currency";
+import { ensureCurrentUser, userDisplayName } from "../../util/data";
+import { dateFromAPIToLocalNoon, daysBetween } from "../../util/dates";
+import { getMarketplaceEntities } from "../../ducks/marketplaceData.duck";
+import { isScrollingDisabled } from "../../ducks/UI.duck";
 import {
   Avatar,
   NamedLink,
@@ -36,23 +36,23 @@ import {
   LayoutWrapperTopbar,
   LayoutWrapperFooter,
   Footer,
-  IconSpinner,
-} from '../../components';
-import { TopbarContainer, NotFoundPage } from '../../containers';
-import config from '../../config';
+  IconSpinner
+} from "../../components";
+import { TopbarContainer, NotFoundPage } from "../../containers";
+import config from "../../config";
 
-import { loadData } from './InboxPage.duck';
-import css from './InboxPage.css';
+import { loadData } from "./InboxPage.duck";
+import css from "./InboxPage.css";
 
 const { arrayOf, bool, number, oneOf, shape, string } = PropTypes;
 
 const formatDate = (intl, date) => {
   return {
     short: intl.formatDate(date, {
-      month: 'short',
-      day: 'numeric',
+      month: "short",
+      day: "numeric"
     }),
-    long: `${intl.formatDate(date)} ${intl.formatTime(date)}`,
+    long: `${intl.formatDate(date)} ${intl.formatTime(date)}`
   };
 };
 
@@ -65,8 +65,8 @@ const txState = (intl, tx, isOrder) => {
       lastTransitionedAtClassName: css.lastTransitionedAtAccepted,
       stateClassName: css.stateAccepted,
       state: intl.formatMessage({
-        id: 'InboxPage.stateAccepted',
-      }),
+        id: "InboxPage.stateAccepted"
+      })
     };
   } else if (txIsDeclinedOrExpired(tx)) {
     return {
@@ -75,8 +75,8 @@ const txState = (intl, tx, isOrder) => {
       lastTransitionedAtClassName: css.lastTransitionedAtDeclined,
       stateClassName: css.stateDeclined,
       state: intl.formatMessage({
-        id: 'InboxPage.stateDeclined',
-      }),
+        id: "InboxPage.stateDeclined"
+      })
     };
   } else if (txIsCanceled(tx)) {
     return {
@@ -85,8 +85,8 @@ const txState = (intl, tx, isOrder) => {
       lastTransitionedAtClassName: css.lastTransitionedAtCanceled,
       stateClassName: css.stateCanceled,
       state: intl.formatMessage({
-        id: 'InboxPage.stateCanceled',
-      }),
+        id: "InboxPage.stateCanceled"
+      })
     };
   } else if (txIsCompleted(tx) || txHasFirstReview(tx) || txIsReviewed(tx)) {
     return {
@@ -95,8 +95,8 @@ const txState = (intl, tx, isOrder) => {
       lastTransitionedAtClassName: css.lastTransitionedAtDelivered,
       stateClassName: css.stateDelivered,
       state: intl.formatMessage({
-        id: 'InboxPage.stateDelivered',
-      }),
+        id: "InboxPage.stateDelivered"
+      })
     };
   } else if (txIsEnquired(tx)) {
     return {
@@ -105,8 +105,8 @@ const txState = (intl, tx, isOrder) => {
       lastTransitionedAtClassName: css.lastTransitionedAtEnquired,
       stateClassName: css.stateEnquired,
       state: intl.formatMessage({
-        id: 'InboxPage.stateEnquiry',
-      }),
+        id: "InboxPage.stateEnquiry"
+      })
     };
   }
   return {
@@ -118,11 +118,11 @@ const txState = (intl, tx, isOrder) => {
     stateClassName: isOrder ? css.stateRequested : css.statePending,
     state: isOrder
       ? intl.formatMessage({
-          id: 'InboxPage.stateRequested',
+          id: "InboxPage.stateRequested"
         })
       : intl.formatMessage({
-          id: 'InboxPage.statePending',
-        }),
+          id: "InboxPage.statePending"
+        })
   };
 };
 
@@ -139,11 +139,13 @@ const bookingData = (unitType, tx, isOrder, intl) => {
   const endDate =
     isDaily || isUnits
       ? moment(endDateRaw)
-          .subtract(1, 'days')
+          .subtract(1, "days")
           .toDate()
       : endDateRaw;
   const bookingEnd = formatDate(intl, endDate);
-  const bookingPrice = isOrder ? tx.attributes.payinTotal : tx.attributes.payoutTotal;
+  const bookingPrice = isOrder
+    ? tx.attributes.payinTotal
+    : tx.attributes.payoutTotal;
   const price = formatMoney(intl, bookingPrice);
   return { bookingStart, bookingEnd, price, isSingleDay };
 };
@@ -157,8 +159,15 @@ const BookingInfoMaybe = props => {
     return null;
   }
 
-  const { bookingStart, bookingEnd, price, isSingleDay } = bookingData(unitType, tx, isOrder, intl);
-  const dateInfo = isSingleDay ? bookingStart.short : `${bookingStart.short} - ${bookingEnd.short}`;
+  const { bookingStart, bookingEnd, price, isSingleDay } = bookingData(
+    unitType,
+    tx,
+    isOrder,
+    intl
+  );
+  const dateInfo = isSingleDay
+    ? bookingStart.short
+    : `${bookingStart.short} - ${bookingEnd.short}`;
 
   return (
     <div className={classNames(css.bookingInfo, bookingClassName)}>
@@ -172,28 +181,33 @@ BookingInfoMaybe.propTypes = {
   intl: intlShape.isRequired,
   isOrder: bool.isRequired,
   tx: propTypes.transaction.isRequired,
-  unitType: propTypes.bookingUnitType.isRequired,
+  unitType: propTypes.bookingUnitType.isRequired
 };
 
 export const InboxItem = props => {
   const { unitType, type, tx, intl } = props;
   const { customer, provider } = tx;
-  const isOrder = type === 'order';
+  const isOrder = type === "order";
 
   const otherUser = isOrder ? provider : customer;
   const bannedUserDisplayName = intl.formatMessage({
-    id: 'InboxPage.bannedUserDisplayName',
+    id: "InboxPage.bannedUserDisplayName"
   });
   const isOtherUserBanned = otherUser.attributes.banned;
-  const otherUserDisplayName = userDisplayName(otherUser, bannedUserDisplayName);
+  const otherUserDisplayName = userDisplayName(
+    otherUser,
+    bannedUserDisplayName
+  );
 
   const stateData = txState(intl, tx, isOrder);
   const isSaleNotification = !isOrder && txIsRequested(tx);
-  const rowNotificationDot = isSaleNotification ? <div className={css.notificationDot} /> : null;
+  const rowNotificationDot = isSaleNotification ? (
+    <div className={css.notificationDot} />
+  ) : null;
   const lastTransitionedAt = formatDate(intl, tx.attributes.lastTransitionedAt);
 
   const linkClasses = classNames(css.itemLink, {
-    [css.bannedUserLink]: isOtherUserBanned,
+    [css.bannedUserLink]: isOtherUserBanned
   });
 
   return (
@@ -203,12 +217,14 @@ export const InboxItem = props => {
       </div>
       <NamedLink
         className={linkClasses}
-        name={isOrder ? 'OrderDetailsPage' : 'SaleDetailsPage'}
+        name={isOrder ? "OrderDetailsPage" : "SaleDetailsPage"}
         params={{ id: tx.id.uuid }}
       >
         <div className={css.rowNotificationDot}>{rowNotificationDot}</div>
         <div className={css.itemInfo}>
-          <div className={classNames(css.itemUsername, stateData.nameClassName)}>
+          <div
+            className={classNames(css.itemUsername, stateData.nameClassName)}
+          >
             {otherUserDisplayName}
           </div>
           <BookingInfoMaybe
@@ -224,7 +240,10 @@ export const InboxItem = props => {
             {stateData.state}
           </div>
           <div
-            className={classNames(css.lastTransitionedAt, stateData.lastTransitionedAtClassName)}
+            className={classNames(
+              css.lastTransitionedAt,
+              stateData.lastTransitionedAtClassName
+            )}
             title={lastTransitionedAt.long}
           >
             {lastTransitionedAt.short}
@@ -237,9 +256,9 @@ export const InboxItem = props => {
 
 InboxItem.propTypes = {
   unitType: propTypes.bookingUnitType.isRequired,
-  type: oneOf(['order', 'sale']).isRequired,
+  type: oneOf(["order", "sale"]).isRequired,
   tx: propTypes.transaction.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export const InboxPageComponent = props => {
@@ -253,26 +272,31 @@ export const InboxPageComponent = props => {
     params,
     providerNotificationCount,
     scrollingDisabled,
-    transactions,
+    transactions
   } = props;
   const { tab } = params;
   const ensuredCurrentUser = ensureCurrentUser(currentUser);
 
-  const validTab = tab === 'orders' || tab === 'sales';
+  const validTab = tab === "orders" || tab === "sales";
   if (!validTab) {
     return <NotFoundPage />;
   }
 
-  const isOrders = tab === 'orders';
+  const isOrders = tab === "orders";
 
-  const ordersTitle = intl.formatMessage({ id: 'InboxPage.ordersTitle' });
-  const salesTitle = intl.formatMessage({ id: 'InboxPage.salesTitle' });
+  const ordersTitle = intl.formatMessage({ id: "InboxPage.ordersTitle" });
+  const salesTitle = intl.formatMessage({ id: "InboxPage.salesTitle" });
   const title = isOrders ? ordersTitle : salesTitle;
 
   const toTxItem = tx => {
     return (
       <li key={tx.id.uuid} className={css.listItem}>
-        <InboxItem unitType={unitType} type={isOrders ? 'order' : 'sale'} tx={tx} intl={intl} />
+        <InboxItem
+          unitType={unitType}
+          type={isOrders ? "order" : "sale"}
+          tx={tx}
+          intl={intl}
+        />
       </li>
     );
   };
@@ -284,19 +308,30 @@ export const InboxPageComponent = props => {
   ) : null;
 
   const noResults =
-    !fetchInProgress && transactions.length === 0 && !fetchOrdersOrSalesError ? (
+    !fetchInProgress &&
+    transactions.length === 0 &&
+    !fetchOrdersOrSalesError ? (
       <li key="noResults" className={css.noResults}>
-        <FormattedMessage id={isOrders ? 'InboxPage.noOrdersFound' : 'InboxPage.noSalesFound'} />
+        <FormattedMessage
+          id={isOrders ? "InboxPage.noOrdersFound" : "InboxPage.noSalesFound"}
+        />
       </li>
     ) : null;
 
   const hasOrderOrSaleTransactions = (tx, isOrdersTab, user) => {
     return isOrdersTab
-      ? user.id && tx && tx.length > 0 && tx[0].customer.id.uuid === user.id.uuid
-      : user.id && tx && tx.length > 0 && tx[0].provider.id.uuid === user.id.uuid;
+      ? user.id &&
+          tx &&
+          tx.length > 0 &&
+          tx[0].customer.id.uuid === user.id.uuid
+      : user.id &&
+          tx &&
+          tx.length > 0 &&
+          tx[0].provider.id.uuid === user.id.uuid;
   };
   const hasTransactions =
-    !fetchInProgress && hasOrderOrSaleTransactions(transactions, isOrders, ensuredCurrentUser);
+    !fetchInProgress &&
+    hasOrderOrSaleTransactions(transactions, isOrders, ensuredCurrentUser);
   const pagingLinks =
     hasTransactions && pagination && pagination.totalPages > 1 ? (
       <PaginationLinks
@@ -308,9 +343,13 @@ export const InboxPageComponent = props => {
     ) : null;
 
   const providerNotificationBadge =
-    providerNotificationCount > 0 ? <NotificationBadge count={providerNotificationCount} /> : null;
-  const tabs = [
-    {
+    providerNotificationCount > 0 ? (
+      <NotificationBadge count={providerNotificationCount} />
+    ) : null;
+  const tabs = [];
+  currentUser &&
+    !currentUser.attributes.profile.publicData.provider &&
+    tabs.push({
       text: (
         <span>
           <FormattedMessage id="InboxPage.ordersTabTitle" />
@@ -318,11 +357,13 @@ export const InboxPageComponent = props => {
       ),
       selected: isOrders,
       linkProps: {
-        name: 'InboxPage',
-        params: { tab: 'orders' },
-      },
-    },
-    {
+        name: "InboxPage",
+        params: { tab: "orders" }
+      }
+    });
+  currentUser &&
+    currentUser.attributes.profile.publicData.provider &&
+    tabs.push({
       text: (
         <span>
           <FormattedMessage id="InboxPage.salesTabTitle" />
@@ -331,12 +372,13 @@ export const InboxPageComponent = props => {
       ),
       selected: !isOrders,
       linkProps: {
-        name: 'InboxPage',
-        params: { tab: 'sales' },
-      },
-    },
-  ];
-  const nav = <TabNav rootClassName={css.tabs} tabRootClassName={css.tab} tabs={tabs} />;
+        name: "InboxPage",
+        params: { tab: "sales" }
+      }
+    });
+  const nav = (
+    <TabNav rootClassName={css.tabs} tabRootClassName={css.tab} tabs={tabs} />
+  );
 
   return (
     <Page title={title} scrollingDisabled={scrollingDisabled}>
@@ -349,7 +391,10 @@ export const InboxPageComponent = props => {
             currentPage="InboxPage"
           />
         </LayoutWrapperTopbar>
-        <LayoutWrapperSideNav className={css.navigation}>
+        <LayoutWrapperSideNav
+          currentUser={currentUser}
+          className={css.navigation}
+        >
           <h1 className={css.title}>
             <FormattedMessage id="InboxPage.title" />
           </h1>
@@ -384,12 +429,12 @@ InboxPageComponent.defaultProps = {
   fetchOrdersOrSalesError: null,
   pagination: null,
   providerNotificationCount: 0,
-  sendVerificationEmailError: null,
+  sendVerificationEmailError: null
 };
 
 InboxPageComponent.propTypes = {
   params: shape({
-    tab: string.isRequired,
+    tab: string.isRequired
   }).isRequired,
 
   unitType: propTypes.bookingUnitType,
@@ -402,12 +447,20 @@ InboxPageComponent.propTypes = {
   transactions: arrayOf(propTypes.transaction).isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const mapStateToProps = state => {
-  const { fetchInProgress, fetchOrdersOrSalesError, pagination, transactionRefs } = state.InboxPage;
-  const { currentUser, currentUserNotificationCount: providerNotificationCount } = state.user;
+  const {
+    fetchInProgress,
+    fetchOrdersOrSalesError,
+    pagination,
+    transactionRefs
+  } = state.InboxPage;
+  const {
+    currentUser,
+    currentUserNotificationCount: providerNotificationCount
+  } = state.user;
   return {
     currentUser,
     fetchInProgress,
@@ -415,11 +468,13 @@ const mapStateToProps = state => {
     pagination,
     providerNotificationCount,
     scrollingDisabled: isScrollingDisabled(state),
-    transactions: getMarketplaceEntities(state, transactionRefs),
+    transactions: getMarketplaceEntities(state, transactionRefs)
   };
 };
 
-const InboxPage = compose(connect(mapStateToProps), injectIntl)(InboxPageComponent);
+const InboxPage = compose(connect(mapStateToProps), injectIntl)(
+  InboxPageComponent
+);
 
 InboxPage.loadData = loadData;
 

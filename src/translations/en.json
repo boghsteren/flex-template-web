@@ -318,9 +318,9 @@
   "InboxPage.fetchFailed": "Could not load all messages. Please try again.",
   "InboxPage.noOrdersFound": "You haven't made any bookings.",
   "InboxPage.noSalesFound": "Nobody has booked anything from you yet.",
-  "InboxPage.ordersTabTitle": "Experiencing",
-  "InboxPage.ordersTitle": "Inbox: Experiencing",
-  "InboxPage.salesTabTitle": "Hosting",
+  "InboxPage.ordersTabTitle": "Bookings",
+  "InboxPage.ordersTitle": "Inbox: Bookings",
+  "InboxPage.salesTabTitle": "Enquiries",
   "InboxPage.salesTitle": "Inbox: Hosting",
   "InboxPage.stateAccepted": "Accepted",
   "InboxPage.stateCanceled": "Canceled",
@@ -696,7 +696,8 @@
   "SectionHowItWorks.part3Text":
     "When you’re ready, it’s fast, easy and secure to book and pay for the experience. Besides a transaction fee, the entire amount paid will go directly to the nonprofit organisation hosting the experience. Following the payment, you will receive all the necessary practical details about the experience.",
   "SectionHowItWorks.part3Title": "3. Book the experience",
-  "SectionHowItWorks.providerSignupLink": "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
+  "SectionHowItWorks.providerSignupLink":
+    "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
   "SectionHowItWorks.titleLineOne": "Experiencing a better world",
   "SectionHowItWorks.titleLineTwo": "(or how Goodwings Experiences works).",
   "SectionLocations.generalLink": "Browse different types of experiences.",
