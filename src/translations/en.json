@@ -698,7 +698,7 @@
   "SectionHowItWorks.part3Title": "3. Book the experience",
   "SectionHowItWorks.providerSignupLink":
     "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
-  "SectionHowItWorks.titleLineOne": "Experiencing a better world",
+  "SectionHowItWorks.titleLineOne": "How it works",
   "SectionHowItWorks.titleLineTwo": "(or how Goodwings Experiences works).",
   "SectionLocations.generalLink": "Browse different types of experiences.",
   "SectionLocations.listingsInLocation": "{location}",
@@ -861,7 +861,7 @@
   "TopbarMobileMenu.unauthorizedGreeting":
     "Hello there,{lineBreak}would you like to {signupOrLogin}?",
   "TopbarMobileMenu.yourListingsLink": "Your listings",
-  "TopbarSearchForm.placeholder": "Go explore!",
+  "TopbarSearchForm.placeholder": "Try 'Berlin'",
   "TopbarSearchForm.searchHelp":
     "Tip: You can also search experiences by city \"London\".",
   "TransactionPage.deletedListing": "deleted listing",

@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import { isScrollingDisabled } from "../../ducks/UI.duck";
+import { loadData } from "./LandingPage.duck";
+
 import config from "../../config";
 import {
   Page,
@@ -84,7 +86,7 @@ export const LandingPageComponent = props => {
             </li>
             <li className={css.section}>
               <div className={css.sectionContent}>
-                <SectionHighlightsOfTheMonth />
+                <SectionHighlightsOfTheMonth listings={props.listings} />
               </div>
             </li>
             <li className={css.section}>
@@ -108,7 +110,7 @@ export const LandingPageComponent = props => {
   );
 };
 
-const { bool, object } = PropTypes;
+const { bool, array, object } = PropTypes;
 
 LandingPageComponent.propTypes = {
   scrollingDisabled: bool.isRequired,
@@ -118,12 +120,14 @@ LandingPageComponent.propTypes = {
   location: object.isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  listings: array
 };
 
 const mapStateToProps = state => {
   return {
-    scrollingDisabled: isScrollingDisabled(state)
+    scrollingDisabled: isScrollingDisabled(state),
+    listings: state.LandingPage.listings
   };
 };
 
@@ -136,5 +140,9 @@ const mapStateToProps = state => {
 const LandingPage = compose(withRouter, connect(mapStateToProps), injectIntl)(
   LandingPageComponent
 );
+
+LandingPage.loadData = params => {
+  return loadData();
+};
 
 export default LandingPage;
