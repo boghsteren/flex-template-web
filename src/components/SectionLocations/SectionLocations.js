@@ -61,7 +61,7 @@ const SectionLocations = props => {
           "?pub_category=giving_back"
         )}
       </div>
-      <NamedLink name="SearchPage" className={css.location}>
+      <NamedLink name="SearchPage" className={css.linkText}>
         <div className={css.linkText}>
           <p>
             <FormattedMessage

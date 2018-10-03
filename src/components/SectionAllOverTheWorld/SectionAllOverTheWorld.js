@@ -60,7 +60,7 @@ const SectionAllOverTheWorld = props => {
           "?address=Europe%2C%20Canton%20of%20Bern%2C%20Switzerland&bounds=72.12446531%2C48.18413823%2C21.56588484%2C-20.2903369&mapSearch=true"
         )}
       </div>
-      <NamedLink name="SearchPage" className={css.location}>
+      <NamedLink name="SearchPage" className={css.linkText}>
         <div className={css.linkText}>
           <p>
             <FormattedMessage

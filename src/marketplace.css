@@ -150,6 +150,7 @@
 
     &:hover {
       text-decoration: underline;
+      color: var(--marketplaceColorDark);
       cursor: pointer;
     }
   }
