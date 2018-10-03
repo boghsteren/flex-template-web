@@ -724,7 +724,7 @@
   "SendMessageForm.sendFailed": "Failed to send. Please try again.",
   "SendMessageForm.sendMessage": "Send message",
   "SignupForm.organisationLabel": "Organisation",
-  "SignupForm.organisationPlaceholder": "Acme Corp",
+  "SignupForm.organisationPlaceholder": "Where do you work?",
   "SignupForm.organisationRequiredMessage": "You need to add an organisation.",
   "SignupForm.emailInvalid": "A valid email address is required",
   "SignupForm.emailLabel": "Email",
@@ -743,7 +743,7 @@
     "The password should be at most {maxLength} characters.",
   "SignupForm.passwordTooShort":
     "The password should be at least {minLength} characters.",
-  "SignupForm.providerForm": "PROVIDER",
+  "SignupForm.providerForm": "For experience organisers only",
   "SignupForm.signUp": "Sign up",
   "SignupForm.termsAndConditionsAcceptText":
     "By signing up you accept the {termsLink}",
