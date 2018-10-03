@@ -530,6 +530,7 @@ export class ListingPageComponent extends Component {
                     onManageDisableScrolling={onManageDisableScrolling}
                   />
                 </div>
+                {currentUser && !currentUser.attributes.profile.publicData.provider &&
                 <SectionBooking
                   listing={currentListing}
                   isOwnListing={isOwnListing}
@@ -547,7 +548,7 @@ export class ListingPageComponent extends Component {
                   onManageDisableScrolling={onManageDisableScrolling}
                   timeSlots={timeSlots}
                   fetchTimeSlotsError={fetchTimeSlotsError}
-                />
+                />}
               </div>
             </div>
           </LayoutWrapperMain>
