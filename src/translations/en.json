@@ -217,13 +217,14 @@
   "EditListingPage.titleCreateListing": "Create a listing",
   "EditListingPage.titleEditListing": "Edit listing",
   "EditListingPhotosForm.addImagesTip":
-    "Tip: Choose the top 2-3 photos of your experience to showcase it.",
+    "The first photo you upload is the one customers will see when visiting the marketplace.",
   "EditListingPhotosForm.bankAccountNumberRequired":
     "You need to add a bank account number.",
   "EditListingPhotosForm.chooseImage": "+ Choose an image…",
   "EditListingPhotosForm.createListingFailed": "Adding a new experience failed",
   "EditListingPhotosForm.imageRequired": "You need to add at least one image.",
-  "EditListingPhotosForm.imageTypes": ".JPG, .GIF or .PNG. Max. 10 MB",
+  "EditListingPhotosForm.imageTypes":
+    "Width: min. 1900 pixels Height: min. 1000 pixels",
   "EditListingPhotosForm.imageUploadFailed.uploadFailed":
     "Failed to upload image. Please check that the image wasn't too big and try again.",
   "EditListingPhotosForm.imageUploadFailed.uploadOverLimit":
