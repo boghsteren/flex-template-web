@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-import { ListingLink } from '../../components';
-import { EditListingPricingForm } from '../../forms';
-import { ensureOwnListing } from '../../util/data';
-import { types as sdkTypes } from '../../util/sdkLoader';
-import config from '../../config';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { FormattedMessage } from "react-intl";
+import { ListingLink } from "../../components";
+import { EditListingPricingForm } from "../../forms";
+import { ensureOwnListing } from "../../util/data";
+import { types as sdkTypes } from "../../util/sdkLoader";
+import config from "../../config";
 
-import css from './EditListingPricingPanel.css';
+import css from "./EditListingPricingPanel.css";
 
 const { Money } = sdkTypes;
 
@@ -22,12 +22,13 @@ const EditListingPricingPanel = props => {
     submitButtonText,
     panelUpdated,
     updateInProgress,
-    errors,
+    errors
   } = props;
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
   const { price } = currentListing.attributes;
+  const { publicData } = currentListing.attributes;
 
   const panelTitle = currentListing.id ? (
     <FormattedMessage
@@ -38,12 +39,21 @@ const EditListingPricingPanel = props => {
     <FormattedMessage id="EditListingPricingPanel.createListingTitle" />
   );
 
-  const priceCurrencyValid = price instanceof Money ? price.currency === config.currency : true;
+  const priceCurrencyValid =
+    price instanceof Money ? price.currency === config.currency : true;
   const form = priceCurrencyValid ? (
     <EditListingPricingForm
       className={css.form}
-      initialValues={{ price }}
-      onSubmit={onSubmit}
+      initialValues={{ price, pricing_scheme: publicData.pricing_scheme }}
+      pricing_schemes={config.custom.pricing_schemes}
+      onSubmit={values => {
+        const { price, pricing_scheme } = values;
+        const updateValues = {
+          price,
+          publicData: { pricing_scheme: pricing_scheme }
+        };
+        onSubmit(updateValues);
+      }}
       onChange={onChange}
       saveActionMsg={submitButtonText}
       updated={panelUpdated}
@@ -69,7 +79,7 @@ const { func, object, string, bool } = PropTypes;
 EditListingPricingPanel.defaultProps = {
   className: null,
   rootClassName: null,
-  listing: null,
+  listing: null
 };
 
 EditListingPricingPanel.propTypes = {
@@ -84,7 +94,7 @@ EditListingPricingPanel.propTypes = {
   submitButtonText: string.isRequired,
   panelUpdated: bool.isRequired,
   updateInProgress: bool.isRequired,
-  errors: object.isRequired,
+  errors: object.isRequired
 };
 
 export default EditListingPricingPanel;

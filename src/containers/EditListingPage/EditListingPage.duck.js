@@ -1,49 +1,65 @@
-import omit from 'lodash/omit';
-import omitBy from 'lodash/omitBy';
-import isUndefined from 'lodash/isUndefined';
-import mergeWith from 'lodash/mergeWith';
-import { types as sdkTypes } from '../../util/sdkLoader';
-import { storableError } from '../../util/errors';
-import { addMarketplaceEntities } from '../../ducks/marketplaceData.duck';
-import * as log from '../../util/log';
-import { fetchCurrentUserHasListingsSuccess } from '../../ducks/user.duck';
-import { overrideArrays } from '../../util/data';
+import omit from "lodash/omit";
+import omitBy from "lodash/omitBy";
+import isUndefined from "lodash/isUndefined";
+import mergeWith from "lodash/mergeWith";
+import { types as sdkTypes } from "../../util/sdkLoader";
+import { storableError } from "../../util/errors";
+import { addMarketplaceEntities } from "../../ducks/marketplaceData.duck";
+import * as log from "../../util/log";
+import { fetchCurrentUserHasListingsSuccess } from "../../ducks/user.duck";
+import { overrideArrays } from "../../util/data";
 
 const { UUID } = sdkTypes;
 
-const requestAction = actionType => params => ({ type: actionType, payload: { params } });
+const requestAction = actionType => params => ({
+  type: actionType,
+  payload: { params }
+});
 
-const successAction = actionType => result => ({ type: actionType, payload: result.data });
+const successAction = actionType => result => ({
+  type: actionType,
+  payload: result.data
+});
 
-const errorAction = actionType => error => ({ type: actionType, payload: error, error: true });
+const errorAction = actionType => error => ({
+  type: actionType,
+  payload: error,
+  error: true
+});
 
 // ================ Action types ================ //
 
-export const MARK_TAB_UPDATED = 'app/EditListingPage/MARK_TAB_UPDATED';
-export const CLEAR_UPDATED_TAB = 'app/EditListingPage/CLEAR_UPDATED_TAB';
+export const MARK_TAB_UPDATED = "app/EditListingPage/MARK_TAB_UPDATED";
+export const CLEAR_UPDATED_TAB = "app/EditListingPage/CLEAR_UPDATED_TAB";
 
-export const CREATE_LISTING_REQUEST = 'app/EditListingPage/CREATE_LISTING_REQUEST';
-export const CREATE_LISTING_SUCCESS = 'app/EditListingPage/CREATE_LISTING_SUCCESS';
-export const CREATE_LISTING_ERROR = 'app/EditListingPage/CREATE_LISTING_ERROR';
+export const CREATE_LISTING_REQUEST =
+  "app/EditListingPage/CREATE_LISTING_REQUEST";
+export const CREATE_LISTING_SUCCESS =
+  "app/EditListingPage/CREATE_LISTING_SUCCESS";
+export const CREATE_LISTING_ERROR = "app/EditListingPage/CREATE_LISTING_ERROR";
 
-export const UPDATE_LISTING_REQUEST = 'app/EditListingPage/UPDATE_LISTING_REQUEST';
-export const UPDATE_LISTING_SUCCESS = 'app/EditListingPage/UPDATE_LISTING_SUCCESS';
-export const UPDATE_LISTING_ERROR = 'app/EditListingPage/UPDATE_LISTING_ERROR';
+export const UPDATE_LISTING_REQUEST =
+  "app/EditListingPage/UPDATE_LISTING_REQUEST";
+export const UPDATE_LISTING_SUCCESS =
+  "app/EditListingPage/UPDATE_LISTING_SUCCESS";
+export const UPDATE_LISTING_ERROR = "app/EditListingPage/UPDATE_LISTING_ERROR";
 
-export const SHOW_LISTINGS_REQUEST = 'app/EditListingPage/SHOW_LISTINGS_REQUEST';
-export const SHOW_LISTINGS_SUCCESS = 'app/EditListingPage/SHOW_LISTINGS_SUCCESS';
-export const SHOW_LISTINGS_ERROR = 'app/EditListingPage/SHOW_LISTINGS_ERROR';
+export const SHOW_LISTINGS_REQUEST =
+  "app/EditListingPage/SHOW_LISTINGS_REQUEST";
+export const SHOW_LISTINGS_SUCCESS =
+  "app/EditListingPage/SHOW_LISTINGS_SUCCESS";
+export const SHOW_LISTINGS_ERROR = "app/EditListingPage/SHOW_LISTINGS_ERROR";
 
-export const UPLOAD_IMAGE_REQUEST = 'app/EditListingPage/UPLOAD_IMAGE_REQUEST';
-export const UPLOAD_IMAGE_SUCCESS = 'app/EditListingPage/UPLOAD_IMAGE_SUCCESS';
-export const UPLOAD_IMAGE_ERROR = 'app/EditListingPage/UPLOAD_IMAGE_ERROR';
+export const UPLOAD_IMAGE_REQUEST = "app/EditListingPage/UPLOAD_IMAGE_REQUEST";
+export const UPLOAD_IMAGE_SUCCESS = "app/EditListingPage/UPLOAD_IMAGE_SUCCESS";
+export const UPLOAD_IMAGE_ERROR = "app/EditListingPage/UPLOAD_IMAGE_ERROR";
 
-export const UPDATE_IMAGE_ORDER = 'app/EditListingPage/UPDATE_IMAGE_ORDER';
+export const UPDATE_IMAGE_ORDER = "app/EditListingPage/UPDATE_IMAGE_ORDER";
 
-export const CREATE_LISTING_DRAFT = 'app/EditListingPage/CREATE_LISTING_DRAFT';
-export const UPDATE_LISTING_DRAFT = 'app/EditListingPage/UPDATE_LISTING_DRAFT';
+export const CREATE_LISTING_DRAFT = "app/EditListingPage/CREATE_LISTING_DRAFT";
+export const UPDATE_LISTING_DRAFT = "app/EditListingPage/UPDATE_LISTING_DRAFT";
 
-export const REMOVE_LISTING_IMAGE = 'app/EditListingPage/REMOVE_LISTING_IMAGE';
+export const REMOVE_LISTING_IMAGE = "app/EditListingPage/REMOVE_LISTING_IMAGE";
 
 // ================ Reducer ================ //
 
@@ -61,7 +77,7 @@ const initialState = {
   removedImageIds: [],
   listingDraft: null,
   updatedTab: null,
-  updateInProgress: false,
+  updateInProgress: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -78,21 +94,21 @@ export default function reducer(state = initialState, action = {}) {
         createListingInProgress: true,
         createListingsError: null,
         submittedListingId: null,
-        redirectToListing: false,
+        redirectToListing: false
       };
     case CREATE_LISTING_SUCCESS:
       return {
         ...state,
         createListingInProgress: false,
         submittedListingId: payload.data.id,
-        redirectToListing: true,
+        redirectToListing: true
       };
     case CREATE_LISTING_ERROR:
       return {
         ...state,
         createListingInProgress: false,
         createListingsError: payload,
-        redirectToListing: false,
+        redirectToListing: false
       };
 
     case UPDATE_LISTING_REQUEST:
@@ -115,13 +131,13 @@ export default function reducer(state = initialState, action = {}) {
       // payload.params: { id: 'tempId', file }
       const images = {
         ...state.images,
-        [payload.params.id]: { ...payload.params },
+        [payload.params.id]: { ...payload.params }
       };
       return {
         ...state,
         images,
         imageOrder: state.imageOrder.concat([payload.params.id]),
-        uploadImageError: null,
+        uploadImageError: null
       };
     }
     case UPLOAD_IMAGE_SUCCESS: {
@@ -153,8 +169,8 @@ export default function reducer(state = initialState, action = {}) {
             omitBy(payload.attributes, isUndefined),
             overrideArrays
           ),
-          images: updatedImages,
-        },
+          images: updatedImages
+        }
       };
     }
 
@@ -186,16 +202,16 @@ export default function reducer(state = initialState, action = {}) {
 
 export const markTabUpdated = tab => ({
   type: MARK_TAB_UPDATED,
-  payload: tab,
+  payload: tab
 });
 
 export const clearUpdatedTab = () => ({
-  type: CLEAR_UPDATED_TAB,
+  type: CLEAR_UPDATED_TAB
 });
 
 export const updateImageOrder = imageOrder => ({
   type: UPDATE_IMAGE_ORDER,
-  payload: { imageOrder },
+  payload: { imageOrder }
 });
 
 export const createListingDraft = listingData => {
@@ -204,8 +220,8 @@ export const createListingDraft = listingData => {
     type: CREATE_LISTING_DRAFT,
     payload: {
       attributes,
-      images,
-    },
+      images
+    }
   };
 };
 
@@ -215,14 +231,14 @@ export const updateListingDraft = listingData => {
     type: UPDATE_LISTING_DRAFT,
     payload: {
       attributes,
-      images,
-    },
+      images
+    }
   };
 };
 
 export const removeListingImage = imageId => ({
   type: REMOVE_LISTING_IMAGE,
-  payload: { imageId },
+  payload: { imageId }
 });
 
 // All the action creators that don't have the {Success, Error} suffix
@@ -281,8 +297,11 @@ export function requestCreateListing(data) {
         dispatch(
           requestShowListing({
             id,
-            include: ['author', 'images'],
-            'fields.image': ['variants.landscape-crop', 'variants.landscape-crop2x'],
+            include: ["author", "images"],
+            "fields.image": [
+              "variants.landscape-crop",
+              "variants.landscape-crop2x"
+            ]
           })
         );
         return response;
@@ -295,7 +314,7 @@ export function requestCreateListing(data) {
         return response;
       })
       .catch(e => {
-        log.error(e, 'create-listing-failed', { listingData: data });
+        log.error(e, "create-listing-failed", { listingData: data });
         return dispatch(createListingError(storableError(e)));
       });
   };
@@ -308,7 +327,11 @@ export function requestImageUpload(actionPayload) {
     dispatch(uploadImage(actionPayload));
     return sdk.images
       .upload({ image: actionPayload.file })
-      .then(resp => dispatch(uploadImageSuccess({ data: { id, imageId: resp.data.data.id } })))
+      .then(resp =>
+        dispatch(
+          uploadImageSuccess({ data: { id, imageId: resp.data.data.id } })
+        )
+      )
       .catch(e => dispatch(uploadImageError({ id, error: storableError(e) })));
   };
 }
@@ -327,8 +350,11 @@ export function requestUpdateListing(tab, data) {
         updateResponse = response;
         const payload = {
           id,
-          include: ['author', 'images'],
-          'fields.image': ['variants.landscape-crop', 'variants.landscape-crop2x'],
+          include: ["author", "images"],
+          "fields.image": [
+            "variants.landscape-crop",
+            "variants.landscape-crop2x"
+          ]
         };
         return dispatch(requestShowListing(payload));
       })
@@ -337,7 +363,7 @@ export function requestUpdateListing(tab, data) {
         dispatch(updateListingSuccess(updateResponse));
       })
       .catch(e => {
-        log.error(e, 'update-listing-failed', { listingData: data });
+        log.error(e, "update-listing-failed", { listingData: data });
         return dispatch(updateListingError(storableError(e)));
       });
   };
@@ -349,14 +375,14 @@ export function loadData(params) {
   return dispatch => {
     dispatch(clearUpdatedTab());
     const { id, type } = params;
-    if (type === 'new') {
+    if (type === "new") {
       // No need to fetch anything when creating a new listing
       return Promise.resolve(null);
     }
     const payload = {
       id: new UUID(id),
-      include: ['author', 'images'],
-      'fields.image': ['variants.landscape-crop', 'variants.landscape-crop2x'],
+      include: ["author", "images"],
+      "fields.image": ["variants.landscape-crop", "variants.landscape-crop2x"]
     };
     return dispatch(requestShowListing(payload));
   };

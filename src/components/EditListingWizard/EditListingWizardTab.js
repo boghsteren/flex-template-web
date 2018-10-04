@@ -1,29 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
-import routeConfiguration from '../../routeConfiguration';
-import { ensureListing } from '../../util/data';
-import { createResourceLocatorString } from '../../util/routes';
+import React from "react";
+import PropTypes from "prop-types";
+import { intlShape } from "react-intl";
+import routeConfiguration from "../../routeConfiguration";
+import { ensureListing } from "../../util/data";
+import { createResourceLocatorString } from "../../util/routes";
 import {
+  EditListingAvailabilityPanel,
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
   EditListingLocationPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
-  EditListingPricingPanel,
-} from '../../components';
+  EditListingPricingPanel
+} from "../../components";
 
-import css from './EditListingWizard.css';
+import css from "./EditListingWizard.css";
 
-export const DESCRIPTION = 'description';
-export const FEATURES = 'features';
-export const POLICY = 'policy';
-export const LOCATION = 'location';
-export const PRICING = 'pricing';
-export const PHOTOS = 'photos';
+export const AVAILABILITY = "availability";
+export const DESCRIPTION = "description";
+export const FEATURES = "features";
+export const POLICY = "policy";
+export const LOCATION = "location";
+export const PRICING = "pricing";
+export const PHOTOS = "photos";
 
 // EditListingWizardTab component supports these tabs
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, POLICY, LOCATION, PRICING, PHOTOS];
+export const SUPPORTED_TABS = [
+  AVAILABILITY,
+  DESCRIPTION,
+  FEATURES,
+  POLICY,
+  LOCATION,
+  PRICING,
+  PHOTOS
+];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -56,10 +66,10 @@ const EditListingWizardTab = props => {
     onChange,
     updatedTab,
     updateInProgress,
-    intl,
+    intl
   } = props;
 
-  const isNew = params.type === 'new';
+  const isNew = params.type === "new";
   const currentListing = ensureListing(listing);
   const imageIds = images => {
     return images ? images.map(img => img.imageId || img.id) : null;
@@ -68,7 +78,9 @@ const EditListingWizardTab = props => {
   const onCompleteEditListingWizardTab = (tab, updateValues) => {
     if (isNew) {
       const onUpsertListingDraft =
-        tab !== marketplaceTabs[0] ? onUpdateListingDraft : onCreateListingDraft;
+        tab !== marketplaceTabs[0]
+          ? onUpdateListingDraft
+          : onCreateListingDraft;
       onUpsertListingDraft(updateValues);
 
       if (tab !== marketplaceTabs[marketplaceTabs.length - 1]) {
@@ -77,7 +89,12 @@ const EditListingWizardTab = props => {
         // Redirect to next tab
         const pathParams = pathParamsToNextTab(params, tab, marketplaceTabs);
         history.push(
-          createResourceLocatorString('EditListingPage', routeConfiguration(), pathParams, {})
+          createResourceLocatorString(
+            "EditListingPage",
+            routeConfiguration(),
+            pathParams,
+            {}
+          )
         );
       } else {
         // Normalize images for API call
@@ -88,8 +105,14 @@ const EditListingWizardTab = props => {
       const { images: updatedImages, ...rest } = updateValues;
       // Normalize images for API call
       const imageProperty =
-        typeof updatedImages !== 'undefined' ? { images: imageIds(updatedImages) } : {};
-      onUpdateListing(tab, { ...rest, id: currentListing.id, ...imageProperty });
+        typeof updatedImages !== "undefined"
+          ? { images: imageIds(updatedImages) }
+          : {};
+      onUpdateListing(tab, {
+        ...rest,
+        id: currentListing.id,
+        ...imageProperty
+      });
     }
   };
 
@@ -100,19 +123,37 @@ const EditListingWizardTab = props => {
       listing,
       onChange,
       panelUpdated: updatedTab === tab,
-      updateInProgress,
+      updateInProgress
     };
   };
 
   switch (tab) {
     case DESCRIPTION: {
       const submitButtonTranslationKey = isNew
-        ? 'EditListingWizard.saveNewDescription'
-        : 'EditListingWizard.saveEditDescription';
+        ? "EditListingWizard.saveNewDescription"
+        : "EditListingWizard.saveEditDescription";
       return (
         <EditListingDescriptionPanel
           {...panelProps(DESCRIPTION)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case AVAILABILITY: {
+      const submitButtonTranslationKey = isNew
+        ? "EditListingWizard.saveNewAvailability"
+        : "EditListingWizard.saveEditAvailability";
+      return (
+        <EditListingAvailabilityPanel
+          {...panelProps(AVAILABILITY)}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
@@ -121,12 +162,14 @@ const EditListingWizardTab = props => {
     }
     case FEATURES: {
       const submitButtonTranslationKey = isNew
-        ? 'EditListingWizard.saveNewFeatures'
-        : 'EditListingWizard.saveEditFeatures';
+        ? "EditListingWizard.saveNewFeatures"
+        : "EditListingWizard.saveEditFeatures";
       return (
         <EditListingFeaturesPanel
           {...panelProps(FEATURES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
@@ -135,12 +178,14 @@ const EditListingWizardTab = props => {
     }
     case POLICY: {
       const submitButtonTranslationKey = isNew
-        ? 'EditListingWizard.saveNewPolicies'
-        : 'EditListingWizard.saveEditPolicies';
+        ? "EditListingWizard.saveNewPolicies"
+        : "EditListingWizard.saveEditPolicies";
       return (
         <EditListingPoliciesPanel
           {...panelProps(POLICY)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
@@ -149,12 +194,14 @@ const EditListingWizardTab = props => {
     }
     case LOCATION: {
       const submitButtonTranslationKey = isNew
-        ? 'EditListingWizard.saveNewLocation'
-        : 'EditListingWizard.saveEditLocation';
+        ? "EditListingWizard.saveNewLocation"
+        : "EditListingWizard.saveEditLocation";
       return (
         <EditListingLocationPanel
           {...panelProps(LOCATION)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
@@ -163,12 +210,14 @@ const EditListingWizardTab = props => {
     }
     case PRICING: {
       const submitButtonTranslationKey = isNew
-        ? 'EditListingWizard.saveNewPricing'
-        : 'EditListingWizard.saveEditPricing';
+        ? "EditListingWizard.saveNewPricing"
+        : "EditListingWizard.saveEditPricing";
       return (
         <EditListingPricingPanel
           {...panelProps(PRICING)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
@@ -177,14 +226,16 @@ const EditListingWizardTab = props => {
     }
     case PHOTOS: {
       const submitButtonTranslationKey = isNew
-        ? 'EditListingWizard.saveNewPhotos'
-        : 'EditListingWizard.saveEditPhotos';
+        ? "EditListingWizard.saveNewPhotos"
+        : "EditListingWizard.saveEditPhotos";
 
       // newListingCreated and fetchInProgress are flags for the last wizard tab
       return (
         <EditListingPhotosPanel
           {...panelProps(PHOTOS)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          submitButtonText={intl.formatMessage({
+            id: submitButtonTranslationKey
+          })}
           newListingCreated={newListingCreated}
           fetchInProgress={fetchInProgress}
           images={images}
@@ -205,7 +256,7 @@ const EditListingWizardTab = props => {
 EditListingWizardTab.defaultProps = {
   errors: null,
   listing: null,
-  updatedTab: null,
+  updatedTab: null
 };
 
 const { array, bool, func, object, oneOf, shape, string } = PropTypes;
@@ -214,19 +265,19 @@ EditListingWizardTab.propTypes = {
   params: shape({
     id: string.isRequired,
     slug: string.isRequired,
-    type: oneOf(['new', 'edit']).isRequired,
-    tab: oneOf(SUPPORTED_TABS).isRequired,
+    type: oneOf(["new", "edit"]).isRequired,
+    tab: oneOf(SUPPORTED_TABS).isRequired
   }).isRequired,
   errors: shape({
     createListingsError: object,
     updateListingError: object,
     showListingsError: object,
-    uploadImageError: object,
+    uploadImageError: object
   }).isRequired,
   fetchInProgress: bool.isRequired,
   newListingCreated: bool.isRequired,
   history: shape({
-    push: func.isRequired,
+    push: func.isRequired
   }).isRequired,
   images: array.isRequired,
 
@@ -237,9 +288,9 @@ EditListingWizardTab.propTypes = {
       description: string,
       geolocation: object,
       pricing: object,
-      title: string,
+      title: string
     }),
-    images: array,
+    images: array
   }),
 
   handleCreateFlowTabScrolling: func.isRequired,
@@ -254,7 +305,7 @@ EditListingWizardTab.propTypes = {
   updatedTab: string,
   updateInProgress: bool.isRequired,
 
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default EditListingWizardTab;

@@ -25,6 +25,22 @@ export const goals = [
   }
 ];
 
+export const pricing_schemes = [
+  {
+    key: "hourly_flat",
+    label: "Per hour (not based on number of participants)"
+  },
+  { key: "daily_flat", label: "Per day (not based on number of participants)" },
+  { key: "hourly_seats", label: "Per person per hour" },
+  { key: "daily_seats", label: "Per person per day" }
+];
+
+export const group_size_brackets = [
+  { key: "1-10", label: "1-10 people" },
+  { key: "11-20", label: "11-20 people" },
+  { key: "21-30", label: "21-30 people" },
+  { key: "31+", label: "31+ people" }
+];
 export const categories = [
   { key: "study_trip", label: "Study trip" },
   { key: "team_building", label: "Team building" },

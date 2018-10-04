@@ -4,12 +4,11 @@ import classNames from "classnames";
 import { FormattedMessage } from "react-intl";
 import { ensureOwnListing } from "../../util/data";
 import { ListingLink } from "../../components";
-import { EditListingDescriptionForm } from "../../forms";
-import config from "../../config";
+import { EditListingAvailabilityForm } from "../../forms";
 
-import css from "./EditListingDescriptionPanel.css";
+import css from "./EditListingAvailabilityPanel.css";
 
-const EditListingDescriptionPanel = props => {
+const EditListingAvailabilityPanel = props => {
   const {
     className,
     rootClassName,
@@ -24,46 +23,36 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { description, title, publicData } = currentListing.attributes;
+  const { publicData } = currentListing.attributes;
 
   const panelTitle = currentListing.id ? (
     <FormattedMessage
-      id="EditListingDescriptionPanel.title"
+      id="EditListingAvailabilityPanel.title"
       values={{ listingTitle: <ListingLink listing={listing} /> }}
     />
   ) : (
-    <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
+    <FormattedMessage id="EditListingAvailabilityPanel.createListingTitle" />
   );
 
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingDescriptionForm
+      <EditListingAvailabilityForm
         className={css.form}
-        initialValues={{ title, description, category: publicData.category }}
-        saveActionMsg={submitButtonText}
+        publicData={publicData}
+        initialValues={{ availability: publicData.availability }}
         onSubmit={values => {
-          const {
-            title,
-            description,
-            included,
-            group_size,
-            contact,
-            duration
-          } = values;
+          const availability = values;
           const updateValues = {
-            title: title.trim(),
-            description,
-            publicData: { included, group_size, contact, duration }
+            publicData: availability
           };
-
           onSubmit(updateValues);
         }}
         onChange={onChange}
+        saveActionMsg={submitButtonText}
         updated={panelUpdated}
         updateError={errors.updateListingError}
         updateInProgress={updateInProgress}
-        group_size_brackets={config.custom.group_size_brackets}
       />
     </div>
   );
@@ -71,13 +60,13 @@ const EditListingDescriptionPanel = props => {
 
 const { func, object, string, bool } = PropTypes;
 
-EditListingDescriptionPanel.defaultProps = {
+EditListingAvailabilityPanel.defaultProps = {
   className: null,
   rootClassName: null,
   listing: null
 };
 
-EditListingDescriptionPanel.propTypes = {
+EditListingAvailabilityPanel.propTypes = {
   className: string,
   rootClassName: string,
 
@@ -92,4 +81,4 @@ EditListingDescriptionPanel.propTypes = {
   errors: object.isRequired
 };
 
-export default EditListingDescriptionPanel;
+export default EditListingAvailabilityPanel;

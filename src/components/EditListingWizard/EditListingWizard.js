@@ -1,44 +1,63 @@
-import React, { Component } from 'react';
-import { array, bool, func, number, object, oneOf, shape, string } from 'prop-types';
-import { compose } from 'redux';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import classNames from 'classnames';
-import { withViewport } from '../../util/contextHelpers';
-import { ensureListing } from '../../util/data';
-import { PayoutDetailsForm } from '../../forms';
-import { Modal, NamedRedirect, Tabs } from '../../components';
+import React, { Component } from "react";
+import {
+  array,
+  bool,
+  func,
+  number,
+  object,
+  oneOf,
+  shape,
+  string
+} from "prop-types";
+import { compose } from "redux";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import classNames from "classnames";
+import { withViewport } from "../../util/contextHelpers";
+import { ensureListing } from "../../util/data";
+import { PayoutDetailsForm } from "../../forms";
+import { Modal, NamedRedirect, Tabs } from "../../components";
 
 import EditListingWizardTab, {
+  AVAILABILITY,
   DESCRIPTION,
   FEATURES,
   POLICY,
   LOCATION,
   PRICING,
-  PHOTOS,
-} from './EditListingWizardTab';
-import css from './EditListingWizard.css';
+  PHOTOS
+} from "./EditListingWizardTab";
+import css from "./EditListingWizard.css";
 
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const TABS = [DESCRIPTION, FEATURES, POLICY, LOCATION, PRICING, PHOTOS];
+export const TABS = [
+  DESCRIPTION,
+  AVAILABILITY,
+  FEATURES,
+  LOCATION,
+  PRICING,
+  PHOTOS
+];
 
 // Tabs are horizontal in small screens
 const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
 
 const tabLabel = (intl, tab) => {
   let key = null;
-  if (tab === DESCRIPTION) {
-    key = 'EditListingWizard.tabLabelDescription';
+  if (tab === AVAILABILITY) {
+    key = "EditListingWizard.tabLabelAvailability";
+  } else if (tab === DESCRIPTION) {
+    key = "EditListingWizard.tabLabelDescription";
   } else if (tab === FEATURES) {
-    key = 'EditListingWizard.tabLabelFeatures';
+    key = "EditListingWizard.tabLabelFeatures";
   } else if (tab === POLICY) {
-    key = 'EditListingWizard.tabLabelPolicy';
+    key = "EditListingWizard.tabLabelPolicy";
   } else if (tab === LOCATION) {
-    key = 'EditListingWizard.tabLabelLocation';
+    key = "EditListingWizard.tabLabelLocation";
   } else if (tab === PRICING) {
-    key = 'EditListingWizard.tabLabelPricing';
+    key = "EditListingWizard.tabLabelPricing";
   } else if (tab === PHOTOS) {
-    key = 'EditListingWizard.tabLabelPhotos';
+    key = "EditListingWizard.tabLabelPhotos";
   }
 
   return intl.formatMessage({ id: key });
@@ -53,18 +72,31 @@ const tabLabel = (intl, tab) => {
  * @return true if tab / step is completed.
  */
 const tabCompleted = (tab, listing) => {
-  const { description, geolocation, price, title, publicData } = listing.attributes;
+  const {
+    description,
+    geolocation,
+    price,
+    title,
+    publicData
+  } = listing.attributes;
   const images = listing.images;
 
   switch (tab) {
     case DESCRIPTION:
       return !!(description && title);
+    case AVAILABILITY:
+      return !!(publicData && publicData.availability);
     case FEATURES:
       return !!(publicData && publicData.goals);
     case POLICY:
-      return !!(publicData && typeof publicData.rules !== 'undefined');
+      return !!(publicData && typeof publicData.rules !== "undefined");
     case LOCATION:
-      return !!(geolocation && publicData && publicData.location && publicData.location.address);
+      return !!(
+        geolocation &&
+        publicData &&
+        publicData.location &&
+        publicData.location.address
+      );
     case PRICING:
       return !!price;
     case PHOTOS:
@@ -87,7 +119,9 @@ const tabsActive = (isNew, listing) => {
   return TABS.reduce((acc, tab) => {
     const previousTabIndex = TABS.findIndex(t => t === tab) - 1;
     const isActive =
-      previousTabIndex >= 0 ? !isNew || tabCompleted(TABS[previousTabIndex], listing) : true;
+      previousTabIndex >= 0
+        ? !isNew || tabCompleted(TABS[previousTabIndex], listing)
+        : true;
     return { ...acc, [tab]: isActive };
   }, {});
 };
@@ -96,8 +130,8 @@ const scrollToTab = (tabPrefix, tabId) => {
   const el = document.querySelector(`#${tabPrefix}_${tabId}`);
   if (el) {
     el.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
+      block: "start",
+      behavior: "smooth"
     });
   }
 };
@@ -112,9 +146,11 @@ class EditListingWizard extends Component {
 
     this.state = {
       submittedValues: null,
-      showPayoutDetails: false,
+      showPayoutDetails: false
     };
-    this.handleCreateFlowTabScrolling = this.handleCreateFlowTabScrolling.bind(this);
+    this.handleCreateFlowTabScrolling = this.handleCreateFlowTabScrolling.bind(
+      this
+    );
     this.handleCreateListing = this.handleCreateListing.bind(this);
     this.handlePayoutModalClose = this.handlePayoutModalClose.bind(this);
     this.handlePayoutSubmit = this.handlePayoutSubmit.bind(this);
@@ -127,13 +163,15 @@ class EditListingWizard extends Component {
   handleCreateListing(values) {
     const { onCreateListing, currentUser } = this.props;
     const stripeConnected =
-      currentUser && currentUser.attributes && currentUser.attributes.stripeConnected;
+      currentUser &&
+      currentUser.attributes &&
+      currentUser.attributes.stripeConnected;
     if (stripeConnected) {
       onCreateListing(values);
     } else {
       this.setState({
         submittedValues: values,
-        showPayoutDetails: true,
+        showPayoutDetails: true
       });
     }
   }
@@ -148,7 +186,10 @@ class EditListingWizard extends Component {
       .onPayoutDetailsSubmit({ firstName, lastName, ...rest })
       .then(() => {
         this.setState({ showPayoutDetails: false });
-        this.props.onManageDisableScrolling('EditListingWizard.payoutModal', false);
+        this.props.onManageDisableScrolling(
+          "EditListingWizard.payoutModal",
+          false
+        );
         this.props.onCreateListing(this.state.submittedValues);
       })
       .catch(() => {
@@ -173,7 +214,7 @@ class EditListingWizard extends Component {
     } = this.props;
 
     const selectedTab = params.tab;
-    const isNew = params.type === 'new';
+    const isNew = params.type === "new";
     const rootClasses = rootClassName || css.root;
     const classes = classNames(rootClasses, className);
     const currentListing = ensureListing(listing);
@@ -181,27 +222,38 @@ class EditListingWizard extends Component {
 
     // If selectedTab is not active, redirect to the beginning of wizard
     if (!tabsStatus[selectedTab]) {
-      return <NamedRedirect name="EditListingPage" params={{ ...params, tab: TABS[0] }} />;
+      return (
+        <NamedRedirect
+          name="EditListingPage"
+          params={{ ...params, tab: TABS[0] }}
+        />
+      );
     }
 
     const { width } = viewport;
     const hasViewport = width > 0;
-    const hasHorizontalTabLayout = hasViewport && width <= MAX_HORIZONTAL_NAV_SCREEN_WIDTH;
-    const hasVerticalTabLayout = hasViewport && width > MAX_HORIZONTAL_NAV_SCREEN_WIDTH;
+    const hasHorizontalTabLayout =
+      hasViewport && width <= MAX_HORIZONTAL_NAV_SCREEN_WIDTH;
+    const hasVerticalTabLayout =
+      hasViewport && width > MAX_HORIZONTAL_NAV_SCREEN_WIDTH;
     const hasFontsLoaded =
-      hasViewport && document.documentElement.classList.contains('fontsLoaded');
+      hasViewport && document.documentElement.classList.contains("fontsLoaded");
 
     // Check if scrollToTab call is needed (tab is not visible on mobile)
     if (hasVerticalTabLayout) {
       this.hasScrolledToTab = true;
-    } else if (hasHorizontalTabLayout && !this.hasScrolledToTab && hasFontsLoaded) {
+    } else if (
+      hasHorizontalTabLayout &&
+      !this.hasScrolledToTab &&
+      hasFontsLoaded
+    ) {
       const tabPrefix = id;
       scrollToTab(tabPrefix, selectedTab);
       this.hasScrolledToTab = true;
     }
 
     const tabLink = tab => {
-      return { name: 'EditListingPage', params: { ...params, tab } };
+      return { name: "EditListingPage", params: { ...params, tab } };
     };
 
     return (
@@ -253,7 +305,9 @@ class EditListingWizard extends Component {
           <PayoutDetailsForm
             className={css.payoutDetails}
             inProgress={fetchInProgress}
-            createStripeAccountError={errors ? errors.createStripeAccountError : null}
+            createStripeAccountError={
+              errors ? errors.createStripeAccountError : null
+            }
             onChange={onPayoutDetailsFormChange}
             onSubmit={this.handlePayoutSubmit}
           />
@@ -266,7 +320,7 @@ class EditListingWizard extends Component {
 EditListingWizard.defaultProps = {
   className: null,
   rootClassName: null,
-  listing: null,
+  listing: null
 };
 
 EditListingWizard.propTypes = {
@@ -276,8 +330,8 @@ EditListingWizard.propTypes = {
   params: shape({
     id: string.isRequired,
     slug: string.isRequired,
-    type: oneOf(['new', 'edit']).isRequired,
-    tab: oneOf(TABS).isRequired,
+    type: oneOf(["new", "edit"]).isRequired,
+    tab: oneOf(TABS).isRequired
   }).isRequired,
 
   // We cannot use propTypes.listing since the listing might be a draft.
@@ -287,9 +341,9 @@ EditListingWizard.propTypes = {
       description: string,
       geolocation: object,
       pricing: object,
-      title: string,
+      title: string
     }),
-    images: array,
+    images: array
   }),
 
   errors: shape({
@@ -297,7 +351,7 @@ EditListingWizard.propTypes = {
     updateListingError: object,
     showListingsError: object,
     uploadImageError: object,
-    createStripeAccountError: object,
+    createStripeAccountError: object
   }),
   fetchInProgress: bool.isRequired,
   onCreateListing: func.isRequired,
@@ -308,11 +362,11 @@ EditListingWizard.propTypes = {
   // from withViewport
   viewport: shape({
     width: number.isRequired,
-    height: number.isRequired,
+    height: number.isRequired
   }).isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default compose(withViewport, injectIntl)(EditListingWizard);

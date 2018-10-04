@@ -1,4 +1,4 @@
-@import '../../marketplace.css';
+@import "../../marketplace.css";
 
 .root {
   /* Dimensions */
@@ -17,12 +17,19 @@
 .error {
   color: var(--failColor);
 }
+.formfields {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
 .priceInput {
   flex-shrink: 0;
-  width: 100%;
+  margin-bottom: 24px;
 }
-
+.scheme {
+  flex-shrink: 0;
+}
 .submitButton {
   margin-top: auto;
   margin-bottom: 24px;
