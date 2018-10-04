@@ -19,6 +19,7 @@ const EditListingDescriptionFormComponent = props => (
     render={fieldRenderProps => {
       const {
         group_size_brackets,
+        categories,
         className,
         disabled,
         handleSubmit,
@@ -131,6 +132,13 @@ const EditListingDescriptionFormComponent = props => (
             id="group_size"
             name="group_size"
             categories={group_size_brackets}
+            intl={intl}
+          />
+
+          <CustomCategorySelectFieldMaybe
+            id="category"
+            name="category"
+            categories={categories}
             intl={intl}
           />
 

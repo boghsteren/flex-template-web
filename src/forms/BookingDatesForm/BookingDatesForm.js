@@ -1,18 +1,28 @@
-import React, { Component } from 'react';
-import { string, bool, arrayOf } from 'prop-types';
-import { compose } from 'redux';
-import { Form as FinalForm } from 'react-final-form';
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
-import classNames from 'classnames';
-import moment from 'moment';
-import { required, bookingDatesRequired, composeValidators } from '../../util/validators';
-import { START_DATE, END_DATE } from '../../util/dates';
-import { propTypes } from '../../util/types';
-import config from '../../config';
-import { Form, PrimaryButton, FieldDateRangeInput } from '../../components';
-import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
+import React, { Component } from "react";
+import { string, bool, arrayOf } from "prop-types";
+import { compose } from "redux";
+import { Form as FinalForm } from "react-final-form";
+import { FormattedMessage, intlShape, injectIntl } from "react-intl";
+import classNames from "classnames";
+import moment from "moment";
+import {
+  required,
+  bookingDatesRequired,
+  composeValidators
+} from "../../util/validators";
+import { START_DATE, END_DATE } from "../../util/dates";
+import { propTypes } from "../../util/types";
+import config from "../../config";
+import {
+  Form,
+  PrimaryButton,
+  FieldDateInput,
+  FieldDateRangeInput,
+  FieldTextInput
+} from "../../components";
+import EstimatedBreakdownMaybe from "./EstimatedBreakdownMaybe";
 
-import css from './BookingDatesForm.css';
+import css from "./BookingDatesForm.css";
 
 export class BookingDatesFormComponent extends Component {
   constructor(props) {
@@ -81,25 +91,37 @@ export class BookingDatesFormComponent extends Component {
             handleSubmit,
             intl,
             isOwnListing,
+            listing,
             submitButtonWrapperClassName,
             unitPrice,
             unitType,
             values,
             timeSlots,
-            fetchTimeSlotsError,
+            fetchTimeSlotsError
           } = fieldRenderProps;
-          const { startDate, endDate } = values && values.bookingDates ? values.bookingDates : {};
+          const { startDate, endDate } =
+            values && values.bookingDates ? values.bookingDates : {};
 
           const bookingStartLabel = intl.formatMessage({
-            id: 'BookingDatesForm.bookingStartTitle',
+            id: "BookingDatesForm.bookingStartTitle"
           });
-          const bookingEndLabel = intl.formatMessage({ id: 'BookingDatesForm.bookingEndTitle' });
-          const requiredMessage = intl.formatMessage({ id: 'BookingDatesForm.requiredDate' });
+          const bookingEndLabel = intl.formatMessage({
+            id: "BookingDatesForm.bookingEndTitle"
+          });
+          const seatsLabel = intl.formatMessage({
+            id: "BookingDatesForm.seatsLabel"
+          });
+          const seatsPlaceholder = intl.formatMessage({
+            id: "BookingDatesForm.seatsPlaceholder"
+          });
+          const requiredMessage = intl.formatMessage({
+            id: "BookingDatesForm.requiredDate"
+          });
           const startDateErrorMessage = intl.formatMessage({
-            id: 'FieldDateRangeInput.invalidStartDate',
+            id: "FieldDateRangeInput.invalidStartDate"
           });
           const endDateErrorMessage = intl.formatMessage({
-            id: 'FieldDateRangeInput.invalidEndDate',
+            id: "FieldDateRangeInput.invalidEndDate"
           });
           const timeSlotsError = fetchTimeSlotsError ? (
             <p className={css.timeSlotsError}>
@@ -120,7 +142,7 @@ export class BookingDatesFormComponent extends Component {
 
                   // NOTE: If unitType is `line-item/units`, a new picker
                   // for the quantity should be added to the form.
-                  quantity: 1,
+                  quantity: 1
                 }
               : null;
           const bookingInfo = bookingData ? (
@@ -133,16 +155,16 @@ export class BookingDatesFormComponent extends Component {
           ) : null;
 
           const dateFormatOptions = {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
+            weekday: "short",
+            month: "short",
+            day: "numeric"
           };
 
           const now = moment();
-          const today = now.startOf('day').toDate();
+          const today = now.startOf("day").toDate();
           const tomorrow = now
-            .startOf('day')
-            .add(1, 'days')
+            .startOf("day")
+            .add(1, "days")
             .toDate();
           const startDatePlaceholderText =
             startDatePlaceholder || intl.formatDate(today, dateFormatOptions);
@@ -155,33 +177,71 @@ export class BookingDatesFormComponent extends Component {
           return (
             <Form onSubmit={handleSubmit} className={classes}>
               {timeSlotsError}
-              <FieldDateRangeInput
-                className={css.bookingDates}
-                name="bookingDates"
-                unitType={unitType}
-                startDateId={`${form}.bookingStartDate`}
-                startDateLabel={bookingStartLabel}
-                startDatePlaceholderText={startDatePlaceholderText}
-                endDateId={`${form}.bookingEndDate`}
-                endDateLabel={bookingEndLabel}
-                endDatePlaceholderText={endDatePlaceholderText}
-                focusedInput={this.state.focusedInput}
-                onFocusedInputChange={this.onFocusedInputChange}
-                format={null}
-                timeSlots={timeSlots}
-                useMobileMargins
-                validate={composeValidators(
-                  required(requiredMessage),
-                  bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
-                )}
-              />
+
+              {(listing.attributes.publicData.pricing_scheme === "daily_flat" ||
+                listing.attributes.publicData.pricing_scheme ===
+                  "daily_seats") && (
+                <FieldDateRangeInput
+                  className={css.bookingDates}
+                  name="bookingDates"
+                  unitType={unitType}
+                  startDateId={`${form}.bookingStartDate`}
+                  startDateLabel={bookingStartLabel}
+                  startDatePlaceholderText={startDatePlaceholderText}
+                  endDateId={`${form}.bookingEndDate`}
+                  endDateLabel={bookingEndLabel}
+                  endDatePlaceholderText={endDatePlaceholderText}
+                  focusedInput={this.state.focusedInput}
+                  onFocusedInputChange={this.onFocusedInputChange}
+                  format={null}
+                  timeSlots={timeSlots}
+                  useMobileMargins
+                  validate={composeValidators(
+                    required(requiredMessage),
+                    bookingDatesRequired(
+                      startDateErrorMessage,
+                      endDateErrorMessage
+                    )
+                  )}
+                />
+              )}
+              {(listing.attributes.publicData.pricing_scheme ===
+                "hourly_flat" ||
+                listing.attributes.publicData.pricing_scheme ===
+                  "hourly_seats") && (
+                <div>
+                  <FieldDateInput
+                    className={css.bookingDates}
+                    name="bookingDate"
+                    placeholderText={bookingStartLabel}
+                  />
+                </div>
+              )}
+              {(listing.attributes.publicData.pricing_scheme ===
+                "hourly_seats" ||
+                listing.attributes.publicData.pricing_scheme ===
+                  "daily_seats") && (
+                <div>
+                  <FieldTextInput
+                    id="seats"
+                    name="seats"
+                    className={css.seats}
+                    type="number"
+                    label={seatsLabel}
+                    placeholder={seatsPlaceholder}
+                  />
+                </div>
+              )}
+              {listing.attributes.publicData.pricing_scheme ===
+                "hourly_seats" && <div />}
+
               {bookingInfo}
               <p className={css.smallPrint}>
                 <FormattedMessage
                   id={
                     isOwnListing
-                      ? 'BookingDatesForm.ownListing'
-                      : 'BookingDatesForm.youWontBeChargedInfo'
+                      ? "BookingDatesForm.ownListing"
+                      : "BookingDatesForm.youWontBeChargedInfo"
                   }
                 />
               </p>
@@ -206,7 +266,7 @@ BookingDatesFormComponent.defaultProps = {
   isOwnListing: false,
   startDatePlaceholder: null,
   endDatePlaceholder: null,
-  timeSlots: null,
+  timeSlots: null
 };
 
 BookingDatesFormComponent.propTypes = {
@@ -224,10 +284,10 @@ BookingDatesFormComponent.propTypes = {
 
   // for tests
   startDatePlaceholder: string,
-  endDatePlaceholder: string,
+  endDatePlaceholder: string
 };
 
 const BookingDatesForm = compose(injectIntl)(BookingDatesFormComponent);
-BookingDatesForm.displayName = 'BookingDatesForm';
+BookingDatesForm.displayName = "BookingDatesForm";
 
 export default BookingDatesForm;

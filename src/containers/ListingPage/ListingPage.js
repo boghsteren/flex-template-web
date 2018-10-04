@@ -358,15 +358,28 @@ export class ListingPageComponent extends Component {
       });
     };
     const authorAvailable = currentListing && currentListing.author;
+    const pricingSchemeAvailable =
+      currentListing && currentListing.attributes.publicData.pricing_scheme;
+    const pricing_scheme_label = pricingSchemeAvailable
+      ? config.custom.pricing_schemes.find(
+          scheme => scheme.key === pricingSchemeAvailable
+        ).label
+      : null;
     const userAndListingAuthorAvailable = !!(currentUser && authorAvailable);
     const isOwnListing =
       userAndListingAuthorAvailable &&
       currentListing.author.id.uuid === currentUser.id.uuid;
     const isClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
     const showContactUser = !currentUser || (currentUser && !isOwnListing);
+    const group_size =
+      currentListing && currentListing.attributes.publicData.group_size;
 
     const currentAuthor = authorAvailable ? currentListing.author : null;
     const ensuredAuthor = ensureUser(currentAuthor);
+    const included =
+      currentListing && currentListing.attributes.publicData.included;
+    const duration =
+      currentListing && currentListing.attributes.publicData.duration;
 
     const bannedUserDisplayName = intl.formatMessage({
       id: "ListingPage.bannedUserDisplayName"
@@ -490,6 +503,7 @@ export class ListingPageComponent extends Component {
                 <div className={css.mainContent}>
                   <SectionHeading
                     priceTitle={priceTitle}
+                    pricing_scheme={pricing_scheme_label}
                     formattedPrice={formattedPrice}
                     richTitle={richTitle}
                     category={category}
@@ -497,7 +511,12 @@ export class ListingPageComponent extends Component {
                     showContactUser={showContactUser}
                     onContactUser={this.onContactUser}
                   />
-                  <SectionDescription description={description} />
+                  <SectionDescription
+                    description={description}
+                    group_size={group_size}
+                    included={included}
+                    duration={duration}
+                  />
                   <SectionFeatures
                     options={goalsConfig}
                     selectedOptions={publicData.goals}
@@ -530,25 +549,27 @@ export class ListingPageComponent extends Component {
                     onManageDisableScrolling={onManageDisableScrolling}
                   />
                 </div>
-                {currentUser && !currentUser.attributes.profile.publicData.provider &&
-                <SectionBooking
-                  listing={currentListing}
-                  isOwnListing={isOwnListing}
-                  isClosed={isClosed}
-                  isBook={isBook}
-                  unitType={unitType}
-                  price={price}
-                  formattedPrice={formattedPrice}
-                  priceTitle={priceTitle}
-                  handleBookingSubmit={handleBookingSubmit}
-                  richTitle={richTitle}
-                  authorDisplayName={authorDisplayName}
-                  handleBookButtonClick={handleBookButtonClick}
-                  handleMobileBookModalClose={handleMobileBookModalClose}
-                  onManageDisableScrolling={onManageDisableScrolling}
-                  timeSlots={timeSlots}
-                  fetchTimeSlotsError={fetchTimeSlotsError}
-                />}
+                {currentUser &&
+                  !currentUser.attributes.profile.publicData.provider && (
+                    <SectionBooking
+                      listing={currentListing}
+                      isOwnListing={isOwnListing}
+                      isClosed={isClosed}
+                      isBook={isBook}
+                      unitType={unitType}
+                      price={price}
+                      formattedPrice={formattedPrice}
+                      priceTitle={priceTitle}
+                      handleBookingSubmit={handleBookingSubmit}
+                      richTitle={richTitle}
+                      authorDisplayName={authorDisplayName}
+                      handleBookButtonClick={handleBookButtonClick}
+                      handleMobileBookModalClose={handleMobileBookModalClose}
+                      onManageDisableScrolling={onManageDisableScrolling}
+                      timeSlots={timeSlots}
+                      fetchTimeSlotsError={fetchTimeSlotsError}
+                    />
+                  )}
               </div>
             </div>
           </LayoutWrapperMain>

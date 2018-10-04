@@ -87,6 +87,8 @@
   "BookingDatesForm.priceBreakdownTitle": "Booking breakdown",
   "BookingDatesForm.requestToBook": "Request to book",
   "BookingDatesForm.requiredDate": "Oops, make sure your date is correct!",
+  "BookingDatesForm.seatsLabel": "Number of people",
+  "BookingDatesForm.seatsPlaceholder": "How many are going?",
   "BookingDatesForm.timeSlotsError":
     "Loading listing availability failed. Please refresh the page.",
   "BookingDatesForm.youWontBeChargedInfo": "You won't be charged yet",
@@ -167,9 +169,15 @@
     "Please explain when this experience will/can take place? Is it only available on Tuesdays for example? Are there any dates that work best for you? You can update this information whenever you need.",
   "EditListingAvailabilityFormComponent.updateFailed":
     "Availability could not be saved",
-  "EditListingDescriptionForm.categoryLabel": "Group size",
-  "EditListingDescriptionForm.categoryPlaceholder": "How many people can join?",
+  "EditListingDescriptionForm.categoryLabel": "Experience type",
+  "EditListingDescriptionForm.group_sizeLabel": "Group size",
+  "EditListingDescriptionForm.categoryPlaceholder":
+    "Choose the type of experience",
+  "EditListingDescriptionForm.group_sizePlaceholder":
+    "How many people can join?",
   "EditListingDescriptionForm.categoryRequired":
+    "You need to select a category.",
+  "EditListingDescriptionForm.group_sizeRequired":
     "You need to select a group size.",
   "EditListingDescriptionForm.contact": "Contact person for experience",
   "EditListingDescriptionForm.contactPlaceholder":
@@ -375,6 +383,7 @@
   "ListingPage.contactUser": "Contact",
   "ListingPage.ctaButtonMessage": "Request to book",
   "ListingPage.descriptionTitle": "About this experience",
+  "ListingPage.durationHeader": "Duration",
   "ListingPage.editListing": "Edit listing",
   "ListingPage.editProfileLink": "Edit profile",
   "ListingPage.errorLoadingListingMessage":
@@ -382,6 +391,7 @@
   "ListingPage.errorLoadingListingTitle": "Error in loading listing",
   "ListingPage.featuresTitle": "Social impact focus",
   "ListingPage.hostedBy": "Hosted by {name}",
+  "ListingPage.includedHeader": "Experiences includes",
   "ListingPage.loadingListingMessage": "Loading listing…",
   "ListingPage.loadingListingTitle": "Loading listing…",
   "ListingPage.locationTitle": "Location",
@@ -391,6 +401,7 @@
   "ListingPage.ownListingPendingApproval": "This listing is pending approval.",
   "ListingPage.perUnit": "per day",
   "ListingPage.reviewsError": "Loading reviews failed.",
+  "ListingPage.group_sizeHeader": "Participant capacity",
   "ListingPage.reviewsHeading": "Reviews ({count})",
   "ListingPage.rulesTitle": "Experience rules",
   "ListingPage.schemaTitle": "{title} - {price} | {siteTitle}",

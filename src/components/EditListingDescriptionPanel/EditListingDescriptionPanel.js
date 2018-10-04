@@ -40,7 +40,15 @@ const EditListingDescriptionPanel = props => {
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingDescriptionForm
         className={css.form}
-        initialValues={{ title, description, category: publicData.category }}
+        initialValues={{
+          title,
+          description,
+          category: publicData.category,
+          group_size: publicData.group_size,
+          contact: publicData.contact,
+          included: publicData.included,
+          duration: publicData.duration
+        }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
           const {
@@ -49,12 +57,13 @@ const EditListingDescriptionPanel = props => {
             included,
             group_size,
             contact,
-            duration
+            duration,
+            category
           } = values;
           const updateValues = {
             title: title.trim(),
             description,
-            publicData: { included, group_size, contact, duration }
+            publicData: { included, group_size, contact, duration, category }
           };
 
           onSubmit(updateValues);
@@ -64,6 +73,7 @@ const EditListingDescriptionPanel = props => {
         updateError={errors.updateListingError}
         updateInProgress={updateInProgress}
         group_size_brackets={config.custom.group_size_brackets}
+        categories={config.custom.categories}
       />
     </div>
   );

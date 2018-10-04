@@ -13,6 +13,7 @@ const SectionHeading = props => {
     hostLink,
     showContactUser,
     onContactUser,
+    pricing_scheme
   } = props;
   return (
     <div className={css.sectionHeading}>
@@ -21,8 +22,7 @@ const SectionHeading = props => {
           {formattedPrice}
         </div>
         <div className={css.desktopPerUnit}>
-          <FormattedMessage id="ListingPage.perUnit" />
-        </div>
+{pricing_scheme}        </div>
       </div>
       <div className={css.heading}>
         <h1 className={css.title}>{richTitle}</h1>

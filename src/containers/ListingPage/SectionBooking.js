@@ -1,9 +1,9 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { ModalInMobile, Button } from '../../components';
-import { BookingDatesForm } from '../../forms';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { ModalInMobile, Button } from "../../components";
+import { BookingDatesForm } from "../../forms";
 
-import css from './ListingPage.css';
+import css from "./ListingPage.css";
 
 // This defines when ModalInMobile shows content as Modal
 const MODAL_BREAKPOINT = 1023;
@@ -25,7 +25,7 @@ const SectionBooking = props => {
     handleMobileBookModalClose,
     onManageDisableScrolling,
     timeSlots,
-    fetchTimeSlotsError,
+    fetchTimeSlotsError
   } = props;
   const showClosedListingHelpText = listing.id && isClosed;
 
@@ -44,27 +44,34 @@ const SectionBooking = props => {
           <h1 className={css.title}>{richTitle}</h1>
           <div className={css.author}>
             <span className={css.authorName}>
-              <FormattedMessage id="ListingPage.hostedBy" values={{ name: authorDisplayName }} />
+              <FormattedMessage
+                id="ListingPage.hostedBy"
+                values={{ name: authorDisplayName }}
+              />
             </span>
           </div>
         </div>
 
         <div className={css.bookingHeading}>
           <h2 className={css.bookingTitle}>
-            <FormattedMessage id="ListingPage.bookingTitle" values={{ title: richTitle }} />
+            <FormattedMessage
+              id="ListingPage.bookingTitle"
+              values={{ title: richTitle }}
+            />
           </h2>
           <div className={css.bookingHelp}>
             <FormattedMessage
               id={
                 showClosedListingHelpText
-                  ? 'ListingPage.bookingHelpClosedListing'
-                  : 'ListingPage.bookingHelp'
+                  ? "ListingPage.bookingHelpClosedListing"
+                  : "ListingPage.bookingHelp"
               }
             />
           </div>
         </div>
         {!isClosed ? (
           <BookingDatesForm
+            listing={listing}
             className={css.bookingForm}
             submitButtonWrapperClassName={css.bookingDatesSubmitButtonWrapper}
             unitType={unitType}
@@ -87,7 +94,10 @@ const SectionBooking = props => {
         </div>
 
         {!isClosed ? (
-          <Button rootClassName={css.bookButton} onClick={handleBookButtonClick}>
+          <Button
+            rootClassName={css.bookButton}
+            onClick={handleBookButtonClick}
+          >
             <FormattedMessage id="ListingPage.ctaButtonMessage" />
           </Button>
         ) : (
