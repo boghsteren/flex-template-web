@@ -47,17 +47,17 @@ const SectionAllOverTheWorld = props => {
         {locationLink(
           "Africa",
           southafricaImage,
-          "?address=Africa&bounds=40.35265004%2C51.7534497%2C-41.60124262%2C-21.70750553&mapSearch=true"
+          "?&bounds=40.35265004%2C51.7534497%2C-41.60124262%2C-21.70750553"
         )}
         {locationLink(
           "South America",
           brazilImage,
-          "?address=address=South%20America&bounds=12.37611048%2C-38.69421601%2C-46.31822037%2C-91.63398809&mapSearch=true"
+          "?&bounds=12.37611048%2C-38.69421601%2C-46.31822037%2C-91.63398809"
         )}
         {locationLink(
           "Europe",
           europeImage,
-          "?address=Europe%2C%20Canton%20of%20Bern%2C%20Switzerland&bounds=72.12446531%2C48.18413823%2C21.56588484%2C-20.2903369&mapSearch=true"
+          "?&bounds=72.12446531%2C48.18413823%2C21.56588484%2C-20.2903369"
         )}
       </div>
       <NamedLink name="SearchPage" className={css.linkText}>
