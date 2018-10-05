@@ -897,7 +897,7 @@
   "TopbarMobileMenu.newListingLink": "+ Add your experience",
   "TopbarMobileMenu.profileSettingsLink": "Profile settings",
   "TopbarMobileMenu.signupLink": "Sign up",
-  "TopbarMobileMenu.signupOrLogin": "{signup} or {login}",
+  "TopbarMobileMenu.signupOrLogin": "{login}",
   "TopbarMobileMenu.unauthorizedGreeting":
     "Hello there,{lineBreak}would you like to {signupOrLogin}?",
   "TopbarMobileMenu.yourListingsLink": "Your listings",

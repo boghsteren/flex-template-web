@@ -22,6 +22,7 @@ const SignupFormComponent = props => (
         handleSubmit,
         inProgress,
         invalid,
+        provider,
         intl,
         onOpenTermsOfService
       } = fieldRenderProps;
@@ -146,9 +147,11 @@ const SignupFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
-          <span>
-            <FormattedMessage id="SignupForm.providerForm" />
-          </span>
+          {provider && (
+            <span>
+              <FormattedMessage id="SignupForm.providerForm" />
+            </span>
+          )}
           <div className={css.password}>
             <FieldTextInput
               type="email"

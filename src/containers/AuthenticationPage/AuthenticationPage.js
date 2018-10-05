@@ -105,7 +105,7 @@ export class AuthenticationPageComponent extends Component {
 
     const fromState = { state: from ? { from } : null };
 
-    const tabs = [
+    const signUpTab = [
       {
         text: (
           <h1 className={css.tab}>
@@ -117,7 +117,10 @@ export class AuthenticationPageComponent extends Component {
           name: "SignupPage",
           to: fromState
         }
-      },
+      }
+    ];
+
+    const loginTab = [
       {
         text: (
           <h1 className={css.tab}>
@@ -145,7 +148,10 @@ export class AuthenticationPageComponent extends Component {
 
     const formContent = (
       <div className={css.content}>
-        <LinkTabNavHorizontal className={css.tabs} tabs={tabs} />
+        <LinkTabNavHorizontal
+          className={css.tabs}
+          tabs={isLogin ? loginTab : signUpTab}
+        />
         {loginOrSignupError}
         {isLogin ? (
           <LoginForm

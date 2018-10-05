@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
-import pickBy from 'lodash/pickBy';
-import classNames from 'classnames';
-import config from '../../config';
-import routeConfiguration from '../../routeConfiguration';
-import { withViewport } from '../../util/contextHelpers';
-import { parse, stringify } from '../../util/urlHelpers';
-import { createResourceLocatorString, pathByRouteName } from '../../util/routes';
-import { propTypes } from '../../util/types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { FormattedMessage, intlShape, injectIntl } from "react-intl";
+import pickBy from "lodash/pickBy";
+import classNames from "classnames";
+import config from "../../config";
+import routeConfiguration from "../../routeConfiguration";
+import { withViewport } from "../../util/contextHelpers";
+import { parse, stringify } from "../../util/urlHelpers";
+import {
+  createResourceLocatorString,
+  pathByRouteName
+} from "../../util/routes";
+import { propTypes } from "../../util/types";
 import {
   Button,
   Logo,
@@ -17,20 +20,23 @@ import {
   ModalMissingInformation,
   NamedLink,
   TopbarDesktop,
-  TopbarMobileMenu,
-} from '../../components';
-import { TopbarSearchForm } from '../../forms';
+  TopbarMobileMenu
+} from "../../components";
+import { TopbarSearchForm } from "../../forms";
 
-import MenuIcon from './MenuIcon';
-import SearchIcon from './SearchIcon';
-import css from './Topbar.css';
+import MenuIcon from "./MenuIcon";
+import SearchIcon from "./SearchIcon";
+import css from "./Topbar.css";
 
 const MAX_MOBILE_SCREEN_WIDTH = 768;
 
 const redirectToURLWithModalState = (props, modalStateParam) => {
   const { history, location } = props;
   const { pathname, search, state } = location;
-  const searchString = `?${stringify({ [modalStateParam]: 'open', ...parse(search) })}`;
+  const searchString = `?${stringify({
+    [modalStateParam]: "open",
+    ...parse(search)
+  })}`;
   history.push(`${pathname}${searchString}`, state);
 };
 
@@ -41,14 +47,14 @@ const redirectToURLWithoutModalState = (props, modalStateParam) => {
     return k !== modalStateParam;
   });
   const stringified = stringify(queryParams);
-  const searchString = stringified ? `?${stringified}` : '';
+  const searchString = stringified ? `?${stringified}` : "";
   history.push(`${pathname}${searchString}`, state);
 };
 
 const GenericError = props => {
   const { show } = props;
   const classes = classNames(css.genericError, {
-    [css.genericErrorVisible]: show,
+    [css.genericErrorVisible]: show
   });
   return (
     <div className={classes}>
@@ -64,7 +70,7 @@ const GenericError = props => {
 const { bool } = PropTypes;
 
 GenericError.propTypes = {
-  show: bool.isRequired,
+  show: bool.isRequired
 };
 
 class TopbarComponent extends Component {
@@ -79,19 +85,19 @@ class TopbarComponent extends Component {
   }
 
   handleMobileMenuOpen() {
-    redirectToURLWithModalState(this.props, 'mobilemenu');
+    redirectToURLWithModalState(this.props, "mobilemenu");
   }
 
   handleMobileMenuClose() {
-    redirectToURLWithoutModalState(this.props, 'mobilemenu');
+    redirectToURLWithoutModalState(this.props, "mobilemenu");
   }
 
   handleMobileSearchOpen() {
-    redirectToURLWithModalState(this.props, 'mobilesearch');
+    redirectToURLWithModalState(this.props, "mobilesearch");
   }
 
   handleMobileSearchClose() {
-    redirectToURLWithoutModalState(this.props, 'mobilesearch');
+    redirectToURLWithoutModalState(this.props, "mobilesearch");
   }
 
   handleSubmit(values) {
@@ -104,25 +110,32 @@ class TopbarComponent extends Component {
       ...currentSearchParams,
       ...originMaybe,
       address: search,
-      bounds,
+      bounds
     };
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, searchParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        searchParams
+      )
+    );
   }
 
   handleLogout() {
     const { onLogout, history } = this.props;
     onLogout().then(() => {
-      const path = pathByRouteName('LandingPage', routeConfiguration());
+      const path = pathByRouteName("LandingPage", routeConfiguration());
 
       // In production we ensure that data is really lost,
       // but in development mode we use stored values for debugging
       if (config.dev) {
         history.push(path);
-      } else if (typeof window !== 'undefined') {
+      } else if (typeof window !== "undefined") {
         window.location = path;
       }
 
-      console.log('logged out'); // eslint-disable-line
+      console.log("logged out"); // eslint-disable-line
     });
   }
 
@@ -147,19 +160,23 @@ class TopbarComponent extends Component {
       onResendVerificationEmail,
       sendVerificationEmailInProgress,
       sendVerificationEmailError,
-      showGenericError,
+      showGenericError
     } = this.props;
 
-    const { mobilemenu, mobilesearch, address, origin, bounds } = parse(location.search, {
-      latlng: ['origin'],
-      latlngBounds: ['bounds'],
-    });
+    const { mobilemenu, mobilesearch, address, origin, bounds } = parse(
+      location.search,
+      {
+        latlng: ["origin"],
+        latlngBounds: ["bounds"]
+      }
+    );
 
-    const notificationDot = notificationCount > 0 ? <div className={css.notificationDot} /> : null;
+    const notificationDot =
+      notificationCount > 0 ? <div className={css.notificationDot} /> : null;
 
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
-    const isMobileMenuOpen = isMobileLayout && mobilemenu === 'open';
-    const isMobileSearchOpen = isMobileLayout && mobilesearch === 'open';
+    const isMobileMenuOpen = isMobileLayout && mobilemenu === "open";
+    const isMobileSearchOpen = isMobileLayout && mobilesearch === "open";
 
     const mobileMenu = (
       <TopbarMobileMenu
@@ -180,35 +197,40 @@ class TopbarComponent extends Component {
       location: locationFieldsPresent
         ? {
             search: address,
-            selectedPlace: { address, origin, bounds },
+            selectedPlace: { address, origin, bounds }
           }
-        : null,
+        : null
     };
 
     const classes = classNames(rootClassName || css.root, className);
 
     return (
       <div className={classes}>
-        <div className={classNames(mobileRootClassName || css.container, mobileClassName)}>
+        <div
+          className={classNames(
+            mobileRootClassName || css.container,
+            mobileClassName
+          )}
+        >
           <Button
             rootClassName={css.menu}
             onClick={this.handleMobileMenuOpen}
-            title={intl.formatMessage({ id: 'Topbar.menuIcon' })}
+            title={intl.formatMessage({ id: "Topbar.menuIcon" })}
           >
             <MenuIcon className={css.menuIcon} />
             {notificationDot}
           </Button>
           <NamedLink
             className={css.home}
-            name="LandingPage"
-            title={intl.formatMessage({ id: 'Topbar.logoIcon' })}
+            name="SearchPage"
+            title={intl.formatMessage({ id: "Topbar.logoIcon" })}
           >
             <Logo format="mobile" />
           </NamedLink>
           <Button
             rootClassName={css.searchMenu}
             onClick={this.handleMobileSearchOpen}
-            title={intl.formatMessage({ id: 'Topbar.searchIcon' })}
+            title={intl.formatMessage({ id: "Topbar.searchIcon" })}
           >
             <SearchIcon className={css.searchMenuIcon} />
           </Button>
@@ -283,7 +305,7 @@ TopbarComponent.defaultProps = {
   currentUser: null,
   currentUserHasOrders: null,
   currentPage: null,
-  sendVerificationEmailError: null,
+  sendVerificationEmailError: null
 };
 
 const { func, number, shape, string } = PropTypes;
@@ -310,24 +332,24 @@ TopbarComponent.propTypes = {
 
   // These are passed from Page to keep Topbar rendering aware of location changes
   history: shape({
-    push: func.isRequired,
+    push: func.isRequired
   }).isRequired,
   location: shape({
-    search: string.isRequired,
+    search: string.isRequired
   }).isRequired,
 
   // from withViewport
   viewport: shape({
     width: number.isRequired,
-    height: number.isRequired,
+    height: number.isRequired
   }).isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const Topbar = compose(withViewport, injectIntl)(TopbarComponent);
 
-Topbar.displayName = 'Topbar';
+Topbar.displayName = "Topbar";
 
 export default Topbar;
