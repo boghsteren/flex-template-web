@@ -1,4 +1,4 @@
-@import '../../marketplace.css';
+@import "../../marketplace.css";
 
 :root {
   /*
@@ -97,7 +97,29 @@
 /* A bar on top of light sections */
 .section:nth-of-type(2n) .sectionContent:before {
   background: var(--marketplaceColor);
-  content: '';
+  content: "";
+  display: block;
+  width: 109px;
+  height: 6px;
+
+  /* Place the bar on top of .sectionContent top margin */
+  position: relative;
+  top: calc(-1 * var(--LandingPage_sectionMarginTop));
+
+  @media (--viewportMedium) {
+    width: 192px;
+    height: 8px;
+    top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
+  }
+
+  @media (--viewportLarge) {
+    top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
+  }
+}
+/* A bar on top of light sections */
+.section:nth-of-type(3) .sectionContent:before {
+  background: var(--marketplaceColor);
+  content: "";
   display: block;
   width: 109px;
   height: 6px;

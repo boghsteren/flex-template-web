@@ -28,7 +28,7 @@ import twitterImage from "../../assets/experiencesTwitter-600x314.jpg";
 import css from "./LandingPage.css";
 
 export const LandingPageComponent = props => {
-  const { history, intl, location, scrollingDisabled } = props;
+  const { history, intl, location, scrollingDisabled, user } = props;
 
   // Schema for search engines (helps them to understand what this page is about)
   // http://schema.org
@@ -78,22 +78,28 @@ export const LandingPageComponent = props => {
               location={location}
             />
           </div>
+
           <ul className={css.sections}>
-            <li className={css.section}>
-              <div className={css.sectionContent}>
-                <SectionLocations />
+            {user && (
+              <div>
+                {" "}
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionLocations />
+                  </div>
+                </li>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionHighlightsOfTheMonth listings={props.listings} />
+                  </div>
+                </li>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionAllOverTheWorld />
+                  </div>
+                </li>
               </div>
-            </li>
-            <li className={css.section}>
-              <div className={css.sectionContent}>
-                <SectionHighlightsOfTheMonth listings={props.listings} />
-              </div>
-            </li>
-            <li className={css.section}>
-              <div className={css.sectionContent}>
-                <SectionAllOverTheWorld />
-              </div>
-            </li>
+            )}
 
             <li className={css.section}>
               <div className={css.sectionContent}>
@@ -127,7 +133,8 @@ LandingPageComponent.propTypes = {
 const mapStateToProps = state => {
   return {
     scrollingDisabled: isScrollingDisabled(state),
-    listings: state.LandingPage.listings
+    listings: state.LandingPage.listings,
+    user: state.user.currentUser
   };
 };
 

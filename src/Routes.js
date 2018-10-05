@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import { NotFoundPage } from './containers';
-import { NamedRedirect } from './components';
-import { locationChanged } from './ducks/Routing.duck';
-import { propTypes } from './util/types';
-import * as log from './util/log';
-import { canonicalRoutePath } from './util/routes';
-import routeConfiguration from './routeConfiguration';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { Switch, Route, withRouter } from "react-router-dom";
+import { NotFoundPage } from "./containers";
+import { NamedRedirect } from "./components";
+import { locationChanged } from "./ducks/Routing.duck";
+import { propTypes } from "./util/types";
+import * as log from "./util/log";
+import { canonicalRoutePath } from "./util/routes";
+import routeConfiguration from "./routeConfiguration";
 
 const { arrayOf, bool, object, func, shape, string } = PropTypes;
 
@@ -23,7 +23,9 @@ const callLoadData = props => {
   const { match, location, route, dispatch, logoutInProgress } = props;
   const { loadData, name } = route;
   const shouldLoadData =
-    typeof loadData === 'function' && canShowComponent(props) && !logoutInProgress;
+    typeof loadData === "function" &&
+    canShowComponent(props) &&
+    !logoutInProgress;
 
   if (shouldLoadData) {
     dispatch(loadData(match.params, location.search))
@@ -32,7 +34,7 @@ const callLoadData = props => {
         console.log(`loadData success for ${name} route`);
       })
       .catch(e => {
-        log.error(e, 'load-data-failed', { routeName: name });
+        log.error(e, "load-data-failed", { routeName: name });
       });
   }
 };
@@ -42,7 +44,7 @@ const setPageScrollPosition = location => {
     // No hash, scroll to top
     window.scroll({
       top: 0,
-      left: 0,
+      left: 0
     });
   } else {
     const el = document.querySelector(location.hash);
@@ -58,8 +60,8 @@ const setPageScrollPosition = location => {
       //
       // TODO: investigate why the scrolling fails on refresh
       el.scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
+        block: "start",
+        behavior: "smooth"
       });
     }
   }
@@ -88,7 +90,7 @@ class RouteComponentRenderer extends Component {
 
   render() {
     const { route, match, location, staticContext } = this.props;
-    const { component: RouteComponent, authPage = 'SignupPage' } = route;
+    const { component: RouteComponent, authPage = "SignupPage" } = route;
     const canShow = canShowComponent(this.props);
     if (!canShow) {
       staticContext.unauthorized = true;
@@ -97,8 +99,10 @@ class RouteComponentRenderer extends Component {
       <RouteComponent params={match.params} location={location} />
     ) : (
       <NamedRedirect
-        name={authPage}
-        state={{ from: `${location.pathname}${location.search}${location.hash}` }}
+        name="LoginPage"
+        state={{
+          from: `${location.pathname}${location.search}${location.hash}`
+        }}
       />
     );
   }
@@ -110,18 +114,24 @@ RouteComponentRenderer.propTypes = {
   route: propTypes.route.isRequired,
   match: shape({
     params: object.isRequired,
-    url: string.isRequired,
+    url: string.isRequired
   }).isRequired,
   location: shape({
-    search: string.isRequired,
+    search: string.isRequired
   }).isRequired,
   staticContext: object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
-  dispatch: func.isRequired,
+  dispatch: func.isRequired
 };
 
 const Routes = (props, context) => {
-  const { isAuthenticated, logoutInProgress, staticContext, dispatch, routes } = props;
+  const {
+    isAuthenticated,
+    logoutInProgress,
+    staticContext,
+    dispatch,
+    routes
+  } = props;
 
   const toRouteComponent = route => {
     const renderProps = {
@@ -129,7 +139,7 @@ const Routes = (props, context) => {
       logoutInProgress,
       route,
       staticContext,
-      dispatch,
+      dispatch
     };
 
     // By default, our routes are exact.
@@ -173,7 +183,7 @@ Routes.propTypes = {
   staticContext: object,
 
   // from connect
-  dispatch: func.isRequired,
+  dispatch: func.isRequired
 };
 
 const mapStateToProps = state => {

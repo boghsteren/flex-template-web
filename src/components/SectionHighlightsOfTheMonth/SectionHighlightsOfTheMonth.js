@@ -5,7 +5,6 @@ import classNames from "classnames";
 import css from "./SectionHighlightsOfTheMonth.css";
 import { ListingCard } from "../../components";
 
-
 const SectionHighlightsOfTheMonth = props => {
   const { rootClassName, className, listings } = props;
 
@@ -21,19 +20,20 @@ const SectionHighlightsOfTheMonth = props => {
   ].join(", ");
 
   return (
-    <div className={classes}>
+    <div className={classes} key="somekey">
       <div className={css.title}>
         <FormattedMessage id="SectionHighlightsOfTheMonth.title" />
       </div>
       <div className={css.locations}>
-      {listings.map(listing => (
-        <ListingCard
-          listing={listing}
-          key={listing.id.uuid}
-          renderSizes={cardRenderSizes}
-          className={css.listingCard}
-        />
-      ))}</div>
+        {listings.map(listing => (
+          <ListingCard
+            listing={listing}
+            key={listing.id.uuid}
+            renderSizes={cardRenderSizes}
+            className={css.listingCard}
+          />
+        ))}
+      </div>
     </div>
   );
 };
