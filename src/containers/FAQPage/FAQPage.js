@@ -30,21 +30,19 @@ const FAQPage = () => {
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
           <h1 className={css.pageTitle}>Frequently asked questions</h1>
-
+ <h2>
+General questions
+              </h2>
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Where does my money go?</p>
+              <p>What is Goodwings Experiences?</p>
             </div>
 
             <div className={css.contentMain}>
-              <h2>
-It helps the world!
-
-              </h2>
+             
 
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum magna ullamcorper, tincidunt nulla sed, ultrices massa. Curabitur blandit vulputate dictum. Nullam et orci in eros iaculis sollicitudin. Proin et lorem urna. Cras a odio est. Nulla volutpat, nulla quis condimentum egestas, ipsum lectus hendrerit quam, vitae ornare turpis est sit amet tortor. Pellentesque porttitor, velit in scelerisque consectetur, ex ligula fringilla tellus, nec interdum felis eros quis massa. Nullam at neque interdum, eleifend sapien in, malesuada urna. Sed quis dui consectetur, semper velit vitae, maximus est.
-
+             Goodwings Experiences is an online marketplace for social impact activities all over the world. The activities (or “experiences”) are hosted by nonprofit organisations.
 
               </p>
              </div>
