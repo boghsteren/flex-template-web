@@ -233,7 +233,7 @@ export class BookingDatesFormComponent extends Component {
                     label="Booking date"
                     placeholderText={bookingStartLabel}
                     validate={composeValidators(required(requiredMessage))}
-                    value={{ key: "bob" }}
+                    value={moment()}
                   />
                   <FieldTextInput
                     id="hours"

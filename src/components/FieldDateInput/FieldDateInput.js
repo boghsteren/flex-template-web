@@ -4,15 +4,15 @@
  * NOTE: If you are using this component inside BookingDatesForm,
  * you should convert value.date to start date and end date before submitting it to API
  */
-import React, { Component } from 'react';
-import { bool, object, string, arrayOf } from 'prop-types';
-import { Field } from 'react-final-form';
-import classNames from 'classnames';
-import { ValidationError } from '../../components';
-import { propTypes } from '../../util/types';
+import React, { Component } from "react";
+import { bool, object, string, arrayOf } from "prop-types";
+import { Field } from "react-final-form";
+import classNames from "classnames";
+import { ValidationError } from "../../components";
+import { propTypes } from "../../util/types";
 
-import DateInput from './DateInput';
-import css from './FieldDateInput.css';
+import DateInput from "./DateInput";
+import css from "./FieldDateInput.css";
 
 class FieldDateInputComponent extends Component {
   render() {
@@ -28,7 +28,7 @@ class FieldDateInputComponent extends Component {
     } = this.props;
 
     if (label && !id) {
-      throw new Error('id required when a label is given');
+      throw new Error("id required when a label is given");
     }
 
     const { touched, invalid, error } = meta;
@@ -42,7 +42,7 @@ class FieldDateInputComponent extends Component {
 
     const inputClasses = classNames({
       [css.pickerSuccess]: dateIsValid,
-      [css.pickerError]: hasError,
+      [css.pickerError]: hasError
     });
 
     const { onBlur, onFocus, ...restOfInput } = input;
@@ -52,7 +52,7 @@ class FieldDateInputComponent extends Component {
       useMobileMargins,
       id,
       ...restOfInput,
-      ...rest,
+      ...rest
     };
     const classes = classNames(rootClassName || css.fieldRoot, className);
     const errorClasses = classNames({ [css.mobileMargins]: useMobileMargins });
@@ -60,7 +60,10 @@ class FieldDateInputComponent extends Component {
     return (
       <div className={classes}>
         {label ? (
-          <label className={classNames({ [css.mobileMargins]: useMobileMargins })} htmlFor={id}>
+          <label
+            className={classNames({ [css.mobileMargins]: useMobileMargins })}
+            htmlFor={id}
+          >
             {label}
           </label>
         ) : null}
@@ -78,7 +81,7 @@ FieldDateInputComponent.defaultProps = {
   id: null,
   label: null,
   placeholderText: null,
-  timeSlots: null,
+  timeSlots: null
 };
 
 FieldDateInputComponent.propTypes = {
@@ -90,7 +93,7 @@ FieldDateInputComponent.propTypes = {
   placeholderText: string,
   timeSlots: arrayOf(propTypes.timeSlot),
   input: object.isRequired,
-  meta: object.isRequired,
+  meta: object.isRequired
 };
 
 const FieldDateInput = props => {
