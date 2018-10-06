@@ -6,7 +6,7 @@ const IconLogo = props => {
   const { className } = props;
 
   return (
-    <img className={className} alt={"Goodwings Experiences"} src={LogoImage} />
+    <img className={className} alt={"Goodwings Experiences"} src={LogoImage} height="30" width="30"/>
   );
 };
 
