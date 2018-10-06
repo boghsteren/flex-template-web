@@ -219,7 +219,8 @@
   "EditListingLocationForm.buildingPlaceholder": "A 42",
   "EditListingLocationForm.updateFailed":
     "Failed to update listing. Please try again.",
-  "EditListingLocationPanel.createListingTitle": "Where's your experience taking place?",
+  "EditListingLocationPanel.createListingTitle":
+    "Where's your experience taking place?",
   "EditListingLocationPanel.title": "Edit the location of {listingTitle}",
   "EditListingPage.loadingListingData": "Loading listing data…",
   "EditListingPage.titleCreateListing": "Create a listing",
@@ -366,7 +367,8 @@
   "InboxPage.statePending": "Pending",
   "InboxPage.stateRequested": "Requested",
   "InboxPage.title": "Inbox",
-  "LandingPage.schemaDescription": "Become a Goodwings nonprofit partner and add your social impact experiences.",
+  "LandingPage.schemaDescription":
+    "Become a Goodwings nonprofit partner and add your social impact experiences.",
   "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}",
   "ListingCard.hostedBy": "Hosted by {authorName}.",
   "ListingCard.perUnit": "per day",
@@ -473,7 +475,8 @@
     "We can't find the page or experience you're looking for. Make sure you've typed in the URL correctly or try searching Goodwings Experiences.",
   "NotFoundPage.heading": "Sorry, we couldn't find that page.",
   "NotFoundPage.title": "Page not found",
-  "Page.schemaDescription": "Become a Goodwings nonprofit partner and add your social impact experiences.",
+  "Page.schemaDescription":
+    "Become a Goodwings nonprofit partner and add your social impact experiences.",
   "Page.schemaTitle": "Book experiences everywhere | {siteTitle}",
   "PaginationLinks.next": "Next page",
   "PaginationLinks.previous": "Previous page",
@@ -695,6 +698,7 @@
   "SearchFilters.filtersButtonLabel": "Filters",
   "SearchFilters.foundResults":
     "{count, number} {count, plural, one {result} other {results}}",
+  "SearchFilters.groupSizeFilterLabel": "Group size",
   "SearchFilters.loadingResults": "Loading search results…",
   "SearchFilters.loadingResultsMobile": "Loading…",
   "SearchFilters.moreFiltersButton":
@@ -960,7 +964,8 @@
     "{customerName} is waiting for your response.",
   "TransactionPanel.saleRequestedTitle":
     "{customerName} has requested to book {listingLink}.",
-  "TransactionPanel.sendMessagePlaceholder": "Send a message to {name} from {organisation}.",
+  "TransactionPanel.sendMessagePlaceholder":
+    "Send a message to {name} from {organisation}.",
   "UserCard.contactUser": "Contact",
   "UserCard.heading": "Hello, we're {organisation}.",
   "UserCard.showFullBioLink": "more",

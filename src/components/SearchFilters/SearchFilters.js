@@ -1,16 +1,16 @@
-import React from 'react';
-import { compose } from 'redux';
-import { object, string, bool, number, func, shape } from 'prop-types';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
-import omit from 'lodash/omit';
+import React from "react";
+import { compose } from "redux";
+import { object, string, bool, number, func, shape } from "prop-types";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import classNames from "classnames";
+import { withRouter } from "react-router-dom";
+import omit from "lodash/omit";
 
-import { SelectSingleFilter, SelectMultipleFilter } from '../../components';
-import routeConfiguration from '../../routeConfiguration';
-import { createResourceLocatorString } from '../../util/routes';
-import { propTypes } from '../../util/types';
-import css from './SearchFilters.css';
+import { SelectSingleFilter, SelectMultipleFilter } from "../../components";
+import routeConfiguration from "../../routeConfiguration";
+import { createResourceLocatorString } from "../../util/routes";
+import { propTypes } from "../../util/types";
+import css from "./SearchFilters.css";
 
 // Dropdown container can have a positional offset (in pixels)
 const FILTER_DROPDOWN_OFFSET = -14;
@@ -22,7 +22,7 @@ const initialValue = (queryParams, paramName) => {
 
 // resolve initial values for a multi value filter
 const initialValues = (queryParams, paramName) => {
-  return !!queryParams[paramName] ? queryParams[paramName].split(',') : [];
+  return !!queryParams[paramName] ? queryParams[paramName].split(",") : [];
 };
 
 const SearchFiltersComponent = props => {
@@ -35,22 +35,31 @@ const SearchFiltersComponent = props => {
     searchInProgress,
     categoryFilter,
     goalsFilter,
+    groupSizeFilter,
     isSearchFiltersPanelOpen,
     toggleSearchFiltersPanel,
     searchFiltersPanelSelectedCount,
     history,
-    intl,
+    intl
   } = props;
 
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
-  const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
+  const classes = classNames(
+    rootClassName || css.root,
+    { [css.longInfo]: hasNoResult },
+    className
+  );
 
   const categoryLabel = intl.formatMessage({
-    id: 'SearchFilters.categoryLabel',
+    id: "SearchFilters.categoryLabel"
   });
 
   const goalsLabel = intl.formatMessage({
-    id: 'SearchFilters.goalsLabel',
+    id: "SearchFilters.goalsLabel"
+  });
+
+  const groupSizeFilterLabel = intl.formatMessage({
+    id: "SearchFilters.groupSizeFilterLabel"
   });
 
   const initialGoals = goalsFilter
@@ -61,13 +70,24 @@ const SearchFiltersComponent = props => {
     ? initialValue(urlQueryParams, categoryFilter.paramName)
     : null;
 
+  const initialGroupSize = groupSizeFilter
+    ? initialValue(urlQueryParams, groupSizeFilter.paramName)
+    : null;
+
   const handleSelectOptions = (urlParam, options) => {
     const queryParams =
       options && options.length > 0
-        ? { ...urlQueryParams, [urlParam]: options.join(',') }
+        ? { ...urlQueryParams, [urlParam]: options.join(",") }
         : omit(urlQueryParams, urlParam);
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        queryParams
+      )
+    );
   };
 
   const handleSelectOption = (urlParam, option) => {
@@ -77,7 +97,14 @@ const SearchFiltersComponent = props => {
       ? { ...urlQueryParams, [urlParam]: option }
       : omit(urlQueryParams, urlParam);
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        queryParams
+      )
+    );
   };
 
   const categoryFilterElement = categoryFilter ? (
@@ -93,13 +120,24 @@ const SearchFiltersComponent = props => {
 
   const goalsFilterElement = goalsFilter ? (
     <SelectMultipleFilter
-      id={'SearchFilters.goalsFilter'}
+      id={"SearchFilters.goalsFilter"}
       name="goals"
       urlParam={goalsFilter.paramName}
       label={goalsLabel}
       onSelect={handleSelectOptions}
       options={goalsFilter.options}
       initialValues={initialGoals}
+      contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+    />
+  ) : null;
+
+  const groupSizeFilterElement = groupSizeFilter ? (
+    <SelectSingleFilter
+      urlParam={groupSizeFilter.paramName}
+      label={groupSizeFilterLabel}
+      onSelect={handleSelectOption}
+      options={groupSizeFilter.options}
+      initialValue={initialGroupSize}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
@@ -125,6 +163,7 @@ const SearchFiltersComponent = props => {
     <div className={classes}>
       <div className={css.filters}>
         {categoryFilterElement}
+        {groupSizeFilterElement}
         {goalsFilterElement}
         {toggleSearchFiltersPanelButton}
       </div>
@@ -132,7 +171,10 @@ const SearchFiltersComponent = props => {
       {listingsAreLoaded && resultsCount > 0 ? (
         <div className={css.searchResultSummary}>
           <span className={css.resultsFound}>
-            <FormattedMessage id="SearchFilters.foundResults" values={{ count: resultsCount }} />
+            <FormattedMessage
+              id="SearchFilters.foundResults"
+              values={{ count: resultsCount }}
+            />
           </span>
         </div>
       ) : null}
@@ -161,7 +203,7 @@ SearchFiltersComponent.defaultProps = {
   goalsFilter: null,
   isSearchFiltersPanelOpen: false,
   toggleSearchFiltersPanel: null,
-  searchFiltersPanelSelectedCount: 0,
+  searchFiltersPanelSelectedCount: 0
 };
 
 SearchFiltersComponent.propTypes = {
@@ -180,11 +222,11 @@ SearchFiltersComponent.propTypes = {
 
   // from withRouter
   history: shape({
-    push: func.isRequired,
+    push: func.isRequired
   }).isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const SearchFilters = compose(withRouter, injectIntl)(SearchFiltersComponent);
