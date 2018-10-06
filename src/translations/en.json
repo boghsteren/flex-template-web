@@ -156,7 +156,7 @@
   "CookieConsent.continue": "Continue",
   "CookieConsent.cookieLink": "cookies",
   "CookieConsent.message":
-    "Welcome to Goodwings Experiences, friend! We use {cookieLink} to enhance your browsing experience.",
+    "Welcome to Goodwings Experiences! We use {cookieLink} to enhance your browsing experience.",
   "DateInput.clearDate": "Clear Date",
   "DateInput.closeDatePicker": "Close",
   "DateInput.defaultPlaceholder": "Date input",
@@ -179,9 +179,9 @@
     "You need to select a category.",
   "EditListingDescriptionForm.group_sizeRequired":
     "You need to select a group size.",
-  "EditListingDescriptionForm.contact": "Contact person for experience",
+  "EditListingDescriptionForm.contact": "Contact person for this experience",
   "EditListingDescriptionForm.contactPlaceholder":
-    "Is there a specific contact person for this experience (if different from yourself)? Please add name and phone number and/or email address.",
+    "Is there a specific contact person for this experience (if different from yourself)? Please add name and contact information.",
   "EditListingDescriptionForm.description": "Describe your experience",
   "EditListingDescriptionForm.descriptionPlaceholder":
     "Present your experience. What will happen? Is there an itinerary? If so, please write it here.",
@@ -199,7 +199,7 @@
     "Must be {maxLength} characters or less",
   "EditListingDescriptionForm.title": "The name of your experience",
   "EditListingDescriptionForm.titlePlaceholder":
-    "What is the name of your experience?",
+    "What do you call this experience?",
   "EditListingDescriptionForm.titleRequired": "You need to add a name.",
   "EditListingDescriptionForm.updateFailed":
     "Failed to update listing. Please try again.",
@@ -219,7 +219,7 @@
   "EditListingLocationForm.buildingPlaceholder": "A 42",
   "EditListingLocationForm.updateFailed":
     "Failed to update listing. Please try again.",
-  "EditListingLocationPanel.createListingTitle": "Where's your experience?",
+  "EditListingLocationPanel.createListingTitle": "Where's your experience taking place?",
   "EditListingLocationPanel.title": "Edit the location of {listingTitle}",
   "EditListingPage.loadingListingData": "Loading listing data…",
   "EditListingPage.titleCreateListing": "Create a listing",
@@ -243,7 +243,7 @@
     "Failed to update listing. Please try again.",
   "EditListingPhotosPanel.createListingTitle": "Add a few photos",
   "EditListingPhotosPanel.payoutModalInfo":
-    "Since this was the first listing you created, we need to know bit more about you in order to send you money. We only ask these once.",
+    "Since this was the first listing you created, we need to know bit more about you in order to send you money.",
   "EditListingPhotosPanel.payoutModalTitleOneMoreThing": "One more thing:",
   "EditListingPhotosPanel.payoutModalTitlePayoutPreferences":
     "Payout preferences",
@@ -312,7 +312,7 @@
     "Hello {authorDisplayName}! I'm looking forward to…",
   "EnquiryForm.messageRequired": "A message is required",
   "EnquiryForm.sendEnquiryError":
-    "Whoops, something went wrong. Please try again.",
+    "That's strange! Something went wrong. Please try again.",
   "EnquiryForm.submitButtonText": "Send enquiry",
   "FieldBoolean.no": "No",
   "FieldBoolean.yes": "Yes",
@@ -366,7 +366,7 @@
   "InboxPage.statePending": "Pending",
   "InboxPage.stateRequested": "Requested",
   "InboxPage.title": "Inbox",
-  "LandingPage.schemaDescription": "Book an experience or become a partner NGO",
+  "LandingPage.schemaDescription": "Become a Goodwings nonprofit partner and add your social impact experiences.",
   "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}",
   "ListingCard.hostedBy": "Hosted by {authorName}.",
   "ListingCard.perUnit": "per day",
@@ -391,7 +391,7 @@
   "ListingPage.errorLoadingListingTitle": "Error in loading listing",
   "ListingPage.featuresTitle": "Social impact focus",
   "ListingPage.hostedBy": "Hosted by {name}",
-  "ListingPage.includedHeader": "Experiences includes",
+  "ListingPage.includedHeader": "This experience includes",
   "ListingPage.loadingListingMessage": "Loading listing…",
   "ListingPage.loadingListingTitle": "Loading listing…",
   "ListingPage.locationTitle": "Location",
@@ -473,7 +473,7 @@
     "We can't find the page or experience you're looking for. Make sure you've typed in the URL correctly or try searching Goodwings Experiences.",
   "NotFoundPage.heading": "Sorry, we couldn't find that page.",
   "NotFoundPage.title": "Page not found",
-  "Page.schemaDescription": "Book an experience or become a partner NGO.",
+  "Page.schemaDescription": "Become a Goodwings nonprofit partner and add your social impact experiences.",
   "Page.schemaTitle": "Book experiences everywhere | {siteTitle}",
   "PaginationLinks.next": "Next page",
   "PaginationLinks.previous": "Previous page",
@@ -505,7 +505,7 @@
   "PasswordRecoveryForm.emailLabel": "Email",
   "PasswordRecoveryForm.emailNotFound":
     "Hmm. We didn't find an account with that email address. Please double-check the address and try again.",
-  "PasswordRecoveryForm.emailPlaceholder": "john.doe@example.com",
+  "PasswordRecoveryForm.emailPlaceholder": "your.name@example.com",
   "PasswordRecoveryForm.emailRequired": "This field is required",
   "PasswordRecoveryForm.loginLinkInfo":
     "Suddenly remembered your password? {loginLink}",
@@ -565,7 +565,7 @@
     "Birthday is required and must be a valid date.",
   "PayoutDetailsForm.birthdayYearPlaceholder": "yyyy",
   "PayoutDetailsForm.cityLabel": "City",
-  "PayoutDetailsForm.cityPlaceholder": "Helsinki",
+  "PayoutDetailsForm.cityPlaceholder": "Your ciy",
   "PayoutDetailsForm.cityRequired": "This field is required",
   "PayoutDetailsForm.countryLabel": "Country",
   "PayoutDetailsForm.countryNames.AT": "Austria",
@@ -591,16 +591,16 @@
   "PayoutDetailsForm.createStripeAccountFailedInvalidPostalCode":
     "Whoops, check that the selected country and postal code are correct and try again.",
   "PayoutDetailsForm.firstNameLabel": "First name",
-  "PayoutDetailsForm.firstNamePlaceholder": "John",
+  "PayoutDetailsForm.firstNamePlaceholder": "Your",
   "PayoutDetailsForm.firstNameRequired": "This field is required",
   "PayoutDetailsForm.information":
-    "Since this was your first listing, we need to know bit more about you in order to send you money. We only ask these once.",
+    "Since this was your first listing, we need to know bit more about you in order to send you money. This is the only time we'll ask you.",
   "PayoutDetailsForm.lastNameLabel": "Last name",
-  "PayoutDetailsForm.lastNamePlaceholder": "Doe",
+  "PayoutDetailsForm.lastNamePlaceholder": "Name",
   "PayoutDetailsForm.lastNameRequired": "This field is required",
   "PayoutDetailsForm.personalDetailsTitle": "Personal details",
   "PayoutDetailsForm.postalCodeLabel": "Postal code",
-  "PayoutDetailsForm.postalCodePlaceholder": "00100",
+  "PayoutDetailsForm.postalCodePlaceholder": "0000",
   "PayoutDetailsForm.postalCodeRequired": "This field is required",
   "PayoutDetailsForm.streetAddressLabel": "Street address",
   "PayoutDetailsForm.streetAddressPlaceholder": "Enter your street address…",
@@ -661,7 +661,7 @@
   "ProfileSettingsForm.lastNameRequired": "This field is required",
   "ProfileSettingsForm.organisationName": "Organisation",
   "ProfileSettingsForm.organisationLabel": "Organisation",
-  "ProfileSettingsForm.organisationPlaceholder": "Acme Corp",
+  "ProfileSettingsForm.organisationPlaceholder": "Your Organisation",
   "ProfileSettingsForm.organisationRequiredMessage":
     "You need to add an organisation.",
   "ProfileSettingsForm.saveChanges": "Save changes",
