@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LogoImage from "./favicon-32x32.png";
+import LogoImage from "./logo-310x310.png";
 
 const IconLogo = props => {
   const { className } = props;
