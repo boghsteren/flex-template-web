@@ -27,10 +27,10 @@
     /* Colors */
     background-image: linear-gradient(
       -180deg,
-      var(--attentionColor) 0%,
-      var(--marketplaceColor) 100%
+      var(--matterColorLight) 0%,
+      var(--matterColorLight) 100%
     );
-    color: var(--matterColorLight);
+    color: var(--matterColorDark);
 
     &:hover {
       text-decoration: none;
