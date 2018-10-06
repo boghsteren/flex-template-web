@@ -886,7 +886,7 @@
   "Topbar.logoIcon": "Go to homepage",
   "Topbar.menuIcon": "Open menu",
   "Topbar.mobileSearchHelp":
-    "Tip: You can also search experiences by city \"London\".",
+    "Search suggestions will appear once you start typing.",
   "Topbar.searchIcon": "Open search",
   "TopbarDesktop.accountSettingsLink": "Account settings",
   "TopbarDesktop.createListing": "+ Add your experience",
