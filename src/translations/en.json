@@ -632,7 +632,7 @@
   "ProfilePage.desktopHeadingNoOrganisation": "Hello, I'm {name}.",
   "ProfilePage.editProfileLinkDesktop": "Edit profile",
   "ProfilePage.editProfileLinkMobile": "Edit",
-  "ProfilePage.listingsTitle": "My experiences ({count})",
+  "ProfilePage.listingsTitle": "Our experiences ({count})",
   "ProfilePage.loadingDataFailed":
     "Whoops, something went wrong. Please try again.",
   "ProfilePage.loadingReviewsFailed": "Loading reviews failed.",
