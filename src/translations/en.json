@@ -314,7 +314,7 @@
   "EnquiryForm.heading": "Enquire about {listingTitle}",
   "EnquiryForm.messageLabel": "Message to {authorDisplayName} from {organisation}",
   "EnquiryForm.messagePlaceholder":
-    "Hello {authorDisplayName}! I'm looking forward to…",
+    "Type your message here...",
   "EnquiryForm.messageRequired": "A message is required",
   "EnquiryForm.sendEnquiryError":
     "That's strange! Something went wrong. Please try again.",
