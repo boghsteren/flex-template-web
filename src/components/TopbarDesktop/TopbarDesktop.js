@@ -35,6 +35,9 @@ const TopbarDesktop = props => {
 
   const classes = classNames(rootClassName || css.root, className);
 
+  const isProvider =
+    currentUser && currentUser.attributes.profile.publicData.provider;
+
   const search = (
     <TopbarSearchForm
       className={css.searchLink}
@@ -71,58 +74,109 @@ const TopbarDesktop = props => {
   };
 
   const profileMenu = isAuthenticated ? (
-    <Menu>
-      <MenuLabel
-        className={css.profileMenuLabel}
-        isOpenClassName={css.profileMenuIsOpen}
-      >
-        <Avatar className={css.avatar} user={currentUser} disableProfileLink />
-      </MenuLabel>
-      <MenuContent className={css.profileMenuContent}>
-        <MenuItem key="ManageListingsPage">
-          <NamedLink
-            className={classNames(
-              css.yourListingsLink,
-              currentPageClass("ManageListingsPage")
-            )}
-            name="ManageListingsPage"
-          >
-            <span className={css.menuItemBorder} />
-            <FormattedMessage id="TopbarDesktop.yourListingsLink" />
-          </NamedLink>
-        </MenuItem>
-        <MenuItem key="ProfileSettingsPage">
-          <NamedLink
-            className={classNames(
-              css.profileSettingsLink,
-              currentPageClass("ProfileSettingsPage")
-            )}
-            name="ProfileSettingsPage"
-          >
-            <span className={css.menuItemBorder} />
-            <FormattedMessage id="TopbarDesktop.profileSettingsLink" />
-          </NamedLink>
-        </MenuItem>
-        <MenuItem key="AccountSettingsPage">
-          <NamedLink
-            className={classNames(
-              css.yourListingsLink,
-              currentPageClass("AccountSettingsPage")
-            )}
-            name="AccountSettingsPage"
-          >
-            <span className={css.menuItemBorder} />
-            <FormattedMessage id="TopbarDesktop.accountSettingsLink" />
-          </NamedLink>
-        </MenuItem>
-        <MenuItem key="logout">
-          <InlineTextButton className={css.logoutButton} onClick={onLogout}>
-            <span className={css.menuItemBorder} />
-            <FormattedMessage id="TopbarDesktop.logout" />
-          </InlineTextButton>
-        </MenuItem>
-      </MenuContent>
-    </Menu>
+    isProvider ? (
+      <Menu>
+        <MenuLabel
+          className={css.profileMenuLabel}
+          isOpenClassName={css.profileMenuIsOpen}
+        >
+          <Avatar
+            className={css.avatar}
+            user={currentUser}
+            disableProfileLink
+          />
+        </MenuLabel>
+        <MenuContent className={css.profileMenuContent}>
+          <MenuItem key="ManageListingsPage">
+            <NamedLink
+              className={classNames(
+                css.yourListingsLink,
+                currentPageClass("ManageListingsPage")
+              )}
+              name="ManageListingsPage"
+            >
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.yourListingsLink" />
+            </NamedLink>
+          </MenuItem>
+          <MenuItem key="ProfileSettingsPage">
+            <NamedLink
+              className={classNames(
+                css.profileSettingsLink,
+                currentPageClass("ProfileSettingsPage")
+              )}
+              name="ProfileSettingsPage"
+            >
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.profileSettingsLink" />
+            </NamedLink>
+          </MenuItem>
+          <MenuItem key="AccountSettingsPage">
+            <NamedLink
+              className={classNames(
+                css.yourListingsLink,
+                currentPageClass("AccountSettingsPage")
+              )}
+              name="AccountSettingsPage"
+            >
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.accountSettingsLink" />
+            </NamedLink>
+          </MenuItem>
+          <MenuItem key="logout">
+            <InlineTextButton className={css.logoutButton} onClick={onLogout}>
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.logout" />
+            </InlineTextButton>
+          </MenuItem>
+        </MenuContent>
+      </Menu>
+    ) : (
+      <Menu>
+        <MenuLabel
+          className={css.profileMenuLabel}
+          isOpenClassName={css.profileMenuIsOpen}
+        >
+          <Avatar
+            className={css.avatar}
+            user={currentUser}
+            disableProfileLink
+          />
+        </MenuLabel>
+        <MenuContent className={css.profileMenuContent}>
+          <MenuItem key="ProfileSettingsPage">
+            <NamedLink
+              className={classNames(
+                css.profileSettingsLink,
+                currentPageClass("ProfileSettingsPage")
+              )}
+              name="ProfileSettingsPage"
+            >
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.profileSettingsLink" />
+            </NamedLink>
+          </MenuItem>
+          <MenuItem key="AccountSettingsPage">
+            <NamedLink
+              className={classNames(
+                css.yourListingsLink,
+                currentPageClass("AccountSettingsPage")
+              )}
+              name="AccountSettingsPage"
+            >
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.accountSettingsLink" />
+            </NamedLink>
+          </MenuItem>
+          <MenuItem key="logout">
+            <InlineTextButton className={css.logoutButton} onClick={onLogout}>
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.logout" />
+            </InlineTextButton>
+          </MenuItem>
+        </MenuContent>
+      </Menu>
+    )
   ) : null;
 
   const loginLink = isAuthenticated ? null : (

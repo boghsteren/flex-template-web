@@ -90,7 +90,7 @@ class RouteComponentRenderer extends Component {
 
   render() {
     const { route, match, location, staticContext } = this.props;
-    const { component: RouteComponent, authPage = "SignupPage" } = route;
+    const { component: RouteComponent } = route;
     const canShow = canShowComponent(this.props);
     if (!canShow) {
       staticContext.unauthorized = true;

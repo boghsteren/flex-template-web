@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import { propTypes } from '../../util/types';
-import { ensureCurrentUser } from '../../util/data';
-import { fetchCurrentUser, sendVerificationEmail } from '../../ducks/user.duck';
+import React from "react";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { propTypes } from "../../util/types";
+import { ensureCurrentUser } from "../../util/data";
+import { fetchCurrentUser, sendVerificationEmail } from "../../ducks/user.duck";
 import {
   LayoutSideNavigation,
   LayoutWrapperMain,
@@ -14,14 +14,17 @@ import {
   LayoutWrapperFooter,
   Footer,
   Page,
-  UserNav,
-} from '../../components';
-import { ContactDetailsForm } from '../../forms';
-import { TopbarContainer } from '../../containers';
+  UserNav
+} from "../../components";
+import { ContactDetailsForm } from "../../forms";
+import { TopbarContainer } from "../../containers";
 
-import { isScrollingDisabled } from '../../ducks/UI.duck';
-import { saveContactDetails, saveContactDetailsClear } from './ContactDetailsPage.duck';
-import css from './ContactDetailsPage.css';
+import { isScrollingDisabled } from "../../ducks/UI.duck";
+import {
+  saveContactDetails,
+  saveContactDetailsClear
+} from "./ContactDetailsPage.duck";
+import css from "./ContactDetailsPage.css";
 
 export const ContactDetailsPageComponent = props => {
   const {
@@ -36,7 +39,7 @@ export const ContactDetailsPageComponent = props => {
     sendVerificationEmailError,
     onResendVerificationEmail,
     onSubmitContactDetails,
-    intl,
+    intl
   } = props;
 
   const tabs = [
@@ -44,29 +47,29 @@ export const ContactDetailsPageComponent = props => {
       text: <FormattedMessage id="ContactDetailsPage.contactDetailsTabTitle" />,
       selected: true,
       linkProps: {
-        name: 'ContactDetailsPage',
-      },
+        name: "ContactDetailsPage"
+      }
     },
     {
       text: <FormattedMessage id="ContactDetailsPage.passwordTabTitle" />,
       selected: false,
       linkProps: {
-        name: 'PasswordChangePage',
-      },
+        name: "PasswordChangePage"
+      }
     },
     {
       text: <FormattedMessage id="ContactDetailsPage.paymentsTabTitle" />,
       selected: false,
       linkProps: {
-        name: 'PayoutPreferencesPage',
-      },
-    },
+        name: "PayoutPreferencesPage"
+      }
+    }
   ];
 
   const user = ensureCurrentUser(currentUser);
-  const currentEmail = user.attributes.email || '';
+  const currentEmail = user.attributes.email || "";
   const protectedData = user.attributes.profile.protectedData || {};
-  const currentPhoneNumber = protectedData.phoneNumber || '';
+  const currentPhoneNumber = protectedData.phoneNumber || "";
   const contactInfoForm = user.id ? (
     <ContactDetailsForm
       className={css.form}
@@ -75,7 +78,9 @@ export const ContactDetailsPageComponent = props => {
       savePhoneNumberError={savePhoneNumberError}
       currentUser={currentUser}
       onResendVerificationEmail={onResendVerificationEmail}
-      onSubmit={values => onSubmitContactDetails({ ...values, currentEmail, currentPhoneNumber })}
+      onSubmit={values =>
+        onSubmitContactDetails({ ...values, currentEmail, currentPhoneNumber })
+      }
       onChange={onChange}
       inProgress={saveContactDetailsInProgress}
       ready={contactDetailsChanged}
@@ -84,7 +89,7 @@ export const ContactDetailsPageComponent = props => {
     />
   ) : null;
 
-  const title = intl.formatMessage({ id: 'ContactDetailsPage.title' });
+  const title = intl.formatMessage({ id: "ContactDetailsPage.title" });
 
   return (
     <Page title={title} scrollingDisabled={scrollingDisabled}>
@@ -95,7 +100,7 @@ export const ContactDetailsPageComponent = props => {
             desktopClassName={css.desktopTopbar}
             mobileClassName={css.mobileTopbar}
           />
-          <UserNav selectedPageName="ContactDetailsPage" />
+          <UserNav selectedPageName="ContactDetailsPage" user={currentUser} />
         </LayoutWrapperTopbar>
         <LayoutWrapperSideNav tabs={tabs} />
         <LayoutWrapperMain>
@@ -118,7 +123,7 @@ ContactDetailsPageComponent.defaultProps = {
   saveEmailError: null,
   savePhoneNumberError: null,
   currentUser: null,
-  sendVerificationEmailError: null,
+  sendVerificationEmailError: null
 };
 
 const { bool, func } = PropTypes;
@@ -137,17 +142,21 @@ ContactDetailsPageComponent.propTypes = {
   onResendVerificationEmail: func.isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const mapStateToProps = state => {
   // Topbar needs user info.
-  const { currentUser, sendVerificationEmailInProgress, sendVerificationEmailError } = state.user;
+  const {
+    currentUser,
+    sendVerificationEmailInProgress,
+    sendVerificationEmailError
+  } = state.user;
   const {
     saveEmailError,
     savePhoneNumberError,
     saveContactDetailsInProgress,
-    contactDetailsChanged,
+    contactDetailsChanged
   } = state.ContactDetailsPage;
   return {
     saveEmailError,
@@ -157,19 +166,20 @@ const mapStateToProps = state => {
     contactDetailsChanged,
     scrollingDisabled: isScrollingDisabled(state),
     sendVerificationEmailInProgress,
-    sendVerificationEmailError,
+    sendVerificationEmailError
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onChange: () => dispatch(saveContactDetailsClear()),
   onResendVerificationEmail: () => dispatch(sendVerificationEmail()),
-  onSubmitContactDetails: values => dispatch(saveContactDetails(values)),
+  onSubmitContactDetails: values => dispatch(saveContactDetails(values))
 });
 
-const ContactDetailsPage = compose(connect(mapStateToProps, mapDispatchToProps), injectIntl)(
-  ContactDetailsPageComponent
-);
+const ContactDetailsPage = compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  injectIntl
+)(ContactDetailsPageComponent);
 
 ContactDetailsPage.loadData = () => {
   // Since verify email happens in separate tab, current user's data might be updated
