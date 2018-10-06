@@ -25,6 +25,7 @@ const EnquiryFormComponent = props => (
         listingTitle,
         authorDisplayName,
         sendEnquiryError,
+        organisation
       } = fieldRenderProps;
 
       const messageLabel = intl.formatMessage(
