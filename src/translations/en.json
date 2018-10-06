@@ -628,7 +628,7 @@
   "PrivacyPolicyPage.privacyTabTitle": "Privacy Policy",
   "PrivacyPolicyPage.schemaTitle": "Privacy Policy | {siteTitle}",
   "PrivacyPolicyPage.tosTabTitle": "Terms of Service",
-  "ProfilePage.desktopHeading": "Hello, I'm {name} from {organisation}.",
+  "ProfilePage.desktopHeading": "Hello, we're {organisation}.",
   "ProfilePage.desktopHeadingNoOrganisation": "Hello, I'm {name}.",
   "ProfilePage.editProfileLinkDesktop": "Edit profile",
   "ProfilePage.editProfileLinkMobile": "Edit",
@@ -960,9 +960,9 @@
     "{customerName} is waiting for your response.",
   "TransactionPanel.saleRequestedTitle":
     "{customerName} has requested to book {listingLink}.",
-  "TransactionPanel.sendMessagePlaceholder": "Send a message to {name}…",
+  "TransactionPanel.sendMessagePlaceholder": "Send a message to {name} from {organisation}.",
   "UserCard.contactUser": "Contact",
-  "UserCard.heading": "Hello, I'm {name}.",
+  "UserCard.heading": "Hello, we're {organisation}.",
   "UserCard.showFullBioLink": "more",
   "UserCard.viewProfileLink": "View profile"
 }
