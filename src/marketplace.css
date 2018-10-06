@@ -62,6 +62,8 @@
   --matterColorNegative: #e7e7e7;
   --matterColorBright: #fcfcfc;
   --matterColorLight: #ffffff;
+  
+  --linkColorGrey: #666666;
 
   --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
 
@@ -143,7 +145,7 @@
     border: none;
 
     /* Colors */
-    color: var(--marketplaceColor);
+    color: var(--linkColorGrey);
 
     /* Text size should be inherited */
     text-decoration: none;
