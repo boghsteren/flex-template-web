@@ -37,7 +37,7 @@ const EnquiryFormComponent = props => (
         {
           id: 'EnquiryForm.messagePlaceholder',
         },
-        { authorDisplayName }
+        { authorDisplayName, organisation }
       );
       const messageRequiredMessage = intl.formatMessage({
         id: 'EnquiryForm.messageRequired',
