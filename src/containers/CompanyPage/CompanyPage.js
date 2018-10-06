@@ -74,7 +74,7 @@ We don't spend any money on advertising like the other large hotel booking sites
 </div>
             <div className={css.contentMain}>
 <p>
-            Send us an email at <a href="mailto:experiences@goodwings.com">experiences@goodwings.com</a> or call + 45 60 73 74 75.</p>
+            Send us an email at <a href="mailto:info@goodwingsexperiences.com">info@goodwingsexperiences.com</a> or call + 45 60737475.</p>
             </div></div>
         </LayoutWrapperMain>
 
