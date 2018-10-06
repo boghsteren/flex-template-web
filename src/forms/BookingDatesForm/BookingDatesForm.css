@@ -1,10 +1,13 @@
-@import '../../marketplace.css';
+@import "../../marketplace.css";
 
 .root {
   display: flex;
   flex-direction: column;
 }
 
+.numberInput {
+  margin-bottom: 46px;
+}
 .bookingDates {
   flex-shrink: 0;
   margin-bottom: 46px;

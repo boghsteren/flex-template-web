@@ -122,6 +122,10 @@ export const parseNum = str => {
   return Number.isNaN(num) ? null : num;
 };
 
+export const aboveZero = message => value => {
+  return value > 0 ? VALID : message;
+};
+
 export const ageAtLeast = (message, minYears) => value => {
   const { year, month, day } = value;
   const dayNum = parseNum(day);

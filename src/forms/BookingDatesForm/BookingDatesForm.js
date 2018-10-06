@@ -8,7 +8,8 @@ import moment from "moment";
 import {
   required,
   bookingDatesRequired,
-  composeValidators
+  composeValidators,
+  aboveZero
 } from "../../util/validators";
 import { START_DATE, END_DATE } from "../../util/dates";
 import { propTypes } from "../../util/types";
@@ -108,11 +109,23 @@ export class BookingDatesFormComponent extends Component {
           const bookingEndLabel = intl.formatMessage({
             id: "BookingDatesForm.bookingEndTitle"
           });
+          const hoursLabel = intl.formatMessage({
+            id: "BookingDatesForm.hoursLabel"
+          });
+          const hoursPlaceholder = intl.formatMessage({
+            id: "BookingDatesForm.hoursPlaceholder"
+          });
+          const hoursRequiredMessage = intl.formatMessage({
+            id: "BookingDatesForm.hoursRequiredMessage"
+          });
           const seatsLabel = intl.formatMessage({
             id: "BookingDatesForm.seatsLabel"
           });
           const seatsPlaceholder = intl.formatMessage({
             id: "BookingDatesForm.seatsPlaceholder"
+          });
+          const seatsRequiredMessage = intl.formatMessage({
+            id: "BookingDatesForm.seatsRequiredMessage"
           });
           const requiredMessage = intl.formatMessage({
             id: "BookingDatesForm.requiredDate"
@@ -173,7 +186,10 @@ export class BookingDatesFormComponent extends Component {
           const submitButtonClasses = classNames(
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
-
+          // Display date range picker if listing is a "per day" listing
+          // Display date picker if listing is a "per hour" listing
+          // Display hour number input if listing a "per hour" listing
+          // Display number of people input if listing is a "per person (either per hour or per day)" listing
           return (
             <Form onSubmit={handleSubmit} className={classes}>
               {timeSlotsError}
@@ -212,8 +228,28 @@ export class BookingDatesFormComponent extends Component {
                 <div>
                   <FieldDateInput
                     className={css.bookingDates}
+                    id="bookingDate"
                     name="bookingDate"
+                    label="Booking date"
                     placeholderText={bookingStartLabel}
+                    validate={composeValidators(required(requiredMessage))}
+                    value={{ key: "bob" }}
+                  />
+                  <FieldTextInput
+                    id="hours"
+                    name="hours"
+                    className={css.numberInput}
+                    type="text"
+                    min="0"
+                    label={hoursLabel}
+                    placeholder={hoursPlaceholder}
+                    parse={value => {
+                      return value.replace(/[^\d]/g, "");
+                    }}
+                    validate={composeValidators(
+                      required(hoursRequiredMessage),
+                      aboveZero(hoursRequiredMessage)
+                    )}
                   />
                 </div>
               )}
@@ -225,10 +261,18 @@ export class BookingDatesFormComponent extends Component {
                   <FieldTextInput
                     id="seats"
                     name="seats"
-                    className={css.seats}
-                    type="number"
+                    className={css.numberInput}
+                    min="0"
+                    type="text"
                     label={seatsLabel}
                     placeholder={seatsPlaceholder}
+                    parse={value => {
+                      return value.replace(/[^\d]/g, "");
+                    }}
+                    validate={composeValidators(
+                      required(seatsRequiredMessage),
+                      aboveZero(seatsRequiredMessage)
+                    )}
                   />
                 </div>
               )}

@@ -79,6 +79,9 @@
   "BookingBreakdown.total": "Total price",
   "BookingDatesForm.bookingEndTitle": "End date",
   "BookingDatesForm.bookingStartTitle": "Start date",
+  "BookingDatesForm.hoursLabel": "Hours",
+  "BookingDatesForm.hoursPlaceholder": "How many hours?",
+  "BookingDatesForm.hoursRequiredMessage": "You must select a number of hours",
   "BookingDatesForm.listingCurrencyInvalid":
     "Oops, the currency of the listing doesn't match the currency of the marketplace.",
   "BookingDatesForm.listingPriceMissing": "Oops, this listing has no price!",
@@ -87,8 +90,9 @@
   "BookingDatesForm.priceBreakdownTitle": "Booking breakdown",
   "BookingDatesForm.requestToBook": "Request to book",
   "BookingDatesForm.requiredDate": "Oops, make sure your date is correct!",
-  "BookingDatesForm.seatsLabel": "Number of people",
+  "BookingDatesForm.seatsLabel": "People",
   "BookingDatesForm.seatsPlaceholder": "How many are going?",
+  "BookingDatesForm.seatsRequiredMessage": "You must select number of people",
   "BookingDatesForm.timeSlotsError":
     "Loading listing availability failed. Please refresh the page.",
   "BookingDatesForm.youWontBeChargedInfo": "You won't be charged yet",

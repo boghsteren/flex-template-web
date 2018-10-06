@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { string, func, oneOfType } from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import truncate from 'lodash/truncate';
-import classNames from 'classnames';
-import { AvatarLarge, NamedLink, InlineTextButton } from '../../components';
-import { ensureUser, ensureCurrentUser } from '../../util/data';
-import { propTypes } from '../../util/types';
+import React, { Component } from "react";
+import { string, func, oneOfType } from "prop-types";
+import { FormattedMessage } from "react-intl";
+import truncate from "lodash/truncate";
+import classNames from "classnames";
+import { AvatarLarge, NamedLink, InlineTextButton } from "../../components";
+import { ensureUser, ensureCurrentUser } from "../../util/data";
+import { propTypes } from "../../util/types";
 
-import css from './UserCard.css';
+import css from "./UserCard.css";
 
 // Approximated collapsed size so that there are ~three lines of text
 // in the desktop layout in the host section of the ListingPage.
@@ -24,7 +24,7 @@ const truncated = s => {
     // This ensures that the final text doesn't get cut in the middle
     // of a word.
     separator: /\s|,|\.|:|;/,
-    omission: '…',
+    omission: "…"
   });
 };
 
@@ -59,18 +59,23 @@ ExpandableBio.defaultProps = { className: null };
 
 ExpandableBio.propTypes = {
   className: string,
-  bio: string.isRequired,
+  bio: string.isRequired
 };
 
 const UserCard = props => {
   const { rootClassName, className, user, currentUser, onContactUser } = props;
 
-  const userIsCurrentUser = user && user.type === 'currentUser';
-  const ensuredUser = userIsCurrentUser ? ensureCurrentUser(user) : ensureUser(user);
+  const userIsCurrentUser = user && user.type === "currentUser";
+  const ensuredUser = userIsCurrentUser
+    ? ensureCurrentUser(user)
+    : ensureUser(user);
+  const organisation = user && user.attributes.profile.publicData.organisation;
 
   const ensuredCurrentUser = ensureCurrentUser(currentUser);
   const isCurrentUser =
-    ensuredUser.id && ensuredCurrentUser.id && ensuredUser.id.uuid === ensuredCurrentUser.id.uuid;
+    ensuredUser.id &&
+    ensuredCurrentUser.id &&
+    ensuredUser.id.uuid === ensuredCurrentUser.id.uuid;
   const { displayName, bio } = ensuredUser.attributes.profile;
 
   const handleContactUserClick = () => {
@@ -80,10 +85,12 @@ const UserCard = props => {
   const hasBio = !!bio;
   const classes = classNames(rootClassName || css.root, className);
   const linkClasses = classNames(css.links, {
-    [css.withBioMissingAbove]: !hasBio,
+    [css.withBioMissingAbove]: !hasBio
   });
 
-  const separator = isCurrentUser ? null : <span className={css.linkSeparator}>•</span>;
+  const separator = isCurrentUser ? null : (
+    <span className={css.linkSeparator}>•</span>
+  );
 
   const contact = (
     <InlineTextButton className={css.contact} onClick={handleContactUserClick}>
@@ -108,7 +115,11 @@ const UserCard = props => {
 
   const links = ensuredUser.id ? (
     <p className={linkClasses}>
-      <NamedLink className={css.link} name="ProfilePage" params={{ id: ensuredUser.id.uuid }}>
+      <NamedLink
+        className={css.link}
+        name="ProfilePage"
+        params={{ id: ensuredUser.id.uuid }}
+      >
         <FormattedMessage id="UserCard.viewProfileLink" />
       </NamedLink>
       {separator}
@@ -123,11 +134,16 @@ const UserCard = props => {
         <div className={css.info}>
           <div className={css.headingRow}>
             <h3 className={css.heading}>
-              <FormattedMessage id="UserCard.heading" values={{ name: displayName }} />
+              <FormattedMessage
+                id="UserCard.heading"
+                values={{ name: displayName, organisation: organisation }}
+              />
             </h3>
             {editProfileDesktop}
           </div>
-          {hasBio ? <ExpandableBio className={css.desktopBio} bio={bio} /> : null}
+          {hasBio ? (
+            <ExpandableBio className={css.desktopBio} bio={bio} />
+          ) : null}
           {links}
         </div>
       </div>
@@ -140,7 +156,7 @@ UserCard.defaultProps = {
   rootClassName: null,
   className: null,
   user: null,
-  currentUser: null,
+  currentUser: null
 };
 
 UserCard.propTypes = {
@@ -148,7 +164,7 @@ UserCard.propTypes = {
   className: string,
   user: oneOfType([propTypes.user, propTypes.currentUser]),
   currentUser: propTypes.currentUser,
-  onContactUser: func.isRequired,
+  onContactUser: func.isRequired
 };
 
 export default UserCard;
