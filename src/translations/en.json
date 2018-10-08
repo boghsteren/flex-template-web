@@ -412,7 +412,7 @@
   "ListingPage.rulesTitle": "Experience rules",
   "ListingPage.schemaTitle": "{title} - {price} | {siteTitle}",
   "ListingPage.viewImagesButton": "View photos ({count})",
-  "ListingPage.yourHostHeading": "Your host",
+  "ListingPage.yourHostHeading": "Experience host",
   "LocationAutocompleteInput.currentLocation": "Current location",
   "LocationSearchForm.placeholder": "Go explore!",
   "LoginForm.emailInvalid": "A valid email address is required",
