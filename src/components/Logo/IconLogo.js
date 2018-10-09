@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LogoImage from "./favicon-32x32.png";
+import LogoImage from "./logo-310x310.png";
 
 const IconLogo = props => {
   const { className } = props;
 
   return (
-    <img className={className} alt={"Goodwings Experiences"} src={LogoImage} />
+    <img className={className} alt={"Goodwings Experiences"} src={LogoImage} height="30" width="30"/>
   );
 };
 

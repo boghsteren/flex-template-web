@@ -75,7 +75,7 @@ const SectionHowItWorks = props => {
           </p>
         </div>
       </div>
-      <a href="mailto:info@goodwingsexperiences.com" className={css.location}>
+      <a href="mailto:info@gwexperiences.com" className={css.location}>
         <div className={css.linkText}>
           <p>
             <FormattedMessage

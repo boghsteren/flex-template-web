@@ -55,6 +55,7 @@
   justify-content: flex-start;
   flex-shrink: 0;
   margin-right: 18px;
+  color: var(--matterColor);
 }
 
 .priceValue {

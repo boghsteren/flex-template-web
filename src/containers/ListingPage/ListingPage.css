@@ -25,6 +25,8 @@
   display: block;
   width: 100%;
   position: relative;
+  vertical-align: top;
+  
 
   @media (--viewportMedium) {
     padding: 0;
@@ -118,6 +120,7 @@
 .rootForImage {
   /* Layout - image will take space defined by aspect ratio wrapper */
   position: absolute;
+  vertical-align: top;
   top: 0;
   bottom: 0;
   left: 0;
