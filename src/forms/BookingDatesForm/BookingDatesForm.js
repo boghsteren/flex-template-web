@@ -11,7 +11,6 @@ import {
   composeValidators,
   aboveZero
 } from "../../util/validators";
-import { START_DATE, END_DATE } from "../../util/dates";
 import { propTypes } from "../../util/types";
 import config from "../../config";
 import {
@@ -44,16 +43,7 @@ export class BookingDatesFormComponent extends Component {
   // focus on that input, otherwise continue with the
   // default handleSubmit function.
   handleFormSubmit(e) {
-    const { startDate, endDate } = e.bookingDates || {};
-    if (!startDate) {
-      e.preventDefault();
-      this.setState({ focusedInput: START_DATE });
-    } else if (!endDate) {
-      e.preventDefault();
-      this.setState({ focusedInput: END_DATE });
-    } else {
-      this.props.onSubmit(e);
-    }
+    this.props.onSubmit(e);
   }
 
   render() {
@@ -102,6 +92,7 @@ export class BookingDatesFormComponent extends Component {
           } = fieldRenderProps;
           const { startDate, endDate } =
             values && values.bookingDates ? values.bookingDates : {};
+          const { seats } = (values && values.seats) || 1;
 
           const bookingStartLabel = intl.formatMessage({
             id: "BookingDatesForm.bookingStartTitle"
@@ -152,10 +143,7 @@ export class BookingDatesFormComponent extends Component {
                   unitPrice,
                   startDate,
                   endDate,
-
-                  // NOTE: If unitType is `line-item/units`, a new picker
-                  // for the quantity should be added to the form.
-                  quantity: 1
+                  quantity: seats
                 }
               : null;
           const bookingInfo = bookingData ? (

@@ -59,6 +59,7 @@ import SectionRulesMaybe from "./SectionRulesMaybe";
 import SectionMapMaybe from "./SectionMapMaybe";
 import SectionBooking from "./SectionBooking";
 import css from "./ListingPage.css";
+import moment from "moment";
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
@@ -134,14 +135,36 @@ export class ListingPageComponent extends Component {
     const listingId = new UUID(params.id);
     const listing = getListing(listingId);
 
-    const { bookingDates, ...bookingData } = values;
+    const { bookingDates, bookingDate, seats, hours, ...bookingData } = values;
+    const seatsNumber = parseInt(seats, 10);
 
+    const dailyQuantity =
+      bookingDates &&
+      moment(bookingDates.endDate).diff(bookingDates.startDate, "days") *
+        (seatsNumber || 1);
+    const hourlyQuantity = hours * seatsNumber;
+    const quantity =
+      listing.attributes.publicData.pricing_scheme === "daily_flat" ||
+      listing.attributes.publicData.pricing_scheme === "daily_seats"
+        ? dailyQuantity
+        : hourlyQuantity;
     const initialValues = {
       listing,
-      bookingData,
+      bookingData: {
+        ...bookingData,
+        seats: seatsNumber,
+        quantity,
+        hours: hours,
+        pricing_scheme: listing.attributes.publicData.pricing_scheme
+      },
       bookingDates: {
-        bookingStart: bookingDates.startDate,
-        bookingEnd: bookingDates.endDate
+        bookingStart:
+          (bookingDates && bookingDates.startDate) || bookingDate.date,
+        bookingEnd:
+          (bookingDates && bookingDates.endDate) ||
+          moment(bookingDate.date)
+            .add(1, "day")
+            .toDate()
       }
     };
 

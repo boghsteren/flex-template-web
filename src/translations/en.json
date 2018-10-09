@@ -969,7 +969,7 @@
   "TransactionPanel.saleRequestedTitle":
     "{customerName} has requested to book {listingLink}.",
   "TransactionPanel.sendMessagePlaceholder":
-    "Send a message to {name} from {organisation}.",
+    "Send a message.",
   "UserCard.contactUser": "Contact",
   "UserCard.heading": "Hello, we're {organisation}.",
   "UserCard.showFullBioLink": "more",

@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
-import { txIsEnquired, txIsRequested, propTypes } from '../../util/types';
-import { ensureListing, ensureTransaction, ensureUser } from '../../util/data';
-import { isMobileSafari } from '../../util/userAgent';
-import { AvatarMedium, AvatarLarge, ResponsiveImage, ReviewModal } from '../../components';
-import { SendMessageForm } from '../../forms';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import classNames from "classnames";
+import { txIsEnquired, txIsRequested, propTypes } from "../../util/types";
+import { ensureListing, ensureTransaction, ensureUser } from "../../util/data";
+import { isMobileSafari } from "../../util/userAgent";
+import {
+  AvatarMedium,
+  AvatarLarge,
+  ResponsiveImage,
+  ReviewModal
+} from "../../components";
+import { SendMessageForm } from "../../forms";
 
 // These are internal components that make this file more readable.
 import {
@@ -17,10 +22,10 @@ import {
   SaleActionButtonsMaybe,
   TransactionPageTitle,
   TransactionPageMessage,
-  displayNames,
-} from './TransactionPanel.helpers';
+  displayNames
+} from "./TransactionPanel.helpers";
 
-import css from './TransactionPanel.css';
+import css from "./TransactionPanel.css";
 
 export class TransactionPanelComponent extends Component {
   constructor(props) {
@@ -28,10 +33,10 @@ export class TransactionPanelComponent extends Component {
     this.state = {
       sendMessageFormFocused: false,
       isReviewModalOpen: false,
-      reviewSubmitted: false,
+      reviewSubmitted: false
     };
     this.isMobSaf = false;
-    this.sendMessageFormName = 'TransactionPanel.SendMessageForm';
+    this.sendMessageFormName = "TransactionPanel.SendMessageForm";
 
     this.onOpenReviewModal = this.onOpenReviewModal.bind(this);
     this.onSubmitReview = this.onSubmitReview.bind(this);
@@ -55,7 +60,9 @@ export class TransactionPanelComponent extends Component {
     const { reviewRating, reviewContent } = values;
     const rating = Number.parseInt(reviewRating, 10);
     onSendReview(transactionRole, currentTransaction, rating, reviewContent)
-      .then(r => this.setState({ isReviewModalOpen: false, reviewSubmitted: true }))
+      .then(r =>
+        this.setState({ isReviewModalOpen: false, reviewSubmitted: true })
+      )
       .catch(e => {
         // Do nothing.
       });
@@ -65,7 +72,11 @@ export class TransactionPanelComponent extends Component {
     this.setState({ sendMessageFormFocused: true });
     if (this.isMobSaf) {
       // Scroll to bottom
-      window.scroll({ top: document.body.scrollHeight, left: 0, behavior: 'smooth' });
+      window.scroll({
+        top: document.body.scrollHeight,
+        left: 0,
+        behavior: "smooth"
+      });
     }
   }
 
@@ -96,8 +107,8 @@ export class TransactionPanelComponent extends Component {
     const el = document.querySelector(selector);
     if (el) {
       el.scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
+        block: "start",
+        behavior: "smooth"
       });
     }
   }
@@ -127,33 +138,41 @@ export class TransactionPanelComponent extends Component {
       acceptInProgress,
       declineInProgress,
       acceptSaleError,
-      declineSaleError,
+      declineSaleError
     } = this.props;
 
     const currentTransaction = ensureTransaction(transaction);
     const currentListing = ensureListing(currentTransaction.listing);
     const currentProvider = ensureUser(currentTransaction.provider);
     const currentCustomer = ensureUser(currentTransaction.customer);
-    const isCustomer = transactionRole === 'customer';
-    const isProvider = transactionRole === 'provider';
+    const isCustomer = transactionRole === "customer";
+    const isProvider = transactionRole === "provider";
 
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
     const customerLoaded = !!currentCustomer.id;
-    const isCustomerBanned = customerLoaded && currentCustomer.attributes.banned;
-    const canShowSaleButtons = isProvider && txIsRequested(currentTransaction) && !isCustomerBanned;
+    const isCustomerBanned =
+      customerLoaded && currentCustomer.attributes.banned;
+    const canShowSaleButtons =
+      isProvider && txIsRequested(currentTransaction) && !isCustomerBanned;
     const isProviderLoaded = !!currentProvider.id;
-    const isProviderBanned = isProviderLoaded && currentProvider.attributes.banned;
-    const canShowBookButton = isCustomer && txIsEnquired(currentTransaction) && !isProviderBanned;
+    const isProviderBanned =
+      isProviderLoaded && currentProvider.attributes.banned;
+    const canShowBookButton =
+      isCustomer && txIsEnquired(currentTransaction) && !isProviderBanned;
 
     const bannedUserDisplayName = intl.formatMessage({
-      id: 'TransactionPanel.bannedUserDisplayName',
+      id: "TransactionPanel.bannedUserDisplayName"
     });
     const deletedListingTitle = intl.formatMessage({
-      id: 'TransactionPanel.deletedListingTitle',
+      id: "TransactionPanel.deletedListingTitle"
     });
 
-    const { authorDisplayName, customerDisplayName, otherUserDisplayName } = displayNames(
+    const {
+      authorDisplayName,
+      customerDisplayName,
+      otherUserDisplayName
+    } = displayNames(
       currentUser,
       currentProvider,
       currentCustomer,
@@ -165,7 +184,9 @@ export class TransactionPanelComponent extends Component {
       : currentListing.attributes.title;
 
     const firstImage =
-      currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+      currentListing.images && currentListing.images.length > 0
+        ? currentListing.images[0]
+        : null;
 
     const actionButtonClasses = classNames(css.actionButtons);
     const canShowActionButtons = canShowBookButton || canShowSaleButtons;
@@ -195,17 +216,17 @@ export class TransactionPanelComponent extends Component {
       );
     }
 
-    const sendMessagePlaceholder = intl.formatMessage(
-      { id: 'TransactionPanel.sendMessagePlaceholder' },
-      { name: otherUserDisplayName }
-    );
+    const sendMessagePlaceholder = intl.formatMessage({
+      id: "TransactionPanel.sendMessagePlaceholder"
+    });
 
     const sendMessageFormClasses = classNames(css.sendMessageForm);
 
-    const showInfoMessage = listingDeleted || (!listingDeleted && txIsRequested(transaction)); // !!orderInfoMessage;
+    const showInfoMessage =
+      listingDeleted || (!listingDeleted && txIsRequested(transaction)); // !!orderInfoMessage;
 
     const feedContainerClasses = classNames(css.feedContainer, {
-      [css.feedContainerWithInfoAbove]: showInfoMessage,
+      [css.feedContainerWithInfoAbove]: showInfoMessage
     });
 
     const classes = classNames(rootClassName || css.root, className);
@@ -220,16 +241,21 @@ export class TransactionPanelComponent extends Component {
                   rootClassName={css.rootForImage}
                   alt={listingTitle}
                   image={firstImage}
-                  variants={['landscape-crop', 'landscape-crop2x']}
+                  variants={["landscape-crop", "landscape-crop2x"]}
                 />
               </div>
             </div>
-            <div className={classNames(css.avatarWrapperMobile, css.avatarMobile)}>
+            <div
+              className={classNames(css.avatarWrapperMobile, css.avatarMobile)}
+            >
               <AvatarMedium user={currentProvider} />
             </div>
             {isProvider ? (
               <div className={css.avatarWrapperProviderDesktop}>
-                <AvatarLarge user={currentCustomer} className={css.avatarDesktop} />
+                <AvatarLarge
+                  user={currentCustomer}
+                  className={css.avatarDesktop}
+                />
               </div>
             ) : null}
 
@@ -257,7 +283,10 @@ export class TransactionPanelComponent extends Component {
                   currentListing={currentListing}
                 />
               </div>
-              <BreakdownMaybe transaction={currentTransaction} transactionRole={transactionRole} />
+              <BreakdownMaybe
+                transaction={currentTransaction}
+                transactionRole={transactionRole}
+              />
             </div>
 
             <FeedSection
@@ -297,7 +326,7 @@ export class TransactionPanelComponent extends Component {
                     rootClassName={css.rootForImage}
                     alt={listingTitle}
                     image={firstImage}
-                    variants={['landscape-crop', 'landscape-crop2x']}
+                    variants={["landscape-crop", "landscape-crop2x"]}
                   />
                 </div>
               </div>
@@ -330,7 +359,10 @@ export class TransactionPanelComponent extends Component {
                   />
                 </div>
               )}
-              <BreakdownMaybe transaction={currentTransaction} transactionRole={transactionRole} />
+              <BreakdownMaybe
+                transaction={currentTransaction}
+                transactionRole={transactionRole}
+              />
               {canShowActionButtons ? (
                 <div className={css.desktopActionButtons}>{actionButtons}</div>
               ) : null}
@@ -362,7 +394,7 @@ TransactionPanelComponent.defaultProps = {
   fetchMessagesError: null,
   initialMessageFailed: null,
   sendMessageError: null,
-  sendReviewError: null,
+  sendReviewError: null
 };
 
 const { arrayOf, bool, func, number, string } = PropTypes;
@@ -397,7 +429,7 @@ TransactionPanelComponent.propTypes = {
   declineSaleError: propTypes.error,
 
   // from injectIntl
-  intl: intlShape,
+  intl: intlShape
 };
 
 const TransactionPanel = injectIntl(TransactionPanelComponent);
