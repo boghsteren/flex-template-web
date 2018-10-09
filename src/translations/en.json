@@ -372,7 +372,7 @@
   "InboxPage.stateRequested": "Requested",
   "InboxPage.title": "Inbox",
   "LandingPage.schemaDescription":
-    "Become a Goodwings nonprofit partner and add your social impact experiences.",
+    "A global marketplace for social impact experiences.",
   "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}",
   "ListingCard.hostedBy": "Hosted by {authorName}.",
   "ListingCard.perUnit": "per day",
@@ -480,7 +480,7 @@
   "NotFoundPage.heading": "Sorry, we couldn't find that page.",
   "NotFoundPage.title": "Page not found",
   "Page.schemaDescription":
-    "Become a Goodwings nonprofit partner and add your social impact experiences.",
+    "A marketplace for social impact experiences.",
   "Page.schemaTitle": "Book experiences everywhere | {siteTitle}",
   "PaginationLinks.next": "Next page",
   "PaginationLinks.previous": "Previous page",
