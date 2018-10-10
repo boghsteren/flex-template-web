@@ -64,7 +64,7 @@ const SectionBooking = props => {
               id={
                 showClosedListingHelpText
                   ? "ListingPage.bookingHelpClosedListing"
-                  : "ListingPage.bookingHelp"
+                  
               }
             />
           </div>
