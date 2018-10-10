@@ -59,15 +59,7 @@ const SectionBooking = props => {
               values={{ title: richTitle }}
             />
           </h2>
-          <div className={css.bookingHelp}>
-            <FormattedMessage
-              id={
-                showClosedListingHelpText
-                  ? "ListingPage.bookingHelpClosedListing"
-                  : "ListingPage.bookingHelp"
-              }
-            />
-          </div>
+         
         </div>
         {!isClosed ? (
           <BookingDatesForm
