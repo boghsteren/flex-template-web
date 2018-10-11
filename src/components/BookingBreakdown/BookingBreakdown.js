@@ -98,7 +98,7 @@ export const BookingBreakdownComponent = props => {
       />
       {hasCommissionLineItem ? (
         <span className={css.feeInfo}>
-          <FormattedMessage id="BookingBreakdown.commissionFeeNote" />
+          <FormattedMessage id="BookingBreakdown.impactNote" />
         </span>
       ) : null}
     </div>
