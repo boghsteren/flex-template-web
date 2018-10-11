@@ -44,6 +44,10 @@ export const BookingBreakdownComponent = props => {
       isProvider && item.code === LINE_ITEM_PROVIDER_COMMISSION;
     return (hasCustomerCommission || hasProviderCommission) && !item.reversal;
   });
+  
+  const organisation =
+      profileUser.attributes.profile.publicData &&
+      profileUser.attributes.profile.publicData.organisation;
 
   const classes = classNames(rootClassName || css.root, className);
 
@@ -97,8 +101,9 @@ export const BookingBreakdownComponent = props => {
         intl={intl}
       />
       {hasCommissionLineItem ? (
-        <span className={css.feeInfo}>
-          <FormattedMessage id="BookingBreakdown.impactNote" />
+        <span className={css.impactInfo}>
+          <FormattedMessage id="BookingBreakdown.impactNote" 
+          values={{ name: formattedSubTotal, organisation }}/>
         </span>
       ) : null}
     </div>
