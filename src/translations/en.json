@@ -59,7 +59,7 @@
   "BookingBreakdown.commissionFeeNote":
     "The fee helps us run the platform and provide the best possible service to you!",
   "BookingBreakdown.impactNote":
-    "By booking this experience {subTotal} will go directly to {organisation} and support the fight for a sustainable future.",
+    "By booking this experience {formattedSubTotal} will go directly to {organisation} and support the fight for a sustainable future.",
   "BookingBreakdown.dayCount":
     "{count, number} {count, plural, one {day} other {days}}",
   "BookingBreakdown.nightCount":
