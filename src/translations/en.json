@@ -55,9 +55,11 @@
     "{name}, check your inbox to verify your email",
   "Avatar.bannedUserDisplayName": "Banned user",
   "BookingBreakdown.bookingPeriod": "{bookingStart} – {bookingEnd}",
-  "BookingBreakdown.commission": "Goodwings fee *",
+  "BookingBreakdown.commission": "Goodwings fee",
   "BookingBreakdown.commissionFeeNote":
-    "* The fee helps us run the platform and provide the best possible service to you!",
+    "By booking this experience {subTotal} will go directly to {organisation} and support the fight for a sustainable future.",
+  "BookingBreakdown.impactNote":
+    "By booking this experience {subTotal} will go directly to {organisation} and support the fight for a sustainable future.",
   "BookingBreakdown.dayCount":
     "{count, number} {count, plural, one {day} other {days}}",
   "BookingBreakdown.nightCount":
