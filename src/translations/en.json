@@ -57,7 +57,7 @@
   "BookingBreakdown.bookingPeriod": "{bookingStart} – {bookingEnd}",
   "BookingBreakdown.commission": "Goodwings fee",
   "BookingBreakdown.commissionFeeNote":
-    "By booking this experience {subTotal} will go directly to {organisation} and support the fight for a sustainable future.",
+    "The fee helps us run the platform and provide the best possible service to you!",
   "BookingBreakdown.impactNote":
     "By booking this experience {subTotal} will go directly to {organisation} and support the fight for a sustainable future.",
   "BookingBreakdown.dayCount":
