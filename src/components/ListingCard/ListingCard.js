@@ -46,9 +46,13 @@ export const ListingCardComponent = props => {
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
   const { title = "", price } = currentListing.attributes;
+  const pricingDetails = currentListing.attributes.publicData.pricing_scheme;
+  const pricingLabel = config.custom.pricing_schemes.find(
+    scheme => scheme.key === pricingDetails
+  ).label;
+
   const slug = createSlug(title);
   const author = ensureUser(listing.author);
-
   const authorName = author.attributes.profile.displayName;
   const authorOrganisation = author.attributes.profile.publicData.organisation
     ? author.attributes.profile.publicData.organisation
@@ -83,9 +87,7 @@ export const ListingCardComponent = props => {
           <div className={css.priceValue} title={priceTitle}>
             {formattedPrice}
           </div>
-          <div className={css.perUnit}>
-            <FormattedMessage id="ListingCard.perUnit" />
-          </div>
+          <div className={css.perUnit}>{pricingLabel}</div>
         </div>
         <div className={css.mainInfo}>
           <div className={css.title}>

@@ -28,9 +28,9 @@ export const goals = [
 export const pricing_schemes = [
   {
     key: "hourly_flat",
-    label: "Per hour (not based on number of participants)"
+    label: "Per hour"
   },
-  { key: "daily_flat", label: "Per day (not based on number of participants)" },
+  { key: "daily_flat", label: "Per day" },
   { key: "hourly_seats", label: "Per person per hour" },
   { key: "daily_seats", label: "Per person per day" }
 ];
