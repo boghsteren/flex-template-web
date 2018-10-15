@@ -182,14 +182,14 @@ const routeConfiguration = () => {
       component: props => <AuthenticationPage {...props} tab="login" />
     },
     {
-      path: "/helptheworld",
+      path: "/gp8pcnw6",
       name: "SignupPage",
       component: props => (
         <AuthenticationPage {...props} tab="signup" provider={false} />
       )
     },
     {
-      path: "/helpingtheworld",
+      path: "/6kjsd26s",
       name: "SignupPageProvider",
       component: props => (
         <AuthenticationPage {...props} tab="signup" provider />
