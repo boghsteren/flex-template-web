@@ -273,6 +273,7 @@ export class CheckoutPageComponent extends Component {
         <BookingBreakdown
           className={css.bookingBreakdown}
           userRole="customer"
+          listing={listing}
           unitType={config.bookingUnitType}
           transaction={currentTransaction}
           booking={currentBooking}

@@ -90,9 +90,16 @@ export class BookingDatesFormComponent extends Component {
             timeSlots,
             fetchTimeSlotsError
           } = fieldRenderProps;
-          const { startDate, endDate } =
-            values && values.bookingDates ? values.bookingDates : {};
-          const { seats } = (values && values.seats) || 1;
+          const endDate =
+            values && values.bookingDates
+              ? values.bookingDates.endDate
+              : values && values.bookingDate && values.bookingDate.date;
+          const startDate =
+            values && values.bookingDates
+              ? values.bookingDates.startDate
+              : values && values.bookingDate && values.bookingDate.date;
+          const seats = (values && parseInt(values.seats, 10)) || 1;
+          const hours = (values && parseInt(values.hours, 10)) || 1;
 
           const bookingStartLabel = intl.formatMessage({
             id: "BookingDatesForm.bookingStartTitle"
@@ -132,7 +139,8 @@ export class BookingDatesFormComponent extends Component {
               <FormattedMessage id="BookingDatesForm.timeSlotsError" />
             </p>
           ) : null;
-
+          const numberOfDays =
+            startDate && endDate && moment(endDate).diff(startDate, "days") + 1;
           // This is the place to collect breakdown estimation data. See the
           // EstimatedBreakdownMaybe component to change the calculations
           // for customized payment processes.
@@ -143,7 +151,9 @@ export class BookingDatesFormComponent extends Component {
                   unitPrice,
                   startDate,
                   endDate,
-                  quantity: seats
+                  seats: seats,
+                  hours: hours,
+                  quantity: hours * seats * numberOfDays
                 }
               : null;
           const bookingInfo = bookingData ? (
@@ -151,7 +161,10 @@ export class BookingDatesFormComponent extends Component {
               <h3 className={css.priceBreakdownTitle}>
                 <FormattedMessage id="BookingDatesForm.priceBreakdownTitle" />
               </h3>
-              <EstimatedBreakdownMaybe bookingData={bookingData} />
+              <EstimatedBreakdownMaybe
+                bookingData={bookingData}
+                listing={listing}
+              />
             </div>
           ) : null;
 

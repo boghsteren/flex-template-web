@@ -27,7 +27,6 @@ const SectionBooking = props => {
     timeSlots,
     fetchTimeSlotsError
   } = props;
-  const showClosedListingHelpText = listing.id && isClosed;
 
   return (
     <div>
@@ -59,7 +58,6 @@ const SectionBooking = props => {
               values={{ title: richTitle }}
             />
           </h2>
-         
         </div>
         {!isClosed ? (
           <BookingDatesForm

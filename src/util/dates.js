@@ -1,10 +1,10 @@
-import moment from 'moment';
+import moment from "moment";
 
 /**
  * Input names for the DateRangePicker from react-dates.
  */
-export const START_DATE = 'startDate';
-export const END_DATE = 'endDate';
+export const START_DATE = "startDate";
+export const END_DATE = "endDate";
 
 /**
  * Convert date given by API to something meaningful noon on browser's timezone
@@ -29,10 +29,13 @@ export const dateFromAPIToLocalNoon = date => {
   // Example timezone SST:
   // We get a Fri 00:00 UTC aka "Thu Mar 29 2018 13:00:00 GMT-1100 (SST)"
   // We need to subtract timezone difference (-11h), effectively adding 11h - to get to correct date
-  const momentInLocalTimezone = moment(date).subtract(timezoneDiffInMinutes, 'minutes');
+  const momentInLocalTimezone = moment(date).subtract(
+    timezoneDiffInMinutes,
+    "minutes"
+  );
   // To be on the safe zone with leap seconds and stuff when using day / night picker
   // we'll add 12 h to get to the noon of day in local timezone.
-  return momentInLocalTimezone.add(12, 'hours').toDate();
+  return momentInLocalTimezone.add(12, "hours").toDate();
 };
 
 /**
@@ -52,7 +55,10 @@ export const dateFromAPIToLocalNoon = date => {
  */
 export const dateFromLocalToAPI = date => {
   const timezoneDiffInMinutes = moment(date).utcOffset();
-  const momentInLocalTimezone = moment(date).add(timezoneDiffInMinutes, 'minutes');
+  const momentInLocalTimezone = moment(date).add(
+    timezoneDiffInMinutes,
+    "minutes"
+  );
 
   return momentInLocalTimezone.toDate();
 };
@@ -67,9 +73,9 @@ export const dateFromLocalToAPI = date => {
  * @returns {Number} number of nights between the given dates
  */
 export const nightsBetween = (startDate, endDate) => {
-  const nights = moment(endDate).diff(startDate, 'days');
+  const nights = moment(endDate).diff(startDate, "days") + 1;
   if (nights < 0) {
-    throw new Error('End date cannot be before start date');
+    throw new Error("End date cannot be before start date");
   }
   return nights;
 };
@@ -87,9 +93,9 @@ export const nightsBetween = (startDate, endDate) => {
  * @returns {Number} number of days between the given dates
  */
 export const daysBetween = (startDate, endDate) => {
-  const days = moment(endDate).diff(startDate, 'days');
+  const days = moment(endDate).diff(startDate, "days") + 1;
   if (days < 0) {
-    throw new Error('End date cannot be before start date');
+    throw new Error("End date cannot be before start date");
   }
   return days;
 };
@@ -104,36 +110,39 @@ export const daysBetween = (startDate, endDate) => {
  * @returns {String} formatted date
  */
 export const formatDate = (intl, todayString, d) => {
-  const paramsValid = intl && d instanceof Date && typeof todayString === 'string';
+  const paramsValid =
+    intl && d instanceof Date && typeof todayString === "string";
   if (!paramsValid) {
-    throw new Error(`Invalid params for formatDate: (${intl}, ${todayString}, ${d})`);
+    throw new Error(
+      `Invalid params for formatDate: (${intl}, ${todayString}, ${d})`
+    );
   }
   const now = moment(intl.now());
   const formattedTime = intl.formatTime(d);
   let formattedDate;
 
-  if (now.isSame(d, 'day')) {
+  if (now.isSame(d, "day")) {
     // e.g. "Today, 9:10pm"
     formattedDate = todayString;
-  } else if (now.isSame(d, 'week')) {
+  } else if (now.isSame(d, "week")) {
     // e.g. "Wed, 8:00pm"
     formattedDate = intl.formatDate(d, {
-      weekday: 'short',
+      weekday: "short"
     });
-  } else if (now.isSame(d, 'year')) {
+  } else if (now.isSame(d, "year")) {
     // e.g. "Aug 22, 7:40pm"
     formattedDate = intl.formatDate(d, {
-      month: 'short',
-      day: 'numeric',
+      month: "short",
+      day: "numeric"
     });
   } else {
     // e.g. "Jul 17 2016, 6:02pm"
     const date = intl.formatDate(d, {
-      month: 'short',
-      day: 'numeric',
+      month: "short",
+      day: "numeric"
     });
     const year = intl.formatDate(d, {
-      year: 'numeric',
+      year: "numeric"
     });
     formattedDate = `${date} ${year}`;
   }

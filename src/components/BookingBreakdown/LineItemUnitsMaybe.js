@@ -1,41 +1,37 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { LINE_ITEM_UNITS, propTypes } from '../../util/types';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { propTypes } from "../../util/types";
 
-import css from './BookingBreakdown.css';
+import css from "./BookingBreakdown.css";
 
 const LineItemUnitsMaybe = props => {
   const { transaction, unitType } = props;
 
-  if (unitType !== LINE_ITEM_UNITS) {
-    return null;
-  }
-
-  const unitPurchase = transaction.attributes.lineItems.find(
-    item => item.code === unitType && !item.reversal
-  );
-
-  if (!unitPurchase) {
-    throw new Error(`LineItemUnitsMaybe: lineItem (${unitType}) missing`);
-  }
-
-  const quantity = unitPurchase.quantity;
-
+  const quantity =
+    unitType === "seats"
+      ? transaction.attributes.protectedData.seats
+      : transaction.attributes.protectedData.hours;
+  const quantityUnit =
+    unitType === "seats"
+      ? "BookingBreakdown.quantityUnitSeats"
+      : "BookingBreakdown.quantityUnitHours";
   return (
     <div className={css.lineItem}>
       <span className={css.itemLabel}>
-        <FormattedMessage id="BookingBreakdown.quantityUnit" />
+        <FormattedMessage id={quantityUnit} />
       </span>
       <span className={css.itemValue}>
-        <FormattedMessage id="BookingBreakdown.quantity" values={{ quantity }} />
+        <FormattedMessage
+          id="BookingBreakdown.quantity"
+          values={{ quantity }}
+        />
       </span>
     </div>
   );
 };
 
 LineItemUnitsMaybe.propTypes = {
-  transaction: propTypes.transaction.isRequired,
-  unitType: propTypes.bookingUnitType.isRequired,
+  transaction: propTypes.transaction.isRequired
 };
 
 export default LineItemUnitsMaybe;

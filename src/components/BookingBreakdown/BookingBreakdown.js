@@ -11,6 +11,7 @@ import {
   LINE_ITEM_CUSTOMER_COMMISSION,
   LINE_ITEM_PROVIDER_COMMISSION
 } from "../../util/types";
+import { formatMoney } from "../../util/currency";
 
 import LineItemUnitPrice from "./LineItemUnitPrice";
 import LineItemBookingPeriod from "./LineItemBookingPeriod";
@@ -31,7 +32,8 @@ export const BookingBreakdownComponent = props => {
     unitType,
     transaction,
     booking,
-    intl
+    intl,
+    listing
   } = props;
 
   const isCustomer = userRole === "customer";
@@ -44,18 +46,17 @@ export const BookingBreakdownComponent = props => {
       isProvider && item.code === LINE_ITEM_PROVIDER_COMMISSION;
     return (hasCustomerCommission || hasProviderCommission) && !item.reversal;
   });
-  
-  const organisation =
-      profileUser.attributes.profile.publicData &&
-      profileUser.attributes.profile.publicData.organisation;
 
+  const organisation =
+    listing.author.attributes.profile.publicData &&
+    listing.author.attributes.profile.publicData.organisation;
   const classes = classNames(rootClassName || css.root, className);
 
   return (
     <div className={classes}>
       <LineItemUnitPrice
         transaction={transaction}
-        unitType={unitType}
+        unitType={transaction.attributes.protectedData.pricing_scheme}
         intl={intl}
       />
       <LineItemBookingPeriod
@@ -63,7 +64,14 @@ export const BookingBreakdownComponent = props => {
         booking={booking}
         unitType={unitType}
       />
-      <LineItemUnitsMaybe transaction={transaction} unitType={unitType} />
+      {(listing.attributes.publicData.pricing_scheme === "daily_seats" ||
+        listing.attributes.publicData.pricing_scheme === "hourly_seats") && (
+        <LineItemUnitsMaybe transaction={transaction} unitType={"seats"} />
+      )}
+      {(listing.attributes.publicData.pricing_scheme === "hourly_flat" ||
+        listing.attributes.publicData.pricing_scheme === "hourly_seats") && (
+        <LineItemUnitsMaybe transaction={transaction} unitType={"hours"} />
+      )}
 
       <LineItemSubTotalMaybe
         transaction={transaction}
@@ -102,8 +110,16 @@ export const BookingBreakdownComponent = props => {
       />
       {hasCommissionLineItem ? (
         <span className={css.impactInfo}>
-          <FormattedMessage id="BookingBreakdown.impactNote" 
-          values={{ name: formattedSubTotal, organisation }}/>
+          <FormattedMessage
+            id="BookingBreakdown.impactNote"
+            values={{
+              formattedSubTotal: formatMoney(
+                intl,
+                transaction.attributes.payoutTotal
+              ),
+              organisation
+            }}
+          />
         </span>
       ) : null}
     </div>
@@ -123,7 +139,6 @@ BookingBreakdownComponent.propTypes = {
   unitType: propTypes.bookingUnitType.isRequired,
   transaction: propTypes.transaction.isRequired,
   booking: propTypes.booking.isRequired,
-
   // from injectIntl
   intl: intlShape.isRequired
 };

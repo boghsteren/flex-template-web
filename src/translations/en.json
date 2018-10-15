@@ -65,14 +65,18 @@
   "BookingBreakdown.nightCount":
     "{count, number} {count, plural, one {night} other {nights}}",
   "BookingBreakdown.pricePerDay": "Price per day",
+  "BookingBreakdown.pricePerDayPerPerson": "Price per person per day",
+  "BookingBreakdown.pricePerHourPerPerson": "Price per person per hour",
+  "BookingBreakdown.pricePerHour": "Price per hour",
   "BookingBreakdown.pricePerNight": "Price per night",
   "BookingBreakdown.pricePerQuantity": "Price per person",
   "BookingBreakdown.providerTotalCanceled": "Total price",
   "BookingBreakdown.providerTotalDeclined": "Final sum",
   "BookingBreakdown.providerTotalDefault": "You'll make",
   "BookingBreakdown.providerTotalDelivered": "You made",
-  "BookingBreakdown.quantity":
-    "{quantity, number} {quantity, plural, one {person} other {persons}}",
+  "BookingBreakdown.quantity": "{quantity, number}",
+  "BookingBreakdown.quantityUnitSeats": "Participants",
+  "BookingBreakdown.quantityUnitHours": "Hours",
   "BookingBreakdown.quantityUnit": "Number of persons",
   "BookingBreakdown.refund": "Refund",
   "BookingBreakdown.refundCustomerFee": "Refund Goodwings fee",
@@ -314,9 +318,9 @@
   "EmailVerificationPage.loadingUserInformation": "Loading user information…",
   "EmailVerificationPage.title": "Verify your email address",
   "EnquiryForm.heading": "Enquire about {listingTitle}",
-  "EnquiryForm.messageLabel": "Message to {authorDisplayName} from {organisation}",
-  "EnquiryForm.messagePlaceholder":
-    "Type your message here...",
+  "EnquiryForm.messageLabel":
+    "Message to {authorDisplayName} from {organisation}",
+  "EnquiryForm.messagePlaceholder": "Type your message here...",
   "EnquiryForm.messageRequired": "A message is required",
   "EnquiryForm.sendEnquiryError":
     "That's strange! Something went wrong. Please try again.",
@@ -481,8 +485,7 @@
     "We can't find the page or experience you're looking for. Make sure you've typed in the URL correctly or try searching Goodwings Experiences.",
   "NotFoundPage.heading": "Sorry, we couldn't find that page.",
   "NotFoundPage.title": "Page not found",
-  "Page.schemaDescription":
-    "A marketplace for social impact experiences.",
+  "Page.schemaDescription": "A marketplace for social impact experiences.",
   "Page.schemaTitle": "Book experiences everywhere | {siteTitle}",
   "PaginationLinks.next": "Next page",
   "PaginationLinks.previous": "Previous page",
@@ -655,7 +658,8 @@
   "ProfileSettingsForm.bioInfo":
     "Goodwings Experiences is built on relationships. Tell other people about your nonprofit organisation or company.",
   "ProfileSettingsForm.bioLabel": "Bio",
-  "ProfileSettingsForm.bioPlaceholder": "Tell us a little bit about your organisation or company…",
+  "ProfileSettingsForm.bioPlaceholder":
+    "Tell us a little bit about your organisation or company…",
   "ProfileSettingsForm.changeAvatar": "Change",
   "ProfileSettingsForm.fileInfo": ".JPG, .GIF or .PNG. Max. 10 MB",
   "ProfileSettingsForm.firstNameLabel": "First name",
@@ -837,8 +841,7 @@
   "StripePaymentForm.messageLabel":
     "Say hello to the host {messageOptionalText}",
   "StripePaymentForm.messageOptionalText": "• optional",
-  "StripePaymentForm.messagePlaceholder":
-    "Hello {name}! We look forward to...",
+  "StripePaymentForm.messagePlaceholder": "Hello {name}! We look forward to...",
   "StripePaymentForm.paymentHeading": "Payment",
   "StripePaymentForm.stripe.api_connection_error":
     "Could not connect to Stripe API.",
@@ -970,8 +973,7 @@
     "{customerName} is waiting for your response.",
   "TransactionPanel.saleRequestedTitle":
     "{customerName} has requested to book {listingLink}.",
-  "TransactionPanel.sendMessagePlaceholder":
-    "Send a message.",
+  "TransactionPanel.sendMessagePlaceholder": "Send a message.",
   "UserCard.contactUser": "Contact",
   "UserCard.heading": "Hello, we're {organisation}.",
   "UserCard.showFullBioLink": "more",

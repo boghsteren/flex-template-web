@@ -1,14 +1,19 @@
-import React from 'react';
-import { string, bool } from 'prop-types';
-import { compose } from 'redux';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { Form as FinalForm } from 'react-final-form';
-import classNames from 'classnames';
-import { Form, PrimaryButton, FieldTextInput, IconEnquiry } from '../../components';
-import * as validators from '../../util/validators';
-import { propTypes } from '../../util/types';
+import React from "react";
+import { string, bool } from "prop-types";
+import { compose } from "redux";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { Form as FinalForm } from "react-final-form";
+import classNames from "classnames";
+import {
+  Form,
+  PrimaryButton,
+  FieldTextInput,
+  IconEnquiry
+} from "../../components";
+import * as validators from "../../util/validators";
+import { propTypes } from "../../util/types";
 
-import css from './EnquiryForm.css';
+import css from "./EnquiryForm.css";
 
 const EnquiryFormComponent = props => (
   <FinalForm
@@ -30,20 +35,22 @@ const EnquiryFormComponent = props => (
 
       const messageLabel = intl.formatMessage(
         {
-          id: 'EnquiryForm.messageLabel',
+          id: "EnquiryForm.messageLabel"
         },
-        { authorDisplayName }
+        { authorDisplayName, organisation }
       );
       const messagePlaceholder = intl.formatMessage(
         {
-          id: 'EnquiryForm.messagePlaceholder',
+          id: "EnquiryForm.messagePlaceholder"
         },
         { authorDisplayName, organisation }
       );
       const messageRequiredMessage = intl.formatMessage({
-        id: 'EnquiryForm.messageRequired',
+        id: "EnquiryForm.messageRequired"
       });
-      const messageRequired = validators.requiredAndNonEmptyString(messageRequiredMessage);
+      const messageRequired = validators.requiredAndNonEmptyString(
+        messageRequiredMessage
+      );
 
       const classes = classNames(rootClassName || css.root, className);
       const submitInProgress = inProgress;
@@ -53,13 +60,16 @@ const EnquiryFormComponent = props => (
         <Form className={classes} onSubmit={handleSubmit}>
           <IconEnquiry className={css.icon} />
           <h2 className={css.heading}>
-            <FormattedMessage id="EnquiryForm.heading" values={{ listingTitle }} />
+            <FormattedMessage
+              id="EnquiryForm.heading"
+              values={{ listingTitle }}
+            />
           </h2>
           <FieldTextInput
             className={css.field}
             type="textarea"
             name="message"
-            id={formId ? `${formId}.message` : 'message'}
+            id={formId ? `${formId}.message` : "message"}
             label={messageLabel}
             placeholder={messagePlaceholder}
             validate={messageRequired}
@@ -70,7 +80,11 @@ const EnquiryFormComponent = props => (
                 <FormattedMessage id="EnquiryForm.sendEnquiryError" />
               </p>
             ) : null}
-            <PrimaryButton type="submit" inProgress={submitInProgress} disabled={submitDisabled}>
+            <PrimaryButton
+              type="submit"
+              inProgress={submitInProgress}
+              disabled={submitDisabled}
+            >
               <FormattedMessage id="EnquiryForm.submitButtonText" />
             </PrimaryButton>
           </div>
@@ -85,7 +99,7 @@ EnquiryFormComponent.defaultProps = {
   className: null,
   submitButtonWrapperClassName: null,
   inProgress: false,
-  sendEnquiryError: null,
+  sendEnquiryError: null
 };
 
 EnquiryFormComponent.propTypes = {
@@ -100,11 +114,11 @@ EnquiryFormComponent.propTypes = {
   sendEnquiryError: propTypes.error,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const EnquiryForm = compose(injectIntl)(EnquiryFormComponent);
 
-EnquiryForm.displayName = 'EnquiryForm';
+EnquiryForm.displayName = "EnquiryForm";
 
 export default EnquiryForm;

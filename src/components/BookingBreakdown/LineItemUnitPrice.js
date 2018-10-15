@@ -1,22 +1,25 @@
-import React from 'react';
-import { FormattedMessage, intlShape } from 'react-intl';
-import { formatMoney } from '../../util/currency';
-import { LINE_ITEM_NIGHT, LINE_ITEM_DAY, propTypes } from '../../util/types';
+import React from "react";
+import { FormattedMessage, intlShape } from "react-intl";
+import { formatMoney } from "../../util/currency";
+import { propTypes } from "../../util/types";
 
-import css from './BookingBreakdown.css';
+import css from "./BookingBreakdown.css";
 
 const LineItemUnitPrice = props => {
   const { transaction, unitType, intl } = props;
-  const isNightly = unitType === LINE_ITEM_NIGHT;
-  const isDaily = unitType === LINE_ITEM_DAY;
-  const translationKey = isNightly
-    ? 'BookingBreakdown.pricePerNight'
-    : isDaily
-      ? 'BookingBreakdown.pricePerDay'
-      : 'BookingBreakdown.pricePerQuantity';
+  const isDailySeats = unitType === "daily_seats";
+  const isDailyFlat = unitType === "daily_flat";
+  const isHourlySeats = unitType === "hourly_seats";
+  const translationKey = isDailyFlat
+    ? "BookingBreakdown.pricePerDay"
+    : isDailySeats
+      ? "BookingBreakdown.pricePerDayPerPerson"
+      : isHourlySeats
+        ? "BookingBreakdown.pricePerHourPerPerson"
+        : "BookingBreakdown.pricePerHour";
 
   const unitPurchase = transaction.attributes.lineItems.find(
-    item => item.code === unitType && !item.reversal
+    item => item.code === "line-item/units" && !item.reversal
   );
 
   if (!unitPurchase) {
@@ -37,8 +40,7 @@ const LineItemUnitPrice = props => {
 
 LineItemUnitPrice.propTypes = {
   transaction: propTypes.transaction.isRequired,
-  unitType: propTypes.bookingUnitType.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default LineItemUnitPrice;
