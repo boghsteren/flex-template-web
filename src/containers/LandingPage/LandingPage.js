@@ -82,7 +82,6 @@ export const LandingPageComponent = props => {
           <ul className={css.sections}>
             {user && (
               <div>
-                {" "}
                 <li className={css.section}>
                   <div className={css.sectionContent}>
                     <SectionLocations />
@@ -98,14 +97,20 @@ export const LandingPageComponent = props => {
                     <SectionAllOverTheWorld />
                   </div>
                 </li>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionHowItWorks />
+                  </div>
+                </li>
               </div>
             )}
-
-            <li className={css.section}>
-              <div className={css.sectionContent}>
-                <SectionHowItWorks />
-              </div>
-            </li>
+            {!user && (
+              <li className={css.section}>
+                <div className={css.sectionContent}>
+                  <SectionHowItWorks />
+                </div>
+              </li>
+            )}
           </ul>
         </LayoutWrapperMain>
         <LayoutWrapperFooter>

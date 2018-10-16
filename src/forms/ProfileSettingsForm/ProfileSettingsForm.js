@@ -297,9 +297,7 @@ class ProfileSettingsFormComponent extends Component {
                 </div>
               </div>
               <div className={css.sectionContainer}>
-                <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.yourName" />
-                </h3>
+        
                 <div className={css.nameContainer}>
                   <FieldTextInput
                     className={css.firstName}
