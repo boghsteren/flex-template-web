@@ -342,7 +342,7 @@
 }
 
 .authorNameLink {
-  color: var(--matterColor);
+  color: var(--linkColorTeal);
 }
 
 .avatarNamedLink:hover {
