@@ -130,7 +130,7 @@ const bookingData = (unitType, tx, isOrder, intl) => {
   const { start, end } = tx.booking.attributes;
   const startDate = dateFromAPIToLocalNoon(start);
   const endDateRaw = dateFromAPIToLocalNoon(end);
-  const isDaily = unitType === LINE_ITEM_DAY;
+  const isDaily = true;
   const isUnits = unitType === LINE_ITEM_UNITS;
   const isSingleDay = isDaily && daysBetween(startDate, endDateRaw) === 1;
   const bookingStart = formatDate(intl, startDate);

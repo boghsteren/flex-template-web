@@ -78,12 +78,12 @@ const estimatedTransaction = (
 ) => {
   const now = new Date();
   const isNightly = unitType === LINE_ITEM_NIGHT;
-  const isDaily = unitType === LINE_ITEM_DAY;
+  const isDaily = true;
 
   const unitCount = isNightly
     ? nightsBetween(bookingStart, bookingEnd)
     : isDaily
-      ? daysBetween(bookingStart, bookingEnd)
+      ? daysBetween(bookingStart, bookingEnd) * seats * hours
       : quantity;
 
   const totalPrice = estimatedTotalPrice(unitPrice, unitCount);
@@ -140,7 +140,9 @@ const estimatedTransaction = (
       type: "booking",
       attributes: {
         start: serverDayStart,
-        end: serverDayEnd
+        end: moment(serverDayEnd)
+          .add(1, "days")
+          .toDate()
       }
     }
   };

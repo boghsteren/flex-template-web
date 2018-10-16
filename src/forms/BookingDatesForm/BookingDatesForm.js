@@ -140,7 +140,7 @@ export class BookingDatesFormComponent extends Component {
             </p>
           ) : null;
           const numberOfDays =
-            startDate && endDate && moment(endDate).diff(startDate, "days") + 1;
+            startDate && endDate && moment(endDate).diff(startDate, "days");
           // This is the place to collect breakdown estimation data. See the
           // EstimatedBreakdownMaybe component to change the calculations
           // for customized payment processes.

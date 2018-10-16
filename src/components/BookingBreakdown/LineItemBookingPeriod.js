@@ -49,11 +49,15 @@ const LineItemBookingPeriod = props => {
   const localEndDateRaw = dateFromAPIToLocalNoon(endDateRaw);
 
   const isNightly = unitType === LINE_ITEM_NIGHT;
-  const isDaily = unitType === LINE_ITEM_DAY;
+  const isDaily = true;
 
   const dayCount = daysBetween(localStartDate, localEndDateRaw);
-  const isSingleDay = !isNightly && dayCount === 1;
-  const endDay = isNightly ? localEndDateRaw : moment(localEndDateRaw);
+  const isSingleDay = !isNightly && dayCount === 2;
+  const endDay = isNightly
+    ? localEndDateRaw
+    : moment(localEndDateRaw)
+        .subtract(1, "days")
+        .toDate();
 
   const unitPurchase = transaction.attributes.lineItems.find(
     item => item.code === unitType && !item.reversal
@@ -69,12 +73,7 @@ const LineItemBookingPeriod = props => {
     : dayCount;
 
   const unitCountMessage = (
-    <FormattedHTMLMessage
-      id={
-        isNightly ? "BookingBreakdown.nightCount" : "BookingBreakdown.dayCount"
-      }
-      values={{ count }}
-    />
+    <FormattedHTMLMessage id={"BookingBreakdown.dayCount"} values={{ count }} />
   );
 
   return (

@@ -59,11 +59,14 @@ export const BookingBreakdownComponent = props => {
         unitType={transaction.attributes.protectedData.pricing_scheme}
         intl={intl}
       />
-      <LineItemBookingPeriod
-        transaction={transaction}
-        booking={booking}
-        unitType={unitType}
-      />
+      {(listing.attributes.publicData.pricing_scheme === "daily_flat" ||
+        listing.attributes.publicData.pricing_scheme === "daily_seats") && (
+        <LineItemBookingPeriod
+          transaction={transaction}
+          booking={booking}
+          unitType={unitType}
+        />
+      )}
       {(listing.attributes.publicData.pricing_scheme === "daily_seats" ||
         listing.attributes.publicData.pricing_scheme === "hourly_seats") && (
         <LineItemUnitsMaybe transaction={transaction} unitType={"seats"} />

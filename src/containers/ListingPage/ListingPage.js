@@ -140,7 +140,7 @@ export class ListingPageComponent extends Component {
 
     const dailyQuantity =
       bookingDates &&
-      moment(bookingDates.endDate).diff(bookingDates.startDate, "days") *
+      (moment(bookingDates.endDate).diff(bookingDates.startDate, "days") + 1) *
         (seatsNumber || 1);
     const hourlyQuantity = hours * seatsNumber;
     const quantity =
@@ -161,7 +161,10 @@ export class ListingPageComponent extends Component {
         bookingStart:
           (bookingDates && bookingDates.startDate) || bookingDate.date,
         bookingEnd:
-          (bookingDates && bookingDates.endDate) ||
+          (bookingDates &&
+            moment(bookingDates.endDate)
+              .add(1, "day")
+              .toDate()) ||
           moment(bookingDate.date)
             .add(1, "day")
             .toDate()
