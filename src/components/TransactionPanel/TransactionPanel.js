@@ -286,6 +286,7 @@ export class TransactionPanelComponent extends Component {
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
+                listing={currentListing}
               />
             </div>
 
@@ -362,6 +363,7 @@ export class TransactionPanelComponent extends Component {
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
+                listing={currentListing}
               />
               {canShowActionButtons ? (
                 <div className={css.desktopActionButtons}>{actionButtons}</div>

@@ -1,6 +1,6 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import classNames from "classnames";
 import {
   txHasBeenAccepted,
   txHasFirstReview,
@@ -11,21 +11,21 @@ import {
   txIsEnquired,
   txIsExpired,
   txIsRequested,
-  txIsReviewed,
-} from '../../util/types';
-import { userDisplayName } from '../../util/data';
-import { createSlug, stringify } from '../../util/urlHelpers';
+  txIsReviewed
+} from "../../util/types";
+import { userDisplayName } from "../../util/data";
+import { createSlug, stringify } from "../../util/urlHelpers";
 import {
   ActivityFeed,
   BookingBreakdown,
   ExternalLink,
   NamedLink,
   PrimaryButton,
-  SecondaryButton,
-} from '../../components';
-import config from '../../config';
+  SecondaryButton
+} from "../../components";
+import config from "../../config";
 
-import css from './TransactionPanel.css';
+import css from "./TransactionPanel.css";
 
 // Functional component as a helper to build ActivityFeed section
 export const FeedSection = props => {
@@ -41,7 +41,7 @@ export const FeedSection = props => {
     oldestMessagePageFetched,
     onShowMoreMessages,
     onOpenReviewModal,
-    totalMessagePages,
+    totalMessagePages
   } = props;
 
   const txTransitions = currentTransaction.attributes.transitions
@@ -50,7 +50,10 @@ export const FeedSection = props => {
   const hasOlderMessages = totalMessagePages > oldestMessagePageFetched;
 
   const showFeed =
-    messages.length > 0 || txTransitions.length > 0 || initialMessageFailed || fetchMessagesError;
+    messages.length > 0 ||
+    txTransitions.length > 0 ||
+    initialMessageFailed ||
+    fetchMessagesError;
 
   const classes = classNames(rootClassName || css.feedContainer, className);
 
@@ -89,11 +92,12 @@ export const FeedSection = props => {
 export const AddressLinkMaybe = props => {
   const { transaction, transactionRole, currentListing } = props;
 
-  const isProvider = transactionRole === 'provider';
-  const isCustomer = transactionRole === 'customer';
+  const isProvider = transactionRole === "provider";
+  const isCustomer = transactionRole === "customer";
   const txIsAcceptedForCustomer = isCustomer && txHasBeenAccepted(transaction);
 
-  const { address, building } = currentListing.attributes.publicData.location || {};
+  const { address, building } =
+    currentListing.attributes.publicData.location || {};
   const geolocation = currentListing.attributes.geolocation;
 
   const { lat, lng } = geolocation || {};
@@ -104,7 +108,9 @@ export const AddressLinkMaybe = props => {
       : null;
 
   const fullAddress =
-    typeof building === 'string' && building.length > 0 ? `${building}, ${address}` : address;
+    typeof building === "string" && building.length > 0
+      ? `${building}, ${address}`
+      : address;
 
   return (isProvider || txIsAcceptedForCustomer) && hrefToGoogleMaps ? (
     <p className={css.address}>
@@ -115,8 +121,18 @@ export const AddressLinkMaybe = props => {
 
 // Functional component as a helper to build BookingBreakdown
 export const BreakdownMaybe = props => {
-  const { className, rootClassName, transaction, transactionRole } = props;
-  const loaded = transaction && transaction.id && transaction.booking && transaction.booking.id;
+  const {
+    className,
+    rootClassName,
+    transaction,
+    transactionRole,
+    listing
+  } = props;
+  const loaded =
+    transaction &&
+    transaction.id &&
+    transaction.booking &&
+    transaction.booking.id;
 
   const classes = classNames(rootClassName || css.breakdown, className);
   return loaded ? (
@@ -130,12 +146,18 @@ export const BreakdownMaybe = props => {
         unitType={config.bookingUnitType}
         transaction={transaction}
         booking={transaction.booking}
+        listing={listing}
       />
     </div>
   ) : null;
 };
 
-const createListingLink = (listing, label, searchParams = {}, className = '') => {
+const createListingLink = (
+  listing,
+  label,
+  searchParams = {},
+  className = ""
+) => {
   const listingLoaded = !!listing.id;
 
   if (listingLoaded && !listing.attributes.deleted) {
@@ -143,7 +165,12 @@ const createListingLink = (listing, label, searchParams = {}, className = '') =>
     const params = { id: listing.id.uuid, slug: createSlug(title) };
     const to = { search: stringify(searchParams) };
     return (
-      <NamedLink className={className} name="ListingPage" params={params} to={to}>
+      <NamedLink
+        className={className}
+        name="ListingPage"
+        params={params}
+        to={to}
+      >
         {label}
       </NamedLink>
     );
@@ -158,7 +185,12 @@ export const OrderActionButtonMaybe = props => {
   const { className, rootClassName, canShowButtons, listing } = props;
 
   const title = <FormattedMessage id="TransactionPanel.requestToBook" />;
-  const listingLink = createListingLink(listing, title, { book: true }, css.requestToBookButton);
+  const listingLink = createListingLink(
+    listing,
+    title,
+    { book: true },
+    css.requestToBookButton
+  );
   const classes = classNames(rootClassName || css.actionButtons, className);
 
   return canShowButtons ? <div className={classes}>{listingLink}</div> : null;
@@ -177,7 +209,7 @@ export const SaleActionButtonsMaybe = props => {
     acceptSaleError,
     declineSaleError,
     onAcceptSale,
-    onDeclineSale,
+    onDeclineSale
   } = props;
 
   const buttonsDisabled = acceptInProgress || declineInProgress;
@@ -229,7 +261,7 @@ export const OrderTitle = props => {
     transaction,
     customerDisplayName: customerName,
     currentListing,
-    listingTitle,
+    listingTitle
   } = props;
   const listingLink = createListingLink(currentListing, listingTitle);
 
@@ -239,7 +271,10 @@ export const OrderTitle = props => {
     return (
       <h1 className={classes}>
         <span className={css.mainTitle}>
-          <FormattedMessage id="TransactionPanel.orderEnquiredTitle" values={{ listingLink }} />
+          <FormattedMessage
+            id="TransactionPanel.orderEnquiredTitle"
+            values={{ listingLink }}
+          />
         </span>
       </h1>
     );
@@ -262,9 +297,15 @@ export const OrderTitle = props => {
     return (
       <h1 className={classes}>
         <span className={css.mainTitle}>
-          <FormattedMessage id="TransactionPanel.orderAcceptedTitle" values={{ customerName }} />
+          <FormattedMessage
+            id="TransactionPanel.orderAcceptedTitle"
+            values={{ customerName }}
+          />
         </span>
-        <FormattedMessage id="TransactionPanel.orderAcceptedSubtitle" values={{ listingLink }} />
+        <FormattedMessage
+          id="TransactionPanel.orderAcceptedSubtitle"
+          values={{ listingLink }}
+        />
       </h1>
     );
   } else if (txIsDeclined(transaction)) {
@@ -319,14 +360,20 @@ export const OrderMessage = props => {
     rootClassName,
     transaction,
     authorDisplayName: providerName,
-    listingDeleted,
+    listingDeleted
   } = props;
-  const classes = classNames(rootClassName || css.transactionInfoMessage, className);
+  const classes = classNames(
+    rootClassName || css.transactionInfoMessage,
+    className
+  );
 
   if (!listingDeleted && txIsRequested(transaction)) {
     return (
       <p className={classes}>
-        <FormattedMessage id="TransactionPanel.orderPreauthorizedInfo" values={{ providerName }} />
+        <FormattedMessage
+          id="TransactionPanel.orderPreauthorizedInfo"
+          values={{ providerName }}
+        />
       </p>
     );
   } else if (listingDeleted) {
@@ -347,7 +394,7 @@ export const SaleTitle = props => {
     transaction,
     customerDisplayName: customerName,
     currentListing,
-    listingTitle,
+    listingTitle
   } = props;
   const listingLink = createListingLink(currentListing, listingTitle);
 
@@ -432,14 +479,20 @@ export const SaleMessage = props => {
     rootClassName,
     transaction,
     customerDisplayName: customerName,
-    isCustomerBanned,
+    isCustomerBanned
   } = props;
-  const classes = classNames(rootClassName || css.transactionInfoMessage, className);
+  const classes = classNames(
+    rootClassName || css.transactionInfoMessage,
+    className
+  );
 
   if (!isCustomerBanned && txIsRequested(transaction)) {
     return (
       <p className={classes}>
-        <FormattedMessage id="TransactionPanel.saleRequestedInfo" values={{ customerName }} />
+        <FormattedMessage
+          id="TransactionPanel.saleRequestedInfo"
+          values={{ customerName }}
+        />
       </p>
     );
   } else if (isCustomerBanned) {
@@ -454,7 +507,7 @@ export const SaleMessage = props => {
 
 // Functional component as a helper to choose and show Order or Sale title
 export const TransactionPageTitle = props => {
-  return props.transactionRole === 'customer' ? (
+  return props.transactionRole === "customer" ? (
     <OrderTitle {...props} />
   ) : (
     <SaleTitle {...props} />
@@ -463,7 +516,7 @@ export const TransactionPageTitle = props => {
 
 // Functional component as a helper to choose and show Order or Sale message
 export const TransactionPageMessage = props => {
-  return props.transactionRole === 'customer' ? (
+  return props.transactionRole === "customer" ? (
     <OrderMessage {...props} />
   ) : (
     <SaleMessage {...props} />
@@ -477,14 +530,24 @@ export const displayNames = (
   currentCustomer,
   bannedUserDisplayName
 ) => {
-  const authorDisplayName = userDisplayName(currentProvider, bannedUserDisplayName);
-  const customerDisplayName = userDisplayName(currentCustomer, bannedUserDisplayName);
+  const authorDisplayName = userDisplayName(
+    currentProvider,
+    bannedUserDisplayName
+  );
+  const customerDisplayName = userDisplayName(
+    currentCustomer,
+    bannedUserDisplayName
+  );
 
-  let otherUserDisplayName = '';
+  let otherUserDisplayName = "";
   const currentUserIsCustomer =
-    currentUser.id && currentCustomer.id && currentUser.id.uuid === currentCustomer.id.uuid;
+    currentUser.id &&
+    currentCustomer.id &&
+    currentUser.id.uuid === currentCustomer.id.uuid;
   const currentUserIsProvider =
-    currentUser.id && currentProvider.id && currentUser.id.uuid === currentProvider.id.uuid;
+    currentUser.id &&
+    currentProvider.id &&
+    currentUser.id.uuid === currentProvider.id.uuid;
 
   if (currentUserIsCustomer) {
     otherUserDisplayName = authorDisplayName;
@@ -495,6 +558,6 @@ export const displayNames = (
   return {
     authorDisplayName,
     customerDisplayName,
-    otherUserDisplayName,
+    otherUserDisplayName
   };
 };
