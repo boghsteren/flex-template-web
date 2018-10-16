@@ -8,7 +8,7 @@ import css from "./ListingPage.css";
 const MIN_LENGTH_FOR_LONG_WORDS_IN_DESCRIPTION = 20;
 
 const SectionDescription = props => {
-  const { description, group_size, included, duration } = props;
+  const { description, group_size, included, duration, availability } = props;
   const group_size_label = config.custom.group_size_brackets.find(
     entry => entry.key === group_size
   ).label;
@@ -39,6 +39,14 @@ const SectionDescription = props => {
             <FormattedMessage id="ListingPage.durationHeader" />
           </h2>
           <p className={css.description}>{duration}</p>
+        </div>
+      )}
+      {availability && (
+        <div className={css.sectionDescription}>
+          <h2 className={css.descriptionTitle}>
+            <FormattedMessage id="ListingPage.availabilityHeader" />
+          </h2>
+          <p className={css.description}>{availability}</p>
         </div>
       )}
       <div className={css.sectionDescription}>

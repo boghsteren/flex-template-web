@@ -384,6 +384,7 @@
   "ListingCard.perUnit": "per day",
   "ListingCard.unsupportedPrice": "({currency})",
   "ListingCard.unsupportedPriceTitle": "Unsupported currency ({currency})",
+  "ListingPage.availabilityHeader": "Availability",
   "ListingPage.bannedUserDisplayName": "Banned user",
   "ListingPage.bookingHelp": "",
   "ListingPage.bookingHelpClosedListing":

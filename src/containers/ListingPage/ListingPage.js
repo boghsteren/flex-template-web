@@ -406,6 +406,8 @@ export class ListingPageComponent extends Component {
       currentListing && currentListing.attributes.publicData.included;
     const duration =
       currentListing && currentListing.attributes.publicData.duration;
+    const availability =
+      currentListing && currentListing.attributes.publicData.availability;
 
     const bannedUserDisplayName = intl.formatMessage({
       id: "ListingPage.bannedUserDisplayName"
@@ -542,6 +544,7 @@ export class ListingPageComponent extends Component {
                     group_size={group_size}
                     included={included}
                     duration={duration}
+                    availability={availability}
                   />
                   <SectionFeatures
                     options={goalsConfig}
