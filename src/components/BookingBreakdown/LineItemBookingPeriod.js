@@ -42,7 +42,7 @@ const BookingPeriod = props => {
 };
 
 const LineItemBookingPeriod = props => {
-  const { transaction, booking, unitType } = props;
+  const { transaction, booking, unitType, hourly } = props;
 
   const { start: startDate, end: endDateRaw } = booking.attributes;
   const localStartDate = dateFromAPIToLocalNoon(startDate);
@@ -85,7 +85,7 @@ const LineItemBookingPeriod = props => {
           endDate={endDay}
         />
       </span>
-      <span className={css.itemValue}>{unitCountMessage}</span>
+      {!hourly && <span className={css.itemValue}>{unitCountMessage}</span>}
     </div>
   );
 };

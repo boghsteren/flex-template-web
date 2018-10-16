@@ -57,6 +57,15 @@ export const BookingBreakdownComponent = props => {
 
   return (
     <div className={classes}>
+      {(pricing_scheme === "hourly_flat" ||
+        pricing_scheme === "hourly_seats") && (
+        <LineItemBookingPeriod
+          transaction={transaction}
+          hourly
+          booking={booking}
+          unitType={unitType}
+        />
+      )}
       <LineItemUnitPrice
         transaction={transaction}
         unitType={transaction.attributes.protectedData.pricing_scheme}
