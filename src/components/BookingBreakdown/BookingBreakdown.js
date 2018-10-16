@@ -46,8 +46,11 @@ export const BookingBreakdownComponent = props => {
       isProvider && item.code === LINE_ITEM_PROVIDER_COMMISSION;
     return (hasCustomerCommission || hasProviderCommission) && !item.reversal;
   });
+  const pricing_scheme =
+    listing && listing.attributes.publicData.pricing_scheme;
 
   const organisation =
+    listing &&
     listing.author.attributes.profile.publicData &&
     listing.author.attributes.profile.publicData.organisation;
   const classes = classNames(rootClassName || css.root, className);
@@ -59,20 +62,20 @@ export const BookingBreakdownComponent = props => {
         unitType={transaction.attributes.protectedData.pricing_scheme}
         intl={intl}
       />
-      {(listing.attributes.publicData.pricing_scheme === "daily_flat" ||
-        listing.attributes.publicData.pricing_scheme === "daily_seats") && (
+      {(pricing_scheme === "daily_flat" ||
+        pricing_scheme === "daily_seats") && (
         <LineItemBookingPeriod
           transaction={transaction}
           booking={booking}
           unitType={unitType}
         />
       )}
-      {(listing.attributes.publicData.pricing_scheme === "daily_seats" ||
-        listing.attributes.publicData.pricing_scheme === "hourly_seats") && (
+      {(pricing_scheme === "daily_seats" ||
+        pricing_scheme === "hourly_seats") && (
         <LineItemUnitsMaybe transaction={transaction} unitType={"seats"} />
       )}
-      {(listing.attributes.publicData.pricing_scheme === "hourly_flat" ||
-        listing.attributes.publicData.pricing_scheme === "hourly_seats") && (
+      {(pricing_scheme === "hourly_flat" ||
+        pricing_scheme === "hourly_seats") && (
         <LineItemUnitsMaybe transaction={transaction} unitType={"hours"} />
       )}
 
