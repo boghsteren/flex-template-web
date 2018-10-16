@@ -54,7 +54,7 @@
 
 .editLinkMobile {
   margin-top: 17px;
-
+  color: var(--matterColor);
   /* Pull the link to the end of the container */
   margin-left: auto;
 
@@ -68,7 +68,7 @@
 
 .editLinkDesktop {
   display: none;
-
+  color: var(--matterColor);
   @media (--viewportLarge) {
     display: inline;
   }
