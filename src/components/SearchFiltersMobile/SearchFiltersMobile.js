@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { object, string, bool, number, func, shape, array } from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { withRouter } from 'react-router-dom';
-import omit from 'lodash/omit';
+import React, { Component } from "react";
+import { object, string, bool, number, func, shape, array } from "prop-types";
+import classNames from "classnames";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { withRouter } from "react-router-dom";
+import omit from "lodash/omit";
 
-import routeConfiguration from '../../routeConfiguration';
-import { createResourceLocatorString } from '../../util/routes';
+import routeConfiguration from "../../routeConfiguration";
+import { createResourceLocatorString } from "../../util/routes";
 import {
   SecondaryButton,
   ModalInMobile,
   Button,
   SelectSingleFilterPlain,
-  SelectMultipleFilterPlain,
-} from '../../components';
-import { propTypes } from '../../util/types';
-import css from './SearchFiltersMobile.css';
+  SelectMultipleFilterPlain
+} from "../../components";
+import { propTypes } from "../../util/types";
+import css from "./SearchFiltersMobile.css";
 
 class SearchFiltersMobileComponent extends Component {
   constructor(props) {
@@ -36,7 +36,10 @@ class SearchFiltersMobileComponent extends Component {
   openFilters() {
     const { onOpenModal, urlQueryParams } = this.props;
     onOpenModal();
-    this.setState({ isFiltersOpenOnMobile: true, initialQueryParams: urlQueryParams });
+    this.setState({
+      isFiltersOpenOnMobile: true,
+      initialQueryParams: urlQueryParams
+    });
   }
 
   // Close the filters by clicking cancel, revert to the initial params
@@ -45,7 +48,7 @@ class SearchFiltersMobileComponent extends Component {
 
     history.push(
       createResourceLocatorString(
-        'SearchPage',
+        "SearchPage",
         routeConfiguration(),
         {},
         this.state.initialQueryParams
@@ -70,7 +73,14 @@ class SearchFiltersMobileComponent extends Component {
       ? { ...urlQueryParams, [urlParam]: option }
       : omit(urlQueryParams, urlParam);
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        queryParams
+      )
+    );
   }
 
   handleSelectMultiple(urlParam, options) {
@@ -78,10 +88,17 @@ class SearchFiltersMobileComponent extends Component {
 
     const queryParams =
       options && options.length > 0
-        ? { ...urlQueryParams, [urlParam]: options.join(',') }
+        ? { ...urlQueryParams, [urlParam]: options.join(",") }
         : omit(urlQueryParams, urlParam);
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        queryParams
+      )
+    );
   }
 
   // Reset all filter query parameters
@@ -89,7 +106,14 @@ class SearchFiltersMobileComponent extends Component {
     const { urlQueryParams, history, filterParamNames } = this.props;
 
     const queryParams = omit(urlQueryParams, filterParamNames);
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+    history.push(
+      createResourceLocatorString(
+        "SearchPage",
+        routeConfiguration(),
+        {},
+        queryParams
+      )
+    );
 
     // blur event target if event is passed
     if (e && e.currentTarget) {
@@ -105,7 +129,9 @@ class SearchFiltersMobileComponent extends Component {
   // resolve initial values for a multi value filter
   initialValues(paramName) {
     const urlQueryParams = this.props.urlQueryParams;
-    return !!urlQueryParams[paramName] ? urlQueryParams[paramName].split(',') : [];
+    return !!urlQueryParams[paramName]
+      ? urlQueryParams[paramName].split(",")
+      : [];
   }
 
   render() {
@@ -121,39 +147,67 @@ class SearchFiltersMobileComponent extends Component {
       selectedFiltersCount,
       categoryFilter,
       goalsFilter,
-      intl,
+      groupSizeFilter,
+      intl
     } = this.props;
 
     const classes = classNames(rootClassName || css.root, className);
 
     const resultsFound = (
-      <FormattedMessage id="SearchFilters.foundResults" values={{ count: resultsCount }} />
+      <FormattedMessage
+        id="SearchFilters.foundResults"
+        values={{ count: resultsCount }}
+      />
     );
     const noResults = <FormattedMessage id="SearchFilters.noResultsMobile" />;
-    const loadingResults = <FormattedMessage id="SearchFilters.loadingResultsMobile" />;
-    const filtersHeading = intl.formatMessage({ id: 'SearchFiltersMobile.heading' });
-    const modalCloseButtonMessage = intl.formatMessage({ id: 'SearchFiltersMobile.cancel' });
+    const loadingResults = (
+      <FormattedMessage id="SearchFilters.loadingResultsMobile" />
+    );
+    const filtersHeading = intl.formatMessage({
+      id: "SearchFiltersMobile.heading"
+    });
+    const modalCloseButtonMessage = intl.formatMessage({
+      id: "SearchFiltersMobile.cancel"
+    });
 
     const showListingsLabel = intl.formatMessage(
-      { id: 'SearchFiltersMobile.showListings' },
+      { id: "SearchFiltersMobile.showListings" },
       { count: resultsCount }
     );
 
     const filtersButton =
       selectedFiltersCount > 0 ? (
         <Button className={css.filtersButton} onClick={this.openFilters}>
-          <FormattedMessage id="SearchFilters.filtersButtonLabel" className={css.mapIconText} />
+          <FormattedMessage
+            id="SearchFilters.filtersButtonLabel"
+            className={css.mapIconText}
+          />
         </Button>
       ) : (
-        <SecondaryButton className={css.filtersButton} onClick={this.openFilters}>
-          <FormattedMessage id="SearchFilters.filtersButtonLabel" className={css.mapIconText} />
+        <SecondaryButton
+          className={css.filtersButton}
+          onClick={this.openFilters}
+        >
+          <FormattedMessage
+            id="SearchFilters.filtersButtonLabel"
+            className={css.mapIconText}
+          />
         </SecondaryButton>
       );
 
     const categoryLabel = intl.formatMessage({
-      id: 'SearchFiltersMobile.categoryLabel',
+      id: "SearchFiltersMobile.categoryLabel"
     });
-    const initialCategory = categoryFilter ? this.initialValue(categoryFilter.paramName) : null;
+    const initialCategory = categoryFilter
+      ? this.initialValue(categoryFilter.paramName)
+      : null;
+    const groupSizeFilterLabel = intl.formatMessage({
+      id: "SearchFilters.groupSizeFilterLabel"
+    });
+
+    const initialGroupSize = groupSizeFilter
+      ? this.initialValue(groupSizeFilter.paramName)
+      : null;
 
     const categoryFilterElement = categoryFilter ? (
       <SelectSingleFilterPlain
@@ -166,7 +220,9 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
-    const goalsLabel = intl.formatMessage({ id: 'SearchFiltersMobile.goalsLabel' });
+    const goalsLabel = intl.formatMessage({
+      id: "SearchFiltersMobile.goalsLabel"
+    });
 
     const initialGoals = this.initialValues(goalsFilter.paramName);
 
@@ -182,6 +238,16 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
+    const groupSizeFilterElement = groupSizeFilter ? (
+      <SelectSingleFilterPlain
+        urlParam={groupSizeFilter.paramName}
+        label={groupSizeFilterLabel}
+        onSelect={this.handleSelectSingle}
+        options={groupSizeFilter.options}
+        initialValue={initialGroupSize}
+      />
+    ) : null;
+
     return (
       <div className={classes}>
         <div className={css.searchResultSummary}>
@@ -192,7 +258,10 @@ class SearchFiltersMobileComponent extends Component {
         <div className={css.buttons}>
           {filtersButton}
           <div className={css.mapIcon} onClick={onMapIconClick}>
-            <FormattedMessage id="SearchFilters.openMapView" className={css.mapIconText} />
+            <FormattedMessage
+              id="SearchFilters.openMapView"
+              className={css.mapIconText}
+            />
           </div>
         </div>
         <ModalInMobile
@@ -206,16 +275,23 @@ class SearchFiltersMobileComponent extends Component {
         >
           <div className={css.modalHeadingWrapper}>
             <span className={css.modalHeading}>{filtersHeading}</span>
-            <button className={css.resetAllButton} onClick={e => this.resetAll(e)}>
-              <FormattedMessage id={'SearchFiltersMobile.resetAll'} />
+            <button
+              className={css.resetAllButton}
+              onClick={e => this.resetAll(e)}
+            >
+              <FormattedMessage id={"SearchFiltersMobile.resetAll"} />
             </button>
           </div>
           <div className={css.filtersWrapper}>
             {categoryFilterElement}
             {goalsFilterElement}
+            {groupSizeFilterElement}
           </div>
           <div className={css.showListingsContainer}>
-            <Button className={css.showListingsButton} onClick={this.closeFilters}>
+            <Button
+              className={css.showListingsButton}
+              onClick={this.closeFilters}
+            >
               {showListingsLabel}
             </Button>
           </div>
@@ -233,7 +309,7 @@ SearchFiltersMobileComponent.defaultProps = {
   selectedFiltersCount: 0,
   filterParamNames: [],
   categoryFilter: null,
-  goalsFilter: null,
+  goalsFilter: null
 };
 
 SearchFiltersMobileComponent.propTypes = {
@@ -258,10 +334,12 @@ SearchFiltersMobileComponent.propTypes = {
 
   // from withRouter
   history: shape({
-    push: func.isRequired,
-  }).isRequired,
+    push: func.isRequired
+  }).isRequired
 };
 
-const SearchFiltersMobile = injectIntl(withRouter(SearchFiltersMobileComponent));
+const SearchFiltersMobile = injectIntl(
+  withRouter(SearchFiltersMobileComponent)
+);
 
 export default SearchFiltersMobile;
