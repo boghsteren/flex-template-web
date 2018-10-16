@@ -64,6 +64,8 @@
   --matterColorLight: #ffffff;
   
   --linkColorGrey: #666666;
+  
+  --linkColorTeal: #1e6d6f;
 
   --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
 
@@ -145,7 +147,7 @@
     border: none;
 
     /* Colors */
-    color: var(--linkColorGrey);
+    color: var(--linkColorTeal);
 
     /* Text size should be inherited */
     text-decoration: none;
