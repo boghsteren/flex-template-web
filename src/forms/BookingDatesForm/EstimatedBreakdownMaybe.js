@@ -35,7 +35,6 @@ import {
   daysBetween
 } from "../../util/dates";
 import {
-  LINE_ITEM_DAY,
   LINE_ITEM_NIGHT,
   LINE_ITEM_UNITS,
   TRANSITION_REQUEST,

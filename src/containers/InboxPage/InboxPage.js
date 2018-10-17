@@ -6,7 +6,6 @@ import { FormattedMessage, injectIntl, intlShape } from "react-intl";
 import moment from "moment";
 import classNames from "classnames";
 import {
-  LINE_ITEM_DAY,
   LINE_ITEM_UNITS,
   txHasFirstReview,
   txIsAccepted,

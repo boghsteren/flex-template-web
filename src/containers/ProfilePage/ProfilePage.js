@@ -89,6 +89,8 @@ export class ProfilePageComponent extends Component {
     const bio = profileUser.attributes.profile.bio;
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
+    const isProvider =
+      currentUser && currentUser.attributes.profile.publicData.provider;
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
 
     const editLinkMobile = isCurrentUser ? (
@@ -138,38 +140,34 @@ export class ProfilePageComponent extends Component {
 
     const mobileReviews = (
       <div className={css.mobileReviews}>
-        <h2 className={css.mobileReviewsTitle}>
-          <FormattedMessage
-            id="ProfilePage.reviewsOfProviderTitle"
-            values={{ count: reviewsOfProvider.length }}
-          />
-        </h2>
-        {queryReviewsError ? reviewsError : null}
-        <Reviews reviews={reviewsOfProvider} />
-        <h2 className={css.mobileReviewsTitle}>
-          <FormattedMessage
-            id="ProfilePage.reviewsOfCustomerTitle"
-            values={{ count: reviewsOfCustomer.length }}
-          />
-        </h2>
-        {queryReviewsError ? reviewsError : null}
-        <Reviews reviews={reviewsOfCustomer} />
+        {!isProvider && (
+          <div>
+            <h2 className={css.mobileReviewsTitle}>
+              <FormattedMessage
+                id="ProfilePage.reviewsOfProviderTitle"
+                values={{ count: reviewsOfProvider.length }}
+              />
+            </h2>
+            {queryReviewsError ? reviewsError : null}
+            <Reviews reviews={reviewsOfProvider} />
+          </div>
+        )}
+        {isProvider && (
+          <div>
+            <h2 className={css.mobileReviewsTitle}>
+              <FormattedMessage
+                id="ProfilePage.reviewsOfCustomerTitle"
+                values={{ count: reviewsOfCustomer.length }}
+              />
+            </h2>
+            {queryReviewsError ? reviewsError : null}
+            <Reviews reviews={reviewsOfCustomer} />
+          </div>
+        )}
       </div>
     );
 
-    const desktopReviewTabs = [
-      {
-        text: (
-          <h3 className={css.desktopReviewsTitle}>
-            <FormattedMessage
-              id="ProfilePage.reviewsOfProviderTitle"
-              values={{ count: reviewsOfProvider.length }}
-            />
-          </h3>
-        ),
-        selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
-        onClick: this.showOfProviderReviews
-      },
+    const desktopReviewTabsProvider = [
       {
         text: (
           <h3 className={css.desktopReviewsTitle}>
@@ -184,15 +182,35 @@ export class ProfilePageComponent extends Component {
       }
     ];
 
+    const desktopReviewTabsNotProvider = [
+      {
+        text: (
+          <h3 className={css.desktopReviewsTitle}>
+            <FormattedMessage
+              id="ProfilePage.reviewsOfProviderTitle"
+              values={{ count: reviewsOfProvider.length }}
+            />
+          </h3>
+        ),
+        selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
+        onClick: this.showOfProviderReviews
+      }
+    ];
+
     const desktopReviews = (
       <div className={css.desktopReviews}>
-        <ButtonTabNavHorizontal
-          className={css.desktopReviewsTabNav}
-          tabs={desktopReviewTabs}
-        />
-
+        {isProvider ? (
+          <ButtonTabNavHorizontal
+            className={css.desktopReviewsTabNav}
+            tabs={desktopReviewTabsProvider}
+          />
+        ) : (
+          <ButtonTabNavHorizontal
+            className={css.desktopReviewsTabNav}
+            tabs={desktopReviewTabsNotProvider}
+          />
+        )}
         {queryReviewsError ? reviewsError : null}
-
         {this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER ? (
           <Reviews reviews={reviewsOfProvider} />
         ) : (

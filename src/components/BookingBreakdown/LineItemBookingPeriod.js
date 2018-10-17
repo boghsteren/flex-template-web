@@ -5,7 +5,7 @@ import {
   FormattedDate
 } from "react-intl";
 import moment from "moment";
-import { LINE_ITEM_NIGHT, LINE_ITEM_DAY, propTypes } from "../../util/types";
+import { LINE_ITEM_NIGHT, propTypes } from "../../util/types";
 import { daysBetween, dateFromAPIToLocalNoon } from "../../util/dates";
 
 import css from "./BookingBreakdown.css";
