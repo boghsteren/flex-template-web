@@ -169,12 +169,12 @@ export class TransactionPanelComponent extends Component {
     });
 
     const {
-      organisation,
+    
       authorDisplayName,
       customerDisplayName,
       otherUserDisplayName
     } = displayNames(
-      organisation,
+     
       currentUser,
       currentProvider,
       currentCustomer,
@@ -271,7 +271,7 @@ export class TransactionPanelComponent extends Component {
             <TransactionPageMessage
               transaction={currentTransaction}
               authorDisplayName={authorDisplayName}
-              organisation={organisation}
+       
               customerDisplayName={customerDisplayName}
               listingDeleted={listingDeleted}
               isCustomerBanned={isCustomerBanned}
@@ -345,7 +345,7 @@ export class TransactionPanelComponent extends Component {
                   <p className={css.detailCardSubtitle}>
                     <FormattedMessage
                       id="TransactionPanel.hostedBy"
-                      values={{ name: organisation }}
+                      values={{ name: authorDisplayName }}
                     />
                   </p>
                   <AddressLinkMaybe
