@@ -174,6 +174,7 @@ export class TransactionPanelComponent extends Component {
       customerDisplayName,
       otherUserDisplayName
     } = displayNames(
+      organisation,
       currentUser,
       currentProvider,
       currentCustomer,
