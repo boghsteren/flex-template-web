@@ -51,8 +51,8 @@ const LineItemBookingPeriod = props => {
   const isNightly = unitType === LINE_ITEM_NIGHT;
   const isDaily = true;
 
-  const dayCount = daysBetween(localStartDate, localEndDateRaw);
-  const isSingleDay = !isNightly && dayCount === 2;
+  const dayCount = daysBetween(localStartDate, localEndDateRaw) - 1;
+  const isSingleDay = !isNightly && dayCount === 1;
   const endDay = isNightly
     ? localEndDateRaw
     : moment(localEndDateRaw)
@@ -68,9 +68,7 @@ const LineItemBookingPeriod = props => {
   }
 
   const useQuantityForDayCount = isNightly || isDaily;
-  const count = useQuantityForDayCount
-    ? unitPurchase.quantity.toFixed()
-    : dayCount;
+  const count = dayCount;
 
   const unitCountMessage = (
     <FormattedHTMLMessage id={"BookingBreakdown.dayCount"} values={{ count }} />
