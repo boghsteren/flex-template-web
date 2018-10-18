@@ -43,7 +43,11 @@ export class ProfilePageComponent extends Component {
 
     this.state = {
       // keep track of which reviews tab to show in desktop viewport
-      showReviewsType: REVIEW_TYPE_OF_PROVIDER
+      showReviewsType:
+        props.currentUser &&
+        !props.currentUser.attributes.profile.publicData.provider
+          ? REVIEW_TYPE_OF_PROVIDER
+          : REVIEW_TYPE_OF_CUSTOMER
     };
 
     this.showOfProviderReviews = this.showOfProviderReviews.bind(this);
