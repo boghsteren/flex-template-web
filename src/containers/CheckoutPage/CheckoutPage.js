@@ -433,7 +433,8 @@ export class CheckoutPageComponent extends Component {
                   <FormattedMessage
                     id="ListingPage.hostedBy"
                     values={{
-                      name: currentAuthor.attributes.profile.displayName
+                      name:
+                        currentAuthor.attributes.profile.publicData.organisation
                     }}
                   />
                 </span>
@@ -462,7 +463,7 @@ export class CheckoutPageComponent extends Component {
                     id: "CheckoutPage.paymentInfo"
                   })}
                   authorDisplayName={
-                    currentAuthor.attributes.profile.displayName
+                    currentAuthor.attributes.profile.publicData.organisation
                   }
                 />
               ) : null}
@@ -487,7 +488,7 @@ export class CheckoutPageComponent extends Component {
                 <FormattedMessage
                   id="CheckoutPage.hostedBy"
                   values={{
-                    name: currentAuthor.attributes.profile.displayName
+                    name: currentAuthor.attributes.profile.publicData.organisation
                   }}
                 />
               </p>

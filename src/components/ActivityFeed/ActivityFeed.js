@@ -1,11 +1,11 @@
-import React from 'react';
-import { string, arrayOf, bool, func, number } from 'prop-types';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import dropWhile from 'lodash/dropWhile';
-import classNames from 'classnames';
-import { Avatar, InlineTextButton, ReviewRating } from '../../components';
-import { formatDate } from '../../util/dates';
-import { ensureTransaction, ensureUser, ensureListing, userDisplayName } from '../../util/data';
+import React from "react";
+import { string, arrayOf, bool, func, number } from "prop-types";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import dropWhile from "lodash/dropWhile";
+import classNames from "classnames";
+import { Avatar, InlineTextButton, ReviewRating } from "../../components";
+import { formatDate } from "../../util/dates";
+import { ensureTransaction, ensureUser, ensureListing } from "../../util/data";
 import {
   TRANSITION_ACCEPT,
   TRANSITION_CANCEL,
@@ -21,15 +21,15 @@ import {
   TX_TRANSITION_ACTOR_CUSTOMER,
   TX_TRANSITION_ACTOR_PROVIDER,
   areReviewsCompleted,
-  propTypes,
-} from '../../util/types';
-import * as log from '../../util/log';
+  propTypes
+} from "../../util/types";
+import * as log from "../../util/log";
 
-import css from './ActivityFeed.css';
+import css from "./ActivityFeed.css";
 
 const Message = props => {
   const { message, intl } = props;
-  const todayString = intl.formatMessage({ id: 'ActivityFeed.today' });
+  const todayString = intl.formatMessage({ id: "ActivityFeed.today" });
   return (
     <div className={css.message}>
       <Avatar className={css.avatar} user={message.sender} />
@@ -45,12 +45,12 @@ const Message = props => {
 
 Message.propTypes = {
   message: propTypes.message.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const OwnMessage = props => {
   const { message, intl } = props;
-  const todayString = intl.formatMessage({ id: 'ActivityFeed.today' });
+  const todayString = intl.formatMessage({ id: "ActivityFeed.today" });
   return (
     <div className={css.ownMessage}>
       <div className={css.ownMessageContentWrapper}>
@@ -65,7 +65,7 @@ const OwnMessage = props => {
 
 OwnMessage.propTypes = {
   message: propTypes.message.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const Review = props => {
@@ -84,7 +84,7 @@ const Review = props => {
 
 Review.propTypes = {
   content: string.isRequired,
-  rating: number.isRequired,
+  rating: number.isRequired
 };
 
 // Check if a transition is the kind that
@@ -101,7 +101,7 @@ const shouldRenderTransition = transition => {
     TRANSITION_REVIEW_1_BY_CUSTOMER,
     TRANSITION_REVIEW_1_BY_PROVIDER,
     TRANSITION_REVIEW_2_BY_CUSTOMER,
-    TRANSITION_REVIEW_2_BY_PROVIDER,
+    TRANSITION_REVIEW_2_BY_PROVIDER
   ].includes(transition);
 };
 
@@ -112,7 +112,7 @@ const isReviewTransition = transition => {
     TRANSITION_REVIEW_1_BY_CUSTOMER,
     TRANSITION_REVIEW_1_BY_PROVIDER,
     TRANSITION_REVIEW_2_BY_CUSTOMER,
-    TRANSITION_REVIEW_2_BY_PROVIDER,
+    TRANSITION_REVIEW_2_BY_PROVIDER
   ].includes(transition);
 };
 
@@ -144,7 +144,10 @@ const resolveTransitionMessage = (
     case TRANSITION_REQUEST:
     case TRANSITION_REQUEST_AFTER_ENQUIRY:
       return isOwnTransition ? (
-        <FormattedMessage id="ActivityFeed.ownTransitionRequest" values={{ listingTitle }} />
+        <FormattedMessage
+          id="ActivityFeed.ownTransitionRequest"
+          values={{ listingTitle }}
+        />
       ) : (
         <FormattedMessage
           id="ActivityFeed.transitionRequest"
@@ -155,19 +158,28 @@ const resolveTransitionMessage = (
       return isOwnTransition ? (
         <FormattedMessage id="ActivityFeed.ownTransitionAccept" />
       ) : (
-        <FormattedMessage id="ActivityFeed.transitionAccept" values={{ displayName }} />
+        <FormattedMessage
+          id="ActivityFeed.transitionAccept"
+          values={{ displayName }}
+        />
       );
     case TRANSITION_DECLINE:
       return isOwnTransition ? (
         <FormattedMessage id="ActivityFeed.ownTransitionDecline" />
       ) : (
-        <FormattedMessage id="ActivityFeed.transitionDecline" values={{ displayName }} />
+        <FormattedMessage
+          id="ActivityFeed.transitionDecline"
+          values={{ displayName }}
+        />
       );
     case TRANSITION_EXPIRE:
       return ownRole === TX_TRANSITION_ACTOR_PROVIDER ? (
         <FormattedMessage id="ActivityFeed.ownTransitionExpire" />
       ) : (
-        <FormattedMessage id="ActivityFeed.transitionExpire" values={{ displayName }} />
+        <FormattedMessage
+          id="ActivityFeed.transitionExpire"
+          values={{ displayName }}
+        />
       );
     case TRANSITION_CANCEL:
       return <FormattedMessage id="ActivityFeed.transitionCancel" />;
@@ -177,21 +189,37 @@ const resolveTransitionMessage = (
       const reviewLink =
         deliveredState || !hasUserLeftAReviewFirst(ownRole, lastTransition) ? (
           <InlineTextButton onClick={onOpenReviewModal}>
-            <FormattedMessage id="ActivityFeed.leaveAReview" values={{ displayName }} />
+            <FormattedMessage
+              id="ActivityFeed.leaveAReview"
+              values={{ displayName }}
+            />
           </InlineTextButton>
         ) : null;
 
-      return <FormattedMessage id="ActivityFeed.transitionComplete" values={{ reviewLink }} />;
+      return (
+        <FormattedMessage
+          id="ActivityFeed.transitionComplete"
+          values={{ reviewLink }}
+        />
+      );
     case TRANSITION_REVIEW_1_BY_PROVIDER:
     case TRANSITION_REVIEW_1_BY_CUSTOMER:
       if (isOwnTransition) {
-        return <FormattedMessage id="ActivityFeed.ownTransitionReview" values={{ displayName }} />;
+        return (
+          <FormattedMessage
+            id="ActivityFeed.ownTransitionReview"
+            values={{ displayName }}
+          />
+        );
       } else {
         // show the leave a review link if current user is not the first
         // one to leave a review
         const reviewLink = !hasUserLeftAReviewFirst(ownRole, lastTransition) ? (
           <InlineTextButton onClick={onOpenReviewModal}>
-            <FormattedMessage id="ActivityFeed.leaveAReviewSecond" values={{ displayName }} />
+            <FormattedMessage
+              id="ActivityFeed.leaveAReviewSecond"
+              values={{ displayName }}
+            />
           </InlineTextButton>
         ) : null;
         return (
@@ -204,7 +232,12 @@ const resolveTransitionMessage = (
     case TRANSITION_REVIEW_2_BY_PROVIDER:
     case TRANSITION_REVIEW_2_BY_CUSTOMER:
       if (isOwnTransition) {
-        return <FormattedMessage id="ActivityFeed.ownTransitionReview" values={{ displayName }} />;
+        return (
+          <FormattedMessage
+            id="ActivityFeed.ownTransitionReview"
+            values={{ displayName }}
+          />
+        );
       } else {
         return (
           <FormattedMessage
@@ -215,10 +248,14 @@ const resolveTransitionMessage = (
       }
 
     default:
-      log.error(new Error('Unknown transaction transition type'), 'unknown-transition-type', {
-        transitionType: currentTransition,
-      });
-      return '';
+      log.error(
+        new Error("Unknown transaction transition type"),
+        "unknown-transition-type",
+        {
+          transitionType: currentTransition
+        }
+      );
+      return "";
   }
 };
 
@@ -227,14 +264,20 @@ const reviewByAuthorId = (transaction, userId) => {
 };
 
 const Transition = props => {
-  const { transition, transaction, currentUser, intl, onOpenReviewModal } = props;
+  const {
+    transition,
+    transaction,
+    currentUser,
+    intl,
+    onOpenReviewModal
+  } = props;
 
   const currentTransaction = ensureTransaction(transaction);
   const customer = currentTransaction.customer;
   const provider = currentTransaction.provider;
 
   const deletedListing = intl.formatMessage({
-    id: 'ActivityFeed.deletedListing',
+    id: "ActivityFeed.deletedListing"
   });
   const listingTitle = currentTransaction.listing.attributes.deleted
     ? deletedListing
@@ -246,13 +289,10 @@ const Transition = props => {
       ? TX_TRANSITION_ACTOR_CUSTOMER
       : TX_TRANSITION_ACTOR_PROVIDER;
 
-  const bannedUserDisplayName = intl.formatMessage({
-    id: 'ActivityFeed.bannedUserDisplayName',
-  });
   const otherUsersName =
     ownRole === TX_TRANSITION_ACTOR_CUSTOMER
-      ? userDisplayName(provider, bannedUserDisplayName)
-      : userDisplayName(customer, bannedUserDisplayName);
+      ? provider.attributes.profile.publicData.organisation
+      : customer.attributes.profile.publicData.organisation;
 
   const transitionMessage = resolveTransitionMessage(
     transition,
@@ -267,7 +307,10 @@ const Transition = props => {
 
   let reviewComponent = null;
 
-  if (isReviewTransition(currentTransition) && areReviewsCompleted(lastTransition)) {
+  if (
+    isReviewTransition(currentTransition) &&
+    areReviewsCompleted(lastTransition)
+  ) {
     const customerReview =
       currentTransition === TRANSITION_REVIEW_1_BY_CUSTOMER ||
       currentTransition === TRANSITION_REVIEW_2_BY_CUSTOMER;
@@ -277,17 +320,23 @@ const Transition = props => {
     if (customerReview) {
       const review = reviewByAuthorId(currentTransaction, customer.id);
       reviewComponent = (
-        <Review content={review.attributes.content} rating={review.attributes.rating} />
+        <Review
+          content={review.attributes.content}
+          rating={review.attributes.rating}
+        />
       );
     } else if (providerReview) {
       const review = reviewByAuthorId(currentTransaction, provider.id);
       reviewComponent = (
-        <Review content={review.attributes.content} rating={review.attributes.rating} />
+        <Review
+          content={review.attributes.content}
+          rating={review.attributes.rating}
+        />
       );
     }
   }
 
-  const todayString = intl.formatMessage({ id: 'ActivityFeed.today' });
+  const todayString = intl.formatMessage({ id: "ActivityFeed.today" });
 
   return (
     <div className={css.transition}>
@@ -296,7 +345,9 @@ const Transition = props => {
       </div>
       <div>
         <p className={css.transitionContent}>{transitionMessage}</p>
-        <p className={css.transitionDate}>{formatDate(intl, todayString, transition.createdAt)}</p>
+        <p className={css.transitionDate}>
+          {formatDate(intl, todayString, transition.createdAt)}
+        </p>
         {reviewComponent}
       </div>
     </div>
@@ -308,7 +359,7 @@ Transition.propTypes = {
   transaction: propTypes.transaction.isRequired,
   currentUser: propTypes.currentUser.isRequired,
   intl: intlShape.isRequired,
-  onOpenReviewModal: func.isRequired,
+  onOpenReviewModal: func.isRequired
 };
 
 const EmptyTransition = () => {
@@ -325,11 +376,12 @@ const EmptyTransition = () => {
   );
 };
 
-const isMessage = item => item && item.type === 'message';
+const isMessage = item => item && item.type === "message";
 
 // Compare function for sorting an array containing messages and transitions
 const compareItems = (a, b) => {
-  const itemDate = item => (isMessage(item) ? item.attributes.createdAt : item.createdAt);
+  const itemDate = item =>
+    isMessage(item) ? item.attributes.createdAt : item.createdAt;
   return itemDate(a) - itemDate(b);
 };
 
@@ -356,7 +408,7 @@ export const ActivityFeedComponent = props => {
     onOpenReviewModal,
     onShowOlderMessages,
     fetchMessagesInProgress,
-    intl,
+    intl
   } = props;
   const classes = classNames(rootClassName || css.root, className);
 
@@ -377,7 +429,11 @@ export const ActivityFeedComponent = props => {
   );
 
   // combine messages and transaction transitions
-  const items = organizedItems(messages, transitions, hasOlderMessages || fetchMessagesInProgress);
+  const items = organizedItems(
+    messages,
+    transitions,
+    hasOlderMessages || fetchMessagesInProgress
+  );
 
   const transitionComponent = transition => {
     if (transitionsAvailable) {
@@ -410,7 +466,11 @@ export const ActivityFeedComponent = props => {
 
   const messageListItem = message => {
     return (
-      <li id={`msg-${message.id.uuid}`} key={message.id.uuid} className={css.messageItem}>
+      <li
+        id={`msg-${message.id.uuid}`}
+        key={message.id.uuid}
+        className={css.messageItem}
+      >
         {messageComponent(message)}
       </li>
     );
@@ -432,7 +492,10 @@ export const ActivityFeedComponent = props => {
     <ul className={classes}>
       {hasOlderMessages ? (
         <li className={css.showOlderWrapper} key="show-older-messages">
-          <InlineTextButton className={css.showOlderButton} onClick={onShowOlderMessages}>
+          <InlineTextButton
+            className={css.showOlderButton}
+            onClick={onShowOlderMessages}
+          >
             <FormattedMessage id="ActivityFeed.showOlderMessages" />
           </InlineTextButton>
         </li>
@@ -450,7 +513,7 @@ export const ActivityFeedComponent = props => {
 
 ActivityFeedComponent.defaultProps = {
   rootClassName: null,
-  className: null,
+  className: null
 };
 
 ActivityFeedComponent.propTypes = {
@@ -466,7 +529,7 @@ ActivityFeedComponent.propTypes = {
   fetchMessagesInProgress: bool.isRequired,
 
   // from injectIntl
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const ActivityFeed = injectIntl(ActivityFeedComponent);

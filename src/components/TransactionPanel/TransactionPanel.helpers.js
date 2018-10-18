@@ -113,10 +113,10 @@ export const AddressLinkMaybe = props => {
       : address;
 
   return (isProvider || txIsAcceptedForCustomer) && hrefToGoogleMaps ? (
-    <p className={css.address}>
+    <div className={css.address}>
       <div>{currentListing.attributes.publicData.contact}</div>
       <ExternalLink href={hrefToGoogleMaps}>{fullAddress}</ExternalLink>
-    </p>
+    </div>
   ) : null;
 };
 

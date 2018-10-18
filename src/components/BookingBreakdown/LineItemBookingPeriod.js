@@ -49,7 +49,6 @@ const LineItemBookingPeriod = props => {
   const localEndDateRaw = dateFromAPIToLocalNoon(endDateRaw);
 
   const isNightly = unitType === LINE_ITEM_NIGHT;
-  const isDaily = true;
 
   const dayCount = daysBetween(localStartDate, localEndDateRaw) - 1;
   const isSingleDay = !isNightly && dayCount === 1;
@@ -67,7 +66,6 @@ const LineItemBookingPeriod = props => {
     throw new Error(`LineItemBookingPeriod: lineItem (${unitType}) missing`);
   }
 
-  const useQuantityForDayCount = isNightly || isDaily;
   const count = dayCount;
 
   const unitCountMessage = (
