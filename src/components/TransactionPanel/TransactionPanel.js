@@ -169,10 +169,12 @@ export class TransactionPanelComponent extends Component {
     });
 
     const {
+    
       authorDisplayName,
       customerDisplayName,
       otherUserDisplayName
     } = displayNames(
+     
       currentUser,
       currentProvider,
       currentCustomer,
@@ -269,6 +271,7 @@ export class TransactionPanelComponent extends Component {
             <TransactionPageMessage
               transaction={currentTransaction}
               authorDisplayName={authorDisplayName}
+       
               customerDisplayName={customerDisplayName}
               listingDeleted={listingDeleted}
               isCustomerBanned={isCustomerBanned}
