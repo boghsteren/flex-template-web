@@ -104,15 +104,18 @@ const TopbarMobileMenu = props => {
           <FormattedMessage id="TopbarMobileMenu.inboxLink" />
           {notificationCountBadge}
         </NamedLink>
-        <NamedLink
-          className={classNames(
-            css.navigationLink,
-            currentPageClass("ManageListingsPage")
+        {currentUser &&
+          currentUser.attributes.profile.publicData.provider && (
+            <NamedLink
+              className={classNames(
+                css.navigationLink,
+                currentPageClass("ManageListingsPage")
+              )}
+              name="ManageListingsPage"
+            >
+              <FormattedMessage id="TopbarMobileMenu.yourListingsLink" />
+            </NamedLink>
           )}
-          name="ManageListingsPage"
-        >
-          <FormattedMessage id="TopbarMobileMenu.yourListingsLink" />
-        </NamedLink>
         <NamedLink
           className={classNames(
             css.navigationLink,
@@ -132,11 +135,17 @@ const TopbarMobileMenu = props => {
           <FormattedMessage id="TopbarMobileMenu.accountSettingsLink" />
         </NamedLink>
       </div>
-      <div className={css.footer}>
-        <NamedLink className={css.createNewListingLink} name="NewListingPage">
-          <FormattedMessage id="TopbarMobileMenu.newListingLink" />
-        </NamedLink>
-      </div>
+      {currentUser &&
+        currentUser.attributes.profile.publicData.provider && (
+          <div className={css.footer}>
+            <NamedLink
+              className={css.createNewListingLink}
+              name="NewListingPage"
+            >
+              <FormattedMessage id="TopbarMobileMenu.newListingLink" />
+            </NamedLink>
+          </div>
+        )}
     </div>
   );
 };
