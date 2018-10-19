@@ -556,13 +556,11 @@ export class ListingPageComponent extends Component {
                     publicData={publicData}
                     listingId={currentListing.id}
                   />
-                  {currentUser &&
-                    !currentUser.attributes.profile.publicData.provider && (
-                      <SectionReviews
-                        reviews={reviews}
-                        fetchReviewsError={fetchReviewsError}
-                      />
-                    )}
+
+                  <SectionReviews
+                    reviews={reviews}
+                    fetchReviewsError={fetchReviewsError}
+                  />
                   <SectionHost
                     title={title}
                     listing={currentListing}

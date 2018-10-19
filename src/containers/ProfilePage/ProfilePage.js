@@ -43,11 +43,7 @@ export class ProfilePageComponent extends Component {
 
     this.state = {
       // keep track of which reviews tab to show in desktop viewport
-      showReviewsType:
-        props.currentUser &&
-        !props.currentUser.attributes.profile.publicData.provider
-          ? REVIEW_TYPE_OF_PROVIDER
-          : REVIEW_TYPE_OF_CUSTOMER
+      showReviewsType: null
     };
 
     this.showOfProviderReviews = this.showOfProviderReviews.bind(this);
@@ -89,12 +85,10 @@ export class ProfilePageComponent extends Component {
     const organisation =
       profileUser.attributes.profile.publicData &&
       profileUser.attributes.profile.publicData.organisation;
-
     const bio = profileUser.attributes.profile.bio;
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
-    const isProvider =
-      currentUser && currentUser.attributes.profile.publicData.provider;
+    const isProvider = user && user.attributes.profile.publicData.provider;
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
 
     const editLinkMobile = isCurrentUser ? (
@@ -144,7 +138,7 @@ export class ProfilePageComponent extends Component {
 
     const mobileReviews = (
       <div className={css.mobileReviews}>
-        {!isProvider && (
+        {isProvider && (
           <div>
             <h2 className={css.mobileReviewsTitle}>
               <FormattedMessage
@@ -156,7 +150,7 @@ export class ProfilePageComponent extends Component {
             <Reviews reviews={reviewsOfProvider} />
           </div>
         )}
-        {isProvider && (
+        {!isProvider && (
           <div>
             <h2 className={css.mobileReviewsTitle}>
               <FormattedMessage
@@ -171,7 +165,7 @@ export class ProfilePageComponent extends Component {
       </div>
     );
 
-    const desktopReviewTabsProvider = [
+    const desktopReviewTabsNotProvider = [
       {
         text: (
           <h3 className={css.desktopReviewsTitle}>
@@ -181,12 +175,12 @@ export class ProfilePageComponent extends Component {
             />
           </h3>
         ),
-        selected: this.state.showReviewsType === REVIEW_TYPE_OF_CUSTOMER,
+        selected: !isProvider,
         onClick: this.showOfCustomerReviews
       }
     ];
 
-    const desktopReviewTabsNotProvider = [
+    const desktopReviewTabsProvider = [
       {
         text: (
           <h3 className={css.desktopReviewsTitle}>
@@ -196,7 +190,7 @@ export class ProfilePageComponent extends Component {
             />
           </h3>
         ),
-        selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
+        selected: isProvider,
         onClick: this.showOfProviderReviews
       }
     ];
@@ -215,7 +209,7 @@ export class ProfilePageComponent extends Component {
           />
         )}
         {queryReviewsError ? reviewsError : null}
-        {this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER ? (
+        {isProvider ? (
           <Reviews reviews={reviewsOfProvider} />
         ) : (
           <Reviews reviews={reviewsOfCustomer} />
