@@ -1,3 +1,21 @@
+# Goodwings Experiences Web App
+This is a the web app for the Goodwings Experiences marketplace.
+
+It is based on the Sharetribe Flex template app for web and all the standard documentation is below. 
+
+There are lots of cosmetic changes and copy changes throughout, but the key functional differences from the standard template app are:
+
+- This app uses a custom, unit-based transaction process (setup by Sharetribe). 
+- It separates users into two groups, buyers and providers by storing and reading publicData for the user.
+- The options to create and manage listings are removed for buyers and the option to book listings is removed for providers.
+- There are two separate sign up pages for the two types of users, both hidden in non-friendly URLs to protect the market place from unwanted sign ups.
+- The create listings page collects a good deal of additional information stored in publicData, including group sizes, free text availability, contact information and other things 
+- Listings can be setup with a variety of different models (flat price per hour, seating price per hour, flat price per day, seating price per day) which are all converted to units client side before being submitted to the API, with the component parts and the booking scheme stored in publicData for the transaction.
+- The booking breakdown takes the component parts and booking scheme into account and reconverts the units back to the relevant metrics.
+- There are three facets available to filter by (group size, social development goal and experience type), which have been implemented in the template and indexed by Sharetribe
+
+The customisation was done by jakob@simply-digital.dk.
+
 # Sharetribe Flex Template for Web
 
 [![CircleCI](https://circleci.com/gh/sharetribe/flex-template-web.svg?style=svg&circle-token=198451e83e5cecb0d662949260dbc3273ac44a67)](https://circleci.com/gh/sharetribe/flex-template-web)
