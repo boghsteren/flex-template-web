@@ -74,7 +74,7 @@ General questions
              The price of any given experience on the marketplace consists of the amount paid to nonprofit organisation (the experience host) and a 10% transaction fee. There are no other hidden fees.
               </p>
              <p>
-             For example, if an experience costs USD 500, the nonprofit organisation hosting the experience receives this amount. On top of that, we add a 10% transaction fee paid by the customer. This fee makes the marketplace possible. In this example, the total price paid by the customer will be USD 600.
+             For example, if an experience costs USD 500, the nonprofit organisation hosting the experience receives this amount. On top of that, we add a 10% transaction fee paid by the customer. This fee makes the marketplace possible. In this example, the total price paid by the customer will be USD 550.
              </p>
              <p>
              Goodwings handle everything relating to the secure payment.
