@@ -29,7 +29,7 @@ const HowItWorksPage = () => {
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
-          <h1 className={css.pageTitle}>How it works.</h1>
+          <h1 className={css.pageTitle}>How it works</h1>
           <h2>1. Search for an experience</h2>
 
           <p>
