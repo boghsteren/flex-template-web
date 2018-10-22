@@ -35,7 +35,7 @@ const HowItWorksPage = () => {
           <p>
             Goodwings’ nonprofit partners all around the world have added
             inspiring activities for you to easily book. You can search by
-            location or type of experience. You can also filter by social impact
+            location, type of experience and group size. You can also filter by social impact
             focus, for example experiences focused on People or Planet.
           </p>
           <p>
@@ -57,7 +57,7 @@ const HowItWorksPage = () => {
 
           <p>
             When you’re ready, it’s fast, easy and secure to book and pay for
-            the experience. Besides a transaction fee, the entire amount paid
+            the experience. Besides a 10% transaction fee, the entire amount paid
             will go directly to the nonprofit organisation hosting the
             experience. This helps the nonprofit make a real social impact in
             their community and in the world. It's the fee that enables us to
