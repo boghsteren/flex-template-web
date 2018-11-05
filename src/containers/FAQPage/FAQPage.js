@@ -129,7 +129,7 @@ When you’ve found the experience you want to book, you can either inquire abou
              <div className={css.contentWrapper}>
 
              <div className={css.contentSide}>
-             <p>How fo I pay?</p>
+             <p>How do I pay?</p>
            </div>
 
            <div className={css.contentMain}>
