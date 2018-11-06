@@ -191,7 +191,7 @@
     "You need to select a group size.",
   "EditListingDescriptionForm.contact": "Contact person for this experience",
   "EditListingDescriptionForm.contactPlaceholder":
-    "Is there a specific contact person for this experience (if different from yourself)? Please add name and contact information.",
+    "Is there a specific contact person for this experience (if different from yourself)? Please add name, email and phone number.",
   "EditListingDescriptionForm.description": "Describe your experience",
   "EditListingDescriptionForm.descriptionPlaceholder":
     "Present your experience. What will happen? Is there an itinerary? If so, please write it here.",
@@ -780,7 +780,7 @@
   "SendMessageForm.sendFailed": "Failed to send. Please try again.",
   "SendMessageForm.sendMessage": "Send message",
   "SignupForm.organisationLabel": "Organisation",
-  "SignupForm.organisationPlaceholder": "Where do you work?",
+  "SignupForm.organisationPlaceholder": "Enter the name here",
   "SignupForm.organisationRequiredMessage": "You need to add an organisation.",
   "SignupForm.emailInvalid": "A valid email address is required",
   "SignupForm.emailLabel": "Email",
