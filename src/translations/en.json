@@ -179,7 +179,7 @@
     "Please explain when this experience will/can take place? Is it only available on Tuesdays for example? Are there any dates that work best for you? You can update this information whenever you need.",
   "EditListingAvailabilityFormComponent.updateFailed":
     "Availability could not be saved",
-  "EditListingDescriptionForm.categoryLabel": "Experience type",
+  "EditListingDescriptionForm.categoryLabel": "Activity type",
   "EditListingDescriptionForm.group_sizeLabel": "Group size",
   "EditListingDescriptionForm.categoryPlaceholder":
     "Choose the type of experience",
@@ -705,7 +705,7 @@
   "ReviewModal.title": "Leave a review for {revieweeName}",
   "Reviews.bannedUserDisplayName": "Banned user",
   "SearchFilters.goalsLabel": "Social impact focus",
-  "SearchFilters.categoryLabel": "Experience type",
+  "SearchFilters.categoryLabel": "Activity",
   "SearchFilters.filtersButtonLabel": "Filters",
   "SearchFilters.foundResults":
     "{count, number} {count, plural, one {result} other {results}}",
@@ -719,7 +719,7 @@
   "SearchFilters.openMapView": "Map",
   "SearchFiltersMobile.goalsLabel": "Social impact focus",
   "SearchFiltersMobile.cancel": "CANCEL",
-  "SearchFiltersMobile.categoryLabel": "Experience type",
+  "SearchFiltersMobile.categoryLabel": "Activity",
   "SearchFiltersMobile.heading": "Filter experiences",
   "SearchFiltersMobile.resetAll": "Reset all",
   "SearchFiltersMobile.showListings":
