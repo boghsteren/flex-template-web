@@ -1,5 +1,5 @@
 export const promotedExperiences = [
-  "5bb201c2-9e5f-475f-ac16-8c369b182de9",
-  "5bb1fdd7-0bc6-4335-94ee-82214dd4fd6e",
-  '5baa3547-0238-4cb8-b46d-b4e114da5dcf'
+  "5be996ec-d20d-4691-bf0c-3a9c5cb0ffb8",
+  "5be994fc-e389-483b-b662-66945682c19f",
+  '5be99174-888a-4a13-a9c0-d0aee0b4c86b'
 ];
