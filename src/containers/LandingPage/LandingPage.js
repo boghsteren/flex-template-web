@@ -15,6 +15,7 @@ import {
   SectionLocations,
   SectionAllOverTheWorld,
   SectionHighlightsOfTheMonth,
+  SectionTargetGroup,
   LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
@@ -105,11 +106,18 @@ export const LandingPageComponent = props => {
               </div>
             )}
             {!user && (
-              <li className={css.section}>
-                <div className={css.sectionContent}>
-                  <SectionHowItWorks />
-                </div>
-              </li>
+              <div>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionHowItWorks />
+                  </div>
+                </li>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionTargetGroup />
+                  </div>
+                </li>
+              </div>
             )}
           </ul>
         </LayoutWrapperMain>

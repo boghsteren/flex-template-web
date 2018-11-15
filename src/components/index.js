@@ -174,6 +174,9 @@ export {
   default as SectionHowItWorks
 } from "./SectionHowItWorks/SectionHowItWorks";
 export {
+  default as SectionTargetGroup
+} from "./SectionTargetGroup/SectionTargetGroup";
+export {
   default as SectionLocations
 } from "./SectionLocations/SectionLocations";
 export {

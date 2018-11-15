@@ -752,7 +752,7 @@
   "SectionHowItWorks.part3Title": "3. Book the experience",
   "SectionHowItWorks.providerSignupLink":
     "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
-   "SectionHowItWorks.agentSignupLink":
+  "SectionHowItWorks.agentSignupLink":
     "Are you a travel agent or tour operator and do you want to sell social impact experiences as part of your group travel offerings? Read more.",
   "SectionHowItWorks.titleLineOne": "How it works",
   "SectionHowItWorks.titleLineTwo": "(or how Goodwings Experiences works).",
@@ -769,6 +769,22 @@
   "SectionHighlightsOfTheMonth.title": "Popular experiences right now",
   "SectionHighlightsOfTheMonth.subtitle": "Exciting options right now...",
   "SectionHighlightsOfTheMonth.listingsInLocation": "{location}",
+  "SectionTargetGroup.part1Text":
+    "I'm a travel agent or tour operator arranging group travels on behalf of others.",
+  "SectionTargetGroup.part1Title": "1. Search for an experience",
+  "SectionTargetGroup.part2Text":
+    "We’re a non-profit organisation looking to offer social impact experiences.",
+  "SectionTargetGroup.part2Title": "2. Interact with the host",
+  "SectionTargetGroup.part3Text":
+    "We’re a group of people travelling together and looking for authentic experiences.",
+  "SectionTargetGroup.part3Title": "3. Book the experience",
+  "SectionTargetGroup.providerSignupLink":
+    "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
+  "SectionTargetGroup.agentSignupLink":
+    "Are you a travel agent or tour operator and do you want to sell social impact experiences as part of your group travel offerings? Read more.",
+  "SectionTargetGroup.titleLineOne": "Learn more",
+  "SectionTargetGroup.titleLineTwo":
+    "Tell us who you are and we'll help you get onboard and start using Goodwings Experiences already today.",
   "SelectMultipleFilter.labelSelected": "{labelText} • {count}",
   "SelectMultipleFilterForm.cancel": "Cancel",
   "SelectMultipleFilterForm.clear": "Clear",
