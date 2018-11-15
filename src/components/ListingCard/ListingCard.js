@@ -57,7 +57,13 @@ export const ListingCardComponent = props => {
   const authorOrganisation = author.attributes.profile.publicData.organisation
     ? author.attributes.profile.publicData.organisation
     : authorName;
-
+  const duration = currentListing.attributes.publicData.duration
+    ? currentListing.attributes.publicData.duration
+    : "";
+  const cat = config.custom.categories.find(
+    category => category.key === currentListing.attributes.publicData.category
+  );
+  const type = cat ? cat.label : "";
   const firstImage =
     currentListing.images && currentListing.images.length > 0
       ? currentListing.images[0]
@@ -88,6 +94,7 @@ export const ListingCardComponent = props => {
             {formattedPrice}
           </div>
           <div className={css.perUnit}>{pricingLabel}</div>
+          <div className={css.perUnit}>{`Duration: ${duration}`}</div>
         </div>
         <div className={css.mainInfo}>
           <div className={css.title}>
@@ -96,6 +103,7 @@ export const ListingCardComponent = props => {
               longWordClass: css.longWord
             })}
           </div>
+          <div className={css.authorInfo}>{type}</div>
           <div className={css.authorInfo}>
             <FormattedMessage
               className={css.authorName}
