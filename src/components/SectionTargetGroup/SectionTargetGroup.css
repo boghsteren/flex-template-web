@@ -28,6 +28,11 @@
     margin-bottom: 10px;
   }
 }
+
+.step1:hover {
+  transform: scale(1.1);
+}
+
 .step2 {
   width: 324px;
   height: 200px;
@@ -40,6 +45,11 @@
     margin-bottom: 10px;
   }
 }
+
+.step2:hover {
+  transform: scale(1.1);
+}
+
 .step3 {
   width: 324px;
   height: 200px;
@@ -51,6 +61,10 @@
   font-size: 30px;
   padding: 10px;
   border-radius: 4px;
+}
+
+.step3:hover {
+  transform: scale(1.1);
 }
 
 .stepTitle {
