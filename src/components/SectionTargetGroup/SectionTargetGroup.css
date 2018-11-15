@@ -27,10 +27,8 @@
   @media (--viewportMedium) {
     margin-bottom: 10px;
   }
-}
-
-.step1:hover {
-  transform: scale(1.1);
+  &:hover {
+    transform: scale(1.02);
 }
 
 .step2 {
@@ -44,11 +42,10 @@
   @media (--viewportMedium) {
     margin-bottom: 10px;
   }
+  &:hover {
+    transform: scale(1.02);
 }
 
-.step2:hover {
-  transform: scale(1.1);
-}
 
 .step3 {
   width: 324px;
@@ -61,11 +58,10 @@
   font-size: 30px;
   padding: 10px;
   border-radius: 4px;
+  &:hover {
+    transform: scale(1.02);
 }
 
-.step3:hover {
-  transform: scale(1.1);
-}
 
 .stepTitle {
   margin-top: 18px;
