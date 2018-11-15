@@ -75,26 +75,6 @@ const SectionHowItWorks = props => {
           </p>
         </div>
       </div>
-      <a href="https://get.gwexperiences.com/agent" className={css.location}>
-        <div className={css.linkText}>
-          <p>
-            <FormattedMessage
-              id="SectionHowItWorks.agentSignupLink"
-              className={css.linkText}
-            />
-          </p>
-        </div>
-      </a>
-     <a href="https://get.gwexperiences.com/host" className={css.location}>
-        <div className={css.linkText}>
-          <p>
-            <FormattedMessage
-              id="SectionHowItWorks.providerSignupLink"
-              className={css.linkText}
-            />
-          </p>
-        </div>
-      </a>
     </div>
   );
 };
