@@ -6,8 +6,9 @@ import { intlShape, injectIntl, FormattedMessage } from "react-intl";
 import classNames from "classnames";
 import { propTypes } from "../../util/types";
 import { maxLength, required, composeValidators } from "../../util/validators";
-import { Form, Button, FieldTextInput } from "../../components";
+import { Form, Button, FieldTextInput, FieldSelect } from "../../components";
 import CustomCategorySelectFieldMaybe from "./CustomCategorySelectFieldMaybe";
+import config from "../../config";
 
 import css from "./EditListingDescriptionForm.css";
 
@@ -68,9 +69,6 @@ const EditListingDescriptionFormComponent = props => (
       });
       const contactPlaceholderMessage = intl.formatMessage({
         id: "EditListingDescriptionForm.contactPlaceholder"
-      });
-      const durationMessage = intl.formatMessage({
-        id: "EditListingDescriptionForm.duration"
       });
       const durationPlaceholderMessage = intl.formatMessage({
         id: "EditListingDescriptionForm.durationPlaceholder"
@@ -150,14 +148,22 @@ const EditListingDescriptionFormComponent = props => (
             label={contactMessage}
             placeholder={contactPlaceholderMessage}
           />
-          <FieldTextInput
-            id="duration"
+          <FieldSelect
             name="duration"
-            className={css.description}
-            type="text"
-            label={durationMessage}
-            placeholder={durationPlaceholderMessage}
-          />
+            id="duration"
+            label="Duration"
+            className={css.category}
+            validate={required("Required")}
+          >
+            <option disabled selected value="">
+              {durationPlaceholderMessage}
+            </option>
+            {config.custom.duration_options.map(option => (
+              <option key={option.key} value={option.value}>
+                {option.value}
+              </option>
+            ))}
+          </FieldSelect>
           <Button
             className={css.submitButton}
             type="submit"

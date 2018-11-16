@@ -25,6 +25,29 @@ export const goals = [
   }
 ];
 
+export const duration_options = [
+  { key: 1, value: "1 hour" },
+  { key: 2, value: "2 hours" },
+  { key: 3, value: "3 hours" },
+  { key: 4, value: "4 hours" },
+  { key: 5, value: "5 hours" },
+  { key: 6, value: "6 hours" },
+  { key: 7, value: "7 hours" },
+  { key: 8, value: "8 hours" },
+  { key: 9, value: "9 hours" },
+  { key: 10, value: "10 hours" },
+  { key: 11, value: "1 day" },
+  { key: 12, value: "2 days" },
+  { key: 13, value: "3 days" },
+  { key: 14, value: "4 days" },
+  { key: 15, value: "5 days" },
+  { key: 16, value: "6 days" },
+  { key: 17, value: "7 days" },
+  { key: 18, value: "8 days" },
+  { key: 19, value: "9 days" },
+  { key: 20, value: "10 days" }
+];
+
 export const pricing_schemes = [
   {
     key: "hourly_flat",
