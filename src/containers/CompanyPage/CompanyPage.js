@@ -30,7 +30,7 @@ const CompanyPage = () => {
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
-          <h1 className={css.pageTitle}>About Goodwings Experiences.</h1>
+          <h1 className={css.pageTitle}>About Goodwings Experiences</h1>
           <img className={css.coverImage} src={image} alt="A world to explore." />
 
           <div className={css.contentWrapper}>

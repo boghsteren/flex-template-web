@@ -7,7 +7,7 @@
 
 .steps {
   display: flex;
-  margin-top: 40px;
+  margin-top: 30px;
   flex-direction: column;
   color: white;
   @media (--viewportMedium) {
@@ -15,24 +15,41 @@
   }
 }
 .stepContainer {
-  margin-right: 60px;
+  margin-right: 40px;
 }
 .step1 {
   width: 324px;
-  height: 100%;
+  height: 200px;
   background-color: #89c9c0;
   text-align: center;
   padding: 10px;
+  border-radius: 4px;
+  @media (--viewportMedium) {
+    margin-bottom: 10px;
+  }
+  &:hover {
+    transform: scale(1.02);}
 }
+
 .step2 {
   width: 324px;
+  height: 200px;
   background-color: #dc4d4b;
   text-align: center;
   font-size: 30px;
   padding: 10px;
+  border-radius: 4px;
+  @media (--viewportMedium) {
+    margin-bottom: 10px;
+  }
+  &:hover {
+    transform: scale(1.02);}
 }
+
+
 .step3 {
   width: 324px;
+  height: 200px;
   background-color: #7da234;
   @media (--viewportMedium) {
     margin-right: 0;
@@ -40,7 +57,11 @@
   text-align: center;
   font-size: 30px;
   padding: 10px;
+  border-radius: 4px;
+  &:hover {
+    transform: scale(1.02);}
 }
+
 
 .stepTitle {
   margin-top: 18px;
