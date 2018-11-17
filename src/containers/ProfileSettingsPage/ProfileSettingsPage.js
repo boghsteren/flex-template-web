@@ -45,13 +45,7 @@ export class ProfileSettingsPageComponent extends Component {
     } = this.props;
 
     const handleSubmit = values => {
-      const {
-        firstName,
-        lastName,
-        organisation,
-        provider,
-        bio: rawBio
-      } = values;
+      const { firstName, lastName, organisation, bio: rawBio } = values;
 
       // Ensure that the optional bio is a string
       const bio = rawBio || "";
@@ -59,7 +53,7 @@ export class ProfileSettingsPageComponent extends Component {
       const profile = {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
-        publicData: { organisation, provider },
+        publicData: { organisation },
         bio
       };
       const uploadedImage = this.props.image;
@@ -78,11 +72,6 @@ export class ProfileSettingsPageComponent extends Component {
     const organisation = user.attributes.profile.publicData
       ? user.attributes.profile.publicData.organisation
       : "";
-
-    const provider = user.attributes.profile.publicData
-      ? user.attributes.profile.publicData.provider
-      : "";
-
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
 
@@ -95,7 +84,6 @@ export class ProfileSettingsPageComponent extends Component {
           lastName,
           bio,
           organisation,
-          provider,
           profileImage: user.profileImage
         }}
         profileImage={profileImage}

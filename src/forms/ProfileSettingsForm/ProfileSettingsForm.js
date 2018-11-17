@@ -297,7 +297,6 @@ class ProfileSettingsFormComponent extends Component {
                 </div>
               </div>
               <div className={css.sectionContainer}>
-        
                 <div className={css.nameContainer}>
                   <FieldTextInput
                     className={css.firstName}
@@ -335,13 +334,6 @@ class ProfileSettingsFormComponent extends Component {
                     )}
                   />
                 </div>
-
-                <FieldBoolean
-                  id={"provider"}
-                  name="provider"
-                  label="Are you an experience host?"
-                  placeholder="Choose yes/no"
-                />
               </div>
               <div
                 className={classNames(css.sectionContainer, css.lastSection)}
