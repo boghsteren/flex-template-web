@@ -64,13 +64,14 @@ import css from "./ListingPage.css";
 import moment from "moment";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import Window from "window";
-
-const window = new Window();
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
 const { UUID } = sdkTypes;
+
+if (typeof window == "undefined") {
+  global.window = new Object();
+}
 
 const priceData = (price, intl) => {
   if (price && price.currency === config.currency) {
