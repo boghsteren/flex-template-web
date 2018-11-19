@@ -69,8 +69,8 @@ const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
 const { UUID } = sdkTypes;
 
-if (typeof window == "undefined") {
-  global.window = new Object();
+if (typeof window === "undefined") {
+  global.window = {};
 }
 
 const priceData = (price, intl) => {
