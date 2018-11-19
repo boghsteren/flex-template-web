@@ -64,7 +64,6 @@ import css from "./ListingPage.css";
 import moment from "moment";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import logo from "../../assets/favicon-32x32.png";
 window.html2canvas = html2canvas;
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
@@ -84,12 +83,12 @@ const priceData = (price, intl) => {
   return {};
 };
 
-const createPDF = () => {
+const createPDF = name => {
   const input = document.getElementById("pdf");
   html2canvas(input, { useCORS: true }).then(canvas => {
     const pdf = new jsPDF();
     pdf.addImage(canvas, "JPEG", 0, 0);
-    pdf.save("download.pdf");
+    pdf.save(`${name}.pdf`);
   });
 };
 
@@ -575,7 +574,7 @@ export class ListingPageComponent extends Component {
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
                     <Button
                       className={css.button}
-                      onClick={() => createPDF()}
+                      onClick={() => createPDF(title)}
                       label="Export"
                     >
                       Export PDF
