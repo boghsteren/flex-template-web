@@ -64,6 +64,9 @@ import css from "./ListingPage.css";
 import moment from "moment";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import Window from "window";
+
+const window = new Window();
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
