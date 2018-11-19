@@ -15,8 +15,7 @@ import {
   Button,
   ImageFromFile,
   IconSpinner,
-  FieldTextInput,
-  FieldBoolean
+  FieldTextInput
 } from "../../components";
 
 import css from "./ProfileSettingsForm.css";

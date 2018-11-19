@@ -7,7 +7,10 @@
     padding-bottom: 0;
   }
 }
-
+.button {
+  max-width: 200px;
+  margin: 20px;
+}
 .loadingText {
   margin: 24px;
 }
@@ -196,9 +199,16 @@
     display: flex;
     position: relative;
   }
-
   @media (--viewportLarge) {
     margin: 0 auto 117px;
+  }
+}
+.pdfContainer {
+  @media (--viewportMedium) {
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 0 60px;
   }
 }
 

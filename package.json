@@ -23,6 +23,8 @@
     "final-form": "^4.4.0",
     "final-form-arrays": "^1.0.4",
     "helmet": "^3.12.0",
+    "html2canvas": "^1.0.0-alpha.12",
+    "jspdf": "^1.4.1",
     "lodash": "^4.17.5",
     "mapbox-gl-multitouch": "^1.0.3",
     "moment": "^2.20.1",

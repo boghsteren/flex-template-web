@@ -43,7 +43,9 @@ import {
   LayoutWrapperTopbar,
   LayoutWrapperMain,
   LayoutWrapperFooter,
-  Footer
+  Footer,
+  Button,
+  Logo
 } from "../../components";
 import { TopbarContainer, NotFoundPage } from "../../containers";
 
@@ -60,6 +62,10 @@ import SectionMapMaybe from "./SectionMapMaybe";
 import SectionBooking from "./SectionBooking";
 import css from "./ListingPage.css";
 import moment from "moment";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import logo from "../../assets/favicon-32x32.png";
+window.html2canvas = html2canvas;
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
@@ -76,6 +82,15 @@ const priceData = (price, intl) => {
     };
   }
   return {};
+};
+
+const createPDF = () => {
+  const input = document.getElementById("pdf");
+  html2canvas(input, { useCORS: true }).then(canvas => {
+    const pdf = new jsPDF();
+    pdf.addImage(canvas, "JPEG", 0, 0);
+    pdf.save("download.pdf");
+  });
 };
 
 const openBookModal = (history, listing) => {
@@ -551,12 +566,21 @@ export class ListingPageComponent extends Component {
                     selectedOptions={publicData.goals}
                   />
                   <SectionRulesMaybe publicData={publicData} />
+
                   <SectionMapMaybe
                     geolocation={geolocation}
                     publicData={publicData}
                     listingId={currentListing.id}
                   />
-
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Button
+                      className={css.button}
+                      onClick={() => createPDF()}
+                      label="Export"
+                    >
+                      Export PDF
+                    </Button>
+                  </div>
                   <SectionReviews
                     reviews={reviews}
                     fetchReviewsError={fetchReviewsError}
@@ -579,6 +603,7 @@ export class ListingPageComponent extends Component {
                     onManageDisableScrolling={onManageDisableScrolling}
                   />
                 </div>
+
                 {currentUser &&
                   !currentUser.attributes.profile.publicData.provider && (
                     <SectionBooking
@@ -600,6 +625,68 @@ export class ListingPageComponent extends Component {
                       fetchTimeSlotsError={fetchTimeSlotsError}
                     />
                   )}
+              </div>
+            </div>
+            <div style={{ height: "0px", overflow: "hidden" }}>
+              <div
+                id="pdf"
+                style={{
+                  width: "210mm",
+                  minHeight: "297mm",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  backgroundColor: "#fcfcfc"
+                }}
+              >
+                <div>
+                  <div className={css.threeToTwoWrapper} />
+                  <div className={css.pdfContainer}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Logo />
+                    </div>
+                    <SectionAvatar user={currentAuthor} params={params} />
+                    <div className={css.mainContent}>
+                      <SectionHeading
+                        priceTitle={priceTitle}
+                        pricing_scheme={pricing_scheme_label}
+                        formattedPrice={<div>{formattedPrice}</div>}
+                        richTitle={
+                          <span>
+                            {richText(title, {
+                              longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE,
+                              longWordClass: css.longWord
+                            })}
+                          </span>
+                        }
+                        category={category}
+                        hostLink={hostLink}
+                        showContactUser={false}
+                        onContactUser={this.onContactUser}
+                      />
+                      <div
+                        style={{
+                          whiteSpace: "pre-wrap",
+                          fontSize: "14px",
+                          marginBottom: "20px"
+                        }}
+                      >
+                        {description}
+                      </div>
+
+                      <SectionRulesMaybe publicData={publicData} />
+                      <SectionMapMaybe
+                        geolocation={geolocation}
+                        publicData={publicData}
+                        listingId={currentListing.id}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </LayoutWrapperMain>
