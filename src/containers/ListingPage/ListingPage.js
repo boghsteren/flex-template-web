@@ -62,16 +62,11 @@ import SectionMapMaybe from "./SectionMapMaybe";
 import SectionBooking from "./SectionBooking";
 import css from "./ListingPage.css";
 import moment from "moment";
-import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
 const { UUID } = sdkTypes;
-
-if (typeof window === "undefined") {
-  global.window = {};
-}
 
 const priceData = (price, intl) => {
   if (price && price.currency === config.currency) {
@@ -86,6 +81,7 @@ const priceData = (price, intl) => {
   return {};
 };
 
+let jsPDF;
 const createPDF = name => {
   const input = document.getElementById("pdf");
   html2canvas(input, { useCORS: true }).then(canvas => {
@@ -145,6 +141,9 @@ export class ListingPageComponent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onContactUser = this.onContactUser.bind(this);
     this.onSubmitEnquiry = this.onSubmitEnquiry.bind(this);
+  }
+  componentDidMount() {
+    jsPDF = require("jspdf");
   }
 
   handleSubmit(values) {

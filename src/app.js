@@ -1,30 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactDOMServer from 'react-dom/server';
+import React from "react";
+import PropTypes from "prop-types";
+import ReactDOMServer from "react-dom/server";
 
 // react-dates needs to be initialized before using any react-dates component
 // https://github.com/airbnb/react-dates#initialize
 // NOTE: Initializing it here will initialize it also for app.test.js
-import 'react-dates/initialize';
-import Helmet from 'react-helmet';
-import { BrowserRouter, StaticRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import mapValues from 'lodash/mapValues';
-import moment from 'moment';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import configureStore from './store';
-import routeConfiguration from './routeConfiguration';
-import Routes from './Routes';
-import config from './config';
+import "react-dates/initialize";
+import Helmet from "react-helmet";
+import { BrowserRouter, StaticRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import mapValues from "lodash/mapValues";
+import moment from "moment";
+import { IntlProvider, addLocaleData } from "react-intl";
+import configureStore from "./store";
+import routeConfiguration from "./routeConfiguration";
+import Routes from "./Routes";
+import config from "./config";
 
 // If you want to change the language, Change the imports to the match
 // the wanted locale.
 //
 // Remember to also change the language in the config.js file.
-import localeData from 'react-intl/locale-data/en';
-import messages from './translations/en.json';
+import localeData from "react-intl/locale-data/en";
+import messages from "./translations/en.json";
 
-const isTestEnv = process.env.NODE_ENV === 'test';
+const isTestEnv = process.env.NODE_ENV === "test";
 
 // Locale should not affect the tests. We ensure this by providing
 // messages with the key as the value of each message.
@@ -77,7 +77,11 @@ export const ServerApp = props => {
   );
 };
 
-ServerApp.propTypes = { url: string.isRequired, context: any.isRequired, store: any.isRequired };
+ServerApp.propTypes = {
+  url: string.isRequired,
+  context: any.isRequired,
+  store: any.isRequired
+};
 
 /**
  * Render the given route.
