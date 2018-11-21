@@ -630,7 +630,7 @@ export class ListingPageComponent extends Component {
             <div className={css.hiddenPdfSection}>
               <div id="pdf" className={css.pdfContainer}>
                 <div>
-                  <div style={{ marginLeft: "20px" }}>
+                  <div style={{ marginLeft: "20px", fontSize: "16px" }}>
                     {currentListing.attributes.publicData.location.address}
                   </div>
                   <SectionHeading
@@ -687,13 +687,6 @@ export class ListingPageComponent extends Component {
                     <div className={css.pdfSectionDescription}>
                       {group_size}
                     </div>
-                  </div>
-                </div>
-                <div className={css.pdfWrapper}>
-                  <div className={css.pdfContent}>
-                    <SectionReviews reviews={reviews} pdf />
-                  </div>
-                  <div className={css.pdfContent}>
                     <SectionHost
                       pdf
                       title={title}
