@@ -35,7 +35,7 @@ class ExpandableBio extends Component {
   }
   render() {
     const { expand } = this.state;
-    const { className, bio } = this.props;
+    const { className, bio, pdf } = this.props;
     const truncatedBio = truncated(bio);
 
     const handleShowMoreClick = () => {
@@ -63,7 +63,14 @@ ExpandableBio.propTypes = {
 };
 
 const UserCard = props => {
-  const { rootClassName, className, user, currentUser, onContactUser } = props;
+  const {
+    rootClassName,
+    className,
+    user,
+    currentUser,
+    onContactUser,
+    pdf
+  } = props;
 
   const userIsCurrentUser = user && user.type === "currentUser";
   const ensuredUser = userIsCurrentUser
@@ -113,27 +120,29 @@ const UserCard = props => {
     </NamedLink>
   ) : null;
 
-  const links = ensuredUser.id ? (
-    <p className={linkClasses}>
-      <NamedLink
-        className={css.link}
-        name="ProfilePage"
-        params={{ id: ensuredUser.id.uuid }}
-      >
-        <FormattedMessage id="UserCard.viewProfileLink" />
-      </NamedLink>
-      {separator}
-      {isCurrentUser ? editProfileMobile : contact}
-    </p>
-  ) : null;
+  const links =
+    ensuredUser.id && !pdf ? (
+      <p className={linkClasses}>
+        <NamedLink
+          className={css.link}
+          name="ProfilePage"
+          params={{ id: ensuredUser.id.uuid }}
+        >
+          <FormattedMessage id="UserCard.viewProfileLink" />
+        </NamedLink>
+
+        {separator}
+        {isCurrentUser ? editProfileMobile : contact}
+      </p>
+    ) : null;
 
   return (
     <div className={classes}>
       <div className={css.content}>
-        <AvatarLarge className={css.avatar} user={user} />
+        {!pdf && <AvatarLarge className={css.avatar} user={user} />}
         <div className={css.info}>
           <div className={css.headingRow}>
-            <h3 className={css.heading}>
+            <h3 className={pdf ? css.pdfHeading : css.heading}>
               <FormattedMessage
                 id="UserCard.heading"
                 values={{ name: displayName, organisation: organisation }}
@@ -142,12 +151,20 @@ const UserCard = props => {
             {editProfileDesktop}
           </div>
           {hasBio ? (
-            <ExpandableBio className={css.desktopBio} bio={bio} />
+            <ExpandableBio
+              className={pdf ? css.pdfhiddenBio : css.desktopBio}
+              bio={bio}
+            />
           ) : null}
           {links}
         </div>
       </div>
-      {hasBio ? <ExpandableBio className={css.mobileBio} bio={bio} /> : null}
+      {hasBio ? (
+        <ExpandableBio
+          className={pdf ? css.pdfDesktopBio : css.mobileBio}
+          bio={bio}
+        />
+      ) : null}
     </div>
   );
 };

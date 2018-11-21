@@ -85,8 +85,9 @@ let jsPDF;
 const createPDF = name => {
   const input = document.getElementById("pdf");
   html2canvas(input, { useCORS: true }).then(canvas => {
+    var imgData = canvas.toDataURL("image/jpg");
     const pdf = new jsPDF();
-    pdf.addImage(canvas, "JPEG", 0, 0);
+    pdf.addImage(imgData, "JPEG", 0, 0);
     pdf.save(`${name}.pdf`);
   });
 };
@@ -628,64 +629,88 @@ export class ListingPageComponent extends Component {
                   )}
               </div>
             </div>
-            <div style={{ height: "0px", overflow: "hidden" }}>
-              <div
-                id="pdf"
-                style={{
-                  width: "210mm",
-                  minHeight: "297mm",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  backgroundColor: "#fcfcfc"
-                }}
-              >
+            <div className={css.hiddenPdfSection}>
+              <div id="pdf" className={css.pdfContainer}>
                 <div>
-                  <div className={css.threeToTwoWrapper} />
-                  <div className={css.pdfContainer}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Logo />
+                  <SectionHeading
+                  pdf
+                    richTitle={
+                      <span>
+                        {richText(title, {
+                          longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE,
+                          longWordClass: css.longWord
+                        })}
+                      </span>
+                    }
+                    category={category}
+                    hostLink={hostLink}
+                  />
+                </div>
+                <div className={css.pdfWrapper}>
+                  <div
+                    className={css.pdfContent}
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      fontSize: "14px",
+                      marginBottom: "20px"
+                    }}
+                  >
+                    <div className={css.pdfDescriptionTitle}>
+                      About this experience
                     </div>
-                    <SectionAvatar user={currentAuthor} params={params} />
-                    <div className={css.mainContent}>
-                      <SectionHeading
-                        priceTitle={priceTitle}
-                        pricing_scheme={pricing_scheme_label}
-                        formattedPrice={<div>{formattedPrice}</div>}
-                        richTitle={
-                          <span>
-                            {richText(title, {
-                              longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE,
-                              longWordClass: css.longWord
-                            })}
-                          </span>
-                        }
-                        category={category}
-                        hostLink={hostLink}
-                        showContactUser={false}
-                        onContactUser={this.onContactUser}
-                      />
-                      <div
-                        style={{
-                          whiteSpace: "pre-wrap",
-                          fontSize: "14px",
-                          marginBottom: "20px"
-                        }}
-                      >
-                        {description}
-                      </div>
-
-                      <SectionRulesMaybe publicData={publicData} />
-                      <SectionMapMaybe
-                        geolocation={geolocation}
-                        publicData={publicData}
-                        listingId={currentListing.id}
-                      />
+                    <div className={css.pdfSectionDescription}>
+                      {description}
                     </div>
+                    <div className={css.pdfDescriptionTitle}>
+                      Included in this experience
+                    </div>
+                    <div className={css.pdfSectionDescription}>{included}</div>
+                  </div>
+                  <div
+                    className={css.pdfContent}
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      fontSize: "14px",
+                      marginBottom: "20px"
+                    }}
+                  >
+                    <div className={css.pdfDescriptionTitle}>Duration</div>
+                    <div className={css.pdfSectionDescription}>{duration}</div>
+                    <div className={css.pdfDescriptionTitle}>Availability</div>
+                    <div className={css.pdfSectionDescription}>
+                      {availability}
+                    </div>
+                    <div className={css.pdfDescriptionTitle}>
+                      Participant capacity
+                    </div>
+                    <div className={css.pdfSectionDescription}>
+                      {group_size}
+                    </div>
+                  </div>
+                </div>
+                <div className={css.pdfWrapper}>
+                  <div className={css.pdfContent}>
+                    <SectionReviews reviews={reviews} pdf />
+                  </div>
+                  <div className={css.pdfContent}>
+                    <SectionHost
+                      pdf
+                      title={title}
+                      listing={currentListing}
+                      authorDisplayName={authorDisplayName}
+                      onContactUser={this.onContactUser}
+                      isEnquiryModalOpen={
+                        isAuthenticated && this.state.enquiryModalOpen
+                      }
+                      onCloseEnquiryModal={() =>
+                        this.setState({ enquiryModalOpen: false })
+                      }
+                      sendEnquiryError={sendEnquiryError}
+                      sendEnquiryInProgress={sendEnquiryInProgress}
+                      onSubmitEnquiry={this.onSubmitEnquiry}
+                      currentUser={currentUser}
+                      onManageDisableScrolling={onManageDisableScrolling}
+                    />
                   </div>
                 </div>
               </div>

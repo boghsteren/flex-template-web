@@ -17,14 +17,16 @@ const SectionHost = props => {
     sendEnquiryInProgress,
     onSubmitEnquiry,
     currentUser,
-    onManageDisableScrolling
+    onManageDisableScrolling,
+    pdf
   } = props;
   return (
-    <div id="host" className={css.sectionHost}>
-      <h2 className={css.yourHostHeading}>
+    <div id="host" className={pdf ? css.pdfSectionHost : css.sectionHost}>
+      <h2 className={pdf ? css.pdfYourHostHeading : css.yourHostHeading}>
         <FormattedMessage id="ListingPage.yourHostHeading" />
       </h2>
       <UserCard
+        pdf={pdf}
         user={listing.author}
         currentUser={currentUser}
         onContactUser={onContactUser}

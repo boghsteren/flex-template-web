@@ -111,10 +111,23 @@ export const AddressLinkMaybe = props => {
     typeof building === "string" && building.length > 0
       ? `${building}, ${address}`
       : address;
+  const preEmailString =
+    currentListing.attributes.publicData.contact &&
+    currentListing.attributes.publicData.contact.split(/\w+@\w+\.\w+/gi, 1)[0];
+  const postEmailString =
+    currentListing.attributes.publicData.contact &&
+    currentListing.attributes.publicData.contact.split(/\w+@\w+\.\w+/gi, 1)[1];
+  const email =
+    currentListing.attributes.publicData.contact &&
+    /\w+@\w+\.\w+/gi.exec(currentListing.attributes.publicData.contact);
 
   return (isProvider || txIsAcceptedForCustomer) && hrefToGoogleMaps ? (
     <div className={css.address}>
-      <div>{currentListing.attributes.publicData.contact}</div>
+      <div>
+        {preEmailString}
+        {<a href={`mailto:${email}`}>{email}</a>}
+        {postEmailString}
+      </div>
       <ExternalLink href={hrefToGoogleMaps}>{fullAddress}</ExternalLink>
     </div>
   ) : null;

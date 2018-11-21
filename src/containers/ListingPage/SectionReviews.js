@@ -1,11 +1,11 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { Reviews } from '../../components';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { Reviews } from "../../components";
 
-import css from './ListingPage.css';
+import css from "./ListingPage.css";
 
 const SectionReviews = props => {
-  const { reviews, fetchReviewsError } = props;
+  const { reviews, fetchReviewsError, pdf } = props;
 
   const reviewsError = (
     <h2 className={css.errorText}>
@@ -14,12 +14,15 @@ const SectionReviews = props => {
   );
 
   return (
-    <div className={css.sectionReviews}>
-      <h2 className={css.reviewsHeading}>
-        <FormattedMessage id="ListingPage.reviewsHeading" values={{ count: reviews.length }} />
+    <div className={pdf ? css.pdfSectionReviews : css.sectionReviews}>
+      <h2 className={pdf ? css.pdfReviewsHeading : css.reviewsHeading}>
+        <FormattedMessage
+          id="ListingPage.reviewsHeading"
+          values={{ count: reviews.length }}
+        />
       </h2>
       {fetchReviewsError ? reviewsError : null}
-      <Reviews reviews={reviews} />
+      <Reviews reviews={reviews} pdf={pdf} />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { InlineTextButton } from '../../components';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { InlineTextButton } from "../../components";
 
-import css from './ListingPage.css';
+import css from "./ListingPage.css";
 
 const SectionHeading = props => {
   const {
@@ -13,26 +13,34 @@ const SectionHeading = props => {
     hostLink,
     showContactUser,
     onContactUser,
-    pricing_scheme
+    pricing_scheme,
+    pdf
   } = props;
   return (
-    <div className={css.sectionHeading}>
-      <div className={css.desktopPriceContainer}>
-        <div className={css.desktopPriceValue} title={priceTitle}>
-          {formattedPrice}
+    <div className={pdf ? css.pdfSectionHeading : css.sectionHeading}>
+      {!pdf && (
+        <div className={css.desktopPriceContainer}>
+          <div className={css.desktopPriceValue} title={priceTitle}>
+            {formattedPrice}
+          </div>
+          <div className={css.desktopPerUnit}>{pricing_scheme} </div>
         </div>
-        <div className={css.desktopPerUnit}>
-{pricing_scheme}        </div>
-      </div>
+      )}
       <div className={css.heading}>
         <h1 className={css.title}>{richTitle}</h1>
         <div className={css.author}>
           {category}
-          <FormattedMessage id="ListingPage.hostedBy" values={{ name: hostLink }} />
+          <FormattedMessage
+            id="ListingPage.hostedBy"
+            values={{ name: hostLink }}
+          />
           {showContactUser ? (
             <span className={css.contactWrapper}>
               <span className={css.separator}>•</span>
-              <InlineTextButton className={css.contactLink} onClick={onContactUser}>
+              <InlineTextButton
+                className={css.contactLink}
+                onClick={onContactUser}
+              >
                 <FormattedMessage id="ListingPage.contactUser" />
               </InlineTextButton>
             </span>

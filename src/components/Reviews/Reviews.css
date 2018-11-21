@@ -1,4 +1,4 @@
-@import '../../marketplace.css';
+@import "../../marketplace.css";
 
 .root {
   margin: 0;
@@ -36,6 +36,12 @@
   white-space: pre-line;
 }
 
+.pdfReviewContent {
+  font-size: 14px;
+  font-style: italic;
+  margin: 0;
+  white-space: pre-line;
+}
 .reviewInfo {
   @apply --marketplaceH5FontStyles;
   margin-top: 10px;

@@ -203,14 +203,6 @@
     margin: 0 auto 117px;
   }
 }
-.pdfContainer {
-  @media (--viewportMedium) {
-    max-width: 1280px;
-    margin: 0 auto;
-    margin-top: 30px;
-    padding: 0 60px;
-  }
-}
 
 .mainContent {
   flex-basis: 100%;
@@ -771,4 +763,70 @@
   /* use break-word if available */
   word-break: break-word;
   hyphens: auto;
+}
+
+.pdfSectionDescription {
+  padding: 0;
+  margin-bottom: 52px;
+}
+
+.pdfDescriptionTitle {
+  /* Font */
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorAnti);
+
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.pdfSectionHeading {
+  display: flex;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+.pdfContainer {
+  margin: 0 auto;
+  padding: 30px;
+  width: 210mm;
+  max-height: 285mm;
+  min-height: 285mm;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+.pdfContent {
+  border-radius: 5px;
+
+  margin: 5px;
+  background-color: #fcfcfc;
+  padding: 15px;
+  width: 50%;
+  overflow: hidden;
+}
+.pdfWrapper {
+  /* Layout */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+
+  vertical-align: top;
+  overflow: hidden;
+}
+.pdfYourHostHeading {
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorAnti);
+
+  margin: 0px 0 27px 0;
+}
+.pdfReviewsHeading {
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorAnti);
+
+  margin: 0px 0 27px 0;
+}
+.hiddenPdfSection {
+  max-height: 0px;
+  overflow: hidden;
 }

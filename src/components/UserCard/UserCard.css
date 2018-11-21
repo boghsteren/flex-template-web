@@ -1,4 +1,4 @@
-@import '../../marketplace.css';
+@import "../../marketplace.css";
 
 .root {
 }
@@ -42,7 +42,6 @@
     margin: 18px 0 0 0;
   }
 }
-
 .mobileBio {
   @media (--viewportMedium) {
     display: none;
@@ -56,6 +55,9 @@
     margin-top: 16px;
     display: block;
   }
+}
+.pdfhiddenBio {
+  display: none;
 }
 
 .showMore {
@@ -118,4 +120,16 @@
 .contact {
   @apply --marketplaceH4FontStyles;
   margin: 0;
+}
+
+.pdfHeading {
+  @apply --marketplaceH2FontStyles;
+  margin: 0px 0 0 0;
+}
+.pdfDesktopBio {
+  /* Preserve newlines, but collapse other whitespace */
+  white-space: pre-line;
+  font-size: 14px;
+  margin: 0px 0 0 0;
+  line-height: 24px;
 }
