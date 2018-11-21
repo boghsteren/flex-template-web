@@ -44,8 +44,7 @@ import {
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
-  Button,
-  Logo
+  Button
 } from "../../components";
 import { TopbarContainer, NotFoundPage } from "../../containers";
 
@@ -87,7 +86,7 @@ const createPDF = name => {
   html2canvas(input, { useCORS: true }).then(canvas => {
     var imgData = canvas.toDataURL("image/jpg");
     const pdf = new jsPDF();
-    pdf.addImage(imgData, "JPEG", 0, 0);
+    pdf.addImage(imgData, "JPEG", 0, 0, 210, 297, undefined, "FAST");
     pdf.save(`${name}.pdf`);
   });
 };
@@ -568,21 +567,11 @@ export class ListingPageComponent extends Component {
                     selectedOptions={publicData.goals}
                   />
                   <SectionRulesMaybe publicData={publicData} />
-
                   <SectionMapMaybe
                     geolocation={geolocation}
                     publicData={publicData}
                     listingId={currentListing.id}
                   />
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <Button
-                      className={css.button}
-                      onClick={() => createPDF(title)}
-                      label="Export"
-                    >
-                      Export PDF
-                    </Button>
-                  </div>
                   <SectionReviews
                     reviews={reviews}
                     fetchReviewsError={fetchReviewsError}
@@ -603,7 +592,16 @@ export class ListingPageComponent extends Component {
                     onSubmitEnquiry={this.onSubmitEnquiry}
                     currentUser={currentUser}
                     onManageDisableScrolling={onManageDisableScrolling}
-                  />
+                  />{" "}
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Button
+                      className={css.button}
+                      onClick={() => createPDF(title)}
+                      label="Export"
+                    >
+                      Save as PDF
+                    </Button>
+                  </div>
                 </div>
 
                 {currentUser &&
@@ -633,7 +631,7 @@ export class ListingPageComponent extends Component {
               <div id="pdf" className={css.pdfContainer}>
                 <div>
                   <SectionHeading
-                  pdf
+                    pdf
                     richTitle={
                       <span>
                         {richText(title, {

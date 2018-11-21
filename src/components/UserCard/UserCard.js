@@ -35,7 +35,7 @@ class ExpandableBio extends Component {
   }
   render() {
     const { expand } = this.state;
-    const { className, bio, pdf } = this.props;
+    const { className, bio } = this.props;
     const truncatedBio = truncated(bio);
 
     const handleShowMoreClick = () => {
