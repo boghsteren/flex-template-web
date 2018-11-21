@@ -11,7 +11,7 @@ import css from "./UserCard.css";
 
 // Approximated collapsed size so that there are ~three lines of text
 // in the desktop layout in the host section of the ListingPage.
-const BIO_COLLAPSED_LENGTH = 170;
+const BIO_COLLAPSED_LENGTH = 3000;
 
 const truncated = s => {
   return truncate(s, {

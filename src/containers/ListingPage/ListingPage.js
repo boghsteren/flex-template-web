@@ -630,6 +630,9 @@ export class ListingPageComponent extends Component {
             <div className={css.hiddenPdfSection}>
               <div id="pdf" className={css.pdfContainer}>
                 <div>
+                  <div style={{ marginLeft: "20px" }}>
+                    {currentListing.attributes.publicData.location.address}
+                  </div>
                   <SectionHeading
                     pdf
                     richTitle={
