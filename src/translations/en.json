@@ -640,7 +640,7 @@
   "PrivacyPolicyPage.heading": "Goodwings Experiences Privacy Policy",
   "PrivacyPolicyPage.privacyTabTitle": "Privacy Policy",
   "PrivacyPolicyPage.schemaTitle": "Privacy Policy | {siteTitle}",
-  "PrivacyPolicyPage.tosTabTitle": "Terms and Conditions",
+  "PrivacyPolicyPage.tosTabTitle": "Terms",
   "ProfilePage.desktopHeading": "Hello, we're {organisation}.",
   "ProfilePage.desktopHeadingNoOrganisation": "Hello, I'm {name}.",
   "ProfilePage.editProfileLinkDesktop": "Edit profile",
@@ -904,7 +904,7 @@
   "TermsOfServicePage.heading": "Terms and Conditions",
   "TermsOfServicePage.privacyTabTitle": "Privacy Policy",
   "TermsOfServicePage.schemaTitle": "Terms and Conditions | {siteTitle}",
-  "TermsOfServicePage.tosTabTitle": "Terms and Conditions",
+  "TermsOfServicePage.tosTabTitle": "Terms",
   "Topbar.genericError":
     "Oh no, something went wrong. Please check your network connection and try again.",
   "Topbar.logoIcon": "Go to homepage",
