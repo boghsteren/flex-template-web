@@ -47,7 +47,7 @@
   "AuthenticationPage.signupFailedEmailAlreadyTaken":
     "An account with this email address already exists. Try logging in instead.",
   "AuthenticationPage.signupLinkText": "Sign up",
-  "AuthenticationPage.termsHeading": "Terms of Service",
+  "AuthenticationPage.termsHeading": "Terms and Conditions",
   "AuthenticationPage.verifyEmailClose": "LATER",
   "AuthenticationPage.verifyEmailText":
     "Thanks for signing up! There's one quick step left. To be able to contact you, we need you to verify your email address. Please click the link we sent to {email}.",
@@ -353,7 +353,7 @@
   "Footer.privacy": "Privacy",
   "Footer.privacyPolicy": "Privacy policy",
   "Footer.terms": "Terms",
-  "Footer.termsOfUse": "Terms of Service",
+  "Footer.termsOfUse": "Terms and Conditions",
   "Footer.toAboutPage": "Company",
   "Footer.toContactPage": "Contact",
   "Footer.toFAQPage": "FAQ",
@@ -640,7 +640,7 @@
   "PrivacyPolicyPage.heading": "Goodwings Experiences Privacy Policy",
   "PrivacyPolicyPage.privacyTabTitle": "Privacy Policy",
   "PrivacyPolicyPage.schemaTitle": "Privacy Policy | {siteTitle}",
-  "PrivacyPolicyPage.tosTabTitle": "Terms of Service",
+  "PrivacyPolicyPage.tosTabTitle": "Terms and Conditions",
   "ProfilePage.desktopHeading": "Hello, we're {organisation}.",
   "ProfilePage.desktopHeadingNoOrganisation": "Hello, I'm {name}.",
   "ProfilePage.editProfileLinkDesktop": "Edit profile",
@@ -901,10 +901,10 @@
   "StripePaymentForm.stripe.validation_error.processing_error":
     "An error occurred while processing the card.",
   "StripePaymentForm.submitPaymentInfo": "Send request",
-  "TermsOfServicePage.heading": "Terms of Service",
+  "TermsOfServicePage.heading": "Terms and Conditions",
   "TermsOfServicePage.privacyTabTitle": "Privacy Policy",
-  "TermsOfServicePage.schemaTitle": "Terms of Service | {siteTitle}",
-  "TermsOfServicePage.tosTabTitle": "Terms of Service",
+  "TermsOfServicePage.schemaTitle": "Terms and Conditions | {siteTitle}",
+  "TermsOfServicePage.tosTabTitle": "Terms and Conditions",
   "Topbar.genericError":
     "Oh no, something went wrong. Please check your network connection and try again.",
   "Topbar.logoIcon": "Go to homepage",
