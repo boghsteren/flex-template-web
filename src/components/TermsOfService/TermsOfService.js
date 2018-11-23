@@ -82,7 +82,7 @@ const TermsOfService = props => {
             6.4. Cancellations by Travel Agent. If a cancellation of an Experience is received no later than seven (7) business days before the date of the Experience, the payment for the Experience including the Service Fee shall be repaid to the Travel Agent.
         </p>
         <p>
-            6.5. Cancellations by Travel Agent. If a cancellation of an Experience is received 6 or fewer business days before the date of an Experience, 50 % of the payment for the Experience including 50 % the Service Fee shall be repaid to the Travel Agent.
+            6.5. Cancellations by Travel Agent. If a cancellation of an Experience is received 6 or fewer business days before the date of an Experience, 50 % of the payment for the Experience including 50 % the Service Fee shall be repaid to the Travel Agent. The remaining 50 % of the payment for the Experience will be transferred to the NGO.
         </p>
         <p>
             6.6. Cancellations by NGO. If an NGO cancels an Experience within four (4) weeks prior to the date of the Experience, the NGO shall use its best efforts to organize a similar Experience acceptable for the Travel Agent. If the NGO and Travel Agent do not agree on a different Experience, the NGO shall repay 50 % of the price for the cancelled Experience. If an NGO cancels an Experience within two (2) weeks prior to the date of the Experience and the NGO and Travel Agent do not agree on a different Experience, the NGO shall repay the full price of the Experience to the Travel Agent.
