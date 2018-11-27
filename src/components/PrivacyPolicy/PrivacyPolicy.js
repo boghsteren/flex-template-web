@@ -27,12 +27,12 @@ const PrivacyPolicy = props => {
 <p>When we ask you to make your personal data available to us, we inform you of the personal data we are processing about you and the purpose hereof. You will receive this information when your personal data is being collected.</p>
 <p>2.4	Contact information.</p>
 <p>If you would like to get in touch with us, our contact information is:</p>
-<p>Goodwings Experiences<br>
-  Gammel Kongevej 5C, 1st floor<br>
-  1610 Copenhagen V<br>
-  Denmark<br>
-  CVR-no.: 37036749<br>
-  Phone: +45 61 68 93 62<br>
+<p>Goodwings Experiences<br />
+  Gammel Kongevej 5C, 1st floor<br />
+  1610 Copenhagen V<br />
+  Denmark<br />
+  CVR-no.: 37036749<br />
+  Phone: +45 61 68 93 62<br />
 E-mail: <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a></p>
 <h2>3.	PROCESSING OF PERSONAL DATA</h2>
 <p>3.1	Use of our website without signing up for services.</p>
@@ -159,10 +159,10 @@ If you delete or block cookies, you can risk that the website will not operate o
 <p>We allow third parties to place their cookies on our website (so-called third-party cookies). We use marketing and optimization cookies to optimize the services on our website. This includes Google Analytics which we use to analyze how you use our website. The collected data will be sent and stored at Google’s servers. 
   Below you can read more about which cookies Goodwings Experiences uses as well as the purpose:
 </p>
-<p>Name:	Google Analyse/analytics.js<br>
+<p>Name:	Google Analyse/analytics.js<br />
   Provider: 
-  Google Inc.<br>
-  Purpose:	Website analysis	<br>
+  Google Inc.<br />
+  Purpose:	Website analysis	<br />
 Expiration: 2 years</p>
 <h2>7.	YOUR RIGHTS AS DATA SUBJECT</h2>
 <p> 7.1	You have the right to access your personal data.</p>
