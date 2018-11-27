@@ -40,33 +40,33 @@ E-mail: <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a></p>
 <p>3.2	We collect and keep your personal data for specific purposes.</p>
 <p>We collect and keep your personal data in accordance with specific purposes. Processing occurs when we need to:</p>
 <ul>
-  <li>Administer your relation to us;</li>
-  <li>Improve our services;</li>
-  <li>Adjust our communication and marketing to you;</li>
-  <li>Keep statistics. </li>
+  <li>- Administer your relation to us;</li>
+  <li>- Improve our services;</li>
+  <li>- Adjust our communication and marketing to you;</li>
+  <li>- Keep statistics. </li>
 </ul>
 <p>In the following you can read more about the individual services. We always strive to comply with the general principles described for each individual service.</p>
 <p>3.2.1	Users’ personal data.</p>
 <p>As data controller Goodwings Experiences collects and processes users’ personal data to: </p>
 <ul>
-  <li>Be able to provide the advice and services to you that Goodwings Experiences takes on to deliver to you as a user, </li>
-  <li>Live up to Goodwings Experiences’ contractual and legal obligations and or</li>
-  <li>Adhere to and live up to general legal obligations. </li>
+  <li>- Be able to provide the advice and services to you that Goodwings Experiences takes on to deliver to you as a user, </li>
+  <li>- Live up to Goodwings Experiences’ contractual and legal obligations and or</li>
+  <li>- Adhere to and live up to general legal obligations. </li>
 </ul>
 <p>The legal basis for Goodwings Experiences’ processing of users’ personal data for the purposes mentioned above will in most cases be, that the processing is necessary in order for us to: </p>
 <ul>
-  <li>fulfill the agreement with the user, including Goodwings Experiences’ Terms of Service, or other contract that you are party to, or to engage measures ahead of the entering into the agreement, </li>
-  <li>adhere to a legal obligation that Goodwings Experiences is subject to by law, as well as, <br />
+  <li>- fulfill the agreement with the user, including Goodwings Experiences’ Terms of Service, or other contract that you are party to, or to engage measures ahead of the entering into the agreement, </li>
+  <li>- adhere to a legal obligation that Goodwings Experiences is subject to by law, as well as, <br />
     to assess, argue or defend a legal claim, or when the courts act in their ability as a court. </li>
 </ul>
 <p>Most personal data will be collected from the users themselves. Such personal data will usually be: </p>
 <ul>
-  <li>Personal details: Name, email address, phone number, street address; </li>
-  <li> Account details: username, password (stored in encrypted format); </li>
-  <li>The description text that the user may write about him/herself; </li>
-  <li> The offers and requests the user has posted to the service; </li>
-  <li> The given and received feedback and badges; </li>
-  <li> Statistical data about service usage, e.g. number times the user has logged in. </li>
+  <li>- Personal details: Name, email address, phone number, street address; </li>
+  <li>- Account details: username, password (stored in encrypted format); </li>
+  <li>- The description text that the user may write about him/herself; </li>
+  <li>- The offers and requests the user has posted to the service; </li>
+  <li>- The given and received feedback and badges; </li>
+  <li>- Statistical data about service usage, e.g. number times the user has logged in. </li>
 </ul>
 <p>Details can be used for communication between service providers and users and for direct communication between users. Some personal details are visible on the profile page of the user, but those details are voluntary (except name).</p>
 <p>Goodwings Experiences usually collects personal from the user upon registration to the service or when using it later.</p>
@@ -75,8 +75,8 @@ E-mail: <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a></p>
 <p>We use your personal data when we provide our services to you and make communication possible, while improving and ensuring the quality of the service, as well as in our contact with you.</p>
 <p>The personal data that may be stored in the register mainly includes:</p>
 <ul>
-  <li>Personal contact information: Name, email address, phone number, street address;</li>
-  <li>Account information: username, password (stored in encrypted format);
+  <li>- Personal contact information: Name, email address, phone number, street address;</li>
+  <li>- Account information: username, password (stored in encrypted format);
   </li>
 </ul>
 <p>Goodwings Experiences does not collect personal data about our users or users from any third parties.</p>
@@ -150,11 +150,7 @@ If you do not want your data to be collected, please delete your cookies (see in
 If you delete or block cookies, you can risk that the website will not operate optimally, as well as content not being accessible.</p>
 <p>6.3	Which cookies are used:
 </p>
-<p>6.3.1	First-party cookies
-</p>
-<p>[Insert first-party cookies] 
-</p>
-<p>6.3.2	Third-party cookies 
+<p>6.3.1	Third-party cookies 
 </p>
 <p>We allow third parties to place their cookies on our website (so-called third-party cookies). We use marketing and optimization cookies to optimize the services on our website. This includes Google Analytics which we use to analyze how you use our website. The collected data will be sent and stored at Google’s servers. 
   Below you can read more about which cookies Goodwings Experiences uses as well as the purpose:
