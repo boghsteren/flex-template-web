@@ -96,10 +96,8 @@ E-mail: <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a></p>
 </p>
 <p>Sharetribe Ltd
 </p>
-<p>www.sharetribe.com
-  info (at) sharetribe.com
-  
-</p>
+<p>www.sharetribe.com</p>
+<p>info (at) sharetribe.com</p>
 <p>Contact person:
 </p>
 <p>Antti Virolainen
