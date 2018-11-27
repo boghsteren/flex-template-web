@@ -68,9 +68,9 @@ E-mail: <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a></p>
   <li> The given and received feedback and badges; </li>
   <li> Statistical data about service usage, e.g. number times the user has logged in. </li>
 </ul>
-<P>Details can be used for communication between service providers and users and for direct communication between users. Some personal details are visible on the profile page of the user, but those details are voluntary (except name).</P>
-<P>Goodwings Experiences usually collects personal from the user upon registration to the service or when using it later.</P>
-<P>The information may be handed over for research purposes as described in the Terms of Service that the user accepts before starting to use the service. The researchers may not publish any research results so that identifying information would be revealed or that any specific user could be detected.</P>
+<p>Details can be used for communication between service providers and users and for direct communication between users. Some personal details are visible on the profile page of the user, but those details are voluntary (except name).</p>
+<p>Goodwings Experiences usually collects personal from the user upon registration to the service or when using it later.</p>
+<p>The information may be handed over for research purposes as described in the Terms of Service that the user accepts before starting to use the service. The researchers may not publish any research results so that identifying information would be revealed or that any specific user could be detected.</p>
 <p>3.2.2	When you sign-up for services on our website or contact us.</p>
 <p>We use your personal data when we provide our services to you and make communication possible, while improving and ensuring the quality of the service, as well as in our contact with you.</p>
 <p>The personal data that may be stored in the register mainly includes:</p>
