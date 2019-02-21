@@ -71,28 +71,28 @@ const routeConfiguration = () => {
     {
       path: "/s",
       name: "SearchPage",
-      auth: true,
+      // auth: true,
       component: props => <SearchPage {...props} />,
       loadData: SearchPage.loadData
     },
     {
       path: "/s/filters",
       name: "SearchFiltersPage",
-      auth: true,
+      // auth: true,
       component: props => <SearchPage {...props} tab="filters" />,
       loadData: SearchPage.loadData
     },
     {
       path: "/s/listings",
       name: "SearchListingsPage",
-      auth: true,
+      // auth: true,
       component: props => <SearchPage {...props} tab="listings" />,
       loadData: SearchPage.loadData
     },
     {
       path: "/s/map",
       name: "SearchMapPage",
-      auth: true,
+      // auth: true,
       component: props => <SearchPage {...props} tab="map" />,
       loadData: SearchPage.loadData
     },
@@ -104,7 +104,7 @@ const routeConfiguration = () => {
     {
       path: "/l/:slug/:id",
       name: "ListingPage",
-      auth: true,
+      // auth: true,
       component: props => <ListingPage {...props} />,
       loadData: ListingPage.loadData
     },
