@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import { isScrollingDisabled } from "../../ducks/UI.duck";
 import { loadData } from "./LandingPage.duck";
+import certificateLogo from './B-Corp.21a3074a.svg'
 
 import config from "../../config";
 import {
@@ -78,6 +79,9 @@ export const LandingPageComponent = props => {
               history={history}
               location={location}
             />
+            <a className={css.certificateLogoContainer} href="/">
+              <img className={css.certificateLogoImage} src={certificateLogo}></img>
+            </a>
           </div>
 
           <ul className={css.sections}>

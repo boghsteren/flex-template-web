@@ -138,3 +138,31 @@
     top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
   }
 }
+
+.certificateLogoContainer {
+  position: absolute;
+  bottom:0;
+  right:0;
+}
+
+.certificateLogoImage {
+  width: 96px;
+  height: 48px;
+  display: none;
+
+  @media (--viewportMedium) {
+    width: 240px;
+    height: 120px;
+    display: unset;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  @media (--viewportLarge) {
+    width: 280px;
+    height: 140px;
+    display: unset;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+}

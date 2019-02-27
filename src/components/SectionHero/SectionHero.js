@@ -18,7 +18,7 @@ const SectionHero = props => {
         <FormattedMessage id="SectionHero.subTitle" />
       </h2>
 
-      <Button className={css.deskTopButton} onClick={() => history.push("/s")}>
+      <Button className={css.deskTopButton} onClick={() => window.location = "https://www.get.gwexperiences.com/group"}>
         Get started
       </Button>
     </div>
