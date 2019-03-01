@@ -1,0 +1,39 @@
+@import '../../marketplace.css';
+
+.root {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+  @media (--viewportLarge) {
+    flex-direction: row;
+  }
+}
+
+.textContainer {
+  flex-basis: 43%;
+  text-align: center;
+}
+
+.title {
+  @apply --marketplaceH1FontStyles;
+  margin-top: 0;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+.paragraph span {
+  display: block;
+  margin-bottom: 24px; 
+}
+
+.imageWrapper {
+  flex-basis: 53%;
+}
+
+.screenTrans {
+  width: 100%;
+}

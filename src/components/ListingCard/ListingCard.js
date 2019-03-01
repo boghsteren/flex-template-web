@@ -40,7 +40,8 @@ export const ListingCardComponent = props => {
     intl,
     listing,
     renderSizes,
-    setActiveListing
+    setActiveListing,
+    isLongCard,
   } = props;
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureListing(listing);
@@ -78,9 +79,9 @@ export const ListingCardComponent = props => {
         onMouseEnter={() => setActiveListing(currentListing.id)}
         onMouseLeave={() => setActiveListing(null)}
       >
-        <div className={css.aspectWrapper}>
+        <div className={classNames(isLongCard ? css.aspectWrapperLongCard : css.aspectWrapper)}>
           <ResponsiveImage
-            rootClassName={css.rootForImage}
+            rootClassName={classNames(css.rootForImage, isLongCard ? css.rootForImageLongCard : css.null)}
             alt={title}
             image={firstImage}
             variants={["landscape-crop", "landscape-crop2x"]}
@@ -88,7 +89,7 @@ export const ListingCardComponent = props => {
           />
         </div>
       </div>
-      <div className={css.info}>
+      <div className={classNames(isLongCard ? css.info : css.infoLongCard)}>
         <div className={css.price}>
           <div className={css.priceValue} title={priceTitle}>
             {formattedPrice}
