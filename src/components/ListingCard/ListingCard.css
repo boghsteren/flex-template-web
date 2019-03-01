@@ -4,10 +4,13 @@
   /* Layout */
   display: flex;
   flex-direction: column;
+  transition: 0.2s ease-in-out;
 
   /* Remove link's hover effect */
   &:hover {
     text-decoration: none;
+    transform: scale(1.02);
+    box-shadow: var(--boxShadowListingCard);
   }
 }
 
@@ -17,16 +20,16 @@
   width: 100%;
   position: relative;
   transition: var(--transitionStyleButton);
-
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: var(--boxShadowListingCard);
-  }
 }
 
 /* Firefox doesn't support image aspect ratio inside flexbox */
 .aspectWrapper {
   padding-bottom: 66.6667%; /* 3:2 Aspect Ratio */
+  background: var(--matterColorNegative); /* Loading BG color */
+}
+
+.aspectWrapperLongCard {
+  padding-bottom: 110%; /* 3:2 Aspect Ratio */
   background: var(--matterColorNegative); /* Loading BG color */
 }
 
@@ -41,11 +44,41 @@
   border-radius: var(--borderRadius);
 }
 
+.rootForImageLongCard {
+  height: 100%;
+  object-fit: cover;
+}
+
 .info {
   /* Layout */
   display: flex;
   flex-direction: row;
   padding: 16px 0 2px 0;
+}
+
+.infoLongCard {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  padding: 16px 15px 30px 15px;
+  align-items: center;
+  background-color: var(--matterColorLight);
+}
+
+.categoryLocation {
+  @apply --marketplaceH4FontStyles;
+  color: var(--matterColor);
+  font-weight: normal;
+  text-transform: capitalize;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .price {
@@ -58,9 +91,33 @@
   color: var(--matterColor);
 }
 
+.priceLongCard {
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  color: var(--matterColor);
+}
+
 .priceValue {
   /* Font */
   @apply --marketplaceH3FontStyles;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.priceValueLongCard {
+  /* Font */
+  @apply --marketplaceH4FontStyles;
+  font-weight: 900;
 
   /* Remove default margins from font */
   margin-top: 0;
@@ -95,6 +152,8 @@
 .title {
   /* Font */
   @apply --marketplaceH3FontStyles;
+  font-size: 24px;
+  font-weight: 900;
   color: var(--matterColor);
 
   /* Remove default margins from font */
@@ -105,6 +164,11 @@
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+
+.titleLongCard {
+  margin-top: 15px;
+  margin-bottom: 50px;
 }
 
 .authorInfo {

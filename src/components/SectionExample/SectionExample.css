@@ -1,0 +1,179 @@
+@import '../../marketplace.css';
+
+.listingCards {
+  padding: 0 24px 96px 24px;
+
+  @media (--viewportMedium) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  @media (--viewportLarge) {
+    padding: 0 36px 96px 36px;
+  }
+}
+
+.listingCard {
+  margin-bottom: 36px;
+  flex-basis: 100%;
+
+  @media (--viewportLarge) {
+    /**
+      * resultPanelWidthRatio = 0.625 aka 62.5%
+
+      resultPanel: 62.5vw from 1024px = 640px
+      panelPaddings: - 2*36px = 72px
+
+      columnCount: 2
+      guttersBetweenColumns: 24px
+
+      (resultPanel - (panelPaddings + guttersBetweenColumns)) / columnCount = listingCardWidth
+      ergo => listingCardWidth: 272px
+
+    * flex-basis: calc((100%/columnCount) - (guttersBetweenColumns / columnCount))
+    */
+    flex-basis: calc(50% - 12px);
+    margin-right: 24px;
+  }
+
+  @media (--viewportXLarge) {
+    /**
+     * resultPanelWidthRatio = 0.625 aka 62.5%
+
+      resultPanel: 62.5vw from 1920px = 1200px
+      panelPaddings: - 2*36px = 72px
+
+      columnCount: 3
+      guttersBetweenColumns: 2*24px = 48px
+
+      (resultPanel - (panelPaddings + guttersBetweenColumns)) / columnCount = listingCardWidth
+      ergo => listingCardWidth: 360px
+
+     * flex-basis: calc((100%/columnCount) - (guttersBetweenColumns / columnCount))
+     */
+
+    flex-basis: calc(33.33% - 20px);
+    margin-right: 24px;
+  }
+}
+
+/**
+ * Remove margin-right from listingCards on the last column
+ * This is a special case in the world of breakpoints. Nth-of-type effects every nth item.
+ * Here we take margin-right away, but we don't want it affect the next column breakpoint.
+ */
+
+.listingCard:last-of-type(2n) {
+  @media screen and (min-width: 1024px) and (max-width: 1920px) {
+    margin-right: 0;
+  }
+}
+
+.listingCard:last-of-type(3n) {
+  @media (--viewportXLarge) {
+    margin-right: 0;
+  }
+}
+.title {
+  @apply --marketplaceH1FontStyles;
+
+  margin-top: 0;
+  max-width: 735px;
+
+  @media (--viewportMedium) {
+    margin-bottom: 23px;
+  }
+}
+
+.paragraph {
+  max-width: 672px;
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+
+  @media (--viewportMedium) {
+    flex-direction: row;
+    margin-top: 57px;
+  }
+}
+
+.location {
+  width: 100%;
+  margin-top: 25px;
+
+  /* Remove link's hover effect */
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+  }
+}
+
+.location {
+  @media (--viewportMedium) {
+    margin-right: 40px;
+    margin-bottom: 0;
+  }
+}
+
+.location:last-of-type {
+  @media (--viewportMedium) {
+    margin-right: 0;
+  }
+}
+
+/* A wrapper for a responsive image that holds it's aspect ratio */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  transition: var(--transitionStyleButton);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: var(--boxShadowSectionLocationHover);
+  }
+}
+
+/* An image wrapper that defines the images aspect ratio */
+.aspectWrapper {
+  padding-bottom: calc(6 / 13 * 100%); /* 13:6 Aspect Ratio */
+
+  @media (--viewportMedium) {
+    padding-bottom: calc(2 / 3 * 100%); /* 3:2 Aspect Ratio */
+  }
+}
+
+.locationImage {
+  /* Layout - image will take space defined by aspect ratio wrapper */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.linkText {
+  @apply --marketplaceH2FontStyles;
+  color: var(--matterColor);
+  margin-top: 15px;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 21px;
+  }
+}
+
+.locationName {
+  color: var(--marketplaceColor);
+}

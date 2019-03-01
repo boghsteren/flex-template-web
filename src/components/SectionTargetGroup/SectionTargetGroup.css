@@ -9,13 +9,23 @@
   display: flex;
   margin-top: 30px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: white;
   @media (--viewportMedium) {
     flex-direction: row;
   }
 }
 .stepContainer {
-  margin-right: 40px;
+  @media (--viewportMedium) {
+    margin-right: 20px;
+  }
+}
+
+.stepContainer2 {
+  @media (--viewportMedium) {
+    /* margin-right: 20px; */
+  }
 }
 .step1 {
   width: 324px;
@@ -24,9 +34,18 @@
   text-align: center;
   padding: 10px;
   border-radius: 4px;
+  margin-bottom: 20px;
   @media (--viewportMedium) {
+    width: 480px;
     margin-bottom: 10px;
+    flex-basis: 40%;
+    flex-shrink: 1;
   }
+
+  @media screen and (max-width: 1000px) {
+    width: 324px;
+  }
+
   &:hover {
     transform: scale(1.02);}
 }
@@ -40,8 +59,16 @@
   padding: 10px;
   border-radius: 4px;
   @media (--viewportMedium) {
+    width: 480px;
     margin-bottom: 10px;
+    flex-basis: 40%;
+    flex-shrink: 1;
   }
+
+  @media screen and (max-width: 1000px) {
+    width: 324px;
+  }
+
   &:hover {
     transform: scale(1.02);}
 }

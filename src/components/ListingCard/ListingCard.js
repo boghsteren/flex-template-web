@@ -40,12 +40,16 @@ export const ListingCardComponent = props => {
     intl,
     listing,
     renderSizes,
-    setActiveListing
+    setActiveListing,
+    isLongCard,
   } = props;
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
   const { title = "", price } = currentListing.attributes;
+  const category = currentListing && currentListing.attributes.publicData.category ? currentListing.attributes.publicData.category.split('_').join(' ') : null;
+  const location = currentListing && currentListing.attributes.publicData.location ? currentListing.attributes.publicData.location.address : null;
+  const placeName = location.split(',')[location.split(',').length - 1]
   const pricingDetails = currentListing.attributes.publicData.pricing_scheme;
   const pricingLabel = config.custom.pricing_schemes.find(
     scheme => scheme.key === pricingDetails
@@ -78,9 +82,9 @@ export const ListingCardComponent = props => {
         onMouseEnter={() => setActiveListing(currentListing.id)}
         onMouseLeave={() => setActiveListing(null)}
       >
-        <div className={css.aspectWrapper}>
+        <div className={classNames(isLongCard ? css.aspectWrapperLongCard : css.aspectWrapper)}>
           <ResponsiveImage
-            rootClassName={css.rootForImage}
+            rootClassName={classNames(css.rootForImage, isLongCard ? css.rootForImageLongCard : css.null)}
             alt={title}
             image={firstImage}
             variants={["landscape-crop", "landscape-crop2x"]}
@@ -88,30 +92,48 @@ export const ListingCardComponent = props => {
           />
         </div>
       </div>
-      <div className={css.info}>
-        <div className={css.price}>
-          <div className={css.priceValue} title={priceTitle}>
-            {formattedPrice}
+      <div className={classNames(isLongCard ? css.info : css.infoLongCard)}>
+        {isLongCard &&
+          <div className={css.categoryLocation}>
+            <span>{category}</span>
+            <span className={css.placeName}>{(category ? ' - ' : '') + placeName}</span>
           </div>
-          <div className={css.perUnit}>{pricingLabel}</div>
-          <div className={css.perUnit}>{`Duration: ${duration}`}</div>
-        </div>
+        }
+        {!isLongCard &&
+          <div className={classNames(isLongCard ? css.priceLongCard : css.price)}>
+            <div className={css.priceValue} title={priceTitle}>
+              {formattedPrice}
+            </div>
+            <div className={css.perUnit}>{pricingLabel}</div>
+            <div className={css.perUnit}>{`Duration: ${duration}`}</div>
+          </div>
+        }
         <div className={css.mainInfo}>
-          <div className={css.title}>
+          <div className={classNames(css.title, isLongCard ? css.titleLongCard: css.null)}>
             {richText(title, {
               longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
               longWordClass: css.longWord
             })}
           </div>
-          <div className={css.authorInfo}>{type}</div>
-          <div className={css.authorInfo}>
-            <FormattedMessage
-              className={css.authorName}
-              id="ListingCard.hostedBy"
-              values={{ authorName: authorOrganisation }}
-            />
-          </div>
+          {!isLongCard && <div className={css.authorInfo}>{type}</div>}
+          {!isLongCard && 
+            <div className={css.authorInfo}>
+              <FormattedMessage
+                className={css.authorName}
+                id="ListingCard.hostedBy"
+                values={{ authorName: authorOrganisation }}
+              />
+            </div>
+          }
         </div>
+        {isLongCard &&
+          <div className={css.priceLongCard}>
+            <div className={css.priceValueLongCard} title={priceTitle}>
+              {formattedPrice}
+              <span>{' ' + pricingLabel}</span>
+            </div>
+          </div>
+        }
       </div>
     </NamedLink>
   );

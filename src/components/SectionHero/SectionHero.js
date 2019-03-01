@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import { Button } from "../../components";
+import { Button, NamedLink } from "../../components";
 import css from "./SectionHero.css";
 
 const SectionHero = props => {
@@ -17,10 +17,11 @@ const SectionHero = props => {
       <h2 className={css.heroSubTitle}>
         <FormattedMessage id="SectionHero.subTitle" />
       </h2>
-
-      <Button className={css.deskTopButton} onClick={() => history.push("/s")}>
-        Get started
-      </Button>
+      <NamedLink name="SearchPage" className={css.wrapperGetStarted}>
+        <Button className={css.deskTopButton} >
+          Get started
+        </Button>
+      </NamedLink>
     </div>
   );
 };
