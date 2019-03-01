@@ -49,7 +49,7 @@ export const ListingCardComponent = props => {
   const { title = "", price } = currentListing.attributes;
   const category = currentListing && currentListing.attributes.publicData.category ? currentListing.attributes.publicData.category.split('_').join(' ') : null;
   const location = currentListing && currentListing.attributes.publicData.location ? currentListing.attributes.publicData.location.address : null;
-  const placeName = location.split(',')[location.split(',').length - 1]
+  const placeName = location.split(',')[location.split(',').length - 1];
   const pricingDetails = currentListing.attributes.publicData.pricing_scheme;
   const pricingLabel = config.custom.pricing_schemes.find(
     scheme => scheme.key === pricingDetails
@@ -92,7 +92,7 @@ export const ListingCardComponent = props => {
           />
         </div>
       </div>
-      <div className={classNames(isLongCard ? css.info : css.infoLongCard)}>
+      <div className={classNames(isLongCard ? css.infoLongCard : css.info)}>
         {isLongCard &&
           <div className={css.categoryLocation}>
             <span>{category}</span>
