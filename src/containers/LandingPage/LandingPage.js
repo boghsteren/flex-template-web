@@ -8,7 +8,6 @@ import { isScrollingDisabled } from "../../ducks/UI.duck";
 import { loadData } from "./LandingPage.duck";
 import classNames from 'classnames';
 import certificateLogo from './B-Corp.21a3074a.svg'
-import classNames from "classnames"
 
 import config from "../../config";
 import {
