@@ -47,6 +47,9 @@ export const ListingCardComponent = props => {
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
   const { title = "", price } = currentListing.attributes;
+  const category = currentListing.attributes.publicData.category.split('_').join(' ');
+  const location = currentListing.attributes.publicData.location.address;
+  const placeName = location.split(',')[location.split(',').length - 1]
   const pricingDetails = currentListing.attributes.publicData.pricing_scheme;
   const pricingLabel = config.custom.pricing_schemes.find(
     scheme => scheme.key === pricingDetails
@@ -90,29 +93,47 @@ export const ListingCardComponent = props => {
         </div>
       </div>
       <div className={classNames(isLongCard ? css.info : css.infoLongCard)}>
-        <div className={css.price}>
-          <div className={css.priceValue} title={priceTitle}>
-            {formattedPrice}
+        {isLongCard &&
+          <div className={css.categoryLocation}>
+            <span>{category}</span>
+            <span className={css.placeName}>{' - ' + placeName}</span>
           </div>
-          <div className={css.perUnit}>{pricingLabel}</div>
-          <div className={css.perUnit}>{`Duration: ${duration}`}</div>
-        </div>
+        }
+        {!isLongCard &&
+          <div className={classNames(isLongCard ? css.priceLongCard : css.price)}>
+            <div className={css.priceValue} title={priceTitle}>
+              {formattedPrice}
+            </div>
+            <div className={css.perUnit}>{pricingLabel}</div>
+            <div className={css.perUnit}>{`Duration: ${duration}`}</div>
+          </div>
+        }
         <div className={css.mainInfo}>
-          <div className={css.title}>
+          <div className={classNames(css.title, isLongCard ? css.titleLongCard: css.null)}>
             {richText(title, {
               longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
               longWordClass: css.longWord
             })}
           </div>
-          <div className={css.authorInfo}>{type}</div>
-          <div className={css.authorInfo}>
-            <FormattedMessage
-              className={css.authorName}
-              id="ListingCard.hostedBy"
-              values={{ authorName: authorOrganisation }}
-            />
-          </div>
+          {!isLongCard && <div className={css.authorInfo}>{type}</div>}
+          {!isLongCard && 
+            <div className={css.authorInfo}>
+              <FormattedMessage
+                className={css.authorName}
+                id="ListingCard.hostedBy"
+                values={{ authorName: authorOrganisation }}
+              />
+            </div>
+          }
         </div>
+        {isLongCard &&
+          <div className={css.priceLongCard}>
+            <div className={css.priceValueLongCard} title={priceTitle}>
+              {formattedPrice}
+              <span>{' ' + pricingLabel}</span>
+            </div>
+          </div>
+        }
       </div>
     </NamedLink>
   );

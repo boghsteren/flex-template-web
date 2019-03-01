@@ -1,5 +1,31 @@
 @import '../../marketplace.css';
 
+:root {
+  --Image_animation: {
+    animation-name: animationImage;
+    animation-duration: 1.8s;
+    animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: forwards;
+
+    visibility: hidden;
+    opacity: 1;
+    position: relative;
+  }
+}
+
+@keyframes animationImage {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    left: 200px;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    left: 0;
+  }
+}
+
 .root {
   display: flex;
   justify-content: space-around;
@@ -31,9 +57,13 @@
 }
 
 .imageWrapper {
+  position: relative;
   flex-basis: 53%;
 }
 
 .screenTrans {
+  @apply --Image_animation;
+  animation-delay: 0.8s;
+  position: relative;
   width: 100%;
 }
