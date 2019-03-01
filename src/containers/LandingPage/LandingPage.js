@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import { isScrollingDisabled } from "../../ducks/UI.duck";
+import { searchListings } from "../../containers/SearchPage/SearchPage.duck";
+import { getMarketplaceEntities } from "../../ducks/marketplaceData.duck";
 import { loadData } from "./LandingPage.duck";
 import classNames from 'classnames';
 import certificateLogo from './B-Corp.21a3074a.svg'
@@ -33,7 +35,7 @@ import twitterImage from "../../assets/experiencesTwitter-600x314.jpg";
 import css from "./LandingPage.css";
 
 export const LandingPageComponent = props => {
-  const { history, intl, location, scrollingDisabled, user } = props;
+  const { history, intl, location, scrollingDisabled, user, searchListings, listingsUnauth, listings } = props;
 
   // Schema for search engines (helps them to understand what this page is about)
   // http://schema.org
@@ -121,7 +123,10 @@ export const LandingPageComponent = props => {
                 </li>
                 <li className={classNames(css.section, css.sectionExample)}>
                   <div className={classNames(css.sectionContent, css.sectionExampleContent)}>
-                    <SectionExample listings={props.listings} />
+                    <SectionExample 
+                      listings={listings} 
+                      searchListings={searchListings}
+                    />
                   </div>
                 </li>
                 <li className={classNames(css.section, css.sectionContentGray)}>
@@ -161,12 +166,19 @@ LandingPageComponent.propTypes = {
 };
 
 const mapStateToProps = state => {
+  const { searchMapListingIds } = state.SearchPage;
+
   return {
     scrollingDisabled: isScrollingDisabled(state),
     listings: state.LandingPage.listings,
-    user: state.user.currentUser
+    user: state.user.currentUser,
+    listingsUnauth: getMarketplaceEntities(state, searchMapListingIds)
   };
 };
+
+const mapDispatchToProps = dispatch => ({
+  searchListings: (searchParams) => dispatch(searchListings(searchParams))
+})
 
 // Note: it is important that the withRouter HOC is **outside** the
 // connect HOC, otherwise React Router won't rerender any Route
@@ -174,7 +186,7 @@ const mapStateToProps = state => {
 // lifecycle hook.
 //
 // See: https://github.com/ReactTraining/react-router/issues/4671
-const LandingPage = compose(withRouter, connect(mapStateToProps), injectIntl)(
+const LandingPage = compose(withRouter, connect(mapStateToProps, mapDispatchToProps), injectIntl)(
   LandingPageComponent
 );
 

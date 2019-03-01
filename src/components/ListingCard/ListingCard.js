@@ -47,8 +47,8 @@ export const ListingCardComponent = props => {
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
   const { title = "", price } = currentListing.attributes;
-  const category = currentListing.attributes.publicData.category.split('_').join(' ');
-  const location = currentListing.attributes.publicData.location.address;
+  const category = currentListing && currentListing.attributes.publicData.category ? currentListing.attributes.publicData.category.split('_').join(' ') : null;
+  const location = currentListing && currentListing.attributes.publicData.location ? currentListing.attributes.publicData.location.address : null;
   const placeName = location.split(',')[location.split(',').length - 1]
   const pricingDetails = currentListing.attributes.publicData.pricing_scheme;
   const pricingLabel = config.custom.pricing_schemes.find(
@@ -96,7 +96,7 @@ export const ListingCardComponent = props => {
         {isLongCard &&
           <div className={css.categoryLocation}>
             <span>{category}</span>
-            <span className={css.placeName}>{' - ' + placeName}</span>
+            <span className={css.placeName}>{(category ? ' - ' : '') + placeName}</span>
           </div>
         }
         {!isLongCard &&
