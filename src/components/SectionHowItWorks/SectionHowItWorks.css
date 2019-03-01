@@ -3,6 +3,7 @@
 .title {
   @apply --marketplaceH1FontStyles;
   margin-top: 0;
+  color: var(--matterColorLight);
 }
 
 .steps {
@@ -30,11 +31,28 @@
 .stepTitle {
   margin-top: 18px;
   margin-bottom: 18px;
+  text-align: center;
+  font-size: 35px;
+  color: var(--matterColorLight);
 
   @media (--viewportMedium) {
     margin-top: 21px;
     margin-bottom: 18px;
   }
+}
+
+.numberTitle {
+  text-decoration: underline;
+  font-size: 120px;
+  margin-bottom: 80px;
+  margin-top: 50px;
+  text-align: center;
+  color: var(--matterColorLight);
+}
+
+.stepText {
+  text-align: center;
+  color: var(--matterColorLight);
 }
 
 .createListingLink {

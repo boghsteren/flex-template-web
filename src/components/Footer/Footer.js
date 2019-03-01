@@ -102,7 +102,7 @@ const Footer = props => {
             </div>
             <div className={css.searches}>
               <ul className={css.list}>
-                <b>Learn more</b>
+                <b>Join us</b>
 
                 <li className={css.listItem}>
                   <NamedLink name="FAQPage" className={css.link}>

@@ -7,6 +7,7 @@ import { injectIntl, intlShape } from "react-intl";
 import { isScrollingDisabled } from "../../ducks/UI.duck";
 import { loadData } from "./LandingPage.duck";
 import certificateLogo from './B-Corp.21a3074a.svg'
+import classNames from "classnames"
 
 import config from "../../config";
 import {
@@ -102,7 +103,7 @@ export const LandingPageComponent = props => {
                     <SectionAllOverTheWorld />
                   </div>
                 </li>
-                <li className={css.section}>
+                <li className={classNames(css.section, css.sectionContentGray)}>
                   <div className={css.sectionContent}>
                     <SectionHowItWorks />
                   </div>
@@ -111,7 +112,7 @@ export const LandingPageComponent = props => {
             )}
             {!user && (
               <div>
-                <li className={css.section}>
+                <li className={classNames(css.section, css.sectionContentGray)}>
                   <div className={css.sectionContent}>
                     <SectionHowItWorks />
                   </div>
