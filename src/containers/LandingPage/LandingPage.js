@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import { isScrollingDisabled } from "../../ducks/UI.duck";
 import { loadData } from "./LandingPage.duck";
+import classNames from 'classnames';
 import certificateLogo from './B-Corp.21a3074a.svg'
 import classNames from "classnames"
 
@@ -18,6 +19,8 @@ import {
   SectionAllOverTheWorld,
   SectionHighlightsOfTheMonth,
   SectionTargetGroup,
+  SectionWhatIsIt,
+  SectionExample,
   LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
@@ -112,6 +115,16 @@ export const LandingPageComponent = props => {
             )}
             {!user && (
               <div>
+                <li className={classNames(css.section, css.sectionWhatIsIt)}>
+                  <div className={css.sectionContent}>
+                    <SectionWhatIsIt />
+                  </div>
+                </li>
+                <li className={classNames(css.section, css.sectionExample)}>
+                  <div className={classNames(css.sectionContent, css.sectionExampleContent)}>
+                    <SectionExample listings={props.listings} />
+                  </div>
+                </li>
                 <li className={classNames(css.section, css.sectionContentGray)}>
                   <div className={css.sectionContent}>
                     <SectionHowItWorks />

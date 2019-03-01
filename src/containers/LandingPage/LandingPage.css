@@ -10,9 +10,9 @@
     since browsers support CSS Properties already.
  */
 
-  --LandingPage_sectionMarginTop: 40px;
-  --LandingPage_sectionMarginTopMedium: 60px;
-  --LandingPage_sectionMarginTopLarge: 94px;
+  --LandingPage_sectionMarginTop: 20px;
+  --LandingPage_sectionMarginTopMedium: 40px;
+  --LandingPage_sectionMarginTopLarge: 60px;
 }
 
 .root {
@@ -22,6 +22,7 @@
 /* Safari has a bug with vw padding inside flexbox. Therefore we need an extra div (container) */
 /* If you've lot of content for the hero, multiple lines of text, make sure to adjust min-heights for each media breakpoint accordingly */
 .heroContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 300px;
@@ -81,15 +82,15 @@
 }
 
 .sectionContent {
-  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+  margin: var(--LandingPage_sectionMarginTop) 24px 20px 24px;
 
   @media (--viewportMedium) {
-    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 60px 7.5vw;
+    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 30px 7.5vw;
   }
 
   @media (--viewportLarge) {
     max-width: calc(1052px + 36px + 36px);
-    margin: var(--LandingPage_sectionMarginTopLarge) auto 93px auto;
+    margin: var(--LandingPage_sectionMarginTopLarge) auto 40px auto;
     padding: 0 36px 0 36px;
   }
 }
@@ -98,48 +99,15 @@
   background-color: var(--matterColor) !important;
 }
 
-/* A bar on top of light sections */
-.section:nth-of-type(2n) .sectionContent:before {
-  background: var(--marketplaceColor);
-  content: "";
-  display: block;
-  width: 109px;
-  height: 6px;
-
-  /* Place the bar on top of .sectionContent top margin */
-  position: relative;
-  top: calc(-1 * var(--LandingPage_sectionMarginTop));
+.sectionExampleContent {
+  margin: 30px 24px 20px 24px;
 
   @media (--viewportMedium) {
-    width: 192px;
-    height: 8px;
-    top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
+    margin: 30px 7.5vw 30px 7.5vw;
   }
 
   @media (--viewportLarge) {
-    top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
-  }
-}
-/* A bar on top of light sections */
-.section:nth-of-type(3) .sectionContent:before {
-  background: var(--marketplaceColor);
-  content: "";
-  display: block;
-  width: 109px;
-  height: 6px;
-
-  /* Place the bar on top of .sectionContent top margin */
-  position: relative;
-  top: calc(-1 * var(--LandingPage_sectionMarginTop));
-
-  @media (--viewportMedium) {
-    width: 192px;
-    height: 8px;
-    top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
-  }
-
-  @media (--viewportLarge) {
-    top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
+    margin: 30px auto 40px auto;
   }
 }
 
@@ -169,4 +137,13 @@
     margin-bottom: 20px;
   }
 
+}
+
+.sectionWhatIsIt {
+  background-color: var(--matterColorNegative) !important;
+  border-bottom: 1px solid var(--matterColorAnti);
+}
+
+.sectionExample {
+  background-color: var(--matterColorNegative) !important;
 }

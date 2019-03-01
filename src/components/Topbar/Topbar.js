@@ -222,7 +222,7 @@ class TopbarComponent extends Component {
           </Button>
           <NamedLink
             className={css.home}
-            name="SearchPage"
+            name="LandingPage"
             title={intl.formatMessage({ id: "Topbar.logoIcon" })}
           >
             <Logo format="mobile" />

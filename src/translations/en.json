@@ -766,6 +766,9 @@
   "SectionAllOverTheWorld.title": "Experiences all over the world",
   "SectionAllOverTheWorld.subtitle": "Lots of places to go...",
   "SectionAllOverTheWorld.listingsInLocation": "{location}",
+  
+  "SectionExample.title": "Example",
+
   "SectionHighlightsOfTheMonth.title": "Popular experiences right now",
   "SectionHighlightsOfTheMonth.subtitle": "Exciting options right now...",
   "SectionHighlightsOfTheMonth.listingsInLocation": "{location}",
@@ -785,6 +788,12 @@
   "SectionTargetGroup.titleLineOne": "Learn more",
   "SectionTargetGroup.titleLineTwo":
     "Tell us who you are and we'll help you get onboard and start using Goodwings Experiences already today.",
+  
+  "SectionWhatIsIt.titleLineOne": "What is it?",
+  "SectionWhatIsIt.paraPart1": "Goodwings Experiences is a marketplace for well-curated, meaningful social impact activities hosted by nonprofit organisations. Study trips, volunteering events, workshops, you name it.",
+  "SectionWhatIsIt.paraPart2": "Perfect for students and business groups looking for authentic travel experiences.",
+  "SectionWhatIsIt.paraPart3": "The activities offer a unique insight into the impactful work carried out by people fighting for a more sustainable future. Do you want to join?",
+
   "SelectMultipleFilter.labelSelected": "{labelText} • {count}",
   "SelectMultipleFilterForm.cancel": "Cancel",
   "SelectMultipleFilterForm.clear": "Clear",

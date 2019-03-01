@@ -30,6 +30,11 @@
   background: var(--matterColorNegative); /* Loading BG color */
 }
 
+.aspectWrapperLongCard {
+  padding-bottom: 110%; /* 3:2 Aspect Ratio */
+  background: var(--matterColorNegative); /* Loading BG color */
+}
+
 .rootForImage {
   /* Layout - image will take space defined by aspect ratio wrapper */
   position: absolute;
@@ -41,11 +46,25 @@
   border-radius: var(--borderRadius);
 }
 
+.rootForImageLongCard {
+  height: 100%;
+  object-fit: cover;
+}
+
 .info {
   /* Layout */
   display: flex;
   flex-direction: row;
   padding: 16px 0 2px 0;
+}
+
+.info {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  padding: 16px 15px 30px 15px;
+  align-items: center;
+  background-color: var(--matterColorLight);
 }
 
 .price {

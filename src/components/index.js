@@ -189,6 +189,12 @@ export {
   default as SectionThumbnailLinks
 } from "./SectionThumbnailLinks/SectionThumbnailLinks";
 export {
+  default as SectionWhatIsIt
+} from "./SectionWhatIsIt/SectionWhatIsIt";
+export {
+  default as SectionExample
+} from "./SectionExample/SectionExample";
+export {
   default as SelectMultipleFilter
 } from "./SelectMultipleFilter/SelectMultipleFilter";
 export {
