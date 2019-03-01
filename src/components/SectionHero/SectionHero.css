@@ -123,6 +123,14 @@
     width: 400px;
   }
 }
+
+.wrapperGetStarted {
+  @media (--viewportMedium) {
+    display: block;
+    width: 300px;
+  }
+}
+
 .deskTopButton {
   background-color: var(--marketplaceColor);
   border-bottom: 4px solid var(--marketplaceColor);

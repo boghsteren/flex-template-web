@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import bookImage from "./book.png";
-import interactImage from "./interact.png";
-import searchImage from "./search.png";
 
 import css from "./SectionHowItWorks.css";
 
@@ -20,57 +17,31 @@ const SectionHowItWorks = props => {
 
       <div className={css.steps}>
         <div className={css.step}>
-          <div className={css.imageWrapper}>
-            <div className={css.aspectWrapper}>
-              <img
-                src={searchImage}
-                alt={"Search"}
-                className={css.howItWorksImage}
-              />
-            </div>
-          </div>
+          <h3 className={css.numberTitle}>1</h3>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.part1Title" />
           </h2>
-          <p>
+          <p className={css.stepText}>
             <FormattedMessage id="SectionHowItWorks.part1Text" />
           </p>
         </div>
 
         <div className={css.step}>
-          <div className={css.imageWrapper}>
-            <div className={css.aspectWrapper}>
-              <img
-                src={interactImage}
-                alt={"Interact"}
-                className={css.howItWorksImage}
-              />
-            </div>
-          </div>
+          <h3 className={css.numberTitle}>2</h3>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.part2Title" />
           </h2>
-          <p>
+          <p className={css.stepText}>
             <FormattedMessage id="SectionHowItWorks.part2Text" />
           </p>
         </div>
 
         <div className={css.step}>
-          <div>
-            <div className={css.imageWrapper}>
-              <div className={css.aspectWrapper}>
-                <img
-                  src={bookImage}
-                  alt={"Book"}
-                  className={css.howItWorksImage}
-                />
-              </div>
-            </div>
-          </div>
+        <h3 className={css.numberTitle}>3</h3>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.part3Title" />
           </h2>
-          <p>
+          <p className={css.stepText}>
             <FormattedMessage id="SectionHowItWorks.part3Text" />
           </p>
         </div>

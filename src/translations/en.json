@@ -738,18 +738,18 @@
   "SearchResultsPanel.previousPage": "Previous page",
   "SectionHero.mobileSearchButtonText": "Search experiences",
   "SectionHero.subTitle": "Find and reserve it today.",
-  "SectionHero.title": "Book a social impact experience.",
+  "SectionHero.title": "Book a social impact experience",
   "SectionHowItWorks.createListingLink":
     "Everytime you book through Goodwings Experience our partners receive money to make the world a better place",
   "SectionHowItWorks.part1Text":
-    "Goodwings’ nonprofit partners all around the world have added inspiring activities for you to easily book. You can search by location or type of experience. You can also filter by social impact focus, for example experiences focused on People or Planet.",
-  "SectionHowItWorks.part1Title": "1. Search for an experience",
+    "Look through our unique experiences and chose the one you like.",
+  "SectionHowItWorks.part1Title": "Search for an experience",
   "SectionHowItWorks.part2Text":
-    "When you’ve found what you want, you simply ask about availability and get more details about the experience by reaching out to the Goodwings partner hosting the experience. All directly through this site.",
-  "SectionHowItWorks.part2Title": "2. Interact with the host",
+    "Send your request and we will arrange your customised package with out NGO partner.",
+  "SectionHowItWorks.part2Title": "Interact with the host",
   "SectionHowItWorks.part3Text":
-    "When you’re ready, it’s fast, easy and secure to book and pay for the experience. Besides a transaction fee, the entire amount paid will go directly to the nonprofit organisation hosting the experience. Following the payment, you will receive all the necessary practical details about the experience.",
-  "SectionHowItWorks.part3Title": "3. Book the experience",
+    "Get ready to learn something new, make the world a better place and have the experience of a life time.",
+  "SectionHowItWorks.part3Title": "Book the experience",
   "SectionHowItWorks.providerSignupLink":
     "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
   "SectionHowItWorks.agentSignupLink":
@@ -766,6 +766,9 @@
   "SectionAllOverTheWorld.title": "Experiences all over the world",
   "SectionAllOverTheWorld.subtitle": "Lots of places to go...",
   "SectionAllOverTheWorld.listingsInLocation": "{location}",
+  
+  "SectionExample.title": "Examples",
+
   "SectionHighlightsOfTheMonth.title": "Popular experiences right now",
   "SectionHighlightsOfTheMonth.subtitle": "Exciting options right now...",
   "SectionHighlightsOfTheMonth.listingsInLocation": "{location}",
@@ -785,6 +788,12 @@
   "SectionTargetGroup.titleLineOne": "Learn more",
   "SectionTargetGroup.titleLineTwo":
     "Tell us who you are and we'll help you get onboard and start using Goodwings Experiences already today.",
+  
+  "SectionWhatIsIt.titleLineOne": "What is it?",
+  "SectionWhatIsIt.paraPart1": "Goodwings Experiences is a marketplace for well-curated, meaningful social impact activities hosted by nonprofit organisations. Study trips, volunteering events, workshops, you name it.",
+  "SectionWhatIsIt.paraPart2": "Perfect for students, business and groups looking for authentic travel experiences.",
+  "SectionWhatIsIt.paraPart3": "The activities offer a unique insight into the impactful work carried out by people fighting for a more sustainable future. Do you want to join?",
+
   "SelectMultipleFilter.labelSelected": "{labelText} • {count}",
   "SelectMultipleFilterForm.cancel": "Cancel",
   "SelectMultipleFilterForm.clear": "Clear",
