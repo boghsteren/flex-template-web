@@ -104,7 +104,7 @@ const routeConfiguration = () => {
     {
       path: "/l/:slug/:id",
       name: "ListingPage",
-      auth: true,
+      auth: false,
       component: props => <ListingPage {...props} />,
       loadData: ListingPage.loadData
     },
