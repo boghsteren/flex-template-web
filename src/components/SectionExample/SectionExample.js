@@ -11,8 +11,8 @@ class SectionExample extends Component {
   }
 
   componentWillMount() {
-    const { searchListings } = this.props;
-    searchListings({perPage: 10})
+    // const { searchListings } = this.props;
+    // searchListings({perPage: 10})
   }
 
   render() {
