@@ -56,7 +56,7 @@
   padding: 16px 0 2px 0;
 }
 
-.info {
+.infoLongCard {
   /* Layout */
   display: flex;
   flex-direction: column;
