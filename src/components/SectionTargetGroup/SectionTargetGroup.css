@@ -14,29 +14,39 @@
   color: white;
   @media (--viewportMedium) {
     flex-direction: row;
+    justify-content: space-between;
   }
 }
 .stepContainer {
   @media (--viewportMedium) {
-    margin-right: 20px;
+    flex-basis: 48%;
   }
 }
 
 .stepContainer2 {
   @media (--viewportMedium) {
-    /* margin-right: 20px; */
+    flex-basis: 48%;    
   }
 }
+
+.step1, .step2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .step1 {
-  width: 324px;
-  height: 200px;
+  /* width: 324px; */
+  /* height: 200px; */
+  width: 100%;
   background-color: #89c9c0;
   text-align: center;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
   @media (--viewportMedium) {
-    width: 480px;
+    padding: 20px 30px;
+    /* width: 480px; */
     margin-bottom: 10px;
     flex-basis: 40%;
     flex-shrink: 1;
@@ -51,15 +61,18 @@
 }
 
 .step2 {
-  width: 324px;
-  height: 200px;
+  /* width: 324px; */
+  /* height: 200px; */
+  width: 100%;
   background-color: #dc4d4b;
   text-align: center;
   font-size: 30px;
   padding: 10px;
   border-radius: 4px;
+  margin-bottom: 20px;
   @media (--viewportMedium) {
-    width: 480px;
+    padding: 20px 30px;
+    /* width: 480px; */
     margin-bottom: 10px;
     flex-basis: 40%;
     flex-shrink: 1;

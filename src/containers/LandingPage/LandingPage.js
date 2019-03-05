@@ -134,7 +134,7 @@ export const LandingPageComponent = props => {
                     <SectionHowItWorks />
                   </div>
                 </li>
-                <li className={css.section}>
+                <li className={classNames(css.section, css.sectionTarget)}>
                   <div className={css.sectionContent}>
                     <SectionTargetGroup />
                   </div>

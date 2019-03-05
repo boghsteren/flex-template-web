@@ -189,7 +189,7 @@ const TopbarDesktop = props => {
 
   return (
     <nav className={classes}>
-      <NamedLink className={css.logoLink} name="LandingPage">
+      <NamedLink className={css.logoLink} name="SearchPage">
         <Logo
           format="desktop"
           className={css.logo}

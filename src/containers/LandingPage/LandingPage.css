@@ -96,7 +96,7 @@
 }
 
 .sectionContentGray {
-  background-color: var(--matterColor) !important;
+  background-color: var(--matterColorTobias) !important;
 }
 
 .sectionExampleContent {
@@ -140,10 +140,14 @@
 }
 
 .sectionWhatIsIt {
-  background-color: var(--matterColorNegative) !important;
+  background-color: var(--matterColorShine) !important;
   border-bottom: 1px solid var(--matterColorAnti);
 }
 
 .sectionExample {
-  background-color: var(--matterColorNegative) !important;
+  background-color: var(--matterColorShine) !important;
+}
+
+.sectionTarget {
+  background-color: var(--matterColorShine) !important;
 }
