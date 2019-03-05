@@ -50,6 +50,7 @@
 .paragraph {
   font-size: 18px;
   line-height: 1.5em;
+  text-align: left;
 }
 
 .paragraph span {
