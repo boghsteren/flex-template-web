@@ -18,7 +18,7 @@
 
 .step {
   @media (--viewportMedium) {
-    width: 32%;
+    width: 30%;
     /* margin-right: 40px; */
   }
 }

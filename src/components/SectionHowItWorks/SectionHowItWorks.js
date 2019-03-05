@@ -19,7 +19,7 @@ const SectionHowItWorks = props => {
         <div className={css.step}>
           <h3 className={css.numberTitle}>1</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id="SectionHowItWorks.part1Title" />
+            <FormattedMessage id="SectionHowItWorks.part1Title" values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
             <FormattedMessage id="SectionHowItWorks.part1Text" />
@@ -29,7 +29,7 @@ const SectionHowItWorks = props => {
         <div className={css.step}>
           <h3 className={css.numberTitle}>2</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id="SectionHowItWorks.part2Title" />
+            <FormattedMessage id="SectionHowItWorks.part2Title" values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
             <FormattedMessage id="SectionHowItWorks.part2Text" />
@@ -39,7 +39,7 @@ const SectionHowItWorks = props => {
         <div className={css.step}>
         <h3 className={css.numberTitle}>3</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id="SectionHowItWorks.part3Title" />
+            <FormattedMessage id="SectionHowItWorks.part3Title" values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
             <FormattedMessage id="SectionHowItWorks.part3Text" />
