@@ -34,7 +34,7 @@ const SectionTargetGroup = props => {
             </div>
           </a>
         </div>
-        <div className={css.stepContainer2}>
+        <div className={css.stepContainer}>
           <a
             href="https://get.gwexperiences.com/host"
             style={{ color: "white", textDecoration: "none" }}

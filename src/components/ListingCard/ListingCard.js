@@ -58,7 +58,7 @@ export const ListingCardComponent = props => {
   const slug = createSlug(title);
   const author = ensureUser(listing.author);
   const authorName = author.attributes.profile.displayName;
-  const authorOrganisation = author.attributes.profile.publicData.organisation
+  const authorOrganisation = author.attributes.profile.publicData && author.attributes.profile.publicData.organisation
     ? author.attributes.profile.publicData.organisation
     : authorName;
   const duration = currentListing.attributes.publicData.duration

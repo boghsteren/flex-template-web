@@ -57,9 +57,11 @@
   --bannedColorDark: var(--marketplaceColor);
 
   --matterColorDark: #000000;
+  --matterColorTobias: #313f59;
   --matterColor: #4a4a4a;
   --matterColorAnti: #b2b2b2;
   --matterColorNegative: #e7e7e7;
+  --matterColorShine: #ededed;
   --matterColorBright: #fcfcfc;
   --matterColorLight: #ffffff;
 

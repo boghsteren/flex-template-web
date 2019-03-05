@@ -12,13 +12,14 @@
 
   @media (--viewportMedium) {
     flex-direction: row;
+    justify-content: space-between;
   }
 }
 
 .step {
   @media (--viewportMedium) {
-    width: 324px;
-    margin-right: 40px;
+    width: 32%;
+    /* margin-right: 40px; */
   }
 }
 
@@ -32,7 +33,7 @@
   margin-top: 18px;
   margin-bottom: 18px;
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   color: var(--matterColorLight);
 
   @media (--viewportMedium) {
