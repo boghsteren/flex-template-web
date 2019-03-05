@@ -59,10 +59,18 @@
 .infoLongCard {
   /* Layout */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   padding: 16px 15px 30px 15px;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: center;
+  text-align: center;
+  height: 100%;
   background-color: var(--matterColorLight);
+}
+
+.infoLongCard > div {
+  flex-basis: 100%;
 }
 
 .categoryLocation {
@@ -95,7 +103,8 @@
   /* Layout */
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+  align-self: flex-end;
   flex-shrink: 0;
   color: var(--matterColor);
 }
@@ -149,10 +158,14 @@
   flex-direction: column;
 }
 
+.mainInfoLongCard {
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
 .title {
   /* Font */
   @apply --marketplaceH3FontStyles;
-  font-size: 24px;
   font-weight: 900;
   color: var(--matterColor);
 
@@ -167,8 +180,7 @@
 }
 
 .titleLongCard {
-  margin-top: 15px;
-  margin-bottom: 50px;
+  font-size: 24px;
 }
 
 .authorInfo {

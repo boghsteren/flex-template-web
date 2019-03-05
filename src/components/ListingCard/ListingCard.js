@@ -108,7 +108,7 @@ export const ListingCardComponent = props => {
             <div className={css.perUnit}>{`Duration: ${duration}`}</div>
           </div>
         }
-        <div className={css.mainInfo}>
+        <div className={classNames(css.mainInfo, isLongCard ? css.mainInfoLongCard : css.null)}>
           <div className={classNames(css.title, isLongCard ? css.titleLongCard: css.null)}>
             {richText(title, {
               longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
