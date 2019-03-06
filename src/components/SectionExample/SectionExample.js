@@ -23,13 +23,17 @@ class SectionExample extends Component {
       `${panelLargeWidth / 3}vw`
     ].join(", ");
 
+    const newListing = listings.filter((listing, index) => {
+      return index < 3;
+    })
+
     return (
       <div className={classes} key="somekey">
         <div className={css.title}>
           <FormattedMessage id="SectionExample.title" />
         </div>
         <div className={css.locations}>
-          {listings.map(listing => (
+          {newListing.map(listing => (
             <ListingCard
               isLongCard={true}
               listing={listing}

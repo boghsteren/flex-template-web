@@ -35,7 +35,7 @@ import twitterImage from "../../assets/experiencesTwitter-600x314.jpg";
 import css from "./LandingPage.css";
 
 export const LandingPageComponent = props => {
-  const { history, intl, location, scrollingDisabled, user, listings } = props;
+  const { history, intl, location, scrollingDisabled, user, listings, unauthListings } = props;
 
   // Schema for search engines (helps them to understand what this page is about)
   // http://schema.org
@@ -99,7 +99,7 @@ export const LandingPageComponent = props => {
                 </li>
                 <li className={css.section}>
                   <div className={css.sectionContent}>
-                    <SectionHighlightsOfTheMonth listings={props.listings} />
+                    <SectionHighlightsOfTheMonth listings={listings} />
                   </div>
                 </li>
                 <li className={css.section}>
@@ -124,7 +124,7 @@ export const LandingPageComponent = props => {
                 <li className={classNames(css.section, css.sectionExample)}>
                   <div className={classNames(css.sectionContent, css.sectionExampleContent)}>
                     <SectionExample 
-                      listings={listings}
+                      listings={unauthListings}
                     />
                   </div>
                 </li>
@@ -169,6 +169,7 @@ const mapStateToProps = state => {
   return {
     scrollingDisabled: isScrollingDisabled(state),
     listings: state.LandingPage.listings,
+    unauthListings: state.LandingPage.unauthListings,
     user: state.user.currentUser,
   };
 };
