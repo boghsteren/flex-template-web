@@ -432,8 +432,8 @@ export class ListingPageComponent extends Component {
       ensuredAuthor,
       bannedUserDisplayName
     );
-    const authorOrganisation =
-      currentListing.author.attributes.profile.publicData.organisation;
+    const authorOrganisation = currentListing && currentListing.author ?
+      currentListing.author.attributes.profile.publicData.organisation : '';
 
     const { formattedPrice, priceTitle } = priceData(price, intl);
 
