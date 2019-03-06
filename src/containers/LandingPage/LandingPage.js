@@ -35,7 +35,7 @@ import twitterImage from "../../assets/experiencesTwitter-600x314.jpg";
 import css from "./LandingPage.css";
 
 export const LandingPageComponent = props => {
-  const { history, intl, location, scrollingDisabled, user, searchListings, listingsUnauth, listings } = props;
+  const { history, intl, location, scrollingDisabled, user, listings } = props;
 
   // Schema for search engines (helps them to understand what this page is about)
   // http://schema.org
@@ -124,8 +124,7 @@ export const LandingPageComponent = props => {
                 <li className={classNames(css.section, css.sectionExample)}>
                   <div className={classNames(css.sectionContent, css.sectionExampleContent)}>
                     <SectionExample 
-                      listings={listings} 
-                      searchListings={searchListings}
+                      listings={listings}
                     />
                   </div>
                 </li>
@@ -166,19 +165,13 @@ LandingPageComponent.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { searchMapListingIds } = state.SearchPage;
 
   return {
     scrollingDisabled: isScrollingDisabled(state),
     listings: state.LandingPage.listings,
     user: state.user.currentUser,
-    listingsUnauth: getMarketplaceEntities(state, searchMapListingIds)
   };
 };
-
-const mapDispatchToProps = dispatch => ({
-  searchListings: (searchParams) => dispatch(searchListings(searchParams))
-})
 
 // Note: it is important that the withRouter HOC is **outside** the
 // connect HOC, otherwise React Router won't rerender any Route
@@ -186,7 +179,7 @@ const mapDispatchToProps = dispatch => ({
 // lifecycle hook.
 //
 // See: https://github.com/ReactTraining/react-router/issues/4671
-const LandingPage = compose(withRouter, connect(mapStateToProps, mapDispatchToProps), injectIntl)(
+const LandingPage = compose(withRouter, connect(mapStateToProps), injectIntl)(
   LandingPageComponent
 );
 

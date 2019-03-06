@@ -10,16 +10,8 @@ class SectionExample extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    // const { searchListings } = this.props;
-    // searchListings({perPage: 10})
-  }
-
   render() {
     const { rootClassName, className, listings } = this.props;
-
-    console.log('assass', listings);
-
     const classes = classNames(rootClassName || css.root, className);
     // Panel width relative to the viewport
     const panelMediumWidth = 50;
