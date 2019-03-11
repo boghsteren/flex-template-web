@@ -48,7 +48,7 @@ import {
 } from "../../components";
 import { TopbarContainer, NotFoundPage } from "../../containers";
 
-import { sendEnquiry, loadData, setInitialValues } from "./ListingPage.duck";
+import { sendEnquiry, sendContactEmail, sendContactEmailReset, loadData, setInitialValues } from "./ListingPage.duck";
 import SectionImages from "./SectionImages";
 import SectionAvatar from "./SectionAvatar";
 import SectionHeading from "./SectionHeading";
@@ -59,6 +59,7 @@ import SectionHost from "./SectionHost";
 import SectionRulesMaybe from "./SectionRulesMaybe";
 import SectionMapMaybe from "./SectionMapMaybe";
 import SectionBooking from "./SectionBooking";
+import SectionContactEmail from "./SectionContactEmail";
 import css from "./ListingPage.css";
 import moment from "moment";
 import html2canvas from "html2canvas";
@@ -103,6 +104,22 @@ const openBookModal = (history, listing) => {
       routes,
       { id: listing.id.uuid, slug: createSlug(listing.attributes.title) },
       { book: true }
+    )
+  );
+};
+
+const openContactEmailModal = (history, listing) => {
+  if (!listing.id) {
+    // Listing not fully loaded yet
+    return;
+  }
+  const routes = routeConfiguration();
+  history.push(
+    createResourceLocatorString(
+      "ListingPage",
+      routes,
+      { id: listing.id.uuid, slug: createSlug(listing.attributes.title) },
+      { contactEmail: true }
     )
   );
 };
@@ -276,13 +293,19 @@ export class ListingPageComponent extends Component {
       fetchReviewsError,
       sendEnquiryInProgress,
       sendEnquiryError,
+      sendContactEmailInProgress,
+      sendContactEmailSuccess,
+      sendContactEmailError,
       timeSlots,
       fetchTimeSlotsError,
       categoriesConfig,
-      goalsConfig
+      goalsConfig,
+      onSendContactEmail,
+      onSendContactEmailReset,
     } = this.props;
 
     const isBook = !!parse(location.search).book;
+    const isContactEmail = !!parse(location.search).contactEmail;
     const listingId = new UUID(rawParams.id);
     const isPendingApprovalVariant =
       rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
@@ -441,6 +464,10 @@ export class ListingPageComponent extends Component {
       closeBookModal(history, currentListing);
     };
 
+    const handleMobileContactEmailModalClose = () => {
+      closeBookModal(history, currentListing);
+    };
+
     const handleBookingSubmit = values => {
       const isCurrentlyClosed =
         currentListing.attributes.state === LISTING_STATE_CLOSED;
@@ -459,6 +486,10 @@ export class ListingPageComponent extends Component {
       } else {
         openBookModal(history, currentListing);
       }
+    };
+
+    const handleContactEmailButtonClick = () => {
+      openContactEmailModal(history, currentListing);
     };
 
     const listingImages = (listing, variantName) =>
@@ -625,6 +656,23 @@ export class ListingPageComponent extends Component {
                       fetchTimeSlotsError={fetchTimeSlotsError}
                     />
                   )}
+                {!currentUser &&
+                  <SectionContactEmail 
+                    intl={intl}
+                    listing={currentListing}
+                    isContactEmail={isContactEmail}
+                    richTitle={richTitle}
+                    authorDisplayName={authorDisplayName}
+                    handleContactEmailButtonClick={handleContactEmailButtonClick}
+                    handleMobileContactEmailModalClose={handleMobileContactEmailModalClose}
+                    onManageDisableScrolling={onManageDisableScrolling}
+                    onSendContactEmail={onSendContactEmail}
+                    onSendContactEmailReset={onSendContactEmailReset}
+                    sendContactEmailInProgress={sendContactEmailInProgress}
+                    sendContactEmailSuccess={sendContactEmailSuccess}
+                    sendContactEmailError={sendContactEmailError}
+                  />
+                }
               </div>
             </div>
             <div className={css.hiddenPdfSection}>
@@ -783,7 +831,10 @@ const mapStateToProps = state => {
     fetchTimeSlotsError,
     sendEnquiryInProgress,
     sendEnquiryError,
-    enquiryModalOpenForListingId
+    enquiryModalOpenForListingId,
+    sendContactEmailInProgress,
+    sendContactEmailSuccess,
+    sendContactEmailError,
   } = state.ListingPage;
   const { currentUser } = state.user;
 
@@ -812,7 +863,10 @@ const mapStateToProps = state => {
     timeSlots,
     fetchTimeSlotsError,
     sendEnquiryInProgress,
-    sendEnquiryError
+    sendEnquiryError,
+    sendContactEmailInProgress,
+    sendContactEmailSuccess,
+    sendContactEmailError,
   };
 };
 
@@ -822,7 +876,11 @@ const mapDispatchToProps = dispatch => ({
   useInitialValues: (setInitialValues, values) =>
     dispatch(setInitialValues(values)),
   onSendEnquiry: (listingId, message) =>
-    dispatch(sendEnquiry(listingId, message))
+    dispatch(sendEnquiry(listingId, message)),
+  onSendContactEmail: (listingId, data) => 
+    dispatch(sendContactEmail(listingId, data)),
+  onSendContactEmailReset: () => 
+    dispatch(sendContactEmailReset())
 });
 
 // Note: it is important that the withRouter HOC is **outside** the

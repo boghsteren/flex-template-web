@@ -15,6 +15,7 @@ class FieldTextInputComponent extends Component {
       rootClassName,
       className,
       inputRootClass,
+      inputClassName,
       customErrorText,
       id,
       label,
@@ -49,8 +50,8 @@ class FieldTextInputComponent extends Component {
         [css.textarea]: isTextarea,
       });
     const inputProps = isTextarea
-      ? { className: inputClasses, id, rows: 1, maxLength: CONTENT_MAX_LENGTH, ...input, ...rest }
-      : { className: inputClasses, id, type, ...input, ...rest };
+      ? { className: classNames(inputClasses, inputClassName), id, rows: 1, maxLength: CONTENT_MAX_LENGTH, ...input, ...rest }
+      : { className: classNames(inputClasses, inputClassName), id, type, ...input, ...rest };
 
     const classes = classNames(rootClassName || css.root, className);
     return (

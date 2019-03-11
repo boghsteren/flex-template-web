@@ -30,6 +30,11 @@ export const SEND_ENQUIRY_REQUEST = 'app/ListingPage/SEND_ENQUIRY_REQUEST';
 export const SEND_ENQUIRY_SUCCESS = 'app/ListingPage/SEND_ENQUIRY_SUCCESS';
 export const SEND_ENQUIRY_ERROR = 'app/ListingPage/SEND_ENQUIRY_ERROR';
 
+export const SEND_CONTACT_EMAIL_RESET = 'app/ListingPage/SEND_CONTACT_EMAIL_RESET';
+export const SEND_CONTACT_EMAIL_REQUEST = 'app/ListingPage/SEND_CONTACT_EMAIL_REQUEST';
+export const SEND_CONTACT_EMAIL_SUCCESS = 'app/ListingPage/SEND_CONTACT_EMAIL_SUCCESS';
+export const SEND_CONTACT_EMAIL_ERROR = 'app/ListingPage/SEND_CONTACT_EMAIL_ERROR';
+
 // ================ Reducer ================ //
 
 const initialState = {
@@ -41,6 +46,9 @@ const initialState = {
   fetchTimeSlotsError: null,
   sendEnquiryInProgress: false,
   sendEnquiryError: null,
+  sendContactEmailInProgress: false,
+  sendContactEmailSuccess: false,
+  sendContactEmailError: null,
   enquiryModalOpenForListingId: null,
 };
 
@@ -74,6 +82,15 @@ const listingPageReducer = (state = initialState, action = {}) => {
     case SEND_ENQUIRY_SUCCESS:
       return { ...state, sendEnquiryInProgress: false };
     case SEND_ENQUIRY_ERROR:
+      return { ...state, sendEnquiryInProgress: false, sendEnquiryError: payload };
+
+    case SEND_CONTACT_EMAIL_RESET:
+      return { ...state, sendContactEmailInProgress: false, sendContactEmailError: null, sendContactEmailSuccess: false };
+    case SEND_CONTACT_EMAIL_REQUEST:
+      return { ...state, sendContactEmailInProgress: true, sendContactEmailError: null, sendContactEmailSuccess: false };
+    case SEND_CONTACT_EMAIL_SUCCESS:
+      return { ...state, sendContactEmailInProgress: false, sendContactEmailSuccess: true };
+    case SEND_CONTACT_EMAIL_ERROR:
       return { ...state, sendEnquiryInProgress: false, sendEnquiryError: payload };
 
     default:
@@ -123,6 +140,11 @@ export const fetchTimeSlotsError = error => ({
 export const sendEnquiryRequest = () => ({ type: SEND_ENQUIRY_REQUEST });
 export const sendEnquirySuccess = () => ({ type: SEND_ENQUIRY_SUCCESS });
 export const sendEnquiryError = e => ({ type: SEND_ENQUIRY_ERROR, error: true, payload: e });
+
+export const sendContactEmailReset = () => ({type: SEND_CONTACT_EMAIL_RESET})
+export const sendContactEmailRequest = () => ({ type: SEND_CONTACT_EMAIL_REQUEST });
+export const sendContactEmailSuccess = () => ({ type: SEND_CONTACT_EMAIL_SUCCESS });
+export const sendContactEmailError = e => ({ type: SEND_CONTACT_EMAIL_ERROR, error: true, payload: e });
 
 // ================ Thunks ================ //
 
@@ -264,6 +286,16 @@ export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => 
       dispatch(sendEnquiryError(storableError(e)));
       throw e;
     });
+};
+
+export const sendContactEmail = (listingId, data) => (dispatch, getState, sdk) => {
+  dispatch(sendContactEmailRequest());
+  setTimeout(() => {
+    dispatch(sendContactEmailSuccess());
+  }, 500)
+  const bodyParams = {
+    
+  };
 };
 
 export const loadData = (params, search) => dispatch => {

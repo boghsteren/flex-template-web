@@ -657,6 +657,12 @@
   }
 }
 
+.longModalContainer {
+  @media (--viewportMedium) {
+    height: auto;
+  }
+}
+
 .modalHeading {
   margin-top: 89px;
   margin-bottom: 36px;
@@ -671,6 +677,22 @@
   }
 }
 
+.modalContactUsHeading {
+
+  @media (--viewportMedium) {
+    margin-top: 10px;
+  }
+
+  @media (--viewportLarge) {
+    margin-top: unset;
+  }
+}
+
+.modalContactUsHeading .title{
+  font-size: 24px;
+  line-height: 30px;
+}
+
 .bookingHeading {
   display: none;
 
@@ -679,6 +701,10 @@
     margin-top: 6px;
     margin-bottom: 47px;
   }
+}
+
+.contactEmailBookingHeading {
+  margin-bottom: 20px;
 }
 
 .bookingTitle {
@@ -741,6 +767,48 @@
     bottom: unset;
     background-color: transparent;
   }
+}
+
+.rootClassNameContactEmailForm {
+  padding: 20px;
+
+  @media (--viewportMedium) {
+    padding: 0px;
+  }
+}
+
+.fieldSet {
+  margin-bottom: 20px;
+}
+
+.contactEmailLabel {
+  color: var(--matterColorAnti);
+}
+
+.contactEmailInputField {
+  margin-bottom: 10px;
+}
+
+.contactEmailInput {
+  color: var(--matterColorNear);
+  &::placeholder {
+    font-size: 16px;
+  }
+}
+
+.contactEmailSubmit {
+  background-color: var(--successColor);
+
+  &:hover, &:focus {
+    background-color: var(--successColorDark);
+  }
+}
+
+.contactEmailSelectDefaultOption {
+  color: var(--matterColorAnti);
+}
+
+.contactEmailSelectOption {
 }
 
 .bookButton {
@@ -829,4 +897,19 @@
 .hiddenPdfSection {
   max-height: 0px;
   overflow: hidden;
+}
+
+.getInTouchSuccessModalContent {
+  padding: 50px 20px;
+}
+
+.getInTouchSuccessModalContentTitle {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--successColor);
+  margin-bottom: 30px;
+}
+
+.getInTouchSuccessModalContentPara {
+  font-weight: 600;
 }
