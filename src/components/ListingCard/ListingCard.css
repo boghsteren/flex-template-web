@@ -157,7 +157,6 @@
   /* Font */
   @apply --marketplaceTinyFontStyles;
   color: var(--matterColor);
-  font-weight: bold;
 
   /* Remove default margins from font */
   margin-top: 0;

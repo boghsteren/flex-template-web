@@ -157,11 +157,11 @@ export class ListingPageComponent extends Component {
     const dailyQuantity =
       bookingDates &&
       (moment(bookingDates.endDate).diff(bookingDates.startDate, "days") + 1) *
-        (seatsNumber || 1);
+      (seatsNumber || 1);
     const hourlyQuantity = hours * seatsNumber;
     const quantity =
       listing.attributes.publicData.pricing_scheme === "daily_flat" ||
-      listing.attributes.publicData.pricing_scheme === "daily_seats"
+        listing.attributes.publicData.pricing_scheme === "daily_seats"
         ? dailyQuantity
         : hourlyQuantity;
     const initialValues = {
@@ -404,8 +404,8 @@ export class ListingPageComponent extends Component {
       currentListing && currentListing.attributes.publicData.pricing_scheme;
     const pricing_scheme_label = pricingSchemeAvailable
       ? config.custom.pricing_schemes.find(
-          scheme => scheme.key === pricingSchemeAvailable
-        ).label
+        scheme => scheme.key === pricingSchemeAvailable
+      ).label
       : null;
     const userAndListingAuthorAvailable = !!(currentUser && authorAvailable);
     const isOwnListing =
@@ -580,32 +580,34 @@ export class ListingPageComponent extends Component {
                   />
                   {currentUser &&
                     <SectionHost
-                    title={title}
-                    listing={currentListing}
-                    authorDisplayName={authorDisplayName}
-                    onContactUser={this.onContactUser}
-                    isEnquiryModalOpen={
-                      isAuthenticated && this.state.enquiryModalOpen
-                    }
-                    onCloseEnquiryModal={() =>
-                      this.setState({ enquiryModalOpen: false })
-                    }
-                    sendEnquiryError={sendEnquiryError}
-                    sendEnquiryInProgress={sendEnquiryInProgress}
-                    onSubmitEnquiry={this.onSubmitEnquiry}
-                    currentUser={currentUser}
-                    onManageDisableScrolling={onManageDisableScrolling}
-                  />
+                      title={title}
+                      listing={currentListing}
+                      authorDisplayName={authorDisplayName}
+                      onContactUser={this.onContactUser}
+                      isEnquiryModalOpen={
+                        isAuthenticated && this.state.enquiryModalOpen
+                      }
+                      onCloseEnquiryModal={() =>
+                        this.setState({ enquiryModalOpen: false })
+                      }
+                      sendEnquiryError={sendEnquiryError}
+                      sendEnquiryInProgress={sendEnquiryInProgress}
+                      onSubmitEnquiry={this.onSubmitEnquiry}
+                      currentUser={currentUser}
+                      onManageDisableScrolling={onManageDisableScrolling}
+                    />
                   }{" "}
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <Button
-                      className={css.button}
-                      onClick={() => createPDF(title)}
-                      label="Export"
-                    >
-                      Save as PDF
+                  {currentUser &&
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                      <Button
+                        className={css.button}
+                        onClick={() => createPDF(title)}
+                        label="Export"
+                      >
+                        Save as PDF
                     </Button>
-                  </div>
+                    </div>
+                  }
                 </div>
 
                 {currentUser &&
