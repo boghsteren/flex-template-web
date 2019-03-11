@@ -20,6 +20,7 @@ export class Map extends Component {
       zoom,
       mapsConfig,
       useStaticMap,
+      currentUser,
     } = this.props;
     const classes = classNames(rootClassName || css.root, className);
     const mapClasses = mapRootClassName || css.mapRoot;
@@ -38,9 +39,10 @@ export class Map extends Component {
     return !isMapsLibLoaded() ? (
       <div className={classes} />
     ) : useStaticMap ? (
-      <StaticMap center={location} zoom={zoom} address={address} mapsConfig={mapsConfig} />
+      <StaticMap currentUser={currentUser} center={location} zoom={zoom} address={address} mapsConfig={mapsConfig} />
     ) : (
       <DynamicMap
+        currentUser={currentUser}
         containerElement={<div className={classes} />}
         mapElement={<div className={mapClasses} />}
         containerClassName={classes}

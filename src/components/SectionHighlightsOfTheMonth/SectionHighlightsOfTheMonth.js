@@ -6,7 +6,7 @@ import css from "./SectionHighlightsOfTheMonth.css";
 import { ListingCard } from "../../components";
 
 const SectionHighlightsOfTheMonth = props => {
-  const { rootClassName, className, listings } = props;
+  const { rootClassName, className, listings, user } = props;
 
   const classes = classNames(rootClassName || css.root, className);
   // Panel width relative to the viewport
@@ -27,6 +27,7 @@ const SectionHighlightsOfTheMonth = props => {
       <div className={css.locations}>
         {listings.map(listing => (
           <ListingCard
+            user={user}
             listing={listing}
             key={listing.id.uuid}
             renderSizes={cardRenderSizes}

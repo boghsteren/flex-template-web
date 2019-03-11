@@ -147,6 +147,7 @@ export class SearchPageComponent extends Component {
       intl,
       listings,
       location,
+      user,
       mapListings,
       onManageDisableScrolling,
       pagination,
@@ -222,6 +223,7 @@ export class SearchPageComponent extends Component {
         />
         <div className={css.container}>
           <MainPanel
+            user={user}
             urlQueryParams={validQueryParams}
             listings={listings}
             searchInProgress={searchInProgress}
@@ -345,7 +347,8 @@ const mapStateToProps = state => {
     searchInProgress,
     searchListingsError,
     searchParams,
-    activeListingId
+    activeListingId,
+    user: state.user.currentUser,
   };
 };
 

@@ -99,7 +99,7 @@ export const LandingPageComponent = props => {
                 </li>
                 <li className={css.section}>
                   <div className={css.sectionContent}>
-                    <SectionHighlightsOfTheMonth listings={listings} />
+                    <SectionHighlightsOfTheMonth listings={listings} user={user}/>
                   </div>
                 </li>
                 <li className={css.section}>
