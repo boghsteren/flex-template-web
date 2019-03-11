@@ -9,9 +9,10 @@ const MIN_LENGTH_FOR_LONG_WORDS_IN_DESCRIPTION = 20;
 
 const SectionDescription = props => {
   const { description, group_size, included, duration, availability } = props;
-  const group_size_label = config.custom.group_size_brackets.find(
+  let group_size_label = config.custom.group_size_brackets.find(
     entry => entry.key === group_size
-  ).label;
+  );
+  group_size_label = group_size_label ? group_size_label.label : '';
   return (
     <div>
       <div className={css.sectionDescription}>
