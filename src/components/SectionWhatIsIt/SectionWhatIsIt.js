@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import screenTrans from '../../assets/landingPage/screen-trans.webp';
+import screenTrans from '../../assets/landingPage/screen-trans.png';
 
 import css from "./SectionWhatIsIt.css";
 
