@@ -26,6 +26,7 @@ class MainPanel extends Component {
       rootClassName,
       urlQueryParams,
       listings,
+      user,
       searchInProgress,
       searchListingsError,
       searchParamsAreInSync,
@@ -125,6 +126,7 @@ class MainPanel extends Component {
               </h2>
             ) : null}
             <SearchResultsPanel
+              user={user}
               className={css.searchListingsPanel}
               listings={listings}
               pagination={listingsAreLoaded ? pagination : null}
