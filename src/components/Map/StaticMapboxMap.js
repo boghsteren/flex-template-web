@@ -43,7 +43,7 @@ const mapOverlay = (center, mapsConfig) => {
 };
 
 const StaticMapboxMap = props => {
-  const { address, center, zoom, mapsConfig, dimensions } = props;
+  const { address, center, zoom, mapsConfig, dimensions, currentUser } = props;
   const { width, height } = dimensions;
 
   const libLoaded = typeof window !== 'undefined' && window.mapboxgl;
@@ -54,8 +54,8 @@ const StaticMapboxMap = props => {
   const overlay = mapOverlay(center, mapsConfig);
   const src =
     'https://api.mapbox.com/styles/v1/mapbox/streets-v10/static' +
-    (overlay ? `/${overlay}` : '') +
-    `/${center.lng},${center.lat},${zoom}` +
+    (overlay && currentUser ? `/${overlay}` : '') +
+    `/${center.lng},${center.lat},${currentUser ? zoom : 10}` +
     `/${width}x${height}` +
     `?access_token=${config.maps.mapboxAccessToken}`;
 

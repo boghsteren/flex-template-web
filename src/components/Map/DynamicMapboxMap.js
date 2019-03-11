@@ -78,8 +78,10 @@ class DynamicMapboxMap extends Component {
         this.map.addLayer(circleLayer(center, mapsConfig, this.fuzzyLayerId));
       });
     } else {
-      this.centerMarker = mapMarker(mapsConfig);
-      this.centerMarker.setLngLat(position).addTo(this.map);
+      if(this.props.currentUser) {
+        this.centerMarker = mapMarker(mapsConfig);
+        this.centerMarker.setLngLat(position).addTo(this.map);
+      }
     }
   }
   componentWillUnmount() {

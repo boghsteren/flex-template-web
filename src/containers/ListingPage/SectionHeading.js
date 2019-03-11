@@ -6,6 +6,7 @@ import css from "./ListingPage.css";
 
 const SectionHeading = props => {
   const {
+    currentUser,
     priceTitle,
     formattedPrice,
     richTitle,
@@ -24,17 +25,22 @@ const SectionHeading = props => {
             {formattedPrice}
           </div>
           <div className={css.desktopPerUnit}>{pricing_scheme} </div>
+          <div className={css.exclude10pcServiceFee}>
+            <FormattedMessage id="ListingPage.exclude10pcServiceFee" />
+          </div>
         </div>
       )}
       <div className={css.heading}>
         <h1 className={css.title}>{richTitle}</h1>
         <div className={css.author}>
           {category}
-          <FormattedMessage
-            id="ListingPage.hostedBy"
-            values={{ name: hostLink }}
-          />
-          {showContactUser ? (
+          {currentUser &&
+            <FormattedMessage
+              id="ListingPage.hostedBy"
+              values={{ name: hostLink }}
+            />
+          }
+          {showContactUser && currentUser ? (
             <span className={css.contactWrapper}>
               <span className={css.separator}>•</span>
               <InlineTextButton

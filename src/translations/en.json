@@ -380,6 +380,7 @@
   "LandingPage.schemaDescription":
     "A global marketplace for social impact experiences.",
   "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}",
+  "ListingCard.exclude10pcServiceFee": "Excluding 10% service fee",  
   "ListingCard.hostedBy": "Hosted by {authorName}.",
   "ListingCard.perUnit": "per day",
   "ListingCard.unsupportedPrice": "({currency})",
@@ -401,6 +402,7 @@
   "ListingPage.editProfileLink": "Edit profile",
   "ListingPage.errorLoadingListingMessage":
     "Could not load listing. Please try again.",
+  "ListingPage.exclude10pcServiceFee": "Excluding 10% service fee",
   "ListingPage.errorLoadingListingTitle": "Error in loading listing",
   "ListingPage.featuresTitle": "Social impact focus",
   "ListingPage.hostedBy": "Hosted by {name}",
@@ -438,6 +440,7 @@
   "ManageListingCard.closeListing": "Close listing",
   "ManageListingCard.closedListing":
     "This listing is closed and not visible on the marketplace.",
+
   "ManageListingCard.edit": "Edit",
   "ManageListingCard.openListing": "Open listing",
   "ManageListingCard.pendingApproval":

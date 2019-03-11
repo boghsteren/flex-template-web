@@ -500,7 +500,7 @@ export class ListingPageComponent extends Component {
       publicData && publicData.category ? (
         <span>
           {categoryLabel(categoriesConfig, publicData.category)}
-          <span className={css.separator}>•</span>
+          {currentUser && <span className={css.separator}>•</span>}
         </span>
       ) : null;
 
@@ -543,9 +543,10 @@ export class ListingPageComponent extends Component {
                 onManageDisableScrolling={onManageDisableScrolling}
               />
               <div className={css.contentContainer}>
-                <SectionAvatar user={currentAuthor} params={params} />
+                <SectionAvatar currentUser={currentUser} user={currentAuthor} params={params} />
                 <div className={css.mainContent}>
                   <SectionHeading
+                    currentUser={currentUser}
                     priceTitle={priceTitle}
                     pricing_scheme={pricing_scheme_label}
                     formattedPrice={formattedPrice}
@@ -568,6 +569,7 @@ export class ListingPageComponent extends Component {
                   />
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
+                    currentUser={currentUser}
                     geolocation={geolocation}
                     publicData={publicData}
                     listingId={currentListing.id}
@@ -576,7 +578,8 @@ export class ListingPageComponent extends Component {
                     reviews={reviews}
                     fetchReviewsError={fetchReviewsError}
                   />
-                  <SectionHost
+                  {currentUser &&
+                    <SectionHost
                     title={title}
                     listing={currentListing}
                     authorDisplayName={authorDisplayName}
@@ -592,7 +595,8 @@ export class ListingPageComponent extends Component {
                     onSubmitEnquiry={this.onSubmitEnquiry}
                     currentUser={currentUser}
                     onManageDisableScrolling={onManageDisableScrolling}
-                  />{" "}
+                  />
+                  }{" "}
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
                     <Button
                       className={css.button}

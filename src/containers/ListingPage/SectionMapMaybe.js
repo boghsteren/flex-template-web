@@ -16,7 +16,7 @@ class SectionMapMaybe extends Component {
   }
 
   render() {
-    const { className, rootClassName, geolocation, publicData, listingId } = this.props;
+    const { className, rootClassName, geolocation, publicData, listingId, currentUser } = this.props;
 
     if (!geolocation) {
       return null;
@@ -29,7 +29,7 @@ class SectionMapMaybe extends Component {
     const mapProps = config.maps.fuzzy.enabled
       ? { obfuscatedCenter: obfuscatedCoordinates(geolocation, cacheKey) }
       : { address, center: geolocation };
-    const map = <Map {...mapProps} useStaticMap={this.state.isStatic} />;
+    const map = <Map {...mapProps} useStaticMap={this.state.isStatic} currentUser={currentUser}/>;
 
     return (
       <div className={classes}>

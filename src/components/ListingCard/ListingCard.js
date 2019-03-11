@@ -39,6 +39,7 @@ export const ListingCardComponent = props => {
     rootClassName,
     intl,
     listing,
+    user,
     renderSizes,
     setActiveListing,
     isLongCard,
@@ -106,17 +107,20 @@ export const ListingCardComponent = props => {
             </div>
             <div className={css.perUnit}>{pricingLabel}</div>
             <div className={css.perUnit}>{`Duration: ${duration}`}</div>
+            <div className={css.exclude10pcServiceFee}>
+              <FormattedMessage id="ListingCard.exclude10pcServiceFee" />
+            </div>
           </div>
         }
         <div className={classNames(css.mainInfo, isLongCard ? css.mainInfoLongCard : css.null)}>
-          <div className={classNames(css.title, isLongCard ? css.titleLongCard: css.null)}>
+          <div className={classNames(css.title, isLongCard ? css.titleLongCard : css.null)}>
             {richText(title, {
               longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
               longWordClass: css.longWord
             })}
           </div>
           {!isLongCard && <div className={css.authorInfo}>{type}</div>}
-          {!isLongCard && 
+          {!isLongCard && user &&
             <div className={css.authorInfo}>
               <FormattedMessage
                 className={css.authorName}

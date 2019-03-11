@@ -53,7 +53,7 @@
   /* Layout */
   display: flex;
   flex-direction: row;
-  padding: 16px 0 2px 0;
+  padding: 16px 0 10px 0;
 }
 
 .infoLongCard {
@@ -142,6 +142,22 @@
   /* Font */
   @apply --marketplaceTinyFontStyles;
   color: var(--matterColor);
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.exclude10pcServiceFee {
+  /* Font */
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColor);
+  font-weight: bold;
 
   /* Remove default margins from font */
   margin-top: 0;
