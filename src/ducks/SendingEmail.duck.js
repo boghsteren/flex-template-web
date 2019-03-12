@@ -60,7 +60,7 @@ AWS.config.update({region: 'eu-west-1'});
 
 const createEmailParams = (receiver = ADMIN_RECEIVER_EMAIL, subject, content) => {
   let toAddresses = Array.isArray(receiver) ? receiver : [receiver]
-  let body = isTemplated ? null : {
+  let body = {
     Text: {
       Charset: "UTF-8",
       Data: content

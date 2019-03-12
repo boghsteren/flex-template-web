@@ -36,6 +36,16 @@ const ContactEmailForm = props => {
           sendContactEmailError,
         } = fieldRenderProps;
 
+        if (sendContactEmailSuccess) {
+          // form.change('contactEmail.fullName', '');
+          // form.change('contactEmail.email', '');
+          form.change('contactEmail.numberPeople', null);
+          form.change('contactEmail.whereAreYouTravelingFrom', null);
+          form.change('contactEmail.typeOfGroup', null);
+          form.change('contactEmail.moreOffer', null);
+          form.change('contactEmail.message', null);
+        }
+
         const classes = classNames(rootClassName || css.rootClassNameContactEmailForm, className)
 
         //FullName
@@ -205,6 +215,14 @@ const ContactEmailForm = props => {
               />
             </div>
 
+            {sendContactEmailError ? 
+              <div className={css.error}>
+                {sendContactEmailError.message ? 
+                  sendContactEmailError.message 
+                  : <FormattedMessage id="ListingPage.getInTouchGeneralError" />}
+              </div> 
+              : null}
+
             <PrimaryButton
               className={css.contactEmailSubmit}
               type="submit"
@@ -226,6 +244,25 @@ class SectionContactEmail extends Component {
     super(props);
     this.state = {
     }
+  }
+
+  handleSubmitContactEmail = (data) => {
+    const { fullName, email, numberPeople, whereAreYouTravelingFrom,
+      typeOfGroup, moreOffer, message } = data.contactEmail;
+    const receiver = null;
+    const subject = `Guest Booking Contact - ${fullName}`;
+    const content = `
+      Full name: ${fullName}\r\n
+      Email: ${email}\r\n
+      --------------------------------\r\n
+      Number of people: ${numberPeople ? numberPeople : ''}\r\n
+      Where are you traveling from: ${whereAreYouTravelingFrom ? whereAreYouTravelingFrom : ''}\r\n
+      Type of group: ${typeOfGroup ? typeOfGroup : ''}\r\n
+      --------------------------------\r\n
+      I would like a non-committal offer for my group travel (accommodation, flights, etc.): ${moreOffer ? moreOffer : ''}\r\n
+      Message: ${message ? message : ''}\r\n
+    `;
+    this.props.onSendContactEmail(receiver, subject, content);
   }
 
   render() {
@@ -273,7 +310,7 @@ class SectionContactEmail extends Component {
               sendContactEmailSuccess={sendContactEmailSuccess}
               sendContactEmailError={sendContactEmailError}
               onSubmit={(values) => {
-                onSendContactEmail(listing.id, values)
+                this.handleSubmitContactEmail(values)
               }}
             />
           </div>

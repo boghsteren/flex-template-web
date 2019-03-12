@@ -426,6 +426,7 @@
   "ListingPage.getInTouchMoreOfferDefaultOption": "Yes/No",
   "ListingPage.getInTouchMessageLabel": "Message (optional)",
   "ListingPage.getInTouchMessagePlaceholder": "Message",
+  "ListingPage.getInTouchGeneralError": "Oops, something wrong. Please recheck your input and submit again",
   "ListingPage.getInTouchSubmit": "Submit",
   "ListingPage.getInTouchSuccessModalContentTitle": "Successfully sent contact",
   "ListingPage.getInTouchSuccessModalContentPara1": "Thank you for your interest, we’ll get back to you as soon as possible.",

@@ -877,8 +877,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setInitialValues(values)),
   onSendEnquiry: (listingId, message) =>
     dispatch(sendEnquiry(listingId, message)),
-  onSendContactEmail: (listingId, data) => 
-    dispatch(sendContactEmail(listingId, data)),
+  onSendContactEmail: (receiver, subject, content) => 
+    dispatch(sendContactEmail(receiver, subject, content)),
   onSendContactEmailReset: () => 
     dispatch(sendContactEmailReset())
 });
