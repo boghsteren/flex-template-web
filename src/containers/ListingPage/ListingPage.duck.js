@@ -9,8 +9,8 @@ import { TRANSITION_ENQUIRE } from '../../util/types';
 import { LISTING_PAGE_PENDING_APPROVAL_VARIANT } from '../../util/urlHelpers';
 import { fetchCurrentUser, fetchCurrentUserHasOrdersSuccess } from '../../ducks/user.duck';
 import AWS from 'aws-sdk';
-const ADMIN_EMAIL = "hello@gwexperiences.com";
-const ADMIN_RECEIVER_EMAIL = "hello@gwexperiences.com"; //tj@goodwings.com
+const ADMIN_EMAIL = `${process.env.REACT_APP_ADMIN_EMAIL}`;
+const ADMIN_RECEIVER_EMAIL = `${process.env.REACT_APP_ADMIN_RECEIVER_EMAIL}`;
 
 const { UUID } = sdkTypes;
 
@@ -152,9 +152,9 @@ export const sendContactEmailError = e => ({ type: SEND_CONTACT_EMAIL_ERROR, err
 
 const credential = new AWS.Config(
   {
-    accessKeyId: "AKIAJC2JRL433XZO46PQ", 
-    secretAccessKey: "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",
-    region: "eu-west-1"    
+    accessKeyId: `${process.env.REACT_APP_AWS_API_ACCESS_ID}`, 
+    secretAccessKey: `${process.env.REACT_APP_AWS_API_ACCESS_KEY}`,
+    region: `${process.env.REACT_APP_AWS_API_REGION}`
   }
 );
 
