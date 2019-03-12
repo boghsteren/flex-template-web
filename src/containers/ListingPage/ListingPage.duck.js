@@ -8,6 +8,9 @@ import { denormalisedResponseEntities } from '../../util/data';
 import { TRANSITION_ENQUIRE } from '../../util/types';
 import { LISTING_PAGE_PENDING_APPROVAL_VARIANT } from '../../util/urlHelpers';
 import { fetchCurrentUser, fetchCurrentUserHasOrdersSuccess } from '../../ducks/user.duck';
+import AWS from 'aws-sdk';
+const ADMIN_EMAIL = "hello@gwexperiences.com";
+const ADMIN_RECEIVER_EMAIL = "hello@gwexperiences.com"; //tj@goodwings.com
 
 const { UUID } = sdkTypes;
 
@@ -30,6 +33,11 @@ export const SEND_ENQUIRY_REQUEST = 'app/ListingPage/SEND_ENQUIRY_REQUEST';
 export const SEND_ENQUIRY_SUCCESS = 'app/ListingPage/SEND_ENQUIRY_SUCCESS';
 export const SEND_ENQUIRY_ERROR = 'app/ListingPage/SEND_ENQUIRY_ERROR';
 
+export const SEND_CONTACT_EMAIL_RESET = 'app/ListingPage/SEND_CONTACT_EMAIL_RESET';
+export const SEND_CONTACT_EMAIL_REQUEST = 'app/ListingPage/SEND_CONTACT_EMAIL_REQUEST';
+export const SEND_CONTACT_EMAIL_SUCCESS = 'app/ListingPage/SEND_CONTACT_EMAIL_SUCCESS';
+export const SEND_CONTACT_EMAIL_ERROR = 'app/ListingPage/SEND_CONTACT_EMAIL_ERROR';
+
 // ================ Reducer ================ //
 
 const initialState = {
@@ -41,6 +49,9 @@ const initialState = {
   fetchTimeSlotsError: null,
   sendEnquiryInProgress: false,
   sendEnquiryError: null,
+  sendContactEmailInProgress: false,
+  sendContactEmailSuccess: false,
+  sendContactEmailError: null,
   enquiryModalOpenForListingId: null,
 };
 
@@ -76,6 +87,15 @@ const listingPageReducer = (state = initialState, action = {}) => {
     case SEND_ENQUIRY_ERROR:
       return { ...state, sendEnquiryInProgress: false, sendEnquiryError: payload };
 
+    case SEND_CONTACT_EMAIL_RESET:
+      return { ...state, sendContactEmailInProgress: false, sendContactEmailError: null, sendContactEmailSuccess: false };
+    case SEND_CONTACT_EMAIL_REQUEST:
+      return { ...state, sendContactEmailInProgress: true, sendContactEmailError: null, sendContactEmailSuccess: false };
+    case SEND_CONTACT_EMAIL_SUCCESS:
+      return { ...state, sendContactEmailInProgress: false, sendContactEmailSuccess: true };
+    case SEND_CONTACT_EMAIL_ERROR:
+      return { ...state, sendContactEmailInProgress: false, sendContactEmailError: payload };
+
     default:
       return state;
   }
@@ -84,7 +104,6 @@ const listingPageReducer = (state = initialState, action = {}) => {
 export default listingPageReducer;
 
 // ================ Action creators ================ //
-
 export const setInitialValues = initialValues => ({
   type: SET_INITAL_VALUES,
   payload: pick(initialValues, Object.keys(initialState)),
@@ -124,7 +143,46 @@ export const sendEnquiryRequest = () => ({ type: SEND_ENQUIRY_REQUEST });
 export const sendEnquirySuccess = () => ({ type: SEND_ENQUIRY_SUCCESS });
 export const sendEnquiryError = e => ({ type: SEND_ENQUIRY_ERROR, error: true, payload: e });
 
+export const sendContactEmailReset = () => ({type: SEND_CONTACT_EMAIL_RESET})
+export const sendContactEmailRequest = () => ({ type: SEND_CONTACT_EMAIL_REQUEST });
+export const sendContactEmailSuccess = () => ({ type: SEND_CONTACT_EMAIL_SUCCESS });
+export const sendContactEmailError = e => ({ type: SEND_CONTACT_EMAIL_ERROR, error: true, payload: e });
+
 // ================ Thunks ================ //
+
+const credential = new AWS.Config(
+  {
+    accessKeyId: "AKIAJC2JRL433XZO46PQ", 
+    secretAccessKey: "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",
+    region: "eu-west-1"    
+  }
+);
+
+AWS.config.update(credential);
+
+const createEmailParams = (receiver, subject, content) => {
+  let newReceiver = receiver ? receiver : ADMIN_RECEIVER_EMAIL;
+  let toAddresses = Array.isArray(newReceiver) ? newReceiver : [newReceiver]
+  let body = {
+    Text: {
+      Charset: "UTF-8",
+      Data: content
+    }
+  }
+  return {
+    Destination: {
+      ToAddresses: toAddresses
+    },
+    Message: {
+      Body: body,
+      Subject: {
+        Charset: 'UTF-8',
+        Data: subject
+      }
+    },
+    Source: ADMIN_EMAIL,
+  };
+};
 
 export const showListing = (listingId, isOwn = false) => (dispatch, getState, sdk) => {
   dispatch(showListingRequest(listingId));
@@ -263,6 +321,25 @@ export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => 
     .catch(e => {
       dispatch(sendEnquiryError(storableError(e)));
       throw e;
+    });
+};
+
+export const sendContactEmail = (receiver, subject, content) => (dispatch, getState, sdk) => {
+  if (getState().ListingPage.sendContactEmailInProgress) {
+    return Promise.reject(new Error('Email sending already in progress'));
+  }
+  AWS.config.update(credential);
+  dispatch(sendContactEmailRequest());
+
+  const params = createEmailParams(receiver, subject, content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      dispatch(sendContactEmailSuccess());
+    }).catch(
+    function (err) {
+      dispatch(sendContactEmailError(storableError(err)));
     });
 };
 

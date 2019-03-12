@@ -76,3 +76,14 @@ export const categories = [
   },
   { key: "guided_tour", label: "Guided tour" }
 ];
+
+export const typeOfGroupContactEmail = [
+  {key: 'businessGroup', label: 'Business group'},
+  {key: 'studentGroup', label: 'Student group'},
+  {key: 'otherGroup', label: 'Other group'},
+]
+
+export const moreOfferContactEmail = [
+  {key: true, label: 'Yes'},
+  {key: false, label: 'No'},
+]
