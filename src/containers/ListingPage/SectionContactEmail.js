@@ -37,8 +37,6 @@ const ContactEmailForm = props => {
         } = fieldRenderProps;
 
         if (sendContactEmailSuccess) {
-          // form.change('contactEmail.fullName', '');
-          // form.change('contactEmail.email', '');
           form.change('contactEmail.numberPeople', null);
           form.change('contactEmail.whereAreYouTravelingFrom', null);
           form.change('contactEmail.typeOfGroup', null);
