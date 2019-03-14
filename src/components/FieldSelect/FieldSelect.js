@@ -10,6 +10,7 @@ const FieldSelectComponent = props => {
   const {
     rootClassName,
     className,
+    customSelectClassName,
     id,
     label,
     input,
@@ -28,7 +29,7 @@ const FieldSelectComponent = props => {
   // field has been touched and the validation has failed.
   const hasError = touched && invalid && error;
 
-  const selectClasses = classNames(css.select, {
+  const selectClasses = classNames(customSelectClassName, css.select, {
     [css.selectSuccess]: valid,
     [css.selectError]: hasError
   });
