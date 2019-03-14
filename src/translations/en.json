@@ -379,8 +379,7 @@
   "InboxPage.title": "Inbox",
   "LandingPage.schemaDescription":
     "A global marketplace for social impact experiences.",
-  "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}",
-  "ListingCard.exclude10pcServiceFee": "Excluding 10% service fee",  
+  "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}", 
   "ListingCard.hostedBy": "Hosted by {authorName}.",
   "ListingCard.perUnit": "per day",
   "ListingCard.unsupportedPrice": "({currency})",
@@ -404,7 +403,7 @@
   "ListingPage.editProfileLink": "Edit profile",
   "ListingPage.errorLoadingListingMessage":
     "Could not load listing. Please try again.",
-  "ListingPage.exclude10pcServiceFee": "Excluding 10% service fee",
+  "ListingPage.exclude10pcServiceFee": "Excl. 10% service fee",
   "ListingPage.errorLoadingListingTitle": "Error in loading listing",
   "ListingPage.featuresTitle": "Social impact focus",
 

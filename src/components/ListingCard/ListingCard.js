@@ -107,11 +107,6 @@ export const ListingCardComponent = props => {
             </div>
             <div className={css.perUnit}>{pricingLabel}</div>
             <div className={css.perUnit}>{`Duration: ${duration}`}</div>
-            {!user &&
-              <div className={css.exclude10pcServiceFee}>
-                <FormattedMessage id="ListingCard.exclude10pcServiceFee" />
-              </div>
-            }
           </div>
         }
         <div className={classNames(css.mainInfo, isLongCard ? css.mainInfoLongCard : css.null)}>
