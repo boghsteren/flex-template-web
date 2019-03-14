@@ -815,12 +815,13 @@
 
 .contactEmailInputField {
   margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .contactEmailInput {
   color: var(--matterColorNear);
   &::placeholder {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -830,6 +831,10 @@
   &:hover, &:focus {
     background-color: var(--successColorDark);
   }
+}
+
+.contactEmailSelect {
+  font-size: 18px;
 }
 
 .contactEmailSelectDefaultOption {

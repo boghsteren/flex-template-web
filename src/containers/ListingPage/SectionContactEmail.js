@@ -172,6 +172,7 @@ const ContactEmailForm = props => {
                 name="contactEmail.typeOfGroup"
                 label={TOGLabel}
                 className={css.contactEmailInputField}
+                customSelectClassName={css.contactEmailSelect}
               >
                 <option disabled selected value="">
                   {TOGDefaultOption}
@@ -192,6 +193,7 @@ const ContactEmailForm = props => {
                 name="contactEmail.moreOffer"
                 label={moreOfferLabel}
                 className={css.contactEmailInputField}
+                customSelectClassName={css.contactEmailSelect}
               >
                 <option className={css.contactEmailSelectDefaultOption} disabled={true} selected={true} value="">
                   {moreOfferDefaultOption}
