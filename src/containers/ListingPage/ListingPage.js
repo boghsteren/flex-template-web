@@ -169,18 +169,14 @@ export class ListingPageComponent extends Component {
     const listing = getListing(listingId);
 
     const { bookingDates, bookingDate, seats, hours,  ...bookingData } = values;
-    const seatsNumber = parseInt(seats, 10);
-
-    const price_scheme = listing.attributes.publicData.pricing_scheme;
-    const groupSizeMax = listing.attributes.publicData.group_size_max;
-    const quantity = price_scheme === 'group_seats' ? (parseInt(seats/groupSizeMax) + (seats%groupSizeMax !== 0 ? 1 : 0)) : seats;
+    const seatsNumber = parseInt(seats || 1, 10);
     
     const initialValues = {
       listing,
       bookingData: {
         ...bookingData,
         seats: seatsNumber,
-        quantity: parseInt(quantity),
+        quantity: parseInt(seatsNumber),
         hours: hours,
         pricing_scheme: listing.attributes.publicData.pricing_scheme
       },

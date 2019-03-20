@@ -103,7 +103,7 @@ export class BookingDatesFormComponent extends Component {
               : values && values.bookingDate && values.bookingDate.date;
           const seats = (values && parseInt(values.seats, 10)) || 1;
           const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
-          const validQuantity = price_scheme === 'group_seats' ? (parseInt(seats/groupSizeMax) + (seats%groupSizeMax !== 0 ? 1 : 0)) : seats;
+          const validQuantity = price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats;
           const hours = (values && parseInt(values.hours, 10)) || 1;
 
           const bookingStartLabel = intl.formatMessage({
@@ -150,7 +150,7 @@ export class BookingDatesFormComponent extends Component {
           // EstimatedBreakdownMaybe component to change the calculations
           // for customized payment processes.
           const bookingData =
-            startDate && endDate && values.seats
+            startDate && endDate
               ? {
                 unitType,
                 unitPrice,
@@ -210,22 +210,24 @@ export class BookingDatesFormComponent extends Component {
                   validate={composeValidators(required(requiredMessage))}
                   value={moment()}
                 />
-                <FieldTextInput
-                  id="seats"
-                  name="seats"
-                  className={css.numberInput}
-                  min="0"
-                  type="text"
-                  label={seatsLabel}
-                  placeholder={seatsPlaceholder}
-                  parse={value => {
-                    return value.replace(/[^\d]/g, "");
-                  }}
-                  validate={composeValidators(
-                    required(seatsRequiredMessage),
-                    aboveZero(seatsRequiredMessage)
-                  )}
-                />
+                {price_scheme === 'person_seats' &&
+                  <FieldTextInput
+                    id="seats"
+                    name="seats"
+                    className={css.numberInput}
+                    min="0"
+                    type="text"
+                    label={seatsLabel}
+                    placeholder={seatsPlaceholder}
+                    parse={value => {
+                      return value.replace(/[^\d]/g, "");
+                    }}
+                    validate={composeValidators(
+                      required(seatsRequiredMessage),
+                      aboveZero(seatsRequiredMessage)
+                    )}
+                  />
+                }
               </div>
 
               {bookingInfo}
