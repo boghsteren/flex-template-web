@@ -57,36 +57,19 @@ export const BookingBreakdownComponent = props => {
 
   return (
     <div className={classes}>
-      {(pricing_scheme === "hourly_flat" ||
-        pricing_scheme === "hourly_seats") && (
-        <LineItemBookingPeriod
-          transaction={transaction}
-          hourly
-          booking={booking}
-          unitType={unitType}
-        />
-      )}
+      <LineItemBookingPeriod
+        transaction={transaction}
+        hourly
+        booking={booking}
+        unitType={unitType}
+      />
       <LineItemUnitPrice
         transaction={transaction}
         unitType={transaction.attributes.protectedData.pricing_scheme}
         intl={intl}
       />
-      {(pricing_scheme === "daily_flat" ||
-        pricing_scheme === "daily_seats") && (
-        <LineItemBookingPeriod
-          transaction={transaction}
-          booking={booking}
-          unitType={unitType}
-        />
-      )}
-      {(pricing_scheme === "daily_seats" ||
-        pricing_scheme === "hourly_seats") && (
-        <LineItemUnitsMaybe transaction={transaction} unitType={"seats"} />
-      )}
-      {(pricing_scheme === "hourly_flat" ||
-        pricing_scheme === "hourly_seats") && (
-        <LineItemUnitsMaybe transaction={transaction} unitType={"hours"} />
-      )}
+      <LineItemUnitsMaybe transaction={transaction} unitType={"quantity"} />
+      <LineItemUnitsMaybe transaction={transaction} unitType={"seats"} />
 
       <LineItemSubTotalMaybe
         transaction={transaction}

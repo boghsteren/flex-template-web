@@ -6,15 +6,14 @@ import css from "./BookingBreakdown.css";
 
 const LineItemUnitsMaybe = props => {
   const { transaction, unitType } = props;
-
   const quantity =
-    unitType === "seats"
-      ? transaction.attributes.protectedData.seats
-      : transaction.attributes.protectedData.hours;
+    unitType === "quantity"
+      ? transaction.attributes.lineItems[0].quantity
+      : transaction.attributes.protectedData.seats;
   const quantityUnit =
-    unitType === "seats"
-      ? "BookingBreakdown.quantityUnitSeats"
-      : "BookingBreakdown.quantityUnitHours";
+    unitType === "quantity"
+      ? "BookingBreakdown.quantityUnitQuantity"
+      : "BookingBreakdown.quantityUnitSeats";
   return (
     <div className={css.lineItem}>
       <span className={css.itemLabel}>

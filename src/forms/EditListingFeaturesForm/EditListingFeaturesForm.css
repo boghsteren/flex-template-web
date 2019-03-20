@@ -18,10 +18,10 @@
 }
 
 .features {
-  margin-bottom: 24px;
+  margin-bottom: 24px !important;
 
   @media (--viewportMedium) {
-    margin-bottom: 32px;
+    margin-bottom: 32px !important;
   }
 }
 

@@ -44,7 +44,7 @@ const EditListingDescriptionPanel = props => {
           title,
           description,
           category: publicData.category,
-          group_size: publicData.group_size,
+          group_size: publicData.group_size_min && publicData.group_size_max ? [publicData.group_size_min, publicData.group_size_max] : [1, 31],
           contact: publicData.contact,
           included: publicData.included,
           duration: publicData.duration
@@ -63,7 +63,13 @@ const EditListingDescriptionPanel = props => {
           const updateValues = {
             title: title.trim(),
             description,
-            publicData: { included, group_size, contact, duration, category }
+            publicData: { 
+              included, 
+              group_size_min: group_size[0],
+              group_size_max: group_size[1],
+              contact, 
+              duration, 
+              category }
           };
 
           onSubmit(updateValues);
@@ -74,6 +80,7 @@ const EditListingDescriptionPanel = props => {
         updateInProgress={updateInProgress}
         group_size_brackets={config.custom.group_size_brackets}
         categories={config.custom.categories}
+        groupSize={publicData.group_size_min && publicData.group_size_max  ? [publicData.group_size_min, publicData.group_size_max] : [1,31]}
       />
     </div>
   );

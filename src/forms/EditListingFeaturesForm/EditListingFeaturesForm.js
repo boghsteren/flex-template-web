@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { propTypes } from '../../util/types';
 import config from '../../config';
-import { Button, FieldCheckboxGroup, Form } from '../../components';
+import { Button, FieldCheckboxGroup, FieldTextInput, Form } from '../../components';
 
 import css from './EditListingFeaturesForm.css';
 
@@ -27,6 +27,7 @@ const EditListingFeaturesFormComponent = props => (
         updated,
         updateError,
         updateInProgress,
+        intl,
       } = fieldRenderProps;
 
       const classes = classNames(rootClassName || css.root, className);
@@ -40,6 +41,18 @@ const EditListingFeaturesFormComponent = props => (
         </p>
       ) : null;
 
+      const impactFocusLabel = intl.formatMessage({
+        id: "EditListingFeaturesForm.impactFocusLabel"
+      });
+
+      const whyBuyThisLabel = intl.formatMessage({
+        id: "EditListingFeaturesForm.whyBuyThisLabel"
+      });
+
+      const whyBuyThisPlaceholder = intl.formatMessage({
+        id: "EditListingFeaturesForm.whyBuyThisPlaceholder"
+      });
+
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessage}
@@ -48,7 +61,18 @@ const EditListingFeaturesFormComponent = props => (
             className={css.features}
             id={name}
             name={name}
+            label={impactFocusLabel}
             options={config.custom.goals}
+          />
+
+          <FieldTextInput
+            className={css.features}
+            id='whyBuyThis'
+            name='whyBuyThis'
+            type="textarea"
+            row={3}
+            label={whyBuyThisLabel}
+            placeholder={whyBuyThisPlaceholder}
           />
 
           <Button

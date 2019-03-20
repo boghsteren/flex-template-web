@@ -29,10 +29,21 @@ class SectionMapMaybe extends Component {
     const mapProps = config.maps.fuzzy.enabled
       ? { obfuscatedCenter: obfuscatedCoordinates(geolocation, cacheKey) }
       : { address, center: geolocation };
-    const map = <Map {...mapProps} useStaticMap={this.state.isStatic} currentUser={currentUser}/>;
+    const map = <Map {...mapProps} useStaticMap={this.state.isStatic} currentUser={currentUser} />;
 
     return (
       <div className={classes}>
+        {currentUser && publicData.location &&
+          <div className={css.sectionFeatures}>
+            <h2 className={css.descriptionTitle}>
+              <FormattedMessage id="ListingPage.tourStartAddressTitle" />
+            </h2>
+            {publicData.location.building &&
+              <p className={css.description}>Building {publicData.location.building}</p>
+            }
+            <p className={css.description}>{publicData.location.address}</p>
+          </div>
+        }
         <h2 className={css.locationTitle}>
           <FormattedMessage id="ListingPage.locationTitle" />
         </h2>
@@ -46,8 +57,8 @@ class SectionMapMaybe extends Component {
             {map}
           </button>
         ) : (
-          <div className={css.map}>{map}</div>
-        )}
+            <div className={css.map}>{map}</div>
+          )}
       </div>
     );
   }

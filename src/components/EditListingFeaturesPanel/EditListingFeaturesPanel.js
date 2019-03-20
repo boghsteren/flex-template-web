@@ -22,6 +22,7 @@ const EditListingFeaturesPanel = props => {
     panelUpdated,
     updateInProgress,
     errors,
+    intl,
   } = props;
 
   const classes = classNames(rootClassName || css.root, className);
@@ -38,7 +39,8 @@ const EditListingFeaturesPanel = props => {
   );
 
   const goals = publicData && publicData.goals;
-  const initialValues = { goals };
+  const whyBuyThis = publicData && publicData.whyBuyThis;
+  const initialValues = { goals, whyBuyThis };
 
   return (
     <div className={classes}>
@@ -48,13 +50,14 @@ const EditListingFeaturesPanel = props => {
         name={FEATURES_NAME}
         initialValues={initialValues}
         onSubmit={values => {
-          const { goals = [] } = values;
+          const { goals = [], whyBuyThis } = values;
 
           const updatedValues = {
-            publicData: { goals },
+            publicData: { goals, whyBuyThis },
           };
           onSubmit(updatedValues);
         }}
+        intl={intl}
         onChange={onChange}
         saveActionMsg={submitButtonText}
         updated={panelUpdated}

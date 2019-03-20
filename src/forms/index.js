@@ -46,6 +46,7 @@ export {
 export {
   default as PayoutDetailsForm
 } from "./PayoutDetailsForm/PayoutDetailsForm";
+export { default as PriceFilterForm } from './PriceFilterForm/PriceFilterForm';
 export {
   default as ProfileSettingsForm
 } from "./ProfileSettingsForm/ProfileSettingsForm";

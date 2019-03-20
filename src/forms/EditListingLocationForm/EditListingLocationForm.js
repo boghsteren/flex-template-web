@@ -48,6 +48,13 @@ export const EditListingLocationFormComponent = props => (
         id: 'EditListingLocationForm.buildingPlaceholder',
       });
 
+      const tourStartAddressLabel = intl.formatMessage({
+        id: "EditListingLocationForm.tourStartAddressLabel"
+      });
+      const tourStartAddressPlaceholder = intl.formatMessage({
+        id: "EditListingLocationForm.tourStartAddressPlaceholder"
+      });
+
       const errorMessage = updateError ? (
         <p className={css.error}>
           <FormattedMessage id="EditListingLocationForm.updateFailed" />

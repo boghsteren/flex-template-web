@@ -11,6 +11,8 @@ export {
   InlineTextButton
 } from "./Button/Button";
 export { default as CookieConsent } from "./CookieConsent/CookieConsent";
+export { default as CustomFieldRangeSlider } from './CustomFieldRangeSlider/CustomFieldRangeSlider';
+export { default as CustomRangeSlider } from './CustomRangeSlider/CustomRangeSlider';
 export { default as Discussion } from "./Discussion/Discussion";
 export {
   default as EditListingAvailabilityPanel
@@ -58,6 +60,9 @@ export {
 export {
   default as FieldPhoneNumberInput
 } from "./FieldPhoneNumberInput/FieldPhoneNumberInput";
+export {
+  default as FieldRangeSlider
+} from "./FieldRangeSlider/FieldRangeSlider";
 export {
   default as FieldReviewRating
 } from "./FieldReviewRating/FieldReviewRating";
@@ -142,6 +147,7 @@ export {
 } from "./OrderDiscussionPanel/OrderDiscussionPanel";
 export { default as Page } from "./Page/Page";
 export { default as PaginationLinks } from "./PaginationLinks/PaginationLinks";
+export { default as PriceFilter } from './PriceFilter/PriceFilter';
 export { default as PrivacyPolicy } from "./PrivacyPolicy/PrivacyPolicy";
 export { default as Promised } from "./Promised/Promised";
 export { default as PropertyGroup } from "./PropertyGroup/PropertyGroup";
@@ -149,6 +155,7 @@ export { default as ResponsiveImage } from "./ResponsiveImage/ResponsiveImage";
 export { default as ReviewModal } from "./ReviewModal/ReviewModal";
 export { default as ReviewRating } from "./ReviewRating/ReviewRating";
 export { default as Reviews } from "./Reviews/Reviews";
+export { default as RangeSlider } from "./RangeSlider/RangeSlider";
 export { default as SearchFilters } from "./SearchFilters/SearchFilters";
 export {
   default as SearchFiltersMobile

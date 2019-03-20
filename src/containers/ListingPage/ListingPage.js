@@ -168,25 +168,19 @@ export class ListingPageComponent extends Component {
     const listingId = new UUID(params.id);
     const listing = getListing(listingId);
 
-    const { bookingDates, bookingDate, seats, hours, ...bookingData } = values;
+    const { bookingDates, bookingDate, seats, hours,  ...bookingData } = values;
     const seatsNumber = parseInt(seats, 10);
 
-    const dailyQuantity =
-      bookingDates &&
-      (moment(bookingDates.endDate).diff(bookingDates.startDate, "days") + 1) *
-      (seatsNumber || 1);
-    const hourlyQuantity = hours * seatsNumber;
-    const quantity =
-      listing.attributes.publicData.pricing_scheme === "daily_flat" ||
-        listing.attributes.publicData.pricing_scheme === "daily_seats"
-        ? dailyQuantity
-        : hourlyQuantity;
+    const price_scheme = listing.attributes.publicData.pricing_scheme;
+    const groupSizeMax = listing.attributes.publicData.group_size_max;
+    const quantity = price_scheme === 'group_seats' ? (parseInt(seats/groupSizeMax) + (seats%groupSizeMax !== 0 ? 1 : 0)) : seats;
+    
     const initialValues = {
       listing,
       bookingData: {
         ...bookingData,
         seats: seatsNumber,
-        quantity,
+        quantity: parseInt(quantity),
         hours: hours,
         pricing_scheme: listing.attributes.publicData.pricing_scheme
       },
@@ -436,6 +430,10 @@ export class ListingPageComponent extends Component {
       currentListing.author.id.uuid === currentUser.id.uuid;
     const isClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
     const showContactUser = !currentUser || (currentUser && !isOwnListing);
+    const group_size_min =
+      currentListing && currentListing.attributes.publicData.group_size_min;
+    const group_size_max =
+      currentListing && currentListing.attributes.publicData.group_size_max;
     const group_size =
       currentListing && currentListing.attributes.publicData.group_size;
 
@@ -589,7 +587,7 @@ export class ListingPageComponent extends Component {
                   />
                   <SectionDescription
                     description={description}
-                    group_size={group_size}
+                    group_size={group_size_min && group_size_max ? [group_size_min, group_size_max] : group_size }
                     included={included}
                     duration={duration}
                     availability={availability}
@@ -597,6 +595,7 @@ export class ListingPageComponent extends Component {
                   <SectionFeatures
                     options={goalsConfig}
                     selectedOptions={publicData.goals}
+                    whyBuyThis={publicData.whyBuyThis}
                   />
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
@@ -739,7 +738,7 @@ export class ListingPageComponent extends Component {
                       Participant capacity
                     </div>
                     <div className={css.pdfSectionDescription}>
-                      {group_size}
+                      {group_size_min > 30 ? '' : group_size_min + ' - '}{group_size_max > 30 ? group_size_max + '+' : group_size_max} people
                     </div>
                     <SectionHost
                       pdf

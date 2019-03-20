@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { withRouter } from "react-router-dom";
 import omit from "lodash/omit";
 
-import { SelectSingleFilter, SelectMultipleFilter } from "../../components";
+import { SelectSingleFilter, SelectMultipleFilter, PriceFilter } from "../../components";
 import routeConfiguration from "../../routeConfiguration";
 import { createResourceLocatorString } from "../../util/routes";
 import { propTypes } from "../../util/types";
@@ -14,6 +14,7 @@ import css from "./SearchFilters.css";
 
 // Dropdown container can have a positional offset (in pixels)
 const FILTER_DROPDOWN_OFFSET = -14;
+const RADIX = 10;
 
 // resolve initial value for a single value filter
 const initialValue = (queryParams, paramName) => {
@@ -23,6 +24,32 @@ const initialValue = (queryParams, paramName) => {
 // resolve initial values for a multi value filter
 const initialValues = (queryParams, paramName) => {
   return !!queryParams[paramName] ? queryParams[paramName].split(",") : [];
+};
+
+const initialGroupSizeRangeValue = (queryParams, paramName) => {
+  const minPrice = queryParams[paramName + '_min'];
+  const maxPrice = queryParams[paramName + '_max'];
+  const valMin = !!minPrice ? minPrice.split(',')[0] : 0;
+  const valMax = !!maxPrice ? maxPrice.split(',')[1] : 31;
+
+  return !!valMin && !!valMax
+    ? {
+      minPrice: parseInt(valMin),
+      maxPrice: parseInt(valMax),
+    }
+    : null;
+};
+
+const initialPriceRangeValue = (queryParams, paramName) => {
+  const price = queryParams[paramName];
+  const valuesFromParams = !!price ? price.split(',').map(v => Number.parseInt(v, RADIX)) : [];
+
+  return !!price && valuesFromParams.length === 2
+    ? {
+      minPrice: valuesFromParams[0],
+      maxPrice: valuesFromParams[1],
+    }
+    : null;
 };
 
 const SearchFiltersComponent = props => {
@@ -71,7 +98,7 @@ const SearchFiltersComponent = props => {
     : null;
 
   const initialGroupSize = groupSizeFilter
-    ? initialValue(urlQueryParams, groupSizeFilter.paramName)
+    ? initialGroupSizeRangeValue(urlQueryParams, groupSizeFilter.paramName)
     : null;
 
   const handleSelectOptions = (urlParam, options) => {
@@ -107,6 +134,27 @@ const SearchFiltersComponent = props => {
     );
   };
 
+  const handleGroupSize = (urlParam, range) => {
+    const { minPrice, maxPrice } = range || {};
+    
+    const queryParams =
+      minPrice != null && maxPrice != null
+        ? { ...urlQueryParams, [urlParam + '_min']: `${minPrice},`, [urlParam + '_max']: maxPrice > 30 ? null : `,${maxPrice}` }
+        : omit(urlQueryParams, urlParam + '_min', urlParam + '_max');
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  };
+
+  const handlePrice = (urlParam, range) => {
+    const { minPrice, maxPrice } = range || {};
+    const queryParams =
+      minPrice != null && maxPrice != null
+        ? { ...urlQueryParams, [urlParam]: `${minPrice},${maxPrice}` }
+        : omit(urlQueryParams, urlParam);
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  };
+
   const categoryFilterElement = categoryFilter ? (
     <SelectSingleFilter
       urlParam={categoryFilter.paramName}
@@ -132,13 +180,17 @@ const SearchFiltersComponent = props => {
   ) : null;
 
   const groupSizeFilterElement = groupSizeFilter ? (
-    <SelectSingleFilter
+    <PriceFilter
+      id="SearchFilters.groupSizeFilter"
       urlParam={groupSizeFilter.paramName}
-      label={groupSizeFilterLabel}
-      onSelect={handleSelectOption}
-      options={groupSizeFilter.options}
-      initialValue={initialGroupSize}
+      onSubmit={handleGroupSize}
+      showAsPopup={true}
+      labelProps="SearchFilters.groupSizeFilterLabel"
+      unitProps=" People"
+      {...groupSizeFilter.config}
+      initialValues={initialGroupSize}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+      isGroupSize={true}
     />
   ) : null;
 

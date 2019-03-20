@@ -4,38 +4,48 @@
 
 export const goals = [
   {
-    key: "people",
-    label: "People"
-  },
-  {
-    key: "planet",
-    label: "Planet"
+    key: "animals",
+    label: "Animals"
   },
   {
     key: "prosperity",
-    label: "Prosperity"
-  },
-  {
-    key: "peace",
-    label: "Peace"
+    label: "Economic"
   },
   {
     key: "partnership",
-    label: "Partnership"
+    label: "Empowerment"
+  },
+  {
+    key: "planet",
+    label: "Environment"
+  },
+  {
+    key: "people",
+    label: "Equality"
   }
 ];
 
 export const duration_options = [
   { key: 1, value: "1 hour" },
+  { key: 1.5, value: "1.5 hour" },
   { key: 2, value: "2 hours" },
+  { key: 2.5, value: "2.5 hours" },
   { key: 3, value: "3 hours" },
+  { key: 3.5, value: "3.5 hours" },
   { key: 4, value: "4 hours" },
+  { key: 4.5, value: "4.5 hours" },
   { key: 5, value: "5 hours" },
+  { key: 5.5, value: "5.5 hours" },
   { key: 6, value: "6 hours" },
+  { key: 6.5, value: "6.5 hours" },
   { key: 7, value: "7 hours" },
+  { key: 7.5, value: "7.5 hours" },
   { key: 8, value: "8 hours" },
+  { key: 8.5, value: "8.5 hours" },
   { key: 9, value: "9 hours" },
+  { key: 9.5, value: "9.5 hours" },
   { key: 10, value: "10 hours" },
+  { key: 10.5, value: "10.5 hours" },
   { key: 11, value: "1 day" },
   { key: 12, value: "2 days" },
   { key: 13, value: "3 days" },
@@ -49,13 +59,8 @@ export const duration_options = [
 ];
 
 export const pricing_schemes = [
-  {
-    key: "hourly_flat",
-    label: "Per hour"
-  },
-  { key: "daily_flat", label: "Per day" },
-  { key: "hourly_seats", label: "Per person per hour" },
-  { key: "daily_seats", label: "Per person per day" }
+  { key: 'group_seats', label: 'Per group' },
+  { key: 'person_seats', label: 'Per person' }
 ];
 
 export const group_size_brackets = [
@@ -65,7 +70,7 @@ export const group_size_brackets = [
   { key: "31+", label: "31+ people" }
 ];
 export const categories = [
-  { key: "study_trip", label: "Study trip" },
+  // { key: "study_trip", label: "Study trip" },
   { key: "team_building", label: "Team building" },
   { key: "volunteering", label: "Volunteering" },
   { key: "giving_back", label: "Giving back" },
@@ -87,3 +92,9 @@ export const moreOfferContactEmail = [
   {key: true, label: 'Yes'},
   {key: false, label: 'No'},
 ]
+
+export const groupSizeConfig = {
+  min: 1,
+  max: 31,
+  step: 1
+};
