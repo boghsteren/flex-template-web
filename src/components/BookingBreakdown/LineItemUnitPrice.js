@@ -7,16 +7,11 @@ import css from "./BookingBreakdown.css";
 
 const LineItemUnitPrice = props => {
   const { transaction, unitType, intl } = props;
-  const isDailySeats = unitType === "daily_seats";
-  const isDailyFlat = unitType === "daily_flat";
-  const isHourlySeats = unitType === "hourly_seats";
-  const translationKey = isDailyFlat
-    ? "BookingBreakdown.pricePerDay"
-    : isDailySeats
-      ? "BookingBreakdown.pricePerDayPerPerson"
-      : isHourlySeats
-        ? "BookingBreakdown.pricePerHourPerPerson"
-        : "BookingBreakdown.pricePerHour";
+  const isGroupSeats = unitType === "group_seats";
+  const isPersonSeats = unitType === "person_seats";
+  const translationKey = isGroupSeats
+    ? "BookingBreakdown.pricePerGroup"
+    : "BookingBreakdown.pricePerPerson";
 
   const unitPurchase = transaction.attributes.lineItems.find(
     item => item.code === "line-item/units" && !item.reversal

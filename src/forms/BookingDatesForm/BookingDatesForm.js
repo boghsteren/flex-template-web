@@ -24,6 +24,8 @@ import EstimatedBreakdownMaybe from "./EstimatedBreakdownMaybe";
 
 import css from "./BookingDatesForm.css";
 
+const MAX_SEATS_SIZE = 31;
+
 export class BookingDatesFormComponent extends Component {
   constructor(props) {
     super(props);
@@ -90,6 +92,7 @@ export class BookingDatesFormComponent extends Component {
             timeSlots,
             fetchTimeSlotsError
           } = fieldRenderProps;
+          const price_scheme = listing && listing.attributes.publicData.pricing_scheme ? listing.attributes.publicData.pricing_scheme : 'person_seats';
           const endDate =
             values && values.bookingDates
               ? values.bookingDates.endDate
@@ -99,6 +102,8 @@ export class BookingDatesFormComponent extends Component {
               ? values.bookingDates.startDate
               : values && values.bookingDate && values.bookingDate.date;
           const seats = (values && parseInt(values.seats, 10)) || 1;
+          const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
+          const validQuantity = price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats;
           const hours = (values && parseInt(values.hours, 10)) || 1;
 
           const bookingStartLabel = intl.formatMessage({
@@ -147,14 +152,14 @@ export class BookingDatesFormComponent extends Component {
           const bookingData =
             startDate && endDate
               ? {
-                  unitType,
-                  unitPrice,
-                  startDate,
-                  endDate,
-                  seats: seats,
-                  hours: hours,
-                  quantity: hours * seats * numberOfDays
-                }
+                unitType,
+                unitPrice,
+                startDate,
+                endDate,
+                seats: seats,
+                hours: hours,
+                quantity: validQuantity,
+              }
               : null;
           const bookingInfo = bookingData ? (
             <div className={css.priceBreakdownContainer}>
@@ -195,70 +200,17 @@ export class BookingDatesFormComponent extends Component {
             <Form onSubmit={handleSubmit} className={classes}>
               {timeSlotsError}
 
-              {(listing.attributes.publicData.pricing_scheme === "daily_flat" ||
-                listing.attributes.publicData.pricing_scheme ===
-                  "daily_seats") && (
-                <FieldDateRangeInput
+              <div>
+                <FieldDateInput
                   className={css.bookingDates}
-                  name="bookingDates"
-                  unitType={unitType}
-                  startDateId={`${form}.bookingStartDate`}
-                  startDateLabel={bookingStartLabel}
-                  startDatePlaceholderText={startDatePlaceholderText}
-                  endDateId={`${form}.bookingEndDate`}
-                  endDateLabel={bookingEndLabel}
-                  endDatePlaceholderText={endDatePlaceholderText}
-                  focusedInput={this.state.focusedInput}
-                  onFocusedInputChange={this.onFocusedInputChange}
-                  format={null}
-                  timeSlots={timeSlots}
-                  useMobileMargins
-                  validate={composeValidators(
-                    required(requiredMessage),
-                    bookingDatesRequired(
-                      startDateErrorMessage,
-                      endDateErrorMessage
-                    )
-                  )}
+                  id="bookingDate"
+                  name="bookingDate"
+                  label="Booking date"
+                  placeholderText={bookingStartLabel}
+                  validate={composeValidators(required(requiredMessage))}
+                  value={moment()}
                 />
-              )}
-              {(listing.attributes.publicData.pricing_scheme ===
-                "hourly_flat" ||
-                listing.attributes.publicData.pricing_scheme ===
-                  "hourly_seats") && (
-                <div>
-                  <FieldDateInput
-                    className={css.bookingDates}
-                    id="bookingDate"
-                    name="bookingDate"
-                    label="Booking date"
-                    placeholderText={bookingStartLabel}
-                    validate={composeValidators(required(requiredMessage))}
-                    value={moment()}
-                  />
-                  <FieldTextInput
-                    id="hours"
-                    name="hours"
-                    className={css.numberInput}
-                    type="text"
-                    min="0"
-                    label={hoursLabel}
-                    placeholder={hoursPlaceholder}
-                    parse={value => {
-                      return value.replace(/[^\d]/g, "");
-                    }}
-                    validate={composeValidators(
-                      required(hoursRequiredMessage),
-                      aboveZero(hoursRequiredMessage)
-                    )}
-                  />
-                </div>
-              )}
-              {(listing.attributes.publicData.pricing_scheme ===
-                "hourly_seats" ||
-                listing.attributes.publicData.pricing_scheme ===
-                  "daily_seats") && (
-                <div>
+                {price_scheme === 'person_seats' &&
                   <FieldTextInput
                     id="seats"
                     name="seats"
@@ -275,10 +227,8 @@ export class BookingDatesFormComponent extends Component {
                       aboveZero(seatsRequiredMessage)
                     )}
                   />
-                </div>
-              )}
-              {listing.attributes.publicData.pricing_scheme ===
-                "hourly_seats" && <div />}
+                }
+              </div>
 
               {bookingInfo}
               <p className={css.smallPrint}>

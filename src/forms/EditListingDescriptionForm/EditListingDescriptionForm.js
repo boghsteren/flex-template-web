@@ -6,7 +6,7 @@ import { intlShape, injectIntl, FormattedMessage } from "react-intl";
 import classNames from "classnames";
 import { propTypes } from "../../util/types";
 import { maxLength, required, composeValidators } from "../../util/validators";
-import { Form, Button, FieldTextInput, FieldSelect } from "../../components";
+import { Form, Button, FieldTextInput, FieldSelect, CustomFieldRangeSlider } from "../../components";
 import CustomCategorySelectFieldMaybe from "./CustomCategorySelectFieldMaybe";
 import config from "../../config";
 
@@ -30,7 +30,8 @@ const EditListingDescriptionFormComponent = props => (
         saveActionMsg,
         updated,
         updateError,
-        updateInProgress
+        updateInProgress,
+        groupSize,
       } = fieldRenderProps;
 
       const titleMessage = intl.formatMessage({
@@ -48,6 +49,10 @@ const EditListingDescriptionFormComponent = props => (
           maxLength: TITLE_MAX_LENGTH
         }
       );
+
+      const groupSizeLabel = intl.formatMessage({
+        id: 'EditListingFeaturesForm.groupSizeLabel',
+      });
 
       const descriptionMessage = intl.formatMessage({
         id: "EditListingDescriptionForm.description"
@@ -126,12 +131,26 @@ const EditListingDescriptionFormComponent = props => (
             validate={composeValidators(required(includedRequiredMessage))}
           />
 
-          <CustomCategorySelectFieldMaybe
+          <CustomFieldRangeSlider
+            className={css.groupSizeContainer}
+            id="group_size"
+            name="group_size"
+            label={groupSizeLabel}
+            min={1}
+            max={31}
+            step={1}
+            handles={groupSize}
+            oneDirection={false}
+            isGroupSize={true}
+            unitType={intl.formatMessage({id: "EditListingFeaturesForm.groupSizeUnit"})}
+          />
+
+          {/* <CustomCategorySelectFieldMaybe
             id="group_size"
             name="group_size"
             categories={group_size_brackets}
             intl={intl}
-          />
+          /> */}
 
           <CustomCategorySelectFieldMaybe
             id="category"

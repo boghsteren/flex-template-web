@@ -78,7 +78,7 @@ export class SearchPageComponent extends Component {
       },
       groupSizeFilter: {
         paramName: "pub_group_size",
-        options: group_size_brackets
+        config: group_size_brackets
       }
     };
   }
@@ -285,7 +285,7 @@ SearchPageComponent.defaultProps = {
   tab: "listings",
   categories: config.custom.categories,
   goals: config.custom.goals,
-  group_size_brackets: config.custom.group_size_brackets,
+  group_size_brackets: config.custom.groupSizeConfig,
   activeListingId: null
 };
 
@@ -305,7 +305,7 @@ SearchPageComponent.propTypes = {
   tab: oneOf(["filters", "listings", "map"]).isRequired,
   categories: array,
   goals: array,
-  group_size_brackets: array,
+  group_size_brackets: object,
 
   // from withRouter
   history: shape({

@@ -49,6 +49,14 @@
   flex-shrink: 0;
 }
 
+.groupSizeContainer {
+  margin-bottom: 82px;
+
+  @media (--viewportMedium) {
+    margin-bottom: 92px;
+  }
+}
+
 .category {
   @apply --EditListingDescriptionForm_formMargins;
 }

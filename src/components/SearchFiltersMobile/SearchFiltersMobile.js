@@ -12,10 +12,13 @@ import {
   ModalInMobile,
   Button,
   SelectSingleFilterPlain,
-  SelectMultipleFilterPlain
+  SelectMultipleFilterPlain,
+  PriceFilter,
 } from "../../components";
 import { propTypes } from "../../util/types";
 import css from "./SearchFiltersMobile.css";
+
+const RADIX = 10;
 
 class SearchFiltersMobileComponent extends Component {
   constructor(props) {
@@ -28,8 +31,12 @@ class SearchFiltersMobileComponent extends Component {
     this.resetAll = this.resetAll.bind(this);
     this.handleSelectSingle = this.handleSelectSingle.bind(this);
     this.handleSelectMultiple = this.handleSelectMultiple.bind(this);
+    this.handleGroupSize = this.handleGroupSize.bind(this);
+    this.handlePrice = this.handlePrice.bind(this);
     this.initialValue = this.initialValue.bind(this);
     this.initialValues = this.initialValues.bind(this);
+    this.initialPriceRangeValue = this.initialPriceRangeValue.bind(this);
+    this.initialGroupSizeRangeValue = this.initialGroupSizeRangeValue.bind(this);
   }
 
   // Open filters modal, set the initial parameters to current ones
@@ -101,6 +108,28 @@ class SearchFiltersMobileComponent extends Component {
     );
   }
 
+  handleGroupSize(urlParam, range) {
+    const { urlQueryParams, history } = this.props;
+    const { minPrice, maxPrice } = range || {};
+    const queryParams =
+      minPrice != null && maxPrice != null
+        ? { ...urlQueryParams, [urlParam + '_min']: `${minPrice},`, [urlParam + '_max']: `,${maxPrice}` }
+        : omit(urlQueryParams, urlParam + '_min', urlParam + '_max');
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  }
+
+  handlePrice(urlParam, range) {
+    const { urlQueryParams, history } = this.props;
+    const { minPrice, maxPrice } = range || {};
+    const queryParams =
+      minPrice != null && maxPrice != null
+        ? { ...urlQueryParams, [urlParam]: `${minPrice},${maxPrice}` }
+        : omit(urlQueryParams, urlParam);
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  }
+
   // Reset all filter query parameters
   resetAll(e) {
     const { urlQueryParams, history, filterParamNames } = this.props;
@@ -132,6 +161,34 @@ class SearchFiltersMobileComponent extends Component {
     return !!urlQueryParams[paramName]
       ? urlQueryParams[paramName].split(",")
       : [];
+  }
+
+  initialGroupSizeRangeValue(paramName) {
+    const urlQueryParams = this.props.urlQueryParams;
+    const minPrice = urlQueryParams[paramName + '_min'];
+    const maxPrice = urlQueryParams[paramName + '_max'];
+    const valMin = !!minPrice ? minPrice.split(',')[0] : 0;
+    const valMax = !!maxPrice ? maxPrice.split(',')[1] : 31;
+
+    return !!valMin && !!valMax
+      ? {
+        minPrice: parseInt(valMin),
+        maxPrice: parseInt(valMax),
+      }
+      : null;
+  }
+
+  initialPriceRangeValue(paramName) {
+    const urlQueryParams = this.props.urlQueryParams;
+    const price = urlQueryParams[paramName];
+    const valuesFromParams = !!price ? price.split(',').map(v => Number.parseInt(v, RADIX)) : [];
+
+    return !!price && valuesFromParams.length === 2
+      ? {
+        minPrice: valuesFromParams[0],
+        maxPrice: valuesFromParams[1],
+      }
+      : null;
   }
 
   render() {
@@ -184,16 +241,16 @@ class SearchFiltersMobileComponent extends Component {
           />
         </Button>
       ) : (
-        <SecondaryButton
-          className={css.filtersButton}
-          onClick={this.openFilters}
-        >
-          <FormattedMessage
-            id="SearchFilters.filtersButtonLabel"
-            className={css.mapIconText}
-          />
-        </SecondaryButton>
-      );
+          <SecondaryButton
+            className={css.filtersButton}
+            onClick={this.openFilters}
+          >
+            <FormattedMessage
+              id="SearchFilters.filtersButtonLabel"
+              className={css.mapIconText}
+            />
+          </SecondaryButton>
+        );
 
     const categoryLabel = intl.formatMessage({
       id: "SearchFiltersMobile.categoryLabel"
@@ -238,13 +295,19 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
+    const initialGroupSizeRange = this.initialGroupSizeRangeValue(groupSizeFilter.paramName);
+
     const groupSizeFilterElement = groupSizeFilter ? (
-      <SelectSingleFilterPlain
+      <PriceFilter
+        id="SearchFiltersMobile.groupSizeFilter"
         urlParam={groupSizeFilter.paramName}
-        label={groupSizeFilterLabel}
-        onSelect={this.handleSelectSingle}
-        options={groupSizeFilter.options}
-        initialValue={initialGroupSize}
+        onSubmit={this.handleGroupSize}
+        liveEdit
+        labelProps="SearchFilters.groupSizeFilterLabel"
+        unitProps="People"
+        {...groupSizeFilter.config}
+        initialValues={initialGroupSizeRange}
+        isGroupSize={true}
       />
     ) : null;
 

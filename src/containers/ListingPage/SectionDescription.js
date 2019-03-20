@@ -9,10 +9,8 @@ const MIN_LENGTH_FOR_LONG_WORDS_IN_DESCRIPTION = 20;
 
 const SectionDescription = props => {
   const { description, group_size, included, duration, availability } = props;
-  let group_size_label = config.custom.group_size_brackets.find(
-    entry => entry.key === group_size
-  );
-  group_size_label = group_size_label ? group_size_label.label : '';
+  let group_size_label = group_size.join(' - ')
+  group_size_label = group_size_label ? group_size_label + (group_size[1] > 30 ? '+' : '') + ' people' : '';
   return (
     <div>
       <div className={css.sectionDescription}>
@@ -54,7 +52,7 @@ const SectionDescription = props => {
         <h2 className={css.descriptionTitle}>
           <FormattedMessage id="ListingPage.group_sizeHeader" />
         </h2>
-        <p className={css.description}>{group_size_label}</p>
+        <p className={css.description}>{group_size[0] === group_size[1] && group_size[0] === 31 ? `31+ People`  : group_size_label}</p>
       </div>
     </div>
   );

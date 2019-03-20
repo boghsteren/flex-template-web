@@ -38,7 +38,8 @@ import {
   LINE_ITEM_NIGHT,
   LINE_ITEM_UNITS,
   TRANSITION_REQUEST,
-  TX_TRANSITION_ACTOR_CUSTOMER
+  TX_TRANSITION_ACTOR_CUSTOMER,
+  LINE_ITEM_DAY
 } from "../../util/types";
 import {
   unitDivisor,
@@ -73,12 +74,11 @@ const estimatedTransaction = (
   quantity,
   listing,
   hours,
-  seats
+  seats,
 ) => {
   const now = new Date();
   const isNightly = unitType === LINE_ITEM_NIGHT;
-  const isDaily = true;
-
+  const isDaily = unitType === LINE_ITEM_DAY;
   const unitCount = isNightly
     ? nightsBetween(bookingStart, bookingEnd)
     : isDaily
@@ -113,8 +113,8 @@ const estimatedTransaction = (
       payoutTotal: totalPrice,
       protectedData: {
         pricing_scheme: listing.attributes.publicData.pricing_scheme,
-        hours: hours,
-        seats: seats
+        // hours: hours,
+        seats: seats,
       },
       lineItems: [
         {
@@ -156,7 +156,7 @@ const EstimatedBreakdownMaybe = props => {
     endDate,
     quantity,
     hours,
-    seats
+    seats,
   } = props.bookingData;
   const isUnits = unitType === LINE_ITEM_UNITS;
   const quantityIfUsingUnits = !isUnits || Number.isInteger(quantity);
@@ -174,7 +174,7 @@ const EstimatedBreakdownMaybe = props => {
     quantity,
     listing,
     hours,
-    seats
+    seats,
   );
 
   return (

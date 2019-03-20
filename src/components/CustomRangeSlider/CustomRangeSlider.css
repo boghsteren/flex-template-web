@@ -1,0 +1,81 @@
+@import '../../marketplace.css';
+
+.root {
+  position: relative;
+  /* margin: 0 10px; */
+  width: 100%;
+  height: 24px;
+}
+
+.activeHandle {
+  z-index: 1;
+}
+
+
+.displayInline {
+  position: relative;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+}
+
+.unitText {
+  color: #9b9b9b;
+  flex-basis: 10%;
+  flex-shrink: 1;
+  margin-bottom: 24px;
+  flex-grow:  1;
+  max-width: 45%;
+  font-size: 18px;
+  padding-left: 40px;
+  @media (--viewportMedium) {
+    margin-bottom: 32px;
+  }
+}
+
+.minUnit {
+  flex-basis: 10%;
+  flex-shrink: 1;
+  /* margin-bottom: 24px; */
+  flex-grow:  1;
+  max-width: 42px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 0.2; 
+  padding: 0;
+  @media (--viewportMedium) {
+    /* margin-bottom: 32px; */
+  }
+}
+
+.maxUnit {
+  text-align: center;
+  flex-basis: 10%;
+  flex-shrink: 1;
+  /* margin-bottom: 24px; */
+  flex-grow: 1;
+  max-width: 42px;
+  font-size: 18px;
+  line-height: 0.2; 
+  padding: 0;
+  @media (--viewportMedium) {
+    /* margin-bottom: 32px; */
+  }
+}
+
+.unitDash {
+  margin-left: 7px;
+  margin-right: 7px;
+  margin-top: 5px;
+}
+
+.overLengthWrapper {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+
+.overLength {
+  position: absolute;
+  top: 12px;
+  right: -5px;
+}
