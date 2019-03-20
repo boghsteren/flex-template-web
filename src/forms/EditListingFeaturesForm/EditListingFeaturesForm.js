@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { Form as FinalForm } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
+import { required, composeValidators } from "../../util/validators";
 
 import { propTypes } from '../../util/types';
 import config from '../../config';
@@ -22,6 +23,7 @@ const EditListingFeaturesFormComponent = props => (
         className,
         name,
         handleSubmit,
+        invalid,
         pristine,
         saveActionMsg,
         updated,
@@ -33,7 +35,7 @@ const EditListingFeaturesFormComponent = props => (
       const classes = classNames(rootClassName || css.root, className);
       const submitReady = updated && pristine;
       const submitInProgress = updateInProgress;
-      const submitDisabled = disabled || submitInProgress;
+      const submitDisabled = disabled || submitInProgress || invalid;
 
       const errorMessage = updateError ? (
         <p className={css.error}>
@@ -51,6 +53,10 @@ const EditListingFeaturesFormComponent = props => (
 
       const whyBuyThisPlaceholder = intl.formatMessage({
         id: "EditListingFeaturesForm.whyBuyThisPlaceholder"
+      });
+
+      const whyBuyThisRequiredMessage = intl.formatMessage({
+        id: "EditListingFeaturesForm.whyBuyThisRequiredMessage"
       });
 
       return (
@@ -73,6 +79,7 @@ const EditListingFeaturesFormComponent = props => (
             row={3}
             label={whyBuyThisLabel}
             placeholder={whyBuyThisPlaceholder}
+            validate={composeValidators(required(whyBuyThisRequiredMessage))}
           />
 
           <Button
