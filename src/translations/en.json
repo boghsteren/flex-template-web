@@ -207,6 +207,7 @@
     "You must describe what is included.",
   "EditListingDescriptionForm.maxLength":
     "Must be {maxLength} characters or less",
+  "EditListingDescriptionForm.sliderInfoMess": "Specify minimum and a maximum number of participants",
   "EditListingDescriptionForm.title": "The name of your experience",
   "EditListingDescriptionForm.titlePlaceholder":
     "What do you call this experience?",

@@ -141,7 +141,7 @@ class PriceFilterPopup extends Component {
         }}
       >
         <button className={labelStyles} onClick={() => this.toggleOpen()}>
-          {isGroupSize && maxPrice > 30 ? `${minPrice > 30 ? '' : `${minPrice} - `}31+ people` : label}
+          {isGroupSize && maxPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? `${minPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? '' : `${minPrice} - `}${config.custom.MAX_GROUP_SIZE_SLIDER}+ people` : label}
         </button>
         <PriceFilterForm
           id={id}

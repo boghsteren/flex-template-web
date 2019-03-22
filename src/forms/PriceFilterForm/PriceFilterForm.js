@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import { Field, Form as FinalForm, FormSpy } from 'react-final-form';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import config from '../../config';
 
 import { Form, RangeSlider } from '../../components';
 import css from './PriceFilterForm.css';
@@ -134,7 +135,7 @@ const PriceFilterFormComponent = props => {
                   step={step}
                   parse={parseMax(max, minPrice)}
                 />
-                {isGroupSize && maxPrice > 31 &&
+                {isGroupSize && maxPrice > config.custom.MAX_GROUP_SIZE_SLIDER &&
                   <div className={css.overLength}>+</div>
                 }
               </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { arrayOf, number, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { withDimensions } from '../../util/contextHelpers';
+import config from '../../config';
 
 import Handle from './Handle';
 import Track from './Track';
@@ -59,7 +60,7 @@ class CustomRangeSliderComponent extends Component {
   }
 
   render() {
-    const { handles, min, max, oneDirection, unitType, isGroupSize } = this.props;
+    const { handles, min, max, oneDirection, unitType, isGroupSize, moreInfo } = this.props;
 
     const { rootClassName, className } = this.props;
     const classes = classNames(rootClassName || css.root, className);
@@ -79,12 +80,13 @@ class CustomRangeSliderComponent extends Component {
               value={this.state.currentMax}
               readOnly={true}
             />
-            {isGroupSize && this.state.currentMax > 30 &&
+            {isGroupSize && this.state.currentMax >= config.custom.MAX_GROUP_SIZE_SLIDER &&
               <div className={css.overLength}>+</div>
             }
           </div>
           <p className={css.unitText}>{unitType}</p>
         </div>
+        <div className={css.moreInfo}>{moreInfo}</div>
         <Track handles={handles} valueToPosition={this.toPosition}>
           {handles.map((h, index) => {
             const classes = classNames({ [css.activeHandle]: this.state.activeHandle === index });

@@ -80,7 +80,7 @@ class PriceFilterPlainComponent extends Component {
       <div className={classes}>
         <div className={labelClass}>
           <button type="button" className={css.labelButton} onClick={this.toggleIsOpen}>
-            {isGroupSize && maxPrice > 30 ? `${minPrice > 30 ? '' : `${minPrice} - `}31+ people` : <span className={labelClass}>{labelText}</span>}
+            {isGroupSize && maxPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? `${minPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? '' : `${minPrice} - `}${config.custom.MAX_GROUP_SIZE_SLIDER}+ people` : <span className={labelClass}>{labelText}</span>}
           </button>
           <button type="button" className={clearButtonClasses} onClick={this.handleClear}>
             <FormattedMessage id={'PriceFilter.clear'} />

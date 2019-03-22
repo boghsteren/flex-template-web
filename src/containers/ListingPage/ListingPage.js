@@ -583,7 +583,7 @@ export class ListingPageComponent extends Component {
                   />
                   <SectionDescription
                     description={description}
-                    group_size={group_size_min && group_size_max ? [group_size_min, group_size_max] : group_size }
+                    group_size={group_size_min && group_size_max ? [group_size_min, group_size_max] : [config.custom.MIN_GROUP_SIZE_SLIDER, config.custom.MAX_GROUP_SIZE_SLIDER] }
                     included={included}
                     duration={duration}
                     availability={availability}
@@ -734,7 +734,7 @@ export class ListingPageComponent extends Component {
                       Participant capacity
                     </div>
                     <div className={css.pdfSectionDescription}>
-                      {group_size_min > 30 ? '' : group_size_min + ' - '}{group_size_max > 30 ? group_size_max + '+' : group_size_max} people
+                      {group_size_min >= config.custom.MAX_GROUP_SIZE_SLIDER ? '' : group_size_min + ' - '}{group_size_max > config.custom.MAX_GROUP_SIZE_SLIDER ? group_size_max + '+' : group_size_max} people
                     </div>
                     <SectionHost
                       pdf
