@@ -31,8 +31,8 @@ const initialValues = (queryParams, paramName) => {
 const initialGroupSizeRangeValue = (queryParams, paramName) => {
   const minPrice = queryParams[paramName + '_min'];
   const maxPrice = queryParams[paramName + '_max'];
-  const valMin = !!minPrice ? minPrice.split(',')[0] : config.custom.MIN_GROUP_SIZE_SLIDER;
-  const valMax = !!maxPrice ? maxPrice.split(',')[1] : config.custom.MAX_GROUP_SIZE_SLIDER;
+  const valMin = !!minPrice ? minPrice.split(',')[0] : null;
+  const valMax = !!maxPrice ? maxPrice.split(',')[1] : null;
 
   return !!valMin && !!valMax
     ? {
@@ -102,6 +102,7 @@ const SearchFiltersComponent = props => {
   const initialGroupSize = groupSizeFilter
     ? initialGroupSizeRangeValue(urlQueryParams, groupSizeFilter.paramName)
     : null;
+  console.log({initialGroupSize})
 
   const handleSelectOptions = (urlParam, options) => {
     const queryParams =
