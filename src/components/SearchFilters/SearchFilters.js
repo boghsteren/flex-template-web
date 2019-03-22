@@ -34,10 +34,10 @@ const initialGroupSizeRangeValue = (queryParams, paramName) => {
   const valMin = !!minPrice ? minPrice.split(',')[0] : null;
   const valMax = !!maxPrice ? maxPrice.split(',')[1] : null;
 
-  return !!valMin && !!valMax
+  return !!valMin || !!valMax
     ? {
       minPrice: parseInt(valMin),
-      maxPrice: parseInt(valMax),
+      maxPrice: valMax ? parseInt(valMax) : null,
     }
     : null;
 };

@@ -112,7 +112,6 @@ class PriceFilterPopup extends Component {
 
     const hasValue = value => value != null;
     const hasInitialValues = initialValues && hasValue(minPrice) && hasValue(maxPrice);
-
     const label = hasInitialValues
       ? intl.formatMessage(
           { id: 'PriceFilter.labelSelectedButton' },
@@ -128,9 +127,8 @@ class PriceFilterPopup extends Component {
       : (labelProps ? intl.formatMessage({ id: labelProps })
       : intl.formatMessage({ id: 'PriceFilter.label' }));
 
-    const labelStyles = hasInitialValues ? css.labelSelected : css.label;
+    const labelStyles = minPrice ? css.labelSelected : css.label;
     const contentStyle = this.positionStyleForContent();
-
     return (
       <div
         className={classes}
@@ -141,7 +139,7 @@ class PriceFilterPopup extends Component {
         }}
       >
         <button className={labelStyles} onClick={() => this.toggleOpen()}>
-          {isGroupSize && maxPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? `${minPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? '' : `${minPrice} - `}${config.custom.MAX_GROUP_SIZE_SLIDER}+ people` : label}
+          {isGroupSize && minPrice && !maxPrice ? `${minPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? '' : `${minPrice} - `}${config.custom.MAX_GROUP_SIZE_SLIDER}+ people` : label}
         </button>
         <PriceFilterForm
           id={id}
@@ -183,8 +181,8 @@ PriceFilterPopup.propTypes = {
   urlParam: string.isRequired,
   onSubmit: func.isRequired,
   initialValues: shape({
-    minPrice: number.isRequired,
-    maxPrice: number.isRequired,
+    minPrice: number,
+    maxPrice: number,
   }),
   contentPlacementOffset: number,
   min: number.isRequired,
