@@ -9,11 +9,7 @@ export const goals = [
   },
   {
     key: "prosperity",
-    label: "Economic"
-  },
-  {
-    key: "partnership",
-    label: "Empowerment"
+    label: "Economic Empowerment"
   },
   {
     key: "planet",
@@ -93,8 +89,13 @@ export const moreOfferContactEmail = [
   {key: false, label: 'No'},
 ]
 
+export const MIN_GROUP_SIZE_SLIDER = 1;
+export const MAX_GROUP_SIZE_SLIDER = 100;
+export const STEP_GROUP_SIZE_SLIDER = 1;
+
 export const groupSizeConfig = {
-  min: 1,
-  max: 31,
-  step: 1
+  min: MIN_GROUP_SIZE_SLIDER,
+  max: MAX_GROUP_SIZE_SLIDER,
+  step: STEP_GROUP_SIZE_SLIDER
 };
+

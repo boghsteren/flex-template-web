@@ -24,8 +24,6 @@ import EstimatedBreakdownMaybe from "./EstimatedBreakdownMaybe";
 
 import css from "./BookingDatesForm.css";
 
-const MAX_SEATS_SIZE = 31;
-
 export class BookingDatesFormComponent extends Component {
   constructor(props) {
     super(props);

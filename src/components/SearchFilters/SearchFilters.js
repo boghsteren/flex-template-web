@@ -10,6 +10,8 @@ import { SelectSingleFilter, SelectMultipleFilter, PriceFilter } from "../../com
 import routeConfiguration from "../../routeConfiguration";
 import { createResourceLocatorString } from "../../util/routes";
 import { propTypes } from "../../util/types";
+import config from "../../config";
+
 import css from "./SearchFilters.css";
 
 // Dropdown container can have a positional offset (in pixels)
@@ -29,8 +31,8 @@ const initialValues = (queryParams, paramName) => {
 const initialGroupSizeRangeValue = (queryParams, paramName) => {
   const minPrice = queryParams[paramName + '_min'];
   const maxPrice = queryParams[paramName + '_max'];
-  const valMin = !!minPrice ? minPrice.split(',')[0] : 0;
-  const valMax = !!maxPrice ? maxPrice.split(',')[1] : 31;
+  const valMin = !!minPrice ? minPrice.split(',')[0] : config.custom.MIN_GROUP_SIZE_SLIDER;
+  const valMax = !!maxPrice ? maxPrice.split(',')[1] : config.custom.MAX_GROUP_SIZE_SLIDER;
 
   return !!valMin && !!valMax
     ? {
@@ -139,7 +141,7 @@ const SearchFiltersComponent = props => {
     
     const queryParams =
       minPrice != null && maxPrice != null
-        ? { ...urlQueryParams, [urlParam + '_min']: `${minPrice},`, [urlParam + '_max']: maxPrice > 30 ? null : `,${maxPrice}` }
+        ? { ...urlQueryParams, [urlParam + '_min']: `${minPrice},`, [urlParam + '_max']: maxPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? null : `,${maxPrice}` }
         : omit(urlQueryParams, urlParam + '_min', urlParam + '_max');
 
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));

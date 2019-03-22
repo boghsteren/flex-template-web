@@ -83,6 +83,10 @@ const EditListingDescriptionFormComponent = props => (
         id: "EditListingDescriptionForm.descriptionRequired"
       });
 
+      const sliderInfoMess = intl.formatMessage({
+        id: "EditListingDescriptionForm.sliderInfoMess"
+      });
+
       const errorMessage = updateError ? (
         <p className={css.error}>
           <FormattedMessage id="EditListingDescriptionForm.updateFailed" />
@@ -136,12 +140,13 @@ const EditListingDescriptionFormComponent = props => (
             id="group_size"
             name="group_size"
             label={groupSizeLabel}
-            min={1}
-            max={31}
-            step={1}
+            min={config.custom.MIN_GROUP_SIZE_SLIDER}
+            max={config.custom.MAX_GROUP_SIZE_SLIDER}
+            step={config.custom.STEP_GROUP_SIZE_SLIDER}
             handles={groupSize}
             oneDirection={false}
             isGroupSize={true}
+            moreInfo={sliderInfoMess}
             unitType={intl.formatMessage({id: "EditListingFeaturesForm.groupSizeUnit"})}
           />
 
