@@ -20,6 +20,9 @@ const i18n = {
 // Should search results be ordered by distance to origin.
 const sortSearchByDistance = false;
 
+//estimated commistion percentage
+const customerCommissionPercentage = 0.1;
+
 // API supports custom processes to be used in booking process.
 // We need to specify it when we are initiating a new order
 // (or fetching price information by calling 'initiateSpeculative' endpoint).
@@ -346,6 +349,7 @@ const config = {
   dev,
   locale,
   bookingProcessAlias,
+  customerCommissionPercentage,
   bookingUnitType,
   fetchAvailableTimeSlots,
   dayCountAvailableForBooking,
