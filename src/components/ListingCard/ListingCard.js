@@ -17,10 +17,12 @@ const { Money } = sdkTypes;
 
 const MIN_LENGTH_FOR_LONG_WORDS = 10;
 
-const priceData = (price, intl) => {
+const priceData = (price, intl, user) => {
+  const isCustomer = !!user && !user.attributes.profile.publicData.provider;
+
   if (price && price.currency === config.currency) {
     const priceWithCommission = new Money(price.amount + price.amount * config.customerCommissionPercentage, price.currency);
-    const formattedPrice = formatMoney(intl, priceWithCommission);
+    const formattedPrice = formatMoney(intl, isCustomer ? priceWithCommission : price);
     return { formattedPrice, priceTitle: formattedPrice };
   } else if (price) {
     return {
@@ -78,7 +80,7 @@ export const ListingCardComponent = props => {
       ? currentListing.images[0]
       : null;
 
-  const { formattedPrice, priceTitle } = priceData(price, intl);
+  const { formattedPrice, priceTitle } = priceData(price, intl, user);
 
   return (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>

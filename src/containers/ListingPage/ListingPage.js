@@ -68,10 +68,12 @@ const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
 const { Money, UUID } = sdkTypes;
 
-const priceData = (price, intl) => {
+const priceData = (price, intl, user) => {
+  const isCustomer = !!user && !user.attributes.profile.publicData.provider;
+
   if (price && price.currency === config.currency) {
     const priceWithCommission = new Money(price.amount + price.amount * config.customerCommissionPercentage, price.currency);
-    const formattedPrice = formatMoney(intl, priceWithCommission);
+    const formattedPrice = formatMoney(intl, isCustomer ? priceWithCommission : price);
     return { formattedPrice, priceTitle: formattedPrice };
   } else if (price) {
     return {
@@ -453,7 +455,7 @@ export class ListingPageComponent extends Component {
     const authorOrganisation = currentListing && currentListing.author ?
       currentListing.author.attributes.profile.publicData.organisation : '';
 
-    const { formattedPrice, priceTitle } = priceData(price, intl);
+    const { formattedPrice, priceTitle } = priceData(price, intl, currentUser);
 
     const handleMobileBookModalClose = () => {
       closeBookModal(history, currentListing);
