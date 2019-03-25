@@ -39,7 +39,8 @@ import {
   LINE_ITEM_UNITS,
   TRANSITION_REQUEST,
   TX_TRANSITION_ACTOR_CUSTOMER,
-  LINE_ITEM_DAY
+  LINE_ITEM_DAY,
+  LINE_ITEM_CUSTOMER_COMMISSION
 } from "../../util/types";
 import {
   unitDivisor,
@@ -47,6 +48,7 @@ import {
   convertUnitToSubUnit
 } from "../../util/currency";
 import { BookingBreakdown } from "../../components";
+import config from '../../config'
 
 import css from "./BookingDatesForm.css";
 
@@ -62,6 +64,24 @@ const estimatedTotalPrice = (unitPrice, unitCount) => {
     unitPrice.currency
   );
 };
+
+const estimatedTotalPriceWithCommmission = (unitPrice, unitCount) => {
+  const numericPrice = convertMoneyToNumber(unitPrice);
+  const numericTotalPrice = new Decimal(numericPrice)
+    .times(unitCount)
+    .toNumber();
+  const numericTotalPriceWithCommission = numericTotalPrice + numericTotalPrice * config.customerCommissionPercentage;
+  return new Money(
+    convertUnitToSubUnit(numericTotalPriceWithCommission, unitDivisor(unitPrice.currency)),
+    unitPrice.currency
+  );
+};
+
+const estimatedCommission = (amount, currency, quantity) => {
+  const percentage = config.customerCommissionPercentage;
+  const estimatedCommission = amount * percentage * quantity;
+  return new Money(estimatedCommission, currency);
+}
 
 // When we cannot speculatively initiate a transaction (i.e. logged
 // out), we must estimate the booking breakdown. This function creates
@@ -86,6 +106,8 @@ const estimatedTransaction = (
       : quantity;
 
   const totalPrice = estimatedTotalPrice(unitPrice, unitCount);
+  const totalPriceWithCommission = estimatedTotalPriceWithCommmission(unitPrice, unitCount);
+  const customerCommisionPrice = estimatedCommission(unitPrice.amount, unitPrice.currency, unitCount);
   // bookingStart: "Fri Mar 30 2018 12:00:00 GMT-1100 (SST)" aka "Fri Mar 30 2018 23:00:00 GMT+0000 (UTC)"
   // Server normalizes night/day bookings to start from 00:00 UTC aka "Thu Mar 29 2018 13:00:00 GMT-1100 (SST)"
   // The result is: local timestamp.subtract(12h).add(timezoneoffset) (in eg. -23 h)
@@ -109,7 +131,7 @@ const estimatedTransaction = (
       createdAt: now,
       lastTransitionedAt: now,
       lastTransition: TRANSITION_REQUEST,
-      payinTotal: totalPrice,
+      payinTotal: totalPriceWithCommission,
       payoutTotal: totalPrice,
       protectedData: {
         pricing_scheme: listing.attributes.publicData.pricing_scheme,
@@ -123,6 +145,14 @@ const estimatedTransaction = (
           unitPrice: unitPrice,
           quantity: new Decimal(unitCount),
           lineTotal: totalPrice,
+          reversal: false
+        },
+        {
+          code: LINE_ITEM_CUSTOMER_COMMISSION,
+          includeFor: ["customer"],
+          unitPrice: unitPrice,
+          percentage: new Decimal(config.customerCommissionPercentage * 100),
+          lineTotal: customerCommisionPrice,
           reversal: false
         }
       ],

@@ -9,14 +9,18 @@ import { ensureListing, ensureUser } from "../../util/data";
 import { richText } from "../../util/richText";
 import { createSlug } from "../../util/urlHelpers";
 import config from "../../config";
+import { types as sdkTypes } from "../../util/sdkLoader";
 
 import css from "./ListingCard.css";
+
+const { Money } = sdkTypes;
 
 const MIN_LENGTH_FOR_LONG_WORDS = 10;
 
 const priceData = (price, intl) => {
   if (price && price.currency === config.currency) {
-    const formattedPrice = formatMoney(intl, price);
+    const priceWithCommission = new Money(price.amount + price.amount * config.customerCommissionPercentage, price.currency);
+    const formattedPrice = formatMoney(intl, priceWithCommission);
     return { formattedPrice, priceTitle: formattedPrice };
   } else if (price) {
     return {

@@ -66,11 +66,12 @@ import html2canvas from "html2canvas";
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
-const { UUID } = sdkTypes;
+const { Money, UUID } = sdkTypes;
 
 const priceData = (price, intl) => {
   if (price && price.currency === config.currency) {
-    const formattedPrice = formatMoney(intl, price);
+    const priceWithCommission = new Money(price.amount + price.amount * config.customerCommissionPercentage, price.currency);
+    const formattedPrice = formatMoney(intl, priceWithCommission);
     return { formattedPrice, priceTitle: formattedPrice };
   } else if (price) {
     return {
