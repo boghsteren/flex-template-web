@@ -92,6 +92,7 @@ export const moreOfferContactEmail = [
 export const MIN_GROUP_SIZE_SLIDER = 1;
 export const MAX_GROUP_SIZE_SLIDER = 100;
 export const STEP_GROUP_SIZE_SLIDER = 1;
+export const ADMIN_STRING = 'ADMIN_FILL_VALUE_HERE';
 
 export const groupSizeConfig = {
   min: MIN_GROUP_SIZE_SLIDER,
