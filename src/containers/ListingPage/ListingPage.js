@@ -591,16 +591,11 @@ export class ListingPageComponent extends Component {
                     duration={duration}
                     availability={availability}
                   />
-                  {
-                    publicData.whyBuyThis && publicData.whyBuyThis !== config.custom.ADMIN_STRING ?
-                      (
-                        <SectionFeatures
-                          options={goalsConfig}
-                          selectedOptions={publicData.goals}
-                          whyBuyThis={publicData.whyBuyThis}
-                        />
-                      ) : null
-                  }
+                  <SectionFeatures
+                    options={goalsConfig}
+                    selectedOptions={publicData.goals}
+                    whyBuyThis={publicData.whyBuyThis}
+                  />
 
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
