@@ -192,6 +192,7 @@ export {
 export {
   default as SectionHighlightsOfTheMonth
 } from "./SectionHighlightsOfTheMonth/SectionHighlightsOfTheMonth";
+export { default as SectionHelpWorldBetter } from "./SectionHelpWorldBetter/SectionHelpWorldBetter";
 export {
   default as SectionThumbnailLinks
 } from "./SectionThumbnailLinks/SectionThumbnailLinks";

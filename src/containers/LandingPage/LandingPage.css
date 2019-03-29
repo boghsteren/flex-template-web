@@ -13,6 +13,7 @@
   --LandingPage_sectionMarginTop: 20px;
   --LandingPage_sectionMarginTopMedium: 40px;
   --LandingPage_sectionMarginTopLarge: 60px;
+  --LandingPage_cutDistanceToShowNextSection: 250px;
 }
 
 .root {
@@ -37,8 +38,8 @@
   }
 
   @media (--viewportLarge) {
-    min-height: 600px;
-    height: calc(100vh - var(--topbarHeightDesktop));
+    min-height: 590px;
+    height: calc(100vh - var(--topbarHeightDesktop) - var(--LandingPage_cutDistanceToShowNextSection));
   }
 }
 
@@ -140,6 +141,10 @@
 }
 
 .sectionWhatIsIt {
+  background-color: var(--matterColorShine) !important;
+}
+
+.sectionHelpWorldBetter {
   background-color: var(--matterColorShine) !important;
 }
 
