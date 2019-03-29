@@ -1,0 +1,73 @@
+@import '../../marketplace.css';
+
+:root {
+  --Image_animation: {
+    animation-name: animationImage;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: forwards;
+
+    visibility: hidden;
+    opacity: 1;
+    position: relative;
+  }
+}
+
+@keyframes animationImage {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    left: 200px;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    left: 0;
+  }
+}
+
+.root {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+  @media (--viewportLarge) {
+    flex-direction: row;
+  }
+}
+
+.textContainer {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.title {
+  @apply --marketplaceH1FontStyles;
+  margin-top: 0;
+  text-align: left;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.5em;
+  text-align: left;
+}
+
+.paragraph span {
+  display: block;
+  margin-bottom: 24px; 
+}
+
+.imageWrapper {
+  position: relative;
+  flex-basis: 45%;
+  padding: 50px;
+}
+
+.screenTrans {
+  @apply --Image_animation;
+  animation-delay: 0.8s;
+  position: relative;
+  width: 100%;
+  background-color: var(--colorTealLight);
+}
