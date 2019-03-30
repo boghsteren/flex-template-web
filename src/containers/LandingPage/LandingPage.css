@@ -13,7 +13,7 @@
   --LandingPage_sectionMarginTop: 20px;
   --LandingPage_sectionMarginTopMedium: 40px;
   --LandingPage_sectionMarginTopLarge: 60px;
-  --LandingPage_cutDistanceToShowNextSection: 250px;
+  --LandingPage_cutDistanceToShowNextSection: 400px;
 }
 
 .root {
@@ -38,7 +38,7 @@
   }
 
   @media (--viewportLarge) {
-    min-height: 590px;
+    /* min-height: 570px; */
     height: calc(100vh - var(--topbarHeightDesktop) - var(--LandingPage_cutDistanceToShowNextSection));
   }
 }
@@ -114,6 +114,7 @@
 
 .certificateLogoContainer {
   position: absolute;
+  z-index: 6;
   bottom:0;
   right:0;
 }
