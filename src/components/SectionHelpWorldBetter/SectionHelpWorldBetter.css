@@ -37,7 +37,7 @@
 }
 
 .textContainer {
-  flex-basis: 50%;
+  flex-basis: 43%;
   text-align: center;
 }
 
@@ -60,8 +60,12 @@
 
 .imageWrapper {
   position: relative;
-  flex-basis: 45%;
-  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 53%;
+  padding: 50px 80px;
 }
 
 .screenTrans {
@@ -69,5 +73,17 @@
   animation-delay: 0.8s;
   position: relative;
   width: 100%;
-  background-color: var(--colorTealLight);
+  background-color: var(--colorTealDark);
+}
+
+.screenTransText {
+  @apply --Image_animation;
+  animation-delay: 0.8s;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+  color: var(--matterColorLight);
+  bottom: 80px;
+  padding: 80px 120px;
 }

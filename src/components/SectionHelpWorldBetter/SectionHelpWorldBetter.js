@@ -34,7 +34,10 @@ const SectionHelpWorldBetter = props => {
         <img
           className={css.screenTrans}
           src={screenTrans}
-        ></img>
+        />
+        <div className={css.screenTransText}>
+          <FormattedMessage id="SectionHelpWorldBetter.theGlobalGoalText"/>
+        </div>
       </div>
     </div>
   );

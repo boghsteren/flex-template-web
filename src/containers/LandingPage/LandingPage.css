@@ -114,6 +114,7 @@
 
 .certificateLogoContainer {
   position: absolute;
+  z-index: 6;
   bottom:0;
   right:0;
 }
