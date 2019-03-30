@@ -50,7 +50,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   border-radius: 0px;
   border: none;
 
@@ -102,14 +102,14 @@
   z-index: 6;
 
   color: var(--matterColorLight);
-  margin: 0 0 32px 0;
+  margin: 0 0 28px 0;
 
   @apply --SectionHero_animation;
   animation-delay: 0.65s;
 
   @media (--viewportMedium) {
     max-width: var(--SectionHero_desktopTitleMaxWidth);
-    margin: 0 0 63px 0;
+    margin: 0 0 45px 0;
   }
 }
 
