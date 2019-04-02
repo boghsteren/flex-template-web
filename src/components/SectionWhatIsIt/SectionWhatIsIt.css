@@ -30,8 +30,10 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  margin-top: 60px;
 
   @media (--viewportLarge) {
+    margin-top: 0px;
     flex-direction: row;
   }
 }

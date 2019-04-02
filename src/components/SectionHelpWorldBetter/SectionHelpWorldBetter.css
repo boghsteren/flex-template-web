@@ -30,9 +30,13 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 60px;
 
   @media (--viewportLarge) {
+    margin: 0px;
     flex-direction: row;
+    padding-bottom: 30px;
   }
 }
 
@@ -65,7 +69,11 @@
   justify-content: center;
   align-items: center;
   flex-basis: 53%;
-  padding: 50px 80px;
+  padding: 0px;
+
+  @media (--viewportMedium) {
+    padding: 50px 80px;
+  }
 }
 
 .screenTrans {
@@ -74,6 +82,14 @@
   position: relative;
   width: 100%;
   background-color: var(--colorTealDark);
+
+  @media (--viewportLarge) {
+    
+  }
+
+  @media (--viewportMLarge) {
+    margin-top: 80px;
+  }
 }
 
 .screenTransText {
@@ -82,8 +98,23 @@
   position: absolute;
   text-align: center;
   width: 100%;
-  font-size: 18px;
+  font-size: 14px;
   color: var(--matterColorLight);
-  bottom: 80px;
-  padding: 80px 120px;
+  bottom: 20px;
+  padding: 20px 20px;
+
+  @media (--viewportMedium) {
+    font-size: 18px;
+    bottom: 60px;
+    padding: 80px 140px;
+  }
+
+  @media (--viewportLarge) {
+    bottom: 160px;  
+    padding: 80px 100px;
+  }
+
+  @media (--viewportMLarge) {
+    bottom: 40px;
+  }
 }

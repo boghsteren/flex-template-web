@@ -91,7 +91,7 @@
 
   @media (--viewportLarge) {
     max-width: calc(1052px + 36px + 36px);
-    margin: var(--LandingPage_sectionMarginTopLarge) auto 40px auto;
+    margin: var(--LandingPage_sectionMarginTopLarge) auto 15px auto;
     padding: 0 36px 0 36px;
   }
 }
@@ -101,14 +101,14 @@
 }
 
 .sectionExampleContent {
-  margin: 30px 24px 20px 24px;
+  margin: 0px 24px 20px 24px;
 
   @media (--viewportMedium) {
     margin: 30px 7.5vw 30px 7.5vw;
   }
 
   @media (--viewportLarge) {
-    margin: 0px auto 40px auto;
+    margin: 0px auto 0px auto;
   }
 }
 

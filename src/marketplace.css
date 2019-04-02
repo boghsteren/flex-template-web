@@ -581,4 +581,5 @@
 
 @custom-media --viewportMedium (min-width: 768px);
 @custom-media --viewportLarge (min-width: 1024px);
+@custom-media --viewportMLarge (min-width: 1200px);
 @custom-media --viewportXLarge (min-width: 1921px);
