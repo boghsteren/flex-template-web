@@ -1,5 +1,9 @@
 @import '../../marketplace.css';
 
+.root {
+  overflow: hidden;
+}
+
 .listingCards {
   padding: 0 24px 96px 24px;
 

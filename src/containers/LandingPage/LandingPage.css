@@ -145,6 +145,10 @@
   background-color: var(--matterColorShine) !important;
 }
 
+.sectionWhatIsIt .sectionContent {
+  margin-bottom: 0px;
+}
+
 .sectionHelpWorldBetter {
   background-color: var(--matterColorShine) !important;
 }
