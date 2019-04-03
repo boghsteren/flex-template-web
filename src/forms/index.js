@@ -34,6 +34,9 @@ export {
   default as InputTextFilterForm
 } from "./InputTextFilterForm/InputTextFilterForm";
 export {
+  default as InputTextFilterPlainForm
+} from "./InputTextFilterPlainForm/InputTextFilterPlainForm";
+export {
   default as LocationSearchForm
 } from "./LocationSearchForm/LocationSearchForm";
 export { default as LoginForm } from "./LoginForm/LoginForm";

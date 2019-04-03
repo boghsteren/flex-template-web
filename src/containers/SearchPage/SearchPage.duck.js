@@ -118,9 +118,11 @@ export const searchMapListingsError = e => ({
 export const searchListings = searchParams => (dispatch, getState, sdk) => {
   dispatch(searchListingsRequest(searchParams));
 
-  const { perPage, ...rest } = searchParams;
+  const { perPage, pub_group_size_max, pub_group_size_min, ...rest } = searchParams;
   const params = {
     ...rest,
+    pub_group_size_max: pub_group_size_max ? (pub_group_size_max > 100 ? '100' : `${pub_group_size_max},`) : null,
+    pub_group_size_min: pub_group_size_min && pub_group_size_max && pub_group_size_max < 100 ? `,${pub_group_size_min + 1}` : null,
     per_page: perPage,
   };
 

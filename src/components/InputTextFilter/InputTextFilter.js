@@ -94,7 +94,7 @@ class InputTextFilter extends Component {
     const { rootClassName, className, id, name, label, initialValues, intl, type } = this.props;
     const classes = classNames(rootClassName || css.root, className);
 
-    const hasInitialValues = initialValues && initialValues.length > 0;
+    const hasInitialValues = !!initialValues;
     const labelStyles = hasInitialValues ? css.labelSelected : css.label;
 
     const buttonLabel = hasInitialValues
@@ -157,7 +157,7 @@ InputTextFilter.propTypes = {
   name: string.isRequired,
   urlParam: string.isRequired,
   label: string.isRequired,
-  initialValues: string,
+  initialValues: number,
   contentPlacementOffset: number,
 
   // form injectIntl

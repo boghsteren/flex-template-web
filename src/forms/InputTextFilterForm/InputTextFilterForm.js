@@ -9,7 +9,6 @@ import { FieldTextInput, Form } from '../../components';
 import css from './InputTextFilterForm.css';
 
 const InputTextFilterFormComponent = props => {
-  console.log({initialValues: props.initialValues})
   return (
     <FinalForm
       {...props}

@@ -31,7 +31,7 @@ const initialValues = (queryParams, paramName) => {
 };
 
 const initialGroupSizeValue = (queryParams, paramName) => {
-  return queryParams[paramName + '_min'] && queryParams[paramName + '_min'].split(",").length > 0 ? queryParams[paramName + '_min'].split(",")[1] : '';
+  return queryParams[paramName + '_min'] ? queryParams[paramName + '_min'] : '';
 };
 
 const initialPriceRangeValue = (queryParams, paramName) => {
@@ -129,7 +129,7 @@ const SearchFiltersComponent = props => {
   const handleGroupSize = (urlParam, values) => {
     
     const queryParams = values ?
-        { ...urlQueryParams, [urlParam + '_min']: `,${values}`, [urlParam + '_max']: `${values},` }
+        { ...urlQueryParams, [urlParam + '_min']: parseInt(values), [urlParam + '_max']: parseInt(values) }
         : omit(urlQueryParams, urlParam + '_min', urlParam + '_max');
 
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
