@@ -98,6 +98,7 @@ export {
 export { default as IconSpinner } from "./IconSpinner/IconSpinner";
 export { default as ImageCarousel } from "./ImageCarousel/ImageCarousel";
 export { default as ImageFromFile } from "./ImageFromFile/ImageFromFile";
+export { default as InputTextFilter } from "./InputTextFilter/InputTextFilter";
 export {
   default as LayoutSideNavigation
 } from "./LayoutSideNavigation/LayoutSideNavigation";

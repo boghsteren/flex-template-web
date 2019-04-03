@@ -31,6 +31,9 @@ export {
 } from "./EmailVerificationForm/EmailVerificationForm";
 export { default as EnquiryForm } from "./EnquiryForm/EnquiryForm";
 export {
+  default as InputTextFilterForm
+} from "./InputTextFilterForm/InputTextFilterForm";
+export {
   default as LocationSearchForm
 } from "./LocationSearchForm/LocationSearchForm";
 export { default as LoginForm } from "./LoginForm/LoginForm";
