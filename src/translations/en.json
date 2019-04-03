@@ -386,6 +386,14 @@
   "InboxPage.statePending": "Pending",
   "InboxPage.stateRequested": "Requested",
   "InboxPage.title": "Inbox",
+
+  "InputTextFilter.labelSelected": "{labelText} • {count}",
+  "InputTextFilterForm.cancel": "Cancel",
+  "InputTextFilterForm.clear": "Clear",
+  "InputTextFilterForm.submit": "Apply",
+  "InputTextFilterPlainForm.clear": "Clear",
+  "InputTextFilterPlainForm.labelSelected": "{labelText} • {count}",
+
   "LandingPage.schemaDescription":
     "A global marketplace for social impact experiences.",
   "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}", 
