@@ -282,12 +282,15 @@ class SearchFiltersMobileComponent extends Component {
 
     const initialGroupSize = this.initialGroupSizeValue(groupSizeFilter.paramName);
 
+    const inputLabel = intl.formatMessage({id: "SearchFilters.groupSizeInputLabel"})
+
     const groupSizeFilterElement = groupSizeFilter ? (
       <InputTextFilterPlain
         id="SearchFiltersMobile.groupSizeFilter"
         name="groupSize"
         urlParam={groupSizeFilter.paramName}
         label={groupSizeFilterLabel}
+        inputLabel={inputLabel}
         onSelect={this.handleGroupSize}
         initialValues={initialGroupSize}
       />

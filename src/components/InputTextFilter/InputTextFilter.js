@@ -91,7 +91,7 @@ class InputTextFilter extends Component {
   }
 
   render() {
-    const { rootClassName, className, id, name, label, initialValues, intl, type } = this.props;
+    const { rootClassName, className, id, name, label, inputLabel, initialValues, intl, type } = this.props;
     const classes = classNames(rootClassName || css.root, className);
 
     const hasInitialValues = !!initialValues;
@@ -125,6 +125,7 @@ class InputTextFilter extends Component {
         <InputTextFilterForm
           id={id}
           type={type}
+          inputLabel={inputLabel}
           onSubmit={this.handleSubmit}
           initialValues={namedInitialValues}
           enableReinitialize={true}

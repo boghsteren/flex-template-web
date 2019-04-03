@@ -39,6 +39,7 @@ class InputTextFilterPlainComponent extends Component {
       id,
       name,
       label,
+      inputLabel,
       initialValues,
       intl,
     } = this.props;
@@ -76,6 +77,7 @@ class InputTextFilterPlainComponent extends Component {
           id={id}
           className={optionsContainerClass}
           name={name}
+          inputLabel={inputLabel}
           type="number"
           initialValues={namedInitialValues}
           onChange={this.handleSelect}

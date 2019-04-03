@@ -771,6 +771,7 @@
   "SearchFilters.foundResults":
     "{count, number} {count, plural, one {result} other {results}}",
   "SearchFilters.groupSizeFilterLabel": "Group size",
+  "SearchFilters.groupSizeInputLabel": "Number of people",
   "SearchFilters.loadingResults": "Loading search results…",
   "SearchFilters.loadingResultsMobile": "Loading…",
   "SearchFilters.moreFiltersButton":

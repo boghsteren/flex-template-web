@@ -20,15 +20,19 @@ const InputTextFilterPlainForm = props => {
       onSubmit={() => null}
       mutators={{ ...arrayMutators }}
       render={formRenderProps => {
-        const { className, id, name, type } = formRenderProps;
+        const { className, id, name, type, inputLabel } = formRenderProps;
         return (
           <Form className={className}>
             <FormSpy onChange={handleChange} subscription={{ values: true, dirty: true }} />
-            <FieldTextInput
-              name={name}
-              id={`${id}`}
-              type={type}
-            />
+            <div style={{ display: 'flex' }}>
+              <label style={{ width: 150, marginTop: 10 }}>{inputLabel}</label>
+              <FieldTextInput
+                style={{width: 100}}                
+                name={name}
+                id={`${id}`}
+                type={type}
+              />
+            </div>
           </Form>
         );
       }}

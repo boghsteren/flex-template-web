@@ -169,12 +169,15 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
+  const inputLabel = intl.formatMessage({id: "SearchFilters.groupSizeInputLabel"})
+
   const groupSizeFilterElement = groupSizeFilter ? (
     <InputTextFilter
       id="SearchFilters.groupSizeFilter"
       urlParam={groupSizeFilter.paramName}
       onSubmit={handleGroupSize}
       label={groupSizeFilterLabel}
+      inputLabel={inputLabel}
       name="groupSize"
       type="number"
       initialValues={initialGroupSize}

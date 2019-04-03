@@ -28,6 +28,7 @@ const InputTextFilterFormComponent = props => {
           style,
           intl,
           type,
+          inputLabel,
         } = formRenderProps;
         const classes = classNames(css.root, { [css.isOpen]: isOpen });
 
@@ -48,12 +49,16 @@ const InputTextFilterFormComponent = props => {
             contentRef={contentRef}
             style={style}
           >
-            <FieldTextInput
-              className={css.fieldGroup}
-              name={name}
-              id={`${id}-input-text`}
-              type={type}
-            />
+            <div style={{display: 'flex'}}>
+              <label style={{width: 150, marginTop: 5}}>{inputLabel}</label>
+              <FieldTextInput
+                style={{width: 80, paddingBottom: 5}}
+                className={css.fieldGroup}
+                name={name}
+                id={`${id}-input-text`}
+                type={type}
+              />
+            </div>
             <div className={css.buttonsWrapper}>
               <button className={css.clearButton} type="button" onClick={onClear}>
                 {clear}
