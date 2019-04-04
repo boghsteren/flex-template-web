@@ -57,6 +57,7 @@ const InputTextFilterFormComponent = props => {
                 name={name}
                 id={`${id}-input-text`}
                 type={type}
+                placeholder="0"
               />
             </div>
             <div className={css.buttonsWrapper}>

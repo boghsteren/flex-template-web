@@ -31,6 +31,7 @@ const InputTextFilterPlainForm = props => {
                 name={name}
                 id={`${id}`}
                 type={type}
+                placeholder="0"
               />
             </div>
           </Form>
