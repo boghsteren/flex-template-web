@@ -50,9 +50,9 @@ const InputTextFilterFormComponent = props => {
             style={style}
           >
             <div style={{display: 'flex'}}>
-              <label style={{width: 150, marginTop: 5}}>{inputLabel}</label>
+              <label style={{width: 150, marginBottom: 7}}>{inputLabel}</label>
               <FieldTextInput
-                style={{width: 80, paddingBottom: 5}}
+                style={{width: 80, marginTop: 2, paddingBottom: 0, fontSize: 16, textAlign: 'center'}}
                 className={css.fieldGroup}
                 name={name}
                 id={`${id}-input-text`}

@@ -25,9 +25,9 @@ const InputTextFilterPlainForm = props => {
           <Form className={className}>
             <FormSpy onChange={handleChange} subscription={{ values: true, dirty: true }} />
             <div style={{ display: 'flex' }}>
-              <label style={{ width: 150, marginTop: 10 }}>{inputLabel}</label>
+              <label style={{ width: 150, marginTop: 5 }}>{inputLabel}</label>
               <FieldTextInput
-                style={{width: 100}}                
+                style={{width: 100, paddingBottom: 5, fontSize: 16, textAlign: 'center'}}                
                 name={name}
                 id={`${id}`}
                 type={type}
