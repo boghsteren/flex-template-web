@@ -67,15 +67,14 @@ export const group_size_brackets = [
 ];
 export const categories = [
   // { key: "study_trip", label: "Study trip" },
-  { key: "team_building", label: "Team building" },
+  // { key: "team_building", label: "Team building" },
+  { key: "guided_tour", label: "Guided tour" },
+  { key: "lecture", label: "Lecture" },
+  { key: "sport", label: "Sport" },
   { key: "volunteering", label: "Volunteering" },
-  { key: "giving_back", label: "Giving back" },
-  { key: "education", label: "Education" },
-  {
-    key: "workshop",
-    label: "Workshop"
-  },
-  { key: "guided_tour", label: "Guided tour" }
+  // { key: "giving_back", label: "Giving back" },
+  // { key: "education", label: "Education" },
+  { key: "workshop", label: "Workshop" },
 ];
 
 export const typeOfGroupContactEmail = [
