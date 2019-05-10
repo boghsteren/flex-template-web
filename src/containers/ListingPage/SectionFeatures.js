@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropertyGroup } from '../../components';
+import config from '../../config';
 
 import css from './ListingPage.css';
 
@@ -23,7 +24,9 @@ const SectionFeatures = props => {
         <h2 className={css.descriptionTitle}>
           <FormattedMessage id="ListingPage.whyBuyThisTitle" />
         </h2>
-        <p className={css.description}>{whyBuyThis}</p>
+        {whyBuyThis && whyBuyThis !== config.custom.ADMIN_STRING ?
+          <p className={css.description}>{whyBuyThis}</p> : null
+        }
       </div>
     </div>
   );

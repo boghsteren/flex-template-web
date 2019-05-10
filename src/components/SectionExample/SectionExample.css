@@ -1,5 +1,9 @@
 @import '../../marketplace.css';
 
+.root {
+  overflow: hidden;
+}
+
 .listingCards {
   padding: 0 24px 96px 24px;
 
@@ -15,7 +19,7 @@
 }
 
 .listingCard {
-  margin-bottom: 36px;
+  /* margin-bottom: 36px; */
   flex-basis: 100%;
 
   @media (--viewportLarge) {
@@ -93,11 +97,11 @@
 .locations {
   display: flex;
   flex-direction: column;
-  margin-top: 32px;
+  margin-top: 0px;
 
   @media (--viewportMedium) {
     flex-direction: row;
-    margin-top: 57px;
+    margin-top: 0px;
   }
 }
 

@@ -13,6 +13,7 @@
   --LandingPage_sectionMarginTop: 20px;
   --LandingPage_sectionMarginTopMedium: 40px;
   --LandingPage_sectionMarginTopLarge: 60px;
+  --LandingPage_cutDistanceToShowNextSection: 400px;
 }
 
 .root {
@@ -37,8 +38,8 @@
   }
 
   @media (--viewportLarge) {
-    min-height: 600px;
-    height: calc(100vh - var(--topbarHeightDesktop));
+    /* min-height: 570px; */
+    height: calc(100vh - var(--topbarHeightDesktop) - var(--LandingPage_cutDistanceToShowNextSection));
   }
 }
 
@@ -90,7 +91,7 @@
 
   @media (--viewportLarge) {
     max-width: calc(1052px + 36px + 36px);
-    margin: var(--LandingPage_sectionMarginTopLarge) auto 40px auto;
+    margin: var(--LandingPage_sectionMarginTopLarge) auto 15px auto;
     padding: 0 36px 0 36px;
   }
 }
@@ -100,19 +101,20 @@
 }
 
 .sectionExampleContent {
-  margin: 30px 24px 20px 24px;
+  margin: 0px 24px 20px 24px;
 
   @media (--viewportMedium) {
     margin: 30px 7.5vw 30px 7.5vw;
   }
 
   @media (--viewportLarge) {
-    margin: 0px auto 40px auto;
+    margin: 0px auto 0px auto;
   }
 }
 
 .certificateLogoContainer {
   position: absolute;
+  z-index: 6;
   bottom:0;
   right:0;
 }
@@ -140,6 +142,14 @@
 }
 
 .sectionWhatIsIt {
+  background-color: var(--matterColorShine) !important;
+}
+
+.sectionWhatIsIt .sectionContent {
+  margin-bottom: 0px;
+}
+
+.sectionHelpWorldBetter {
   background-color: var(--matterColorShine) !important;
 }
 

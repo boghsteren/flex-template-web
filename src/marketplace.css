@@ -69,6 +69,8 @@
   --linkColorGrey: #666666;
 
   --linkColorTeal: #1e6d6f;
+  --colorTealLight: #87c9bf;
+  --colorTealDark: #57817c;
 
   --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
 
@@ -579,4 +581,5 @@
 
 @custom-media --viewportMedium (min-width: 768px);
 @custom-media --viewportLarge (min-width: 1024px);
+@custom-media --viewportMLarge (min-width: 1200px);
 @custom-media --viewportXLarge (min-width: 1921px);

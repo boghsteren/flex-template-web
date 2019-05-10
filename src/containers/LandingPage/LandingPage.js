@@ -22,6 +22,7 @@ import {
   SectionTargetGroup,
   SectionWhatIsIt,
   SectionExample,
+  SectionHelpWorldBetter,
   LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
@@ -126,6 +127,11 @@ export const LandingPageComponent = props => {
                     <SectionExample 
                       listings={unauthListings}
                     />
+                  </div>
+                </li>
+                <li className={classNames(css.section, css.sectionHelpWorldBetter)}>
+                  <div className={css.sectionContent}>
+                    <SectionHelpWorldBetter />
                   </div>
                 </li>
                 <li className={classNames(css.section, css.sectionContentGray)}>

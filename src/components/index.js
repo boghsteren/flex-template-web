@@ -98,6 +98,8 @@ export {
 export { default as IconSpinner } from "./IconSpinner/IconSpinner";
 export { default as ImageCarousel } from "./ImageCarousel/ImageCarousel";
 export { default as ImageFromFile } from "./ImageFromFile/ImageFromFile";
+export { default as InputTextFilter } from "./InputTextFilter/InputTextFilter";
+export { default as InputTextFilterPlain } from "./InputTextFilterPlain/InputTextFilterPlain";
 export {
   default as LayoutSideNavigation
 } from "./LayoutSideNavigation/LayoutSideNavigation";
@@ -192,6 +194,7 @@ export {
 export {
   default as SectionHighlightsOfTheMonth
 } from "./SectionHighlightsOfTheMonth/SectionHighlightsOfTheMonth";
+export { default as SectionHelpWorldBetter } from "./SectionHelpWorldBetter/SectionHelpWorldBetter";
 export {
   default as SectionThumbnailLinks
 } from "./SectionThumbnailLinks/SectionThumbnailLinks";

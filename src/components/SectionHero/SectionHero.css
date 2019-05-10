@@ -40,7 +40,13 @@
 }
 
 .root {
+  position: relative;
   @apply --backgroundImage;
+  background: url("../../assets/background-1440.jpg");
+  background-color: var(--colorTealLight);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -51,6 +57,17 @@
   /* Text positioning is done with paddings */
   padding: 0 24px 0 24px;
 
+  &::after {
+    content: '';
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+  }
+
   @media (--viewportMedium) {
     padding: 0 0 0 7.5vw;
   }
@@ -58,10 +75,17 @@
   @media (--viewportLarge) {
     padding: 0 0 0 15vw;
   }
+
+  @media screen and (min-width: 1200px) {
+    background-size: cover;
+    background-position: 0px -80px;
+  }
 }
 
 .heroMainTitle {
   @apply --marketplaceHeroTitleFontStyles;
+  position: relative;
+  z-index: 6;
   color: var(--matterColorLight);
 
   @apply --SectionHero_animation;
@@ -74,16 +98,18 @@
 
 .heroSubTitle {
   @apply --marketplaceBodyFontStyles;
+  position: relative;
+  z-index: 6;
 
   color: var(--matterColorLight);
-  margin: 0 0 32px 0;
+  margin: 0 0 28px 0;
 
   @apply --SectionHero_animation;
   animation-delay: 0.65s;
 
   @media (--viewportMedium) {
     max-width: var(--SectionHero_desktopTitleMaxWidth);
-    margin: 0 0 63px 0;
+    margin: 0 0 45px 0;
   }
 }
 
@@ -125,6 +151,8 @@
 }
 
 .wrapperGetStarted {
+  position: relative;
+  z-index: 6;
   @media (--viewportMedium) {
     display: block;
     width: 300px;

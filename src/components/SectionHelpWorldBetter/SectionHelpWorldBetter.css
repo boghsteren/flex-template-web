@@ -3,7 +3,7 @@
 :root {
   --Image_animation: {
     animation-name: animationImage;
-    animation-duration: 1.8s;
+    animation-duration: 1.2s;
     animation-timing-function: ease-out;
     -webkit-animation-fill-mode: forwards;
 
@@ -30,11 +30,13 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 
   @media (--viewportLarge) {
-    margin-top: 0px;
+    margin: 0px;
     flex-direction: row;
+    padding-bottom: 30px;
   }
 }
 
@@ -62,7 +64,16 @@
 
 .imageWrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-basis: 53%;
+  padding: 0px;
+
+  @media (--viewportMedium) {
+    padding: 50px 80px;
+  }
 }
 
 .screenTrans {
@@ -70,4 +81,40 @@
   animation-delay: 0.8s;
   position: relative;
   width: 100%;
+  background-color: var(--colorTealDark);
+
+  @media (--viewportLarge) {
+    
+  }
+
+  @media (--viewportMLarge) {
+    margin-top: 80px;
+  }
+}
+
+.screenTransText {
+  @apply --Image_animation;
+  animation-delay: 0.8s;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  color: var(--matterColorLight);
+  bottom: 20px;
+  padding: 20px 20px;
+
+  @media (--viewportMedium) {
+    font-size: 18px;
+    bottom: 60px;
+    padding: 80px 140px;
+  }
+
+  @media (--viewportLarge) {
+    bottom: 160px;  
+    padding: 80px 100px;
+  }
+
+  @media (--viewportMLarge) {
+    bottom: 40px;
+  }
 }

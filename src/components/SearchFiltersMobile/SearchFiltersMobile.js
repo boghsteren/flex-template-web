@@ -13,7 +13,7 @@ import {
   Button,
   SelectSingleFilterPlain,
   SelectMultipleFilterPlain,
-  PriceFilter,
+  InputTextFilterPlain,
 } from "../../components";
 import { propTypes } from "../../util/types";
 import config from "../../config";
@@ -33,12 +33,10 @@ class SearchFiltersMobileComponent extends Component {
     this.resetAll = this.resetAll.bind(this);
     this.handleSelectSingle = this.handleSelectSingle.bind(this);
     this.handleSelectMultiple = this.handleSelectMultiple.bind(this);
-    this.handleGroupSize = this.handleGroupSize.bind(this);
     this.handlePrice = this.handlePrice.bind(this);
     this.initialValue = this.initialValue.bind(this);
     this.initialValues = this.initialValues.bind(this);
     this.initialPriceRangeValue = this.initialPriceRangeValue.bind(this);
-    this.initialGroupSizeRangeValue = this.initialGroupSizeRangeValue.bind(this);
   }
 
   // Open filters modal, set the initial parameters to current ones
@@ -110,16 +108,15 @@ class SearchFiltersMobileComponent extends Component {
     );
   }
 
-  handleGroupSize(urlParam, range) {
+  handleGroupSize = (urlParam, values) => {
     const { urlQueryParams, history } = this.props;
-    const { minPrice, maxPrice } = range || {};
-    const queryParams =
-      minPrice != null && maxPrice != null
-        ? { ...urlQueryParams, [urlParam + '_min']: `${minPrice},`, [urlParam + '_max']: maxPrice >= config.custom.MAX_GROUP_SIZE_SLIDER ? null :  `,${maxPrice}` }
+    
+    const queryParams = values ?
+        { ...urlQueryParams, [urlParam + '_min']: parseInt(values), [urlParam + '_max']: parseInt(values) }
         : omit(urlQueryParams, urlParam + '_min', urlParam + '_max');
 
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  }
+  };
 
   handlePrice(urlParam, range) {
     const { urlQueryParams, history } = this.props;
@@ -165,20 +162,10 @@ class SearchFiltersMobileComponent extends Component {
       : [];
   }
 
-  initialGroupSizeRangeValue(paramName) {
+  initialGroupSizeValue = (paramName) => {
     const urlQueryParams = this.props.urlQueryParams;
-    const minPrice = urlQueryParams[paramName + '_min'];
-    const maxPrice = urlQueryParams[paramName + '_max'];
-    const valMin = !!minPrice ? minPrice.split(',')[0] : config.custom.MIN_GROUP_SIZE_SLIDER;
-    const valMax = !!maxPrice ? maxPrice.split(',')[1] : config.custom.MAX_GROUP_SIZE_SLIDER;
-
-    return !!valMin && !!valMax
-      ? {
-        minPrice: parseInt(valMin),
-        maxPrice: parseInt(valMax),
-      }
-      : null;
-  }
+    return urlQueryParams[paramName + '_min'] ? urlQueryParams[paramName + '_min'] : '';
+  };
 
   initialPriceRangeValue(paramName) {
     const urlQueryParams = this.props.urlQueryParams;
@@ -264,10 +251,6 @@ class SearchFiltersMobileComponent extends Component {
       id: "SearchFilters.groupSizeFilterLabel"
     });
 
-    const initialGroupSize = groupSizeFilter
-      ? this.initialValue(groupSizeFilter.paramName)
-      : null;
-
     const categoryFilterElement = categoryFilter ? (
       <SelectSingleFilterPlain
         urlParam={categoryFilter.paramName}
@@ -297,19 +280,19 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
-    const initialGroupSizeRange = this.initialGroupSizeRangeValue(groupSizeFilter.paramName);
+    const initialGroupSize = this.initialGroupSizeValue(groupSizeFilter.paramName);
+
+    const inputLabel = intl.formatMessage({id: "SearchFilters.groupSizeInputLabel"})
 
     const groupSizeFilterElement = groupSizeFilter ? (
-      <PriceFilter
+      <InputTextFilterPlain
         id="SearchFiltersMobile.groupSizeFilter"
+        name="groupSize"
         urlParam={groupSizeFilter.paramName}
-        onSubmit={this.handleGroupSize}
-        liveEdit
-        labelProps="SearchFilters.groupSizeFilterLabel"
-        unitProps="People"
-        {...groupSizeFilter.config}
-        initialValues={initialGroupSizeRange}
-        isGroupSize={true}
+        label={groupSizeFilterLabel}
+        inputLabel={inputLabel}
+        onSelect={this.handleGroupSize}
+        initialValues={initialGroupSize}
       />
     ) : null;
 
