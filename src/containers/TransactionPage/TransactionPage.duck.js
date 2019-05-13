@@ -10,6 +10,12 @@ import {
   TRANSITION_REVIEW_1_BY_PROVIDER,
   TRANSITION_REVIEW_2_BY_CUSTOMER,
   TRANSITION_REVIEW_2_BY_PROVIDER,
+  TRANSITION_ENQUIRE,
+  TRANSITION_REQUEST,
+  TRANSITION_REQUEST_AFTER_ENQUIRY,
+  TRANSITION_CANCEL,
+  TRANSITION_EXPIRE_ENQUIRY,
+  TRANSITION_EXPIRE_ENQUIRY_ACCEPTED,
 } from '../../util/types';
 import * as log from '../../util/log';
 import {
@@ -19,6 +25,8 @@ import {
 } from '../../util/data';
 import { addMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { fetchCurrentUserNotifications } from '../../ducks/user.duck';
+import config from '../../config';
+import { createProviderLineItems, createRefundLineItems } from './TransactionPage.helpers';
 
 const { UUID } = sdkTypes;
 
@@ -238,7 +246,6 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
       const listing = denormalised[0];
 
       const canFetchListing = listing && listing.attributes && !listing.attributes.deleted;
-
       if (canFetchListing) {
         return sdk.listings.show({
           id: listingId,
@@ -249,11 +256,83 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
         return response;
       }
     })
-    .then(response => {
-      dispatch(addMarketplaceEntities(txResponse));
-      dispatch(addMarketplaceEntities(response));
-      dispatch(fetchTransactionSuccess(txResponse));
-      return response;
+    .then(listingResponse => {
+      const listingId = listingRelationship(txResponse).id;
+      const lastTransition = txResponse.data.data.attributes.lastTransition;
+      console.log(lastTransition)
+      const currentUser = getState().user.currentUser;
+      const isCustomer = currentUser && currentUser.id.uuid === txResponse.data.data.relationships.customer.data.id.uuid;
+      if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && isCustomer) {
+        const booking = txResponse.data.included.find(include => {
+          return include.type === 'booking';
+        });
+        const listing = txResponse.data.included.find(include => {
+          return include.type === 'listing';
+        });
+        const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
+        const { price_scheme, seats } = txResponse.data.data.attributes.protectedData;
+        const params = {
+          bookingEnd: booking.attributes.end,
+          bookingStart: booking.attributes.start,
+          bookingDisplayStart: booking.attributes.displayStart,
+          bookingDisplayEnd: booking.attributes.displayEnd,
+          listingId: listingId,
+          protectedData: txResponse.data.data.attributes.protectedData,
+          quantity: price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats,
+        };
+        const bodyParams = {
+          transition: TRANSITION_REQUEST,
+          processAlias: config.bookingProcessAlias,
+          params: {
+            ...params,
+            cardToken: 'CheckoutPage_speculative_card_token',
+          },
+        };
+        const queryParams = {
+          include: ['booking', 'provider'],
+          expand: true,
+        };
+        return sdk.transactions
+          .initiateSpeculative(bodyParams, queryParams)
+          .then(response => {
+            txResponse.data.data.attributes.lineItems = response.data.data.attributes.lineItems;
+            txResponse.data.data.attributes.payinTotal = response.data.data.attributes.payinTotal;
+            txResponse.data.data.attributes.payoutTotal = response.data.data.attributes.payoutTotal;
+
+            dispatch(addMarketplaceEntities(txResponse));
+            dispatch(addMarketplaceEntities(listingResponse));
+            dispatch(fetchTransactionSuccess(txResponse));
+            return txResponse;
+          })
+      } else if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && !isCustomer) {
+
+        const { lineItems, attributes } = createProviderLineItems(listingResponse, txResponse);
+        txResponse.data.data.attributes.lineItems = lineItems;
+        txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
+        txResponse.data.data.attributes.payoutTotal = attributes.payoutTotal;
+
+        dispatch(addMarketplaceEntities(txResponse));
+        dispatch(addMarketplaceEntities(listingResponse));
+        dispatch(fetchTransactionSuccess(txResponse));
+        return listingResponse;
+      } else if ((lastTransition === TRANSITION_CANCEL || lastTransition === TRANSITION_DECLINE ||
+        lastTransition === TRANSITION_EXPIRE_ENQUIRY ||
+        lastTransition === TRANSITION_EXPIRE_ENQUIRY_ACCEPTED)) {
+        const { lineItems, attributes } = createRefundLineItems(listingResponse, txResponse);
+        txResponse.data.data.attributes.lineItems = lineItems;
+        txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
+        txResponse.data.data.attributes.payoutTotal = attributes.payoutTotal;
+
+        dispatch(addMarketplaceEntities(txResponse));
+        dispatch(addMarketplaceEntities(listingResponse));
+        dispatch(fetchTransactionSuccess(txResponse));
+        return listingResponse;
+      } else {
+        dispatch(addMarketplaceEntities(txResponse));
+        dispatch(addMarketplaceEntities(listingResponse));
+        dispatch(fetchTransactionSuccess(txResponse));
+        return listingResponse;
+      }
     })
     .catch(e => {
       dispatch(fetchTransactionError(storableError(e)));
@@ -261,7 +340,7 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
     });
 };
 
-export const acceptSale = id => (dispatch, getState, sdk) => {
+export const acceptSale = (id, tx) => (dispatch, getState, sdk) => {
   if (acceptOrDeclineInProgress(getState())) {
     return Promise.reject(new Error('Accept or decline already in progress'));
   }
@@ -270,10 +349,15 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })
     .then(response => {
-      dispatch(addMarketplaceEntities(response));
+      let txResponse = response;
+      const { lineItems, attributes } = createProviderLineItems({ data: { data: tx.listing } }, { data: { data: tx } });
+      txResponse.data.data.attributes.lineItems = lineItems;
+      txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
+      txResponse.data.data.attributes.payoutTotal = attributes.payoutTotal;
+      dispatch(addMarketplaceEntities(txResponse));
       dispatch(acceptSaleSuccess());
       dispatch(fetchCurrentUserNotifications());
-      return response;
+      return txResponse;
     })
     .catch(e => {
       dispatch(acceptSaleError(storableError(e)));
@@ -285,7 +369,7 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
     });
 };
 
-export const declineSale = id => (dispatch, getState, sdk) => {
+export const declineSale = (id, tx) => (dispatch, getState, sdk) => {
   if (acceptOrDeclineInProgress(getState())) {
     return Promise.reject(new Error('Accept or decline already in progress'));
   }
@@ -294,6 +378,11 @@ export const declineSale = id => (dispatch, getState, sdk) => {
   return sdk.transactions
     .transition({ id, transition: TRANSITION_DECLINE, params: {} }, { expand: true })
     .then(response => {
+      let txResponse = response;
+      const { lineItems, attributes } = createRefundLineItems({ data: { data: tx.listing } }, { data: { data: tx } });
+      txResponse.data.data.attributes.lineItems = lineItems;
+      txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
+      txResponse.data.data.attributes.payoutTotal = attributes.payoutTotal;
       dispatch(addMarketplaceEntities(response));
       dispatch(declineSaleSuccess());
       dispatch(fetchCurrentUserNotifications());
@@ -304,6 +393,33 @@ export const declineSale = id => (dispatch, getState, sdk) => {
       log.error(e, 'reject-sale-failed', {
         txId: id,
         transition: TRANSITION_DECLINE,
+      });
+      throw e;
+    });
+};
+
+export const payment = (id, params) => (dispatch, getState, sdk) => {
+  if (acceptOrDeclineInProgress(getState())) {
+    return Promise.reject(new Error('Accept or decline already in progress'));
+  }
+  dispatch(declineSaleRequest());
+  const bodyParams = {
+    ...params
+  };
+
+  return sdk.transactions
+    .transition({ id, transition: TRANSITION_REQUEST_AFTER_ENQUIRY, params: bodyParams }, { expand: true })
+    .then(response => {
+      dispatch(addMarketplaceEntities(response));
+      dispatch(declineSaleSuccess());
+      dispatch(fetchCurrentUserNotifications());
+      return response;
+    })
+    .catch(e => {
+      dispatch(acceptSaleError(storableError(e)));
+      log.error(e, 'request-after-enquiry-failed', {
+        txId: id,
+        transition: TRANSITION_REQUEST_AFTER_ENQUIRY,
       });
       throw e;
     });

@@ -28,6 +28,7 @@ import {
   sendMessage,
   sendReview,
   fetchMoreMessages,
+  payment,
 } from './TransactionPage.duck';
 import css from './TransactionPage.css';
 
@@ -64,6 +65,7 @@ export const TransactionPageComponent = props => {
     declineSaleError,
     onAcceptSale,
     onDeclineSale,
+    onPaymentAfterEnquiry,
   } = props;
 
   const currentTransaction = ensureTransaction(transaction);
@@ -158,6 +160,7 @@ export const TransactionPageComponent = props => {
       declineInProgress={declineInProgress}
       acceptSaleError={acceptSaleError}
       declineSaleError={declineSaleError}
+      onPaymentAfterEnquiry={onPaymentAfterEnquiry}
     />
   ) : (
     loadingOrFailedFetching
@@ -271,8 +274,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAcceptSale: transactionId => dispatch(acceptSale(transactionId)),
-    onDeclineSale: transactionId => dispatch(declineSale(transactionId)),
+    onPaymentAfterEnquiry: (transactionId, params) => dispatch(payment(transactionId, params)),
+    onAcceptSale: (transactionId, tx) => dispatch(acceptSale(transactionId, tx)),
+    onDeclineSale: (transactionId, tx) => dispatch(declineSale(transactionId, tx)),
     onShowMoreMessages: txId => dispatch(fetchMoreMessages(txId)),
     onSendMessage: (txId, message) => dispatch(sendMessage(txId, message)),
     onManageDisableScrolling: (componentId, disableScrolling) =>

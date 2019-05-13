@@ -251,14 +251,14 @@ export const SaleActionButtonsMaybe = props => {
         <SecondaryButton
           inProgress={declineInProgress}
           disabled={buttonsDisabled}
-          onClick={() => onDeclineSale(transaction.id)}
+          onClick={() => onDeclineSale(transaction.id, transaction)}
         >
           <FormattedMessage id="TransactionPanel.declineButton" />
         </SecondaryButton>
         <PrimaryButton
           inProgress={acceptInProgress}
           disabled={buttonsDisabled}
-          onClick={() => onAcceptSale(transaction.id)}
+          onClick={() => onAcceptSale(transaction.id, transaction)}
         >
           <FormattedMessage id="TransactionPanel.acceptButton" />
         </PrimaryButton>

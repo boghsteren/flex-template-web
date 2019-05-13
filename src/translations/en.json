@@ -978,7 +978,7 @@
     "There is no card on a customer that is being charged.",
   "StripePaymentForm.stripe.validation_error.processing_error":
     "An error occurred while processing the card.",
-  "StripePaymentForm.submitPaymentInfo": "Send request",
+  "StripePaymentForm.submitPaymentInfo": "Create payment",
   "TermsOfServicePage.heading": "Terms and Conditions",
   "TermsOfServicePage.privacyTabTitle": "Privacy Policy",
   "TermsOfServicePage.schemaTitle": "Terms and Conditions | {siteTitle}",

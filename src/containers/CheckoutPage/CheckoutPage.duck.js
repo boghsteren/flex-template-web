@@ -2,7 +2,7 @@ import pick from 'lodash/pick';
 import config from '../../config';
 import { denormalisedResponseEntities } from '../../util/data';
 import { storableError } from '../../util/errors';
-import { TRANSITION_REQUEST } from '../../util/types';
+import { TRANSITION_REQUEST, TRANSITION_ENQUIRE } from '../../util/types';
 import * as log from '../../util/log';
 import { fetchCurrentUserHasOrdersSuccess } from '../../ducks/user.duck';
 
@@ -189,5 +189,45 @@ export const speculateTransaction = params => (dispatch, getState, sdk) => {
         bookingEnd,
       });
       return dispatch(speculateTransactionError(storableError(e)));
+    });
+};
+
+
+export const sendEnquiryBooking = (orderParams, initialMessage) => (dispatch, getState, sdk) => {
+  dispatch(initiateOrderRequest());
+  const bodyParams = {
+    transition: TRANSITION_ENQUIRE,
+    processAlias: config.bookingProcessAlias,
+    params: orderParams,
+  };
+  return sdk.transactions
+    .initiate(bodyParams)
+    .then(response => {
+      const orderId = response.data.data.id;
+      dispatch(initiateOrderSuccess(orderId));
+      dispatch(fetchCurrentUserHasOrdersSuccess(true));
+
+      if (initialMessage) {
+        return sdk.messages
+          .send({ transactionId: orderId, content: initialMessage })
+          .then(() => {
+            return { orderId, initialMessageSuccess: true };
+          })
+          .catch(e => {
+            log.error(e, 'initial-message-send-failed', { txId: orderId });
+            return { orderId, initialMessageSuccess: false };
+          });
+      } else {
+        return Promise.resolve({ orderId, initialMessageSuccess: true });
+      }
+    })
+    .catch(e => {
+      dispatch(initiateOrderError(storableError(e)));
+      log.error(e, 'initiate-order-failed', {
+        listingId: orderParams.listingId.uuid,
+        bookingStart: orderParams.bookingStart,
+        bookingEnd: orderParams.bookingEnd,
+      });
+      throw e;
     });
 };

@@ -29,7 +29,7 @@ const customerCommissionPercentage = 0.1;
 //
 // In a way, 'processAlias' defines which transaction process (or processes)
 // this particular web application is able to handle.
-const bookingProcessAlias = "goodwings-unit/release-1";
+const bookingProcessAlias = "goodwings-unit-2/release-1";
 
 // The transaction line item code for the main unit type in bookings.
 //

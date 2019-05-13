@@ -63,6 +63,7 @@ const LineItemBookingPeriod = props => {
   );
 
   if (!unitPurchase) {
+    return null;
     throw new Error(`LineItemBookingPeriod: lineItem (${unitType}) missing`);
   }
 

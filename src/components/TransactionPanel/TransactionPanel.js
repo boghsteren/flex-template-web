@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { injectIntl, intlShape, FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import { txIsEnquired, txIsRequested, propTypes } from "../../util/types";
+import { txIsEnquired, txIsRequested, propTypes, txIsAccepted } from "../../util/types";
 import { ensureListing, ensureTransaction, ensureUser } from "../../util/data";
 import { isMobileSafari } from "../../util/userAgent";
 import {
@@ -11,7 +11,7 @@ import {
   ResponsiveImage,
   ReviewModal
 } from "../../components";
-import { SendMessageForm } from "../../forms";
+import { SendMessageForm, StripePaymentForm } from "../../forms";
 
 // These are internal components that make this file more readable.
 import {
@@ -33,7 +33,8 @@ export class TransactionPanelComponent extends Component {
     this.state = {
       sendMessageFormFocused: false,
       isReviewModalOpen: false,
-      reviewSubmitted: false
+      reviewSubmitted: false,
+      submitting: false,
     };
     this.isMobSaf = false;
     this.sendMessageFormName = "TransactionPanel.SendMessageForm";
@@ -44,6 +45,38 @@ export class TransactionPanelComponent extends Component {
     this.onSendMessageFormBlur = this.onSendMessageFormBlur.bind(this);
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.scrollToMessage = this.scrollToMessage.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+
+  handleSubmit(values) {
+    if (this.state.submitting) {
+      return;
+    }
+    this.setState({ submitting: true });
+
+    const cardToken = values.token;
+    const {
+      history,
+      onPaymentAfterEnquiry,
+      dispatch,
+      transaction
+    } = this.props;
+
+    // Create order aka transaction
+    // NOTE: if unit type is line-item/units, quantity needs to be added.
+    // The way to pass it to checkout page is through pageData.bookingData
+    const listing = transaction.listing;
+    const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
+    const { price_scheme, seats } = transaction.attributes.protectedData;
+    const quantity = price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats
+
+    const requestParams = {
+      quantity: quantity,
+      cardToken,
+    };
+
+    onPaymentAfterEnquiry(transaction.id, requestParams);
   }
 
   componentWillMount() {
@@ -154,12 +187,12 @@ export class TransactionPanelComponent extends Component {
     const isCustomerBanned =
       customerLoaded && currentCustomer.attributes.banned;
     const canShowSaleButtons =
-      isProvider && txIsRequested(currentTransaction) && !isCustomerBanned;
+      isProvider && txIsEnquired(currentTransaction) && !isCustomerBanned;
     const isProviderLoaded = !!currentProvider.id;
     const isProviderBanned =
       isProviderLoaded && currentProvider.attributes.banned;
     const canShowBookButton =
-      isCustomer && txIsEnquired(currentTransaction) && !isProviderBanned;
+      isCustomer && txIsAccepted(currentTransaction) && !isProviderBanned;
 
     const bannedUserDisplayName = intl.formatMessage({
       id: "TransactionPanel.bannedUserDisplayName"
@@ -187,7 +220,7 @@ export class TransactionPanelComponent extends Component {
         : null;
 
     const actionButtonClasses = classNames(css.actionButtons);
-    const canShowActionButtons = canShowBookButton || canShowSaleButtons;
+    const canShowActionButtons = canShowSaleButtons;
 
     let actionButtons = null;
     if (canShowSaleButtons) {
@@ -202,14 +235,6 @@ export class TransactionPanelComponent extends Component {
           declineSaleError={declineSaleError}
           onAcceptSale={onAcceptSale}
           onDeclineSale={onDeclineSale}
-        />
-      );
-    } else if (canShowBookButton) {
-      actionButtons = (
-        <OrderActionButtonMaybe
-          rootClassName={actionButtonClasses}
-          canShowButtons={canShowBookButton}
-          listing={currentListing}
         />
       );
     }
@@ -312,6 +337,19 @@ export class TransactionPanelComponent extends Component {
               onBlur={this.onSendMessageFormBlur}
               onSubmit={this.onMessageSubmit}
             />
+
+            {canShowBookButton ? (
+              <StripePaymentForm
+                className={css.paymentForm}
+                onSubmit={this.handleSubmit}
+                inProgress={this.state.submitting}
+                formId="CheckoutPagePaymentForm"
+                authorDisplayName={
+                  transaction.provider.attributes.profile.publicData.organisation
+                }
+              />
+            ) : null}
+
             {canShowActionButtons ? (
               <div className={css.mobileActionButtons}>{actionButtons}</div>
             ) : null}
@@ -350,14 +388,14 @@ export class TransactionPanelComponent extends Component {
                   />
                 </div>
               ) : (
-                <div className={css.detailCardHeadingsProvider}>
-                  <AddressLinkMaybe
-                    transaction={currentTransaction}
-                    transactionRole={transactionRole}
-                    currentListing={currentListing}
-                  />
-                </div>
-              )}
+                  <div className={css.detailCardHeadingsProvider}>
+                    <AddressLinkMaybe
+                      transaction={currentTransaction}
+                      transactionRole={transactionRole}
+                      currentListing={currentListing}
+                    />
+                  </div>
+                )}
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
@@ -419,6 +457,7 @@ TransactionPanelComponent.propTypes = {
   onShowMoreMessages: func.isRequired,
   onSendMessage: func.isRequired,
   onSendReview: func.isRequired,
+  onPaymentAfterEnquiry: func.isRequired,
 
   // Sale related props
   onAcceptSale: func.isRequired,

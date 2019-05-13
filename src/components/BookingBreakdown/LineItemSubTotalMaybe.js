@@ -45,7 +45,8 @@ const LineItemSubTotalMaybe = props => {
   );
 
   if (!unitPurchase) {
-    throw new Error(`LineItemSubTotalMaybe: lineItem (${unitType}) missing`);
+    return null;
+    // throw new Error(`LineItemSubTotalMaybe: lineItem (${unitType}) missing`);
   }
 
   const formattedSubTotal = formatMoney(intl, unitPurchase.lineTotal);

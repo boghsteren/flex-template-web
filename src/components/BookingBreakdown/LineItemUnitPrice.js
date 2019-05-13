@@ -18,6 +18,7 @@ const LineItemUnitPrice = props => {
   );
 
   if (!unitPurchase) {
+    return null;
     throw new Error(`LineItemUnitPrice: lineItem (${unitType}) missing`);
   }
 

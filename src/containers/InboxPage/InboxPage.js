@@ -39,10 +39,12 @@ import {
 } from "../../components";
 import { TopbarContainer, NotFoundPage } from "../../containers";
 import config from "../../config";
+import { types as sdkTypes } from '../../util/sdkLoader';
 
 import { loadData } from "./InboxPage.duck";
 import css from "./InboxPage.css";
 
+const { Money } = sdkTypes;
 const { arrayOf, bool, number, oneOf, shape, string } = PropTypes;
 
 const formatDate = (intl, date) => {
@@ -145,7 +147,8 @@ const bookingData = (unitType, tx, isOrder, intl) => {
   const bookingPrice = isOrder
     ? tx.attributes.payinTotal
     : tx.attributes.payoutTotal;
-  const price = formatMoney(intl, bookingPrice);
+  const ensurePrice = bookingPrice ? bookingPrice : new Money(0, config.currency);  
+  const price = formatMoney(intl, ensurePrice);
   return { bookingStart, bookingEnd, price, isSingleDay };
 };
 

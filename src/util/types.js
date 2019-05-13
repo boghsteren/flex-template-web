@@ -209,6 +209,9 @@ export const TRANSITION_REQUEST = 'transition/request';
 export const TRANSITION_ENQUIRE = 'transition/enquire';
 export const TRANSITION_REQUEST_AFTER_ENQUIRY = 'transition/request-after-enquiry';
 
+export const TRANSITION_EXPIRE_ENQUIRY = 'transition/request-after-enquiry';
+export const TRANSITION_EXPIRE_ENQUIRY_ACCEPTED = 'transition/request-after-enquiry';
+
 // When the provider accepts or declines a transaction from the
 // SalePage, it is transitioned with the accept or decline transition.
 export const TRANSITION_ACCEPT = 'transition/accept';
@@ -240,6 +243,8 @@ export const TRANSITIONS = [
   TRANSITION_COMPLETE,
   TRANSITION_DECLINE,
   TRANSITION_ENQUIRE,
+  TRANSITION_EXPIRE_ENQUIRY_ACCEPTED,
+  TRANSITION_EXPIRE_ENQUIRY,
   TRANSITION_EXPIRE,
   TRANSITION_EXPIRE_CUSTOMER_REVIEW_PERIOD,
   TRANSITION_EXPIRE_PROVIDER_REVIEW_PERIOD,

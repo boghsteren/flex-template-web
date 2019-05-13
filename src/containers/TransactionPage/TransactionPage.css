@@ -17,6 +17,12 @@
   color: var(--failColor);
 }
 
+.paymentForm {
+  margin-left: 24px;
+  margin-right: 24px;
+  flex-grow: 1;
+}
+
 .tabContent {
   display: none;
 }
