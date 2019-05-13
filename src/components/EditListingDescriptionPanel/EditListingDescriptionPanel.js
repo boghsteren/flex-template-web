@@ -32,8 +32,8 @@ const EditListingDescriptionPanel = props => {
       values={{ listingTitle: <ListingLink listing={listing} /> }}
     />
   ) : (
-    <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
-  );
+      <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
+    );
 
   return (
     <div className={classes}>
@@ -47,7 +47,10 @@ const EditListingDescriptionPanel = props => {
           group_size: publicData.group_size_min && publicData.group_size_max ? [publicData.group_size_min, publicData.group_size_max] : [1, 31],
           contact: publicData.contact,
           included: publicData.included,
-          duration: publicData.duration
+          duration: publicData.duration,
+          contactName: publicData.contactName,
+          contactEmail: publicData.contactEmail,
+          contactNumber: publicData.contactNumber,
         }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
@@ -58,18 +61,25 @@ const EditListingDescriptionPanel = props => {
             group_size,
             contact,
             duration,
-            category
+            category,
+            contactName,
+            contactEmail,
+            contactNumber,
           } = values;
           const updateValues = {
             title: title.trim(),
             description,
-            publicData: { 
-              included, 
+            publicData: {
+              included,
               group_size_min: group_size[0],
               group_size_max: group_size[1],
-              contact, 
-              duration, 
-              category }
+              contact,
+              duration,
+              contactName,
+              contactEmail,
+              contactNumber,
+              category
+            }
           };
 
           onSubmit(updateValues);
@@ -80,7 +90,7 @@ const EditListingDescriptionPanel = props => {
         updateInProgress={updateInProgress}
         group_size_brackets={config.custom.group_size_brackets}
         categories={config.custom.categories}
-        groupSize={publicData.group_size_min && publicData.group_size_max  ? [publicData.group_size_min, publicData.group_size_max] : [1,31]}
+        groupSize={publicData.group_size_min && publicData.group_size_max ? [publicData.group_size_min, publicData.group_size_max] : [1, 31]}
       />
     </div>
   );

@@ -166,6 +166,35 @@ export const BreakdownMaybe = props => {
   ) : null;
 };
 
+export const ContactMaybe = props => {
+  const {
+    intl,
+    listing,
+    isProvider,
+    currentCustomer,
+    currentProvider,
+    transaction,
+    rootClassName,
+    className
+  } = props;
+  const classes = classNames(rootClassName || css.contact, className);
+  const showContact = (!isProvider && listing.attributes.publicData.contactNumber) ||
+    (isProvider && transaction.attributes.protectedData.phoneNumber);
+  return showContact ? (
+    <div className={classes}>
+      <FormattedMessage
+        id="TransactionPanel.contact"
+        values={{
+          name: isProvider ? currentCustomer.attributes.profile.displayName :
+            currentProvider.attributes.profile.displayName,
+          number: isProvider ? transaction.attributes.protectedData.phoneNumber :
+            listing.attributes.publicData.contactNumber
+        }}
+      />
+    </div>
+  ) : null;
+}
+
 const createListingLink = (
   listing,
   label,
@@ -286,10 +315,14 @@ export const OrderTitle = props => {
       <h1 className={classes}>
         <span className={css.mainTitle}>
           <FormattedMessage
-            id="TransactionPanel.orderEnquiredTitle"
-            values={{ listingLink }}
+            id="TransactionPanel.orderPreauthorizedTitle"
+            values={{ customerName }}
           />
         </span>
+        <FormattedMessage
+          id="TransactionPanel.orderPreauthorizedSubtitle"
+          values={{ listingLink }}
+        />
       </h1>
     );
   } else if (txIsRequested(transaction)) {
@@ -418,7 +451,7 @@ export const SaleTitle = props => {
     return (
       <h1 className={classes}>
         <FormattedMessage
-          id="TransactionPanel.saleEnquiredTitle"
+          id="TransactionPanel.saleRequestedTitle"
           values={{ customerName, listingLink }}
         />
       </h1>
@@ -524,8 +557,8 @@ export const TransactionPageTitle = props => {
   return props.transactionRole === "customer" ? (
     <OrderTitle {...props} />
   ) : (
-    <SaleTitle {...props} />
-  );
+      <SaleTitle {...props} />
+    );
 };
 
 // Functional component as a helper to choose and show Order or Sale message
@@ -533,8 +566,8 @@ export const TransactionPageMessage = props => {
   return props.transactionRole === "customer" ? (
     <OrderMessage {...props} />
   ) : (
-    <SaleMessage {...props} />
-  );
+      <SaleMessage {...props} />
+    );
 };
 
 // Helper function to get display names for different roles

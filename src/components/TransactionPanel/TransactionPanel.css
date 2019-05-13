@@ -199,7 +199,7 @@
     display: block;
     margin-left: 48px;
     margin-right: 48px;
-    margin-bottom: 37px;
+    /* margin-bottom: 37px; */
   }
 }
 .detailCardHeadingsProvider {
@@ -260,6 +260,18 @@
     margin: 14px 48px 47px 48px;
   }
 }
+
+.contact {
+  display: none;
+  font-weight: bold;
+  @media (--viewportLarge) {
+    display: block;
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-bottom: 37px;
+  }
+}
+
 
 .feedContainer {
   margin: 46px 24px 0 24px;

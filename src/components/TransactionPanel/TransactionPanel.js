@@ -22,7 +22,8 @@ import {
   SaleActionButtonsMaybe,
   TransactionPageTitle,
   TransactionPageMessage,
-  displayNames
+  displayNames,
+  ContactMaybe
 } from "./TransactionPanel.helpers";
 
 import css from "./TransactionPanel.css";
@@ -306,6 +307,14 @@ export class TransactionPanelComponent extends Component {
                   currentListing={currentListing}
                 />
               </div>
+              <ContactMaybe
+                listing={currentListing}
+                transaction={currentTransaction}
+                isProvider={isProvider}
+                currentCustomer={currentCustomer}
+                currentProvider={currentProvider}
+                intl={intl}
+              />
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
@@ -396,6 +405,14 @@ export class TransactionPanelComponent extends Component {
                     />
                   </div>
                 )}
+              <ContactMaybe
+                listing={currentListing}
+                isProvider={isProvider}
+                currentCustomer={currentCustomer}
+                currentProvider={currentProvider}
+                transaction={currentTransaction}
+                intl={intl}
+              />
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}

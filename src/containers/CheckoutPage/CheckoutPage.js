@@ -88,7 +88,7 @@ export class CheckoutPageComponent extends Component {
       bookingDates,
       listing,
       fetchSpeculatedTransaction,
-      history
+      history,
     } = this.props;
     // Browser's back navigation should not rewrite data in session store.
     // Action is 'POP' on both history.back() and page refresh cases.
@@ -135,7 +135,7 @@ export class CheckoutPageComponent extends Component {
         protectedData: { pricing_scheme, hours, seats },
         listingId,
         bookingStart: bookingStartForAPI,
-        bookingEnd: bookingEndForAPI
+        bookingEnd: bookingEndForAPI,
       });
     }
 
@@ -156,7 +156,8 @@ export class CheckoutPageComponent extends Component {
       speculatedTransaction,
       dispatch,
       isEnquiryOnly,
-      sendEnquiryBookingRequest
+      sendEnquiryBookingRequest,
+      currentUser
     } = this.props;
 
     // Create order aka transaction
@@ -168,16 +169,16 @@ export class CheckoutPageComponent extends Component {
         pricing_scheme: this.state.pageData.listing.attributes.publicData
           .pricing_scheme,
         hours: this.state.pageData.bookingData.hours,
-        seats: this.state.pageData.bookingData.seats
+        seats: this.state.pageData.bookingData.seats,
+        phoneNumber: currentUser.attributes.profile.protectedData.phoneNumber
       },
       listingId: this.state.pageData.listing.id,
       cardToken,
       bookingStart: speculatedTransaction.booking.attributes.start,
-      bookingEnd: speculatedTransaction.booking.attributes.end
+      bookingEnd: speculatedTransaction.booking.attributes.end,
     };
 
     const createOrder = isEnquiryOnly ? sendEnquiryBookingRequest : sendOrderRequest ;
-
     createOrder(requestParams, initialMessage)
       .then(values => {
         const { orderId, initialMessageSuccess } = values;

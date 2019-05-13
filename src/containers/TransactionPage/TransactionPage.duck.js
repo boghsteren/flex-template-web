@@ -225,6 +225,7 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
         include: [
           'customer',
           'customer.profileImage',
+          'customer.profile.protectedData',
           'provider',
           'provider.profileImage',
           'listing',
@@ -259,7 +260,6 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
     .then(listingResponse => {
       const listingId = listingRelationship(txResponse).id;
       const lastTransition = txResponse.data.data.attributes.lastTransition;
-      console.log(lastTransition)
       const currentUser = getState().user.currentUser;
       const isCustomer = currentUser && currentUser.id.uuid === txResponse.data.data.relationships.customer.data.id.uuid;
       if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && isCustomer) {

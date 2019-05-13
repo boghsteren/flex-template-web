@@ -190,6 +190,9 @@
   "EditListingDescriptionForm.group_sizeRequired":
     "You need to select a group size.",
   "EditListingDescriptionForm.contact": "Contact person for this experience",
+  "EditListingDescriptionForm.contactNamePlaceholderMessage": "Name",
+  "EditListingDescriptionForm.contactEmailPlaceholderMessage": "Email",
+  "EditListingDescriptionForm.contactPhonePlaceholderMessage": "Phone",
   "EditListingDescriptionForm.contactPlaceholder":
     "Is there a specific contact person for this experience (if different from yourself)? Please add name, email and phone number.",
   "EditListingDescriptionForm.description": "Describe your experience",
@@ -873,6 +876,9 @@
   "SelectSingleFilterPlain.clear": "Clear",
   "SendMessageForm.sendFailed": "Failed to send. Please try again.",
   "SendMessageForm.sendMessage": "Send message",
+  "SignupForm.phoneLabel": "Phone",
+  "SignupForm.phonePlaceholder": "Contact phone",
+  "SignupForm.phoneRequiredMessage": "You need to fill in your phone number...",
   "SignupForm.organisationLabel": "Organisation",
   "SignupForm.organisationPlaceholder": "Enter the name here",
   "SignupForm.organisationRequiredMessage": "You need to add an organisation.",
@@ -1020,6 +1026,7 @@
   "TransactionPage.loadingOrderData": "Loading order data.",
   "TransactionPage.loadingSaleData": "Loading sale data.",
   "TransactionPage.title": "Sale details: {title}",
+  "TransactionPanel.contact": "{name} contact: {number}",
   "TransactionPanel.acceptButton": "Accept",
   "TransactionPanel.acceptSaleFailed":
     "Oops, accepting failed. Please try again.",
