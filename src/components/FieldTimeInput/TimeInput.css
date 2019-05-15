@@ -1,0 +1,58 @@
+@import '../../marketplace.css';
+
+.root {
+}
+
+.showTime {
+  position: relative;
+}
+
+.placeholder {
+  background-color: var(--matterColorLight);
+}
+
+.timePanel {
+  position: absolute;
+  padding: 20px 10px;
+  right: 0px;
+  width: 100%;
+  font-size: 17px;
+  background-color: var(--marketplaceColor);
+  color: var(--matterColorLight);
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  z-index: 10;
+
+  @media (--viewportMedium) {
+    /* width: 312px; */
+  }
+}
+
+.timeItem {
+  box-sizing: border-box;
+  flex-basis: 25%;
+  padding: 8px;
+  color: var(--matterColorLight);
+  font-weight: 600;
+  background-color: var(--marketplaceColor);
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var(--matterColorAnti);
+  }
+}
+
+.disabledTime {
+  color: var(--marketplaceColorLight);
+  cursor: unset;
+
+  &:hover {
+    background-color: var(--marketplaceColor);
+  }
+}
+
+.selectedTime {
+  background-color: var(--successColor);
+}

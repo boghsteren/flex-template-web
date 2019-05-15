@@ -164,8 +164,41 @@ const resolveTransitionMessage = (
         />
       );
     case TRANSITION_DECLINE:
+      const rememberText = (
+        <span className={css.noteText}>
+          <FormattedMessage id="ActivityFeed.rememberText"/>
+        </span>
+      );
+      const noteDateText = (
+        <span className={css.strongText}>
+          <FormattedMessage id="ActivityFeed.noteDateText"/>
+        </span>
+      );
+      const noteNumberPeopleText = (
+        <span className={css.strongText}>
+          <FormattedMessage id="ActivityFeed.noteNumberPeopleText"/>
+        </span>
+      );
+      const noteTimeText = (
+        <span className={css.strongText}>
+          <FormattedMessage id="ActivityFeed.noteTimeText"/>
+        </span>
+      );
+      const noteForDecline = (
+        <FormattedMessage 
+          id="ActivityFeed.noteForDecline"
+          values={{
+            rememberText: rememberText,
+            newline: (<br />),
+            noteDateText: noteDateText,
+            noteNumberPeopleText: noteNumberPeopleText,
+            noteTimeText: noteTimeText
+          }}
+        />
+      );
+      
       return isOwnTransition ? (
-        <FormattedMessage id="ActivityFeed.ownTransitionDecline" />
+        <span className={css.noteForDecline}>{noteForDecline}</span>
       ) : (
         <FormattedMessage
           id="ActivityFeed.transitionDecline"

@@ -1,0 +1,25 @@
+@import '../../marketplace.css';
+
+.root {
+}
+
+.input {
+  border-bottom-color: var(--attentionColor);
+  border-bottom-width: 3px;
+}
+
+.inputSuccess {
+  border-bottom-color: var(--successColor);
+}
+
+.inputError {
+  border-bottom-color: var(--failColor);
+}
+
+.errorMobile {
+  display: block;
+  
+  @media (--viewportMedium) {
+    display: none;
+  }
+}

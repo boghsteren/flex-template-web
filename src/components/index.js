@@ -68,6 +68,7 @@ export {
 } from "./FieldReviewRating/FieldReviewRating";
 export { default as FieldSelect } from "./FieldSelect/FieldSelect";
 export { default as FieldTextInput } from "./FieldTextInput/FieldTextInput";
+export { default as FieldTimeInput } from './FieldTimeInput/FieldTimeInput';
 export { default as Footer } from "./Footer/Footer";
 export { default as Form } from "./Form/Form";
 export { default as IconBannedUser } from "./IconBannedUser/IconBannedUser";

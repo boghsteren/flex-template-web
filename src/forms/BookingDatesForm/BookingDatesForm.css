@@ -9,6 +9,16 @@
   margin-bottom: 46px;
 }
 .bookingDates {
+  position: relative;
+  flex-shrink: 0;
+  margin-bottom: 46px;
+
+  /* Ensure that calendar dropdown gets some stacking context relative to other form items below */
+  z-index: 10;
+}
+
+.bookingTime {
+  position: relative;
   flex-shrink: 0;
   margin-bottom: 46px;
 

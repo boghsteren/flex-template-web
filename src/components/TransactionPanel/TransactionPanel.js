@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { injectIntl, intlShape, FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import { txIsEnquired, txIsRequested, propTypes, txIsAccepted } from "../../util/types";
+import { txIsEnquired, txIsRequested, propTypes, txIsAccepted, txIsDeclined } from "../../util/types";
 import { ensureListing, ensureTransaction, ensureUser } from "../../util/data";
 import { isMobileSafari } from "../../util/userAgent";
 import {
@@ -253,6 +253,39 @@ export class TransactionPanelComponent extends Component {
       [css.feedContainerWithInfoAbove]: showInfoMessage
     });
 
+    const noteText = (
+      <span className={css.noteTextCustomer}>
+        <FormattedMessage id="TransactionPanel.noteTextCustomer" values={{providerName: otherUserDisplayName}} />
+      </span>
+    );
+    const noteDateText = (
+      <span className={css.strongText}>
+        <FormattedMessage id="TransactionPanel.noteDateTextCustomer" />
+      </span>
+    );
+    const noteNumberPeopleText = (
+      <span className={css.strongText}>
+        <FormattedMessage id="TransactionPanel.noteNumberPeopleTextCustomer" />
+      </span>
+    );
+    const noteTimeText = (
+      <span className={css.strongText}>
+        <FormattedMessage id="TransactionPanel.noteTimeTextCustomer" />
+      </span>
+    );
+    const noteForDecline = (
+      <FormattedMessage
+        id="TransactionPanel.noteForDeclineCustomer"
+        values={{
+          noteText: noteText,
+          newline: (<br />),
+          noteDateText: noteDateText,
+          noteNumberPeopleText: noteNumberPeopleText,
+          noteTimeText: noteTimeText,
+        }}
+      />
+    );
+
     const classes = classNames(rootClassName || css.root, className);
 
     return (
@@ -346,6 +379,12 @@ export class TransactionPanelComponent extends Component {
               onBlur={this.onSendMessageFormBlur}
               onSubmit={this.onMessageSubmit}
             />
+
+            {isCustomer && txIsDeclined(transaction) &&
+              <div className={css.noteForDeclineCustomer}>
+                {noteForDecline}
+              </div>
+            }
 
             {canShowBookButton ? (
               <StripePaymentForm

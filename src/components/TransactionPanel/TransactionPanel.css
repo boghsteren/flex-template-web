@@ -385,6 +385,36 @@
   }
 }
 
+.noteForDecline {
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 20px;
+  color: var(--matterColorNear);
+}
+
+.noteText {
+  font-size: 15px;
+  color: var(--failColor);
+  font-weight: bold;
+}
+
+.strongText {
+  font-weight: bold;
+  color: var(--matterColor);
+}
+
+.noteForDeclineCustomer {
+  margin-top: 40px;
+  font-size: 17px;
+  font-weight: 100;
+}
+
+.noteTextCustomer {
+  color: var(--failColor);
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .messageError {
   color: var(--failColor);
   margin: 13px 0 22px 0;

@@ -268,6 +268,40 @@ export const SaleActionButtonsMaybe = props => {
     </p>
   ) : null;
 
+  const noteText = (
+    <span className={css.noteText}>
+      <FormattedMessage id="TransactionPanel.noteText" />
+    </span>
+  );
+  const noteDateText = (
+    <span className={css.strongText}>
+      <FormattedMessage id="TransactionPanel.noteDateText" />
+    </span>
+  );
+  const noteNumberPeopleText = (
+    <span className={css.strongText}>
+      <FormattedMessage id="TransactionPanel.noteNumberPeopleText" />
+    </span>
+  );
+  const noteTimeText = (
+    <span className={css.strongText}>
+      <FormattedMessage id="TransactionPanel.noteTimeText" />
+    </span>
+  );
+  const noteForDecline = (
+    <FormattedMessage
+      id="TransactionPanel.noteForDecline"
+      values={{
+        noteText: noteText,
+        newline: (<br />),
+        noteDateText: noteDateText,
+        noteNumberPeopleText: noteNumberPeopleText,
+        noteTimeText: noteTimeText
+      }}
+    />
+  );
+
+
   const classes = classNames(rootClassName || css.actionButtons, className);
 
   return canShowButtons ? (
@@ -292,6 +326,11 @@ export const SaleActionButtonsMaybe = props => {
           <FormattedMessage id="TransactionPanel.acceptButton" />
         </PrimaryButton>
       </div>
+      {txIsEnquired(transaction) &&
+        <div className={css.noteForDecline}>
+          {noteForDecline}
+        </div>
+      }
     </div>
   ) : null;
 };
