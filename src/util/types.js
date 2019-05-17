@@ -209,10 +209,14 @@ export const TRANSITION_REQUEST = 'transition/request';
 export const TRANSITION_ENQUIRE = 'transition/enquire';
 export const TRANSITION_REQUEST_AFTER_ENQUIRY = 'transition/request-after-enquiry';
 
+export const TRANSITION_EXPIRE_ENQUIRY = 'transition/expire-enquiry';
+export const TRANSITION_EXPIRE_ENQUIRY_ACCEPTED = 'transition/expire-enquiry-accepted';
+
 // When the provider accepts or declines a transaction from the
 // SalePage, it is transitioned with the accept or decline transition.
 export const TRANSITION_ACCEPT = 'transition/accept';
 export const TRANSITION_DECLINE = 'transition/decline';
+export const TRANSITION_WITHDRAW = 'transition/cancel-after-enquiry-accepted';
 
 // The backend automatically expire the transaction.
 export const TRANSITION_EXPIRE = 'transition/expire';
@@ -240,11 +244,14 @@ export const TRANSITIONS = [
   TRANSITION_COMPLETE,
   TRANSITION_DECLINE,
   TRANSITION_ENQUIRE,
+  TRANSITION_EXPIRE_ENQUIRY_ACCEPTED,
+  TRANSITION_EXPIRE_ENQUIRY,
   TRANSITION_EXPIRE,
   TRANSITION_EXPIRE_CUSTOMER_REVIEW_PERIOD,
   TRANSITION_EXPIRE_PROVIDER_REVIEW_PERIOD,
   TRANSITION_EXPIRE_REVIEW_PERIOD,
   TRANSITION_REQUEST,
+  TRANSITION_WITHDRAW,
   TRANSITION_REQUEST_AFTER_ENQUIRY,
   TRANSITION_REVIEW_1_BY_CUSTOMER,
   TRANSITION_REVIEW_1_BY_PROVIDER,
@@ -278,7 +285,14 @@ export const txIsAccepted = tx => txLastTransition(tx) === TRANSITION_ACCEPT;
 
 export const txIsDeclined = tx => txLastTransition(tx) === TRANSITION_DECLINE;
 
-export const txIsExpired = tx => txLastTransition(tx) === TRANSITION_EXPIRE;
+export const txIsWithdraw = tx => txLastTransition(tx) === TRANSITION_WITHDRAW;
+
+export const txIsExpired = tx => {
+  const lastTransition = txLastTransition(tx);
+  return lastTransition === TRANSITION_EXPIRE ||
+    lastTransition === TRANSITION_EXPIRE_ENQUIRY ||
+    lastTransition === TRANSITION_EXPIRE_ENQUIRY_ACCEPTED;
+};
 
 export const txIsDeclinedOrExpired = tx => txIsDeclined(tx) || txIsExpired(tx);
 

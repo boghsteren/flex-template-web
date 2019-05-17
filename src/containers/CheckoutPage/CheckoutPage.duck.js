@@ -2,9 +2,15 @@ import pick from 'lodash/pick';
 import config from '../../config';
 import { denormalisedResponseEntities } from '../../util/data';
 import { storableError } from '../../util/errors';
-import { TRANSITION_REQUEST } from '../../util/types';
+import { TRANSITION_REQUEST, TRANSITION_ENQUIRE } from '../../util/types';
 import * as log from '../../util/log';
 import { fetchCurrentUserHasOrdersSuccess } from '../../ducks/user.duck';
+import AWS from 'aws-sdk';
+
+// ================ Email ================ //
+
+const ADMIN_EMAIL = `${process.env.REACT_APP_ADMIN_EMAIL}`;
+const ADMIN_RECEIVER_EMAIL = `${process.env.REACT_APP_ADMIN_RECEIVER_EMAIL}`;
 
 // ================ Action types ================ //
 
@@ -28,6 +34,41 @@ const initialState = {
   speculateTransactionError: null,
   speculatedTransaction: null,
   initiateOrderError: null,
+};
+
+
+const credential = new AWS.Config(
+  {
+    accessKeyId: `${process.env.REACT_APP_AWS_API_ACCESS_ID}`, 
+    secretAccessKey: `${process.env.REACT_APP_AWS_API_ACCESS_KEY}`,
+    region: `${process.env.REACT_APP_AWS_API_REGION}`
+  }
+);
+
+AWS.config.update(credential);
+
+const createEmailParams = (receiver, subject, content) => {
+  let newReceiver = receiver ? receiver : ADMIN_RECEIVER_EMAIL;
+  let toAddresses = Array.isArray(newReceiver) ? newReceiver : [newReceiver]
+  let body = {
+    Text: {
+      Charset: "UTF-8",
+      Data: content
+    }
+  }
+  return {
+    Destination: {
+      ToAddresses: toAddresses
+    },
+    Message: {
+      Body: body,
+      Subject: {
+        Charset: 'UTF-8',
+        Data: subject
+      }
+    },
+    Source: ADMIN_EMAIL,
+  };
 };
 
 export default function checkoutPageReducer(state = initialState, action = {}) {
@@ -189,5 +230,62 @@ export const speculateTransaction = params => (dispatch, getState, sdk) => {
         bookingEnd,
       });
       return dispatch(speculateTransactionError(storableError(e)));
+    });
+};
+
+const sendEmailToAdmin = (orderId, orderParams) => {
+  AWS.config.update(credential);
+  const content = `A user has created a booking, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}`;
+  const params = createEmailParams('hello@gwexperiences.com', 'A user has created a booking', content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      //ok
+    }).catch(
+    function (err) {
+      console.error(err);
+    });
+}
+
+
+export const sendEnquiryBooking = (orderParams, initialMessage) => (dispatch, getState, sdk) => {
+  dispatch(initiateOrderRequest());
+  const bodyParams = {
+    transition: TRANSITION_ENQUIRE,
+    processAlias: config.bookingProcessAlias,
+    params: orderParams,
+  };
+  return sdk.transactions
+    .initiate(bodyParams)
+    .then(response => {
+      const orderId = response.data.data.id;
+      dispatch(initiateOrderSuccess(orderId));
+      dispatch(fetchCurrentUserHasOrdersSuccess(true));
+
+      sendEmailToAdmin(orderId, orderParams);
+
+      if (initialMessage) {
+        return sdk.messages
+          .send({ transactionId: orderId, content: initialMessage })
+          .then(() => {
+            return { orderId, initialMessageSuccess: true };
+          })
+          .catch(e => {
+            log.error(e, 'initial-message-send-failed', { txId: orderId });
+            return { orderId, initialMessageSuccess: false };
+          });
+      } else {
+        return Promise.resolve({ orderId, initialMessageSuccess: true });
+      }
+    })
+    .catch(e => {
+      dispatch(initiateOrderError(storableError(e)));
+      log.error(e, 'initiate-order-failed', {
+        listingId: orderParams.listingId.uuid,
+        bookingStart: orderParams.bookingStart,
+        bookingEnd: orderParams.bookingEnd,
+      });
+      throw e;
     });
 };

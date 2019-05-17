@@ -2,68 +2,52 @@
   "ActivityFeed.bannedUserDisplayName": "Banned user",
   "ActivityFeed.deletedListing": "deleted listing",
   "ActivityFeed.leaveAReview": "Leave a review for { displayName }.",
-  "ActivityFeed.leaveAReviewSecond":
-    "Leave a review for { displayName } to see their review.",
+  "ActivityFeed.leaveAReviewSecond": "Leave a review for { displayName } to see their review.",
+  "ActivityFeed.noteForDecline": "You declined the booking request - {rememberText} to explain why, and suggest new {noteDateText}, {noteNumberPeopleText} (quantity) and {noteTimeText}.{newline}{newline}Booker will need to send a new request from the front page if they still wish to book this experience",
+  "ActivityFeed.rememberText": "REMEMBER!",
+  "ActivityFeed.noteDateText": "date",
+  "ActivityFeed.noteNumberPeopleText": "number of people",
+  "ActivityFeed.noteTimeText": "time",
   "ActivityFeed.ownTransitionAccept": "You accepted the booking request.",
   "ActivityFeed.ownTransitionDecline": "You declined the booking request.",
-  "ActivityFeed.ownTransitionExpire":
-    "Booking request expired. You did not reply on time.",
-  "ActivityFeed.ownTransitionRequest":
-    "You requested to book { listingTitle }.",
+  "ActivityFeed.ownTransitionExpire": "Booking request expired. You did not reply on time.",
+  "ActivityFeed.ownTransitionRequest": "You requested to book { listingTitle }.",
   "ActivityFeed.ownTransitionReview": "You left a review for { displayName }.",
   "ActivityFeed.showOlderMessages": "Show older",
   "ActivityFeed.today": "Today",
-  "ActivityFeed.transitionAccept":
-    "{ displayName } accepted the booking request.",
+  "ActivityFeed.transitionAccept": "{ displayName } accepted the booking request.",
   "ActivityFeed.transitionCancel": "The booking was cancelled.",
-  "ActivityFeed.transitionComplete":
-    "The booking was completed. { reviewLink }",
-  "ActivityFeed.transitionDecline":
-    "{ displayName } declined the booking request.",
-  "ActivityFeed.transitionExpire":
-    "Booking request expired. { displayName } did not reply on time.",
-  "ActivityFeed.transitionRequest":
-    "{ displayName } requested to book { listingTitle }.",
-  "ActivityFeed.transitionReview":
-    "{ displayName } left a review for you. { reviewLink }",
-  "AuthenticationPage.emailAlreadyInUse":
-    "An account with this email address already exists. Try logging in instead.",
+  "ActivityFeed.transitionComplete": "The booking was completed. { reviewLink }",
+  "ActivityFeed.transitionDecline": "{ displayName } declined the booking request.",
+  "ActivityFeed.transitionExpire": "Booking request expired. { displayName } did not reply on time.",
+  "ActivityFeed.transitionRequest": "{ displayName } requested to book { listingTitle }.",
+  "ActivityFeed.transitionReview": "{ displayName } left a review for you. { reviewLink }",
+  "AuthenticationPage.emailAlreadyInUse": "An account with this email address already exists. Try logging in instead.",
   "AuthenticationPage.fixEmail": "Whoops, typo in your email? {fixEmailLink}.",
   "AuthenticationPage.fixEmailLinkText": "Fix it",
-  "AuthenticationPage.loginFailed":
-    "The email and password you entered did not match our records. Please double-check and try again.",
+  "AuthenticationPage.loginFailed": "The email and password you entered did not match our records. Please double-check and try again.",
   "AuthenticationPage.loginLinkText": "Login",
   "AuthenticationPage.resendEmail": "Didn't get the email? {resendEmailLink}.",
   "AuthenticationPage.resendEmailLinkText": "Resend it",
-  "AuthenticationPage.resendFailed":
-    "Resending verification email failed. Please try again.",
-  "AuthenticationPage.resendFailedTooManyRequests":
-    "The maximum of 5 verification emails has been reached. Please try again tomorrow.",
+  "AuthenticationPage.resendFailed": "Resending verification email failed. Please try again.",
+  "AuthenticationPage.resendFailedTooManyRequests": "The maximum of 5 verification emails has been reached. Please try again tomorrow.",
   "AuthenticationPage.schemaTitleLogin": "Log in | {siteTitle}",
   "AuthenticationPage.schemaTitleSignup": "Sign up | {siteTitle}",
   "AuthenticationPage.sendingEmail": "Sending verification email…",
-  "AuthenticationPage.signupFailed":
-    "Signup failed. Please make sure all the information you entered is correct and try again.",
-  "AuthenticationPage.signupFailedEmailAlreadyTaken":
-    "An account with this email address already exists. Try logging in instead.",
+  "AuthenticationPage.signupFailed": "Signup failed. Please make sure all the information you entered is correct and try again.",
+  "AuthenticationPage.signupFailedEmailAlreadyTaken": "An account with this email address already exists. Try logging in instead.",
   "AuthenticationPage.signupLinkText": "Sign up",
   "AuthenticationPage.termsHeading": "Terms and Conditions",
   "AuthenticationPage.verifyEmailClose": "LATER",
-  "AuthenticationPage.verifyEmailText":
-    "Thanks for signing up! There's one quick step left. To be able to contact you, we need you to verify your email address. Please click the link we sent to {email}.",
-  "AuthenticationPage.verifyEmailTitle":
-    "{name}, check your inbox to verify your email",
+  "AuthenticationPage.verifyEmailText": "Thanks for signing up! There's one quick step left. To be able to contact you, we need you to verify your email address. Please click the link we sent to {email}.",
+  "AuthenticationPage.verifyEmailTitle": "{name}, check your inbox to verify your email",
   "Avatar.bannedUserDisplayName": "Banned user",
   "BookingBreakdown.bookingPeriod": "{bookingStart} – {bookingEnd}",
   "BookingBreakdown.commission": "Goodwings fee",
-  "BookingBreakdown.commissionFeeNote":
-    "The fee helps us run the platform and provide the best possible service to you!",
-  "BookingBreakdown.impactNote":
-    "By booking this experience {formattedSubTotal} will go directly to {organisation} and support the fight for a sustainable future.",
-  "BookingBreakdown.dayCount":
-    "{count, number} {count, plural, one {day} other {days}}",
-  "BookingBreakdown.nightCount":
-    "{count, number} {count, plural, one {night} other {nights}}",
+  "BookingBreakdown.commissionFeeNote": "The fee helps us run the platform and provide the best possible service to you!",
+  "BookingBreakdown.impactNote": "By booking this experience {formattedSubTotal} will go directly to {organisation} and support the fight for a sustainable future.",
+  "BookingBreakdown.dayCount": "{count, number} {count, plural, one {day} other {days}}",
+  "BookingBreakdown.nightCount": "{count, number} {count, plural, one {night} other {nights}}",
   "BookingBreakdown.pricePerGroup": "Price per group",
   "BookingBreakdown.pricePerDayPerPerson": "Price per person per day",
   "BookingBreakdown.pricePerHourPerPerson": "Price per person per hour",
@@ -85,79 +69,61 @@
   "BookingBreakdown.total": "Total price",
   "BookingDatesForm.bookingEndTitle": "End date",
   "BookingDatesForm.bookingStartTitle": "Start date",
+  "BookingDatesForm.bookingTimeLabel": "Booking time",
   "BookingDatesForm.hoursLabel": "Hours",
   "BookingDatesForm.hoursPlaceholder": "How many hours?",
   "BookingDatesForm.hoursRequiredMessage": "You must select a number of hours",
-  "BookingDatesForm.listingCurrencyInvalid":
-    "Oops, the currency of the listing doesn't match the currency of the marketplace.",
+  "BookingDatesForm.listingCurrencyInvalid": "Oops, the currency of the listing doesn't match the currency of the marketplace.",
   "BookingDatesForm.listingPriceMissing": "Oops, this listing has no price!",
   "BookingDatesForm.ownListing": "You won't be able to book your own listing.",
   "BookingDatesForm.placeholder": "mm/dd/yyyy",
   "BookingDatesForm.priceBreakdownTitle": "Booking breakdown",
   "BookingDatesForm.requestToBook": "Request to book",
   "BookingDatesForm.requiredDate": "Oops, make sure your date is correct!",
+  "BookingDatesForm.requiredTime": "Oops, make sure your time is correct!",
   "BookingDatesForm.seatsLabel": "People",
   "BookingDatesForm.seatsPlaceholder": "How many are going?",
   "BookingDatesForm.seatsRequiredMessage": "You must select number of people",
-  "BookingDatesForm.timeSlotsError":
-    "Loading listing availability failed. Please refresh the page.",
+  "BookingDatesForm.timeSlotsError": "Loading listing availability failed. Please refresh the page.",
   "BookingDatesForm.youWontBeChargedInfo": "You won't be charged yet",
-  "CheckoutPage.bookingTimeNotAvailableMessage":
-    "Unfortunately, the requested time is already booked.",
+  "CheckoutPage.bookingTimeNotAvailableMessage": "Unfortunately, the requested time is already booked.",
   "CheckoutPage.errorlistingLinkText": "the experience page",
   "CheckoutPage.goToLandingPage": "Go to homepage",
   "CheckoutPage.hostedBy": "Hosted by {name}",
-  "CheckoutPage.initiateOrderAmountTooLow":
-    "We are unable to process this payment since the payment amount is too low. Please contact the marketplace administrator.",
-  "CheckoutPage.initiateOrderError":
-    "Payment request failed. Please go back to {listingLink} and try again. If the error persists, try refreshing the page or contacting the marketplace administrator.",
-  "CheckoutPage.listingNotFoundError":
-    "Unfortunately, the listing is no longer available.",
+  "CheckoutPage.initiateOrderAmountTooLow": "We are unable to process this payment since the payment amount is too low. Please contact the marketplace administrator.",
+  "CheckoutPage.initiateOrderError": "Payment request failed. Please go back to {listingLink} and try again. If the error persists, try refreshing the page or contacting the marketplace administrator.",
+  "CheckoutPage.listingNotFoundError": "Unfortunately, the listing is no longer available.",
   "CheckoutPage.loadingData": "Loading checkout data…",
-  "CheckoutPage.paymentInfo":
-    "You'll only be charged if your request is accepted by the provider.",
+  "CheckoutPage.paymentInfo": "You'll only be charged if your request is accepted by the provider.",
   "CheckoutPage.priceBreakdownTitle": "Booking breakdown",
-  "CheckoutPage.providerStripeAccountMissingError":
-    "The listing author has not added their payment information and the listing cannot be booked at the moment.",
-  "CheckoutPage.speculateFailedMessage":
-    "Oops, something went wrong. Please refresh the page and try again.",
-  "CheckoutPage.speculateTransactionError":
-    "Failed to fetch breakdown information.",
+  "CheckoutPage.providerStripeAccountMissingError": "The listing author has not added their payment information and the listing cannot be booked at the moment.",
+  "CheckoutPage.speculateFailedMessage": "Oops, something went wrong. Please refresh the page and try again.",
+  "CheckoutPage.speculateTransactionError": "Failed to fetch breakdown information.",
   "CheckoutPage.title": "Book {listingTitle}",
-  "ContactDetailsForm.confirmChangesInfo":
-    "To change your email address, please enter your current password.",
+  "ContactDetailsForm.confirmChangesInfo": "To change your email address, please enter your current password.",
   "ContactDetailsForm.confirmChangesTitle": "Confirm your changes",
   "ContactDetailsForm.emailInvalid": "A valid email address is required",
   "ContactDetailsForm.emailLabel": "Your email address",
   "ContactDetailsForm.emailRequired": "An email address is required",
   "ContactDetailsForm.emailSent": "Verification email sent!",
   "ContactDetailsForm.emailTakenError": "This email address is already in use.",
-  "ContactDetailsForm.emailUnverified":
-    "You haven't verified your email address yet. {resendEmailMessage}",
+  "ContactDetailsForm.emailUnverified": "You haven't verified your email address yet. {resendEmailMessage}",
   "ContactDetailsForm.emailVerified": "Your email address is verified.",
-  "ContactDetailsForm.genericEmailFailure":
-    "Whoops, something went wrong while updating your email. Please refresh the page and try again.",
-  "ContactDetailsForm.genericFailure":
-    "Whoops, something went wrong. Please refresh the page and try again.",
-  "ContactDetailsForm.genericPhoneNumberFailure":
-    "Whoops, something went wrong while updating your phone number. Please refresh the page and try again.",
+  "ContactDetailsForm.genericEmailFailure": "Whoops, something went wrong while updating your email. Please refresh the page and try again.",
+  "ContactDetailsForm.genericFailure": "Whoops, something went wrong. Please refresh the page and try again.",
+  "ContactDetailsForm.genericPhoneNumberFailure": "Whoops, something went wrong while updating your phone number. Please refresh the page and try again.",
   "ContactDetailsForm.passwordFailed": "Please double-check your password",
   "ContactDetailsForm.passwordLabel": "Current password",
   "ContactDetailsForm.passwordPlaceholder": "Enter your current password…",
   "ContactDetailsForm.passwordRequired": "A password is required",
-  "ContactDetailsForm.passwordTooShort":
-    "The password should be at least {minLength} characters",
-  "ContactDetailsForm.pendingEmailCheckInbox":
-    "Check your inbox to verify {pendingEmail} now.",
-  "ContactDetailsForm.pendingEmailUnverified":
-    "You have not verified your new address yet. {pendingEmailCheckInbox} {resendEmailMessage}",
+  "ContactDetailsForm.passwordTooShort": "The password should be at least {minLength} characters",
+  "ContactDetailsForm.pendingEmailCheckInbox": "Check your inbox to verify {pendingEmail} now.",
+  "ContactDetailsForm.pendingEmailUnverified": "You have not verified your new address yet. {pendingEmailCheckInbox} {resendEmailMessage}",
   "ContactDetailsForm.phoneLabel": "Phone number",
   "ContactDetailsForm.phonePlaceholder": "Enter your phone number",
-  "ContactDetailsForm.resendEmailVerificationText":
-    "Resend verification email.",
+  "ContactDetailsForm.resendEmailVerificationText": "Resend verification email.",
   "ContactDetailsForm.saveChanges": "Save changes",
-  "ContactDetailsForm.tooManyVerificationRequests":
-    "Too many email verification requests sent.",
+  "ContactDetailsForm.tooManyVerificationRequests": "Too many email verification requests sent.",
   "ContactDetailsPage.contactDetailsTabTitle": "Contact details",
   "ContactDetailsPage.heading": "Contact details",
   "ContactDetailsPage.passwordTabTitle": "Password",
@@ -165,61 +131,45 @@
   "ContactDetailsPage.title": "Contact details",
   "CookieConsent.continue": "Continue",
   "CookieConsent.cookieLink": "cookies",
-  "CookieConsent.message":
-    "Welcome to Goodwings Experiences! We use {cookieLink} to enhance your browsing experience.",
+  "CookieConsent.message": "Welcome to Goodwings Experiences! We use {cookieLink} to enhance your browsing experience.",
   "DateInput.clearDate": "Clear Date",
   "DateInput.closeDatePicker": "Close",
   "DateInput.defaultPlaceholder": "Date input",
   "DateInput.screenReaderInputMessage": "Date input",
   "EditListingAvailabilityPanel.createListingTitle": "Availability",
   "EditListingAvailabilityPanel.title": "Availability",
-  "EditListingAvailabilityFormComponent.availabilityLabel":
-    "When is the experience available?",
-  "EditListingAvailabilityFormComponent.availabilityPlaceholder":
-    "Please explain when this experience will/can take place? Is it only available on Tuesdays for example? Are there any dates that work best for you? You can update this information whenever you need.",
-  "EditListingAvailabilityFormComponent.updateFailed":
-    "Availability could not be saved",
+  "EditListingAvailabilityFormComponent.availabilityLabel": "When is the experience available?",
+  "EditListingAvailabilityFormComponent.availabilityPlaceholder": "Please explain when this experience will/can take place? Is it only available on Tuesdays for example? Are there any dates that work best for you? You can update this information whenever you need.",
+  "EditListingAvailabilityFormComponent.updateFailed": "Availability could not be saved",
   "EditListingDescriptionForm.categoryLabel": "Activity type",
   "EditListingDescriptionForm.group_sizeLabel": "Group size",
-  "EditListingDescriptionForm.categoryPlaceholder":
-    "Choose the type of experience",
-  "EditListingDescriptionForm.group_sizePlaceholder":
-    "How many people can join?",
-  "EditListingDescriptionForm.categoryRequired":
-    "You need to select a category.",
-  "EditListingDescriptionForm.group_sizeRequired":
-    "You need to select a group size.",
+  "EditListingDescriptionForm.categoryPlaceholder": "Choose the type of experience",
+  "EditListingDescriptionForm.group_sizePlaceholder": "How many people can join?",
+  "EditListingDescriptionForm.categoryRequired": "You need to select a category.",
+  "EditListingDescriptionForm.group_sizeRequired": "You need to select a group size.",
   "EditListingDescriptionForm.contact": "Contact person for this experience",
-  "EditListingDescriptionForm.contactPlaceholder":
-    "Is there a specific contact person for this experience (if different from yourself)? Please add name, email and phone number.",
+  "EditListingDescriptionForm.contactNamePlaceholderMessage": "Name",
+  "EditListingDescriptionForm.contactEmailPlaceholderMessage": "Email",
+  "EditListingDescriptionForm.contactPhonePlaceholderMessage": "Phone",
+  "EditListingDescriptionForm.contactPlaceholder": "Is there a specific contact person for this experience (if different from yourself)? Please add name, email and phone number.",
   "EditListingDescriptionForm.description": "Describe your experience",
-  "EditListingDescriptionForm.descriptionPlaceholder":
-    "Present your experience. What will happen? Is there an itinerary? If so, please write it here.",
-  "EditListingDescriptionForm.descriptionRequired":
-    "A description is required.",
+  "EditListingDescriptionForm.descriptionPlaceholder": "Present your experience. What will happen? Is there an itinerary? If so, please write it here.",
+  "EditListingDescriptionForm.descriptionRequired": "A description is required.",
   "EditListingDescriptionForm.duration": "Duration",
-  "EditListingDescriptionForm.durationPlaceholder":
-    "How long does the experience last?",
+  "EditListingDescriptionForm.durationPlaceholder": "How long does the experience last?",
   "EditListingDescriptionForm.included": "Included in experience",
-  "EditListingDescriptionForm.includedPlaceholder":
-    "What’s included? For example, do you provide any drinks or snacks?",
-  "EditListingDescriptionForm.includedRequired":
-    "You must describe what is included.",
-  "EditListingDescriptionForm.maxLength":
-    "Must be {maxLength} characters or less",
+  "EditListingDescriptionForm.includedPlaceholder": "What’s included? For example, do you provide any drinks or snacks?",
+  "EditListingDescriptionForm.includedRequired": "You must describe what is included.",
+  "EditListingDescriptionForm.maxLength": "Must be {maxLength} characters or less",
   "EditListingDescriptionForm.sliderInfoMess": "Specify minimum and a maximum number of participants",
   "EditListingDescriptionForm.title": "The name of your experience",
-  "EditListingDescriptionForm.titlePlaceholder":
-    "What do you call this experience?",
+  "EditListingDescriptionForm.titlePlaceholder": "What do you call this experience?",
   "EditListingDescriptionForm.titleRequired": "You need to add a name.",
-  "EditListingDescriptionForm.updateFailed":
-    "Failed to update listing. Please try again.",
+  "EditListingDescriptionForm.updateFailed": "Failed to update listing. Please try again.",
   "EditListingDescriptionPanel.createListingTitle": "Add your experience",
   "EditListingDescriptionPanel.title": "Edit details of {listingTitle}",
-  "EditListingFeaturesForm.updateFailed":
-    "Failed to update listing. Please try again.",
-  "EditListingFeaturesPanel.createListingTitle":
-    "What is the social impact focus of your experience?",
+  "EditListingFeaturesForm.updateFailed": "Failed to update listing. Please try again.",
+  "EditListingFeaturesPanel.createListingTitle": "What is the social impact focus of your experience?",
   "EditListingFeaturesForm.impactFocusLabel": "Social impact focus",
   "EditListingFeaturesForm.whyBuyThisLabel": "If you buy this experience",
   "EditListingFeaturesForm.whyBuyThisPlaceholder": "Describe the impact as tangibly as possible. For example, \"For every participant going on this experience, we can provide one child free education for a year.\"",
@@ -228,68 +178,50 @@
   "EditListingFeaturesForm.groupSizeLabel": "Group size",
   "EditListingFeaturesForm.groupSizeUnit": "People",
   "EditListingLocationForm.address": "Address",
-  "EditListingLocationForm.addressNotRecognized":
-    "We didn't recognize this location. Please try another location.",
+  "EditListingLocationForm.addressNotRecognized": "We didn't recognize this location. Please try another location.",
   "EditListingLocationForm.addressPlaceholder": "Just start typing here",
   "EditListingLocationForm.addressRequired": "You need to provide a location",
   "EditListingLocationForm.building": "Apt, suite, building # (optional)",
   "EditListingLocationForm.buildingPlaceholder": "A 42",
   "EditListingLocationForm.tourStartAddressLabel": "Tour start address",
   "EditListingLocationForm.tourStartAddressPlaceholder": "",
-  "EditListingLocationForm.updateFailed":
-    "Failed to update listing. Please try again.",
-  "EditListingLocationPanel.createListingTitle":
-    "Where's your experience taking place?",
+  "EditListingLocationForm.updateFailed": "Failed to update listing. Please try again.",
+  "EditListingLocationPanel.createListingTitle": "Where's your experience taking place?",
   "EditListingLocationPanel.title": "Edit the location of {listingTitle}",
   "EditListingPage.loadingListingData": "Loading listing data…",
   "EditListingPage.titleCreateListing": "Create a listing",
   "EditListingPage.titleEditListing": "Edit listing",
-  "EditListingPhotosForm.addImagesTip":
-    "The first photo you upload is the one customers will see when visiting the marketplace.",
-  "EditListingPhotosForm.bankAccountNumberRequired":
-    "You need to add a bank account number.",
+  "EditListingPhotosForm.addImagesTip": "The first photo you upload is the one customers will see when visiting the marketplace.",
+  "EditListingPhotosForm.bankAccountNumberRequired": "You need to add a bank account number.",
   "EditListingPhotosForm.chooseImage": "+ Choose an image…",
   "EditListingPhotosForm.createListingFailed": "Adding a new experience failed",
   "EditListingPhotosForm.imageRequired": "You need to add at least one image.",
-  "EditListingPhotosForm.imageTypes":
-    "Width: min. 1900 pixels Height: min. 1000 pixels",
-  "EditListingPhotosForm.imageUploadFailed.uploadFailed":
-    "Failed to upload image. Please check that the image wasn't too big and try again.",
-  "EditListingPhotosForm.imageUploadFailed.uploadOverLimit":
-    "The maximum file size is 10 MB. Please try again.",
+  "EditListingPhotosForm.imageTypes": "Width: min. 1900 pixels Height: min. 1000 pixels",
+  "EditListingPhotosForm.imageUploadFailed.uploadFailed": "Failed to upload image. Please check that the image wasn't too big and try again.",
+  "EditListingPhotosForm.imageUploadFailed.uploadOverLimit": "The maximum file size is 10 MB. Please try again.",
   "EditListingPhotosForm.savedImageAltText": "Saved listing image",
   "EditListingPhotosForm.showListingFailed": "Fetching listing data failed",
-  "EditListingPhotosForm.updateFailed":
-    "Failed to update listing. Please try again.",
+  "EditListingPhotosForm.updateFailed": "Failed to update listing. Please try again.",
   "EditListingPhotosPanel.createListingTitle": "Add a few photos",
-  "EditListingPhotosPanel.payoutModalInfo":
-    "Since this was the first listing you created, we need to know bit more about you in order to send you money.",
+  "EditListingPhotosPanel.payoutModalInfo": "Since this was the first listing you created, we need to know bit more about you in order to send you money.",
   "EditListingPhotosPanel.payoutModalTitleOneMoreThing": "One more thing:",
-  "EditListingPhotosPanel.payoutModalTitlePayoutPreferences":
-    "Payout preferences",
+  "EditListingPhotosPanel.payoutModalTitlePayoutPreferences": "Payout preferences",
   "EditListingPhotosPanel.title": "Edit the photos of {listingTitle}",
   "EditListingPoliciesForm.rulesLabel": "Experience rules",
   "EditListingPoliciesForm.rulesPlaceholder": "Describe the no-nos",
-  "EditListingPoliciesForm.updateFailed":
-    "Failed to update listing. Please try again.",
-  "EditListingPoliciesPanel.createListingTitle":
-    "Time to set some ground rules for the participants.",
+  "EditListingPoliciesForm.updateFailed": "Failed to update listing. Please try again.",
+  "EditListingPoliciesPanel.createListingTitle": "Time to set some ground rules for the participants.",
   "EditListingPoliciesPanel.title": "Edit the rules of {listingTitle}",
   "EditListingPricingForm.priceInputPlaceholder": "Choose your price…",
   "EditListingPricingForm.pricePerUnit": "Price in USD",
   "EditListingPricingForm.priceRequired": "You need to add a valid price.",
   "EditListingPricingForm.priceTooLow": "Price should be at least {minPrice}.",
   "EditListingPricingForm.schemePlaceholder": "Select an option",
-  "EditListingPricingForm.schemeRequired":
-    "You need to select a pricing scheme",
-  "EditListingPricingForm.schemeLabel":
-    "What is the pricing scheme of your experience?",
-  "EditListingPricingForm.updateFailed":
-    "Failed to update listing. Please try again.",
-  "EditListingPricingPanel.createListingTitle":
-    "How much does it cost? Select the pricing scheme that fits your experience.",
-  "EditListingPricingPanel.listingPriceCurrencyInvalid":
-    "Listing currency is different from the marketplace currency. You cannot edit the price.",
+  "EditListingPricingForm.schemeRequired": "You need to select a pricing scheme",
+  "EditListingPricingForm.schemeLabel": "What is the pricing scheme of your experience?",
+  "EditListingPricingForm.updateFailed": "Failed to update listing. Please try again.",
+  "EditListingPricingPanel.createListingTitle": "How much does it cost? Select the pricing scheme that fits your experience.",
+  "EditListingPricingPanel.listingPriceCurrencyInvalid": "Listing currency is different from the marketplace currency. You cannot edit the price.",
   "EditListingPricingPanel.title": "Edit the price of {listingTitle}",
   "EditListingWizard.saveEditAvailability": "Save availability",
   "EditListingWizard.saveEditDescription": "Save description",
@@ -312,27 +244,21 @@
   "EditListingWizard.tabLabelPhotos": "Photos",
   "EditListingWizard.tabLabelPolicy": "Experience rules",
   "EditListingWizard.tabLabelPricing": "Pricing",
-  "EmailVerificationForm.finishAccountSetup":
-    "We will need to send you email notifications. To allow this, please verify your email address {email}.",
+  "EmailVerificationForm.finishAccountSetup": "We will need to send you email notifications. To allow this, please verify your email address {email}.",
   "EmailVerificationForm.successButtonText": "Continue exploring",
-  "EmailVerificationForm.successText":
-    "Everything looks good. Time to get out there – have a great day.",
-  "EmailVerificationForm.successTitle":
-    "Thanks for verifying your email address, {name}.",
-  "EmailVerificationForm.verificationFailed":
-    "Could not verify the email address.",
+  "EmailVerificationForm.successText": "Everything looks good. Time to get out there – have a great day.",
+  "EmailVerificationForm.successTitle": "Thanks for verifying your email address, {name}.",
+  "EmailVerificationForm.verificationFailed": "Could not verify the email address.",
   "EmailVerificationForm.verify": "Verify my email address",
   "EmailVerificationForm.verifyEmailAddress": "Verify your email address",
   "EmailVerificationForm.verifying": "Verifying…",
   "EmailVerificationPage.loadingUserInformation": "Loading user information…",
   "EmailVerificationPage.title": "Verify your email address",
   "EnquiryForm.heading": "Enquire about {listingTitle}",
-  "EnquiryForm.messageLabel":
-    "Message to {authorDisplayName} from {organisation}",
+  "EnquiryForm.messageLabel": "Message to {authorDisplayName} from {organisation}",
   "EnquiryForm.messagePlaceholder": "Type your message here...",
   "EnquiryForm.messageRequired": "A message is required",
-  "EnquiryForm.sendEnquiryError":
-    "That's strange! Something went wrong. Please try again.",
+  "EnquiryForm.sendEnquiryError": "That's strange! Something went wrong. Please try again.",
   "EnquiryForm.submitButtonText": "Send enquiry",
   "FieldBoolean.no": "No",
   "FieldBoolean.yes": "Yes",
@@ -386,17 +312,14 @@
   "InboxPage.statePending": "Pending",
   "InboxPage.stateRequested": "Requested",
   "InboxPage.title": "Inbox",
-
   "InputTextFilter.labelSelected": "{labelText} • {count}",
   "InputTextFilterForm.cancel": "Cancel",
   "InputTextFilterForm.clear": "Clear",
   "InputTextFilterForm.submit": "Apply",
   "InputTextFilterPlainForm.clear": "Clear",
   "InputTextFilterPlainForm.labelSelected": "{labelText} • {count}",
-
-  "LandingPage.schemaDescription":
-    "A global marketplace for social impact experiences.",
-  "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}", 
+  "LandingPage.schemaDescription": "A global marketplace for social impact experiences.",
+  "LandingPage.schemaTitle": "Social impact that inspires | {siteTitle}",
   "ListingCard.hostedBy": "Hosted by {authorName}.",
   "ListingCard.perUnit": "per day",
   "ListingCard.unsupportedPrice": "({currency})",
@@ -404,12 +327,10 @@
   "ListingPage.availabilityHeader": "Availability",
   "ListingPage.bannedUserDisplayName": "Banned user",
   "ListingPage.bookingHelp": "",
-  "ListingPage.bookingHelpClosedListing":
-    "Sorry, this listing has been closed.",
+  "ListingPage.bookingHelpClosedListing": "Sorry, this listing has been closed.",
   "ListingPage.bookingTitle": "Book {title}",
   "ListingPage.contactEmailTitle": "Contact us",
-  "ListingPage.closedListing":
-    "This listing has been closed and can't be booked.",
+  "ListingPage.closedListing": "This listing has been closed and can't be booked.",
   "ListingPage.closedListingButtonText": "Sorry, this listing has been closed.",
   "ListingPage.contactUser": "Contact",
   "ListingPage.ctaButtonMessage": "Request to book",
@@ -418,14 +339,12 @@
   "ListingPage.durationHeader": "Duration",
   "ListingPage.editListing": "Edit listing",
   "ListingPage.editProfileLink": "Edit profile",
-  "ListingPage.errorLoadingListingMessage":
-    "Could not load listing. Please try again.",
+  "ListingPage.errorLoadingListingMessage": "Could not load listing. Please try again.",
   "ListingPage.exclude10pcServiceFee": "Excl. 10% service fee",
   "ListingPage.errorLoadingListingTitle": "Error in loading listing",
   "ListingPage.featuresTitle": "Social impact focus",
-
   "ListingPage.getInTouchNameEmail": "Get in touch to find out more about this customized experience",
-  "ListingPage.getInTouchNameLabel": "Name (*)",  
+  "ListingPage.getInTouchNameLabel": "Name (*)",
   "ListingPage.getInTouchNamePlaceholder": "Name",
   "ListingPage.getInTouchNameRequired": "Name is required",
   "ListingPage.getInTouchEmailLabel": "Email (*)",
@@ -433,14 +352,14 @@
   "ListingPage.getInTouchEmailRequired": "Email is required",
   "ListingPage.getInTouchEmailInvalid": "Email is invalid",
   "ListingPage.getInTouchMoreAboutYou": "The more we know about you now, the less we’ll ask later",
-  "ListingPage.getInTouchNumberPeopleLabel": "Number of people",  
+  "ListingPage.getInTouchNumberPeopleLabel": "Number of people",
   "ListingPage.getInTouchNumberPeoplePlaceholder": "Number of people",
   "ListingPage.getInTouchWAYTFLabel": "Where are you traveling from",
   "ListingPage.getInTouchWAYTFPlaceholder": "Where are you traveling from",
   "ListingPage.getInTouchTOGLabel": "Type of group",
   "ListingPage.getInTouchTOGDefaultOption": "Select your group type",
   "ListingPage.getInTouchMoreAboutUs": "We also offer flights, accommodation and ground transport at the best available prices",
-  "ListingPage.getInTouchMoreOfferLabel": "I would like a non-committal offer for my group travel (accommodation, flights, etc.)",  
+  "ListingPage.getInTouchMoreOfferLabel": "I would like a non-committal offer for my group travel (accommodation, flights, etc.)",
   "ListingPage.getInTouchMoreOfferDefaultOption": "Yes/No",
   "ListingPage.getInTouchMessageLabel": "Message",
   "ListingPage.getInTouchMessagePlaceholder": "Message",
@@ -449,15 +368,12 @@
   "ListingPage.getInTouchSuccessModalContentTitle": "Successfully sent contact",
   "ListingPage.getInTouchSuccessModalContentPara1": "Thank you for your interest, we’ll get back to you as soon as possible.",
   "ListingPage.getInTouchSuccessModalContentPara2": "Have an awesome day!",
-
-
   "ListingPage.hostedBy": "Hosted by {name}",
   "ListingPage.includedHeader": "This experience includes",
   "ListingPage.loadingListingMessage": "Loading listing…",
   "ListingPage.loadingListingTitle": "Loading listing…",
   "ListingPage.locationTitle": "Location",
-  "ListingPage.ownClosedListing":
-    "Your listing has been closed and can't be booked.",
+  "ListingPage.ownClosedListing": "Your listing has been closed and can't be booked.",
   "ListingPage.ownListing": "This is your own listing.",
   "ListingPage.ownListingPendingApproval": "This listing is pending approval.",
   "ListingPage.perUnit": "per day",
@@ -477,26 +393,20 @@
   "LoginForm.emailPlaceholder": "your.name@example.com",
   "LoginForm.emailRequired": "This field is required",
   "LoginForm.forgotPassword": "Reset password.",
-  "LoginForm.forgotPasswordInfo":
-    "Forgot your password? {passwordRecoveryLink}",
+  "LoginForm.forgotPasswordInfo": "Forgot your password? {passwordRecoveryLink}",
   "LoginForm.logIn": "Log in",
   "LoginForm.passwordLabel": "Password",
   "LoginForm.passwordPlaceholder": "Enter your password…",
   "LoginForm.passwordRequired": "This field is required",
-  "ManageListingCard.actionFailed":
-    "Whoops, something went wrong. Please refresh the page and try again.",
+  "ManageListingCard.actionFailed": "Whoops, something went wrong. Please refresh the page and try again.",
   "ManageListingCard.closeListing": "Close listing",
-  "ManageListingCard.closedListing":
-    "This listing is closed and not visible on the marketplace.",
-
+  "ManageListingCard.closedListing": "This listing is closed and not visible on the marketplace.",
   "ManageListingCard.edit": "Edit",
   "ManageListingCard.openListing": "Open listing",
-  "ManageListingCard.pendingApproval":
-    "{listingTitle} is pending admin approval and can't be booked.",
+  "ManageListingCard.pendingApproval": "{listingTitle} is pending admin approval and can't be booked.",
   "ManageListingCard.perUnit": "per day",
   "ManageListingCard.unsupportedPrice": "({currency})",
-  "ManageListingCard.unsupportedPriceTitle":
-    "Unsupported currency ({currency})",
+  "ManageListingCard.unsupportedPriceTitle": "Unsupported currency ({currency})",
   "ManageListingCard.viewListing": "View listing",
   "ManageListingsPage.accountSettings": "Account settings",
   "ManageListingsPage.loadingOwnListings": "Loading listings…",
@@ -504,37 +414,26 @@
   "ManageListingsPage.profileSettings": "Profile settings",
   "ManageListingsPage.queryError": "Query failed. Please try again.",
   "ManageListingsPage.title": "Manage listings",
-  "ManageListingsPage.youHaveListings":
-    "You have {count} {count, plural, one {listing} other {listings}}",
+  "ManageListingsPage.youHaveListings": "You have {count} {count, plural, one {listing} other {listings}}",
   "ManageListingsPage.yourListings": "Your listings",
   "MapPriceMarker.unsupportedPrice": "({currency})",
   "Modal.close": "CLOSE",
   "Modal.closeModal": "Close modal",
-  "ModalMissingInformation.checkInbox":
-    "Please check your inbox and verify your email address {email}",
+  "ModalMissingInformation.checkInbox": "Please check your inbox and verify your email address {email}",
   "ModalMissingInformation.closeVerifyEmailReminder": "Later",
-  "ModalMissingInformation.fixEmail":
-    "Whoops, typo in your email? {fixEmailLink}",
+  "ModalMissingInformation.fixEmail": "Whoops, typo in your email? {fixEmailLink}",
   "ModalMissingInformation.fixEmailLinkText": "Fix it.",
   "ModalMissingInformation.gotoPaymentSettings": "Add payment details",
-  "ModalMissingInformation.missingStripeAccountText":
-    "You have listings but your payment details are missing. Your listings cannot be booked until the details are saved.",
-  "ModalMissingInformation.missingStripeAccountTitle":
-    "Payment details missing",
-  "ModalMissingInformation.resendEmail":
-    "Didn't get the email? {resendEmailLink}",
+  "ModalMissingInformation.missingStripeAccountText": "You have listings but your payment details are missing. Your listings cannot be booked until the details are saved.",
+  "ModalMissingInformation.missingStripeAccountTitle": "Payment details missing",
+  "ModalMissingInformation.resendEmail": "Didn't get the email? {resendEmailLink}",
   "ModalMissingInformation.resendEmailLinkText": "Resend it.",
-  "ModalMissingInformation.resendFailed":
-    "Resending verification email failed. Please try again.",
-  "ModalMissingInformation.resendFailedTooManyRequests":
-    "Resending verification email failed. You already have too many verification emails sent.",
+  "ModalMissingInformation.resendFailed": "Resending verification email failed. Please try again.",
+  "ModalMissingInformation.resendFailedTooManyRequests": "Resending verification email failed. You already have too many verification emails sent.",
   "ModalMissingInformation.sendingEmail": "Sending verification email…",
-  "ModalMissingInformation.verifyEmailText":
-    "We are currently unable to send you email notifications if other Goodwings users contact you because you haven't verified your email address.",
-  "ModalMissingInformation.verifyEmailTitle":
-    "Please verify your email address",
-  "NotFoundPage.description":
-    "We can't find the page or experience you're looking for. Make sure you've typed in the URL correctly or try searching Goodwings Experiences.",
+  "ModalMissingInformation.verifyEmailText": "We are currently unable to send you email notifications if other Goodwings users contact you because you haven't verified your email address.",
+  "ModalMissingInformation.verifyEmailTitle": "Please verify your email address",
+  "NotFoundPage.description": "We can't find the page or experience you're looking for. Make sure you've typed in the URL correctly or try searching Goodwings Experiences.",
   "NotFoundPage.heading": "Sorry, we couldn't find that page.",
   "NotFoundPage.title": "Page not found",
   "Page.schemaDescription": "A marketplace for social impact experiences.",
@@ -542,23 +441,18 @@
   "PaginationLinks.next": "Next page",
   "PaginationLinks.previous": "Previous page",
   "PaginationLinks.toPage": "Go to page {page}",
-  "PasswordChangeForm.confirmChangesInfo":
-    "To change your password, please enter your current password.",
+  "PasswordChangeForm.confirmChangesInfo": "To change your password, please enter your current password.",
   "PasswordChangeForm.confirmChangesTitle": "Confirm your changes",
-  "PasswordChangeForm.genericFailure":
-    "Whoops, something went wrong. Please refresh the page and try again.",
+  "PasswordChangeForm.genericFailure": "Whoops, something went wrong. Please refresh the page and try again.",
   "PasswordChangeForm.newPasswordLabel": "New password",
   "PasswordChangeForm.newPasswordPlaceholder": "Enter your new password",
   "PasswordChangeForm.newPasswordRequired": "A new password is required",
-  "PasswordChangeForm.passwordFailed":
-    "Please double-check your current password",
+  "PasswordChangeForm.passwordFailed": "Please double-check your current password",
   "PasswordChangeForm.passwordLabel": "Current password",
   "PasswordChangeForm.passwordPlaceholder": "Enter your current password…",
   "PasswordChangeForm.passwordRequired": "Current password is required",
-  "PasswordChangeForm.passwordTooLong":
-    "The password should be at most {maxLength} characters",
-  "PasswordChangeForm.passwordTooShort":
-    "The password should be at least {minLength} characters",
+  "PasswordChangeForm.passwordTooLong": "The password should be at most {maxLength} characters",
+  "PasswordChangeForm.passwordTooShort": "The password should be at least {minLength} characters",
   "PasswordChangeForm.saveChanges": "Save changes",
   "PasswordChangePage.contactDetailsTabTitle": "Contact details",
   "PasswordChangePage.heading": "Password settings",
@@ -567,52 +461,39 @@
   "PasswordChangePage.title": "Contact details",
   "PasswordRecoveryForm.emailInvalid": "A valid email address is required",
   "PasswordRecoveryForm.emailLabel": "Email",
-  "PasswordRecoveryForm.emailNotFound":
-    "Hmm. We didn't find an account with that email address. Please double-check the address and try again.",
+  "PasswordRecoveryForm.emailNotFound": "Hmm. We didn't find an account with that email address. Please double-check the address and try again.",
   "PasswordRecoveryForm.emailPlaceholder": "your.name@example.com",
   "PasswordRecoveryForm.emailRequired": "This field is required",
-  "PasswordRecoveryForm.loginLinkInfo":
-    "Suddenly remembered your password? {loginLink}",
+  "PasswordRecoveryForm.loginLinkInfo": "Suddenly remembered your password? {loginLink}",
   "PasswordRecoveryForm.loginLinkText": "Log in.",
   "PasswordRecoveryForm.sendInstructions": "Send instructions",
-  "PasswordRecoveryPage.actionFailedMessage":
-    "Something went wrong. Please refresh the page and try again.",
+  "PasswordRecoveryPage.actionFailedMessage": "Something went wrong. Please refresh the page and try again.",
   "PasswordRecoveryPage.actionFailedTitle": "Whoops!",
-  "PasswordRecoveryPage.emailNotVerifiedContactAdmin":
-    "To resolve the issue, please contact the Goodwings administrators.",
-  "PasswordRecoveryPage.emailNotVerifiedMessage":
-    "Unfortunately, we cannot recover your password because your email address {initialEmailText} hasn't been verified.",
+  "PasswordRecoveryPage.emailNotVerifiedContactAdmin": "To resolve the issue, please contact the Goodwings administrators.",
+  "PasswordRecoveryPage.emailNotVerifiedMessage": "Unfortunately, we cannot recover your password because your email address {initialEmailText} hasn't been verified.",
   "PasswordRecoveryPage.emailNotVerifiedTitle": "We have some bad news",
-  "PasswordRecoveryPage.emailSubmittedMessage":
-    "The instructions for resetting your password have been sent to {submittedEmailText}.",
+  "PasswordRecoveryPage.emailSubmittedMessage": "The instructions for resetting your password have been sent to {submittedEmailText}.",
   "PasswordRecoveryPage.emailSubmittedTitle": "Check your inbox",
-  "PasswordRecoveryPage.fixEmailInfo":
-    "Whoops, typo in your email? {fixEmailLink}",
+  "PasswordRecoveryPage.fixEmailInfo": "Whoops, typo in your email? {fixEmailLink}",
   "PasswordRecoveryPage.fixEmailLinkText": "Fix it.",
-  "PasswordRecoveryPage.forgotPasswordMessage":
-    "No worries! Please enter the email address you used when signing up and we'll send you instructions on how to set a new password.",
+  "PasswordRecoveryPage.forgotPasswordMessage": "No worries! Please enter the email address you used when signing up and we'll send you instructions on how to set a new password.",
   "PasswordRecoveryPage.forgotPasswordTitle": "Forgot your password?",
-  "PasswordRecoveryPage.resendEmailInfo":
-    "Didn't get the email? {resendEmailLink}",
+  "PasswordRecoveryPage.resendEmailInfo": "Didn't get the email? {resendEmailLink}",
   "PasswordRecoveryPage.resendEmailLinkText": "Send another email.",
   "PasswordRecoveryPage.resendingEmailInfo": "Resending instructions…",
   "PasswordRecoveryPage.title": "Request a new password",
   "PasswordResetForm.passwordLabel": "Your new password",
   "PasswordResetForm.passwordPlaceholder": "Enter your new password…",
   "PasswordResetForm.passwordRequired": "This field is required",
-  "PasswordResetForm.passwordTooLong":
-    "Password should be at most {maxLength} characters",
-  "PasswordResetForm.passwordTooShort":
-    "Password should be at least {minLength} characters",
+  "PasswordResetForm.passwordTooLong": "Password should be at most {maxLength} characters",
+  "PasswordResetForm.passwordTooShort": "Password should be at least {minLength} characters",
   "PasswordResetForm.submitButtonText": "Reset password",
   "PasswordResetPage.helpText": "Please provide a new password.",
-  "PasswordResetPage.invalidUrlParams":
-    "Oops, it looks like the password reset link is broken. Try again by clicking on the link in the received email, or request a new link from the {recoveryLink}.",
+  "PasswordResetPage.invalidUrlParams": "Oops, it looks like the password reset link is broken. Try again by clicking on the link in the received email, or request a new link from the {recoveryLink}.",
   "PasswordResetPage.loginButtonText": "Log in",
   "PasswordResetPage.mainHeading": "Reset your password",
   "PasswordResetPage.passwordChangedHeading": "Password changed",
-  "PasswordResetPage.passwordChangedHelpText":
-    "Your password has been changed successfully.",
+  "PasswordResetPage.passwordChangedHelpText": "Your password has been changed successfully.",
   "PasswordResetPage.recoveryLinkText": "password recovery page",
   "PasswordResetPage.resetFailed": "Reset failed. Please try again.",
   "PasswordResetPage.title": "Reset password",
@@ -622,11 +503,9 @@
   "PayoutDetailsForm.birthdayLabel": "Birth date",
   "PayoutDetailsForm.birthdayLabelMonth": "Month",
   "PayoutDetailsForm.birthdayLabelYear": "Year",
-  "PayoutDetailsForm.birthdayMinAge":
-    "You need to be at least {minAge} years old.",
+  "PayoutDetailsForm.birthdayMinAge": "You need to be at least {minAge} years old.",
   "PayoutDetailsForm.birthdayMonthPlaceholder": "mm",
-  "PayoutDetailsForm.birthdayRequired":
-    "Birthday is required and must be a valid date.",
+  "PayoutDetailsForm.birthdayRequired": "Birthday is required and must be a valid date.",
   "PayoutDetailsForm.birthdayYearPlaceholder": "yyyy",
   "PayoutDetailsForm.cityLabel": "City",
   "PayoutDetailsForm.cityPlaceholder": "Your ciy",
@@ -650,15 +529,12 @@
   "PayoutDetailsForm.countryNames.US": "United States",
   "PayoutDetailsForm.countryPlaceholder": "Select your country…",
   "PayoutDetailsForm.countryRequired": "This field is required",
-  "PayoutDetailsForm.createStripeAccountFailed":
-    "Whoops, something went wrong. Please try again.",
-  "PayoutDetailsForm.createStripeAccountFailedInvalidPostalCode":
-    "Whoops, check that the selected country and postal code are correct and try again.",
+  "PayoutDetailsForm.createStripeAccountFailed": "Whoops, something went wrong. Please try again.",
+  "PayoutDetailsForm.createStripeAccountFailedInvalidPostalCode": "Whoops, check that the selected country and postal code are correct and try again.",
   "PayoutDetailsForm.firstNameLabel": "First name",
   "PayoutDetailsForm.firstNamePlaceholder": "Your",
   "PayoutDetailsForm.firstNameRequired": "This field is required",
-  "PayoutDetailsForm.information":
-    "Since this was your first listing, we need to know bit more about you in order to send you money. This is the only time we'll ask you.",
+  "PayoutDetailsForm.information": "Since this was your first listing, we need to know bit more about you in order to send you money. This is the only time we'll ask you.",
   "PayoutDetailsForm.lastNameLabel": "Last name",
   "PayoutDetailsForm.lastNamePlaceholder": "Name",
   "PayoutDetailsForm.lastNameRequired": "This field is required",
@@ -669,10 +545,8 @@
   "PayoutDetailsForm.streetAddressLabel": "Street address",
   "PayoutDetailsForm.streetAddressPlaceholder": "Enter your street address…",
   "PayoutDetailsForm.streetAddressRequired": "This field is required",
-  "PayoutDetailsForm.stripeConnectedAccountTermsLink":
-    "Stripe Connected Account Agreement",
-  "PayoutDetailsForm.stripeToSText":
-    "By saving details, you agree to the {stripeConnectedAccountTermsLink}",
+  "PayoutDetailsForm.stripeConnectedAccountTermsLink": "Stripe Connected Account Agreement",
+  "PayoutDetailsForm.stripeToSText": "By saving details, you agree to the {stripeConnectedAccountTermsLink}",
   "PayoutDetailsForm.submitButtonText": "Save details & publish listing",
   "PayoutDetailsForm.title": "One more thing: payout preferences",
   "PayoutPreferencesPage.contactDetailsTabTitle": "Contact details",
@@ -680,15 +554,11 @@
   "PayoutPreferencesPage.loadingData": "Loading data…",
   "PayoutPreferencesPage.passwordTabTitle": "Password",
   "PayoutPreferencesPage.paymentsTabTitle": "Payments",
-  "PayoutPreferencesPage.payoutDetailsSaved":
-    "Payment information successfully saved! If you want to change your payment details, please contact the marketplace admins.",
-  "PayoutPreferencesPage.stripeAlreadyConnected":
-    "You’ve already entered your payment details. If you want to change your payment details, please contact the marketplace admins.",
-  "PayoutPreferencesPage.stripeNotConnected":
-    "Payment information not saved. Please fill in the form to accept payments from your listings.",
+  "PayoutPreferencesPage.payoutDetailsSaved": "Payment information successfully saved! If you want to change your payment details, please contact the marketplace admins.",
+  "PayoutPreferencesPage.stripeAlreadyConnected": "You’ve already entered your payment details. If you want to change your payment details, please contact the marketplace admins.",
+  "PayoutPreferencesPage.stripeNotConnected": "Payment information not saved. Please fill in the form to accept payments from your listings.",
   "PayoutPreferencesPage.submitButtonText": "Save details",
   "PayoutPreferencesPage.title": "Payment settings",
-  
   "PriceFilter.clear": "Clear",
   "PriceFilter.label": "Price",
   "PriceFilter.labelSelectedPlain": "Price: {minPrice} - {maxPrice}",
@@ -697,7 +567,6 @@
   "PriceFilterForm.clear": "Clear",
   "PriceFilterForm.label": "Price range:",
   "PriceFilterForm.submit": "Apply",
-  
   "PrivacyPolicyPage.heading": "Goodwings Experiences - Privacy and Cookie Policy",
   "PrivacyPolicyPage.privacyTabTitle": "Privacy Policy",
   "PrivacyPolicyPage.schemaTitle": "Privacy Policy | {siteTitle}",
@@ -707,8 +576,7 @@
   "ProfilePage.editProfileLinkDesktop": "Edit profile",
   "ProfilePage.editProfileLinkMobile": "Edit",
   "ProfilePage.listingsTitle": "Our experiences ({count})",
-  "ProfilePage.loadingDataFailed":
-    "Whoops, something went wrong. Please try again.",
+  "ProfilePage.loadingDataFailed": "Whoops, something went wrong. Please try again.",
   "ProfilePage.loadingReviewsFailed": "Loading reviews failed.",
   "ProfilePage.mobileHeading": "{name}",
   "ProfilePage.reviewsOfCustomerTitle": "Reviews ({count})",
@@ -717,33 +585,26 @@
   "ProfileSettingsForm.addYourProfilePicture": "+ Add your profile picture…",
   "ProfileSettingsForm.addYourProfilePictureMobile": "+ Add",
   "ProfileSettingsForm.bioHeading": "About your organisation/company",
-  "ProfileSettingsForm.bioInfo":
-    "Goodwings Experiences is built on relationships. Tell other people about your nonprofit organisation or company.",
+  "ProfileSettingsForm.bioInfo": "Goodwings Experiences is built on relationships. Tell other people about your nonprofit organisation or company.",
   "ProfileSettingsForm.bioLabel": "Bio",
-  "ProfileSettingsForm.bioPlaceholder":
-    "Tell us a little bit about your organisation or company…",
+  "ProfileSettingsForm.bioPlaceholder": "Tell us a little bit about your organisation or company…",
   "ProfileSettingsForm.changeAvatar": "Change",
   "ProfileSettingsForm.fileInfo": ".JPG, .GIF or .PNG. Max. 10 MB",
   "ProfileSettingsForm.firstNameLabel": "First name",
   "ProfileSettingsForm.firstNamePlaceholder": "Your",
   "ProfileSettingsForm.firstNameRequired": "This field is required",
-  "ProfileSettingsForm.imageUploadFailed":
-    "Whoops, something went wrong. Please check that the image wasn't too big and try again.",
-  "ProfileSettingsForm.imageUploadFailedFileTooLarge":
-    "Image was too big. Maximum size is 10 MB.",
+  "ProfileSettingsForm.imageUploadFailed": "Whoops, something went wrong. Please check that the image wasn't too big and try again.",
+  "ProfileSettingsForm.imageUploadFailedFileTooLarge": "Image was too big. Maximum size is 10 MB.",
   "ProfileSettingsForm.lastNameLabel": "Last name",
   "ProfileSettingsForm.lastNamePlaceholder": "Name",
   "ProfileSettingsForm.lastNameRequired": "This field is required",
   "ProfileSettingsForm.organisationName": "Organisation",
   "ProfileSettingsForm.organisationLabel": "Organisation",
   "ProfileSettingsForm.organisationPlaceholder": "Your Organisation",
-  "ProfileSettingsForm.organisationRequiredMessage":
-    "You need to add an organisation.",
+  "ProfileSettingsForm.organisationRequiredMessage": "You need to add an organisation.",
   "ProfileSettingsForm.saveChanges": "Save changes",
-  "ProfileSettingsForm.tip":
-    "We recommend that you add your organisation's logo as profile photo.",
-  "ProfileSettingsForm.updateProfileFailed":
-    "Whoops, something went wrong. Please try again.",
+  "ProfileSettingsForm.tip": "We recommend that you add your organisation's logo as profile photo.",
+  "ProfileSettingsForm.updateProfileFailed": "Whoops, something went wrong. Please try again.",
   "ProfileSettingsForm.yourName": "Your name",
   "ProfileSettingsForm.yourProfilePicture": "Your profile picture",
   "ProfileSettingsPage.heading": "Profile settings",
@@ -752,30 +613,25 @@
   "ResponsiveImage.noImage": "No image",
   "ReviewForm.reviewContentLabel": "Leave a review",
   "ReviewForm.reviewContentPlaceholder": "Descripe your experience...",
-  "ReviewForm.reviewContentRequired":
-    "You need to add a message to leave a review.",
+  "ReviewForm.reviewContentRequired": "You need to add a message to leave a review.",
   "ReviewForm.reviewRatingLabel": "Rate your experience",
   "ReviewForm.reviewRatingRequired": "Review message is required",
   "ReviewForm.reviewSubmit": "Publish review",
-  "ReviewForm.reviewSubmitAlreadySent":
-    "Review already sent. Please refresh the page.",
+  "ReviewForm.reviewSubmitAlreadySent": "Review already sent. Please refresh the page.",
   "ReviewForm.reviewSubmitFailed": "Failed to sent a review. Please try again.",
-  "ReviewModal.description":
-    "Reviews are an important part of the Goodwings community. Please share what went well and what could have been improved.",
+  "ReviewModal.description": "Reviews are an important part of the Goodwings community. Please share what went well and what could have been improved.",
   "ReviewModal.later": "Later",
   "ReviewModal.title": "Leave a review for {revieweeName}",
   "Reviews.bannedUserDisplayName": "Banned user",
   "SearchFilters.goalsLabel": "Social impact focus",
   "SearchFilters.categoryLabel": "Activity",
   "SearchFilters.filtersButtonLabel": "Filters",
-  "SearchFilters.foundResults":
-    "{count, number} {count, plural, one {result} other {results}}",
+  "SearchFilters.foundResults": "{count, number} {count, plural, one {result} other {results}}",
   "SearchFilters.groupSizeFilterLabel": "Group size",
   "SearchFilters.groupSizeInputLabel": "Number of people",
   "SearchFilters.loadingResults": "Loading search results…",
   "SearchFilters.loadingResultsMobile": "Loading…",
-  "SearchFilters.moreFiltersButton":
-    "{count, plural, =0 {More filters} other {More filters • #}}",
+  "SearchFilters.moreFiltersButton": "{count, plural, =0 {More filters} other {More filters • #}}",
   "SearchFilters.noResults": "Could not find any listings.",
   "SearchFilters.noResultsMobile": "No results.",
   "SearchFilters.openMapView": "Map",
@@ -784,8 +640,7 @@
   "SearchFiltersMobile.categoryLabel": "Activity",
   "SearchFiltersMobile.heading": "Filter experiences",
   "SearchFiltersMobile.resetAll": "Reset all",
-  "SearchFiltersMobile.showListings":
-    "Show {count, number} {count, plural, one {experience} other {experiences}}",
+  "SearchFiltersMobile.showListings": "Show {count, number} {count, plural, one {experience} other {experiences}}",
   "SearchFiltersPanel.goalsLabel": "Multiselect",
   "SearchFiltersPanel.apply": "Apply",
   "SearchFiltersPanel.cancel": "Cancel",
@@ -801,68 +656,48 @@
   "SectionHero.mobileSearchButtonText": "Search experiences",
   "SectionHero.subTitle": "Find and reserve it today.",
   "SectionHero.title": "Book a social impact experience",
-  "SectionHowItWorks.createListingLink":
-    "Everytime you book through Goodwings Experience our partners receive money to make the world a better place",
-  "SectionHowItWorks.part1Text":
-    "Look through our unique experiences and chose the one you like.",
+  "SectionHowItWorks.createListingLink": "Everytime you book through Goodwings Experience our partners receive money to make the world a better place",
+  "SectionHowItWorks.part1Text": "Look through our unique experiences and chose the one you like.",
   "SectionHowItWorks.part1Title": "Search for{newline}an experience",
-  "SectionHowItWorks.part2Text":
-    "Send your request and we will arrange your customised package with out NGO partner.",
+  "SectionHowItWorks.part2Text": "Send your request and we will arrange your customised package with out NGO partner.",
   "SectionHowItWorks.part2Title": "Interact with{newline}the host",
-  "SectionHowItWorks.part3Text":
-    "Get ready to learn something new, make the world a better place and have the experience of a life time.",
+  "SectionHowItWorks.part3Text": "Get ready to learn something new, make the world a better place and have the experience of a life time.",
   "SectionHowItWorks.part3Title": "Book the{newline}experience",
-  "SectionHowItWorks.providerSignupLink":
-    "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
-  "SectionHowItWorks.agentSignupLink":
-    "Are you a travel agent or tour operator and do you want to sell social impact experiences as part of your group travel offerings? Read more.",
+  "SectionHowItWorks.providerSignupLink": "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
+  "SectionHowItWorks.agentSignupLink": "Are you a travel agent or tour operator and do you want to sell social impact experiences as part of your group travel offerings? Read more.",
   "SectionHowItWorks.titleLineOne": "How it works",
   "SectionHowItWorks.titleLineTwo": "(or how Goodwings Experiences works).",
   "SectionLocations.generalLink": "Browse different types of experiences.",
   "SectionLocations.listingsInLocation": "{location}",
-  "SectionLocations.subtitle":
-    "Our global network of partners offer fantastic experiences that make the world a better place.",
+  "SectionLocations.subtitle": "Our global network of partners offer fantastic experiences that make the world a better place.",
   "SectionLocations.title": "Experiences for all occasions",
-  "SectionAllOverTheWorld.generalLink":
-    "Explore more options around the world.",
+  "SectionAllOverTheWorld.generalLink": "Explore more options around the world.",
   "SectionAllOverTheWorld.title": "Experiences all over the world",
   "SectionAllOverTheWorld.subtitle": "Lots of places to go...",
   "SectionAllOverTheWorld.listingsInLocation": "{location}",
-  
   "SectionExample.title": "Examples",
-
   "SectionHighlightsOfTheMonth.title": "Popular experiences right now",
   "SectionHighlightsOfTheMonth.subtitle": "Exciting options right now...",
   "SectionHighlightsOfTheMonth.listingsInLocation": "{location}",
-
   "SectionHelpWorldBetter.titleLineOne": "Help make the world a better place",
   "SectionHelpWorldBetter.paraPart1": "Taking part in a Goodwings experience means you’re supporting the real heroes of society: nonprofit organizations. All proceeds from experiences go directly to the nonprofit and help fuel their fight for a better future (Goodwings takes a 10% service fee which makes the marketplace possible).",
   "SectionHelpWorldBetter.paraPart2": "All of our nonprofits work towards realizing one or more of the UN Sustainable Development Goals, which together form part of the 2030 Agenda.",
   "SectionHelpWorldBetter.paraPart3": "When you participate in an experience, you don’t just help the nonprofit towards their goal(s), you also get to understand the challenges they work with every day. This gives you the chance to spread the word about both nonprofit and the UN goals, and add to the positive impact you’ve already had.",
   "SectionHelpWorldBetter.theGlobalGoalText": "For every booking you support the UN Sustainable Development Goals",
-
-  "SectionTargetGroup.part1Text":
-    "I'm a travel agent, tour operator or event manager arranging group travels on behalf of others.",
+  "SectionTargetGroup.part1Text": "I'm a travel agent, tour operator or event manager arranging group travels on behalf of others.",
   "SectionTargetGroup.part1Title": "1. Search for an experience",
-  "SectionTargetGroup.part2Text":
-    "I'm with a non-profit organisation looking to offer social impact experiences.",
+  "SectionTargetGroup.part2Text": "I'm with a non-profit organisation looking to offer social impact experiences.",
   "SectionTargetGroup.part2Title": "2. Interact with the host",
-  "SectionTargetGroup.part3Text":
-    "I'm with a group of people looking for authentic travel experiences for our next adventure.",
+  "SectionTargetGroup.part3Text": "I'm with a group of people looking for authentic travel experiences for our next adventure.",
   "SectionTargetGroup.part3Title": "3. Book the experience",
-  "SectionTargetGroup.providerSignupLink":
-    "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
-  "SectionTargetGroup.agentSignupLink":
-    "Are you a travel agent or tour operator and do you want to sell social impact experiences as part of your group travel offerings? Read more.",
+  "SectionTargetGroup.providerSignupLink": "Are you a nonprofit and do you want to offer a social impact experience? Sign up today.",
+  "SectionTargetGroup.agentSignupLink": "Are you a travel agent or tour operator and do you want to sell social impact experiences as part of your group travel offerings? Read more.",
   "SectionTargetGroup.titleLineOne": "Join us",
-  "SectionTargetGroup.titleLineTwo":
-    "Tell us who you are and we'll help you get onboard and start using Goodwings Experiences already today.",
-  
+  "SectionTargetGroup.titleLineTwo": "Tell us who you are and we'll help you get onboard and start using Goodwings Experiences already today.",
   "SectionWhatIsIt.titleLineOne": "What is it?",
   "SectionWhatIsIt.paraPart1": "Goodwings Experiences is a marketplace for well-curated, meaningful social impact activities hosted by nonprofit organisations. Study trips, volunteering events, workshops, you name it.",
   "SectionWhatIsIt.paraPart2": "Perfect for students, business and groups looking for authentic travel experiences.",
   "SectionWhatIsIt.paraPart3": "The activities offer a unique insight into the impactful work carried out by people fighting for a more sustainable future. Do you want to join?",
-
   "SelectMultipleFilter.labelSelected": "{labelText} • {count}",
   "SelectMultipleFilterForm.cancel": "Cancel",
   "SelectMultipleFilterForm.clear": "Clear",
@@ -873,6 +708,9 @@
   "SelectSingleFilterPlain.clear": "Clear",
   "SendMessageForm.sendFailed": "Failed to send. Please try again.",
   "SendMessageForm.sendMessage": "Send message",
+  "SignupForm.phoneLabel": "Phone",
+  "SignupForm.phonePlaceholder": "Contact phone",
+  "SignupForm.phoneRequiredMessage": "You need to fill in your phone number...",
   "SignupForm.organisationLabel": "Organisation",
   "SignupForm.organisationPlaceholder": "Enter the name here",
   "SignupForm.organisationRequiredMessage": "You need to add an organisation.",
@@ -889,106 +727,72 @@
   "SignupForm.passwordLabel": "Password",
   "SignupForm.passwordPlaceholder": "Enter your password…",
   "SignupForm.passwordRequired": "You need to add a password.",
-  "SignupForm.passwordTooLong":
-    "The password should be at most {maxLength} characters.",
-  "SignupForm.passwordTooShort":
-    "The password should be at least {minLength} characters.",
+  "SignupForm.passwordTooLong": "The password should be at most {maxLength} characters.",
+  "SignupForm.passwordTooShort": "The password should be at least {minLength} characters.",
   "SignupForm.providerForm": "For experience organisers only",
   "SignupForm.signUp": "Sign up",
-  "SignupForm.termsAndConditionsAcceptText":
-    "By signing up you accept the {termsLink}",
+  "SignupForm.termsAndConditionsAcceptText": "By signing up you accept the {termsLink}",
   "SignupForm.termsAndConditionsLinkText": "terms and conditions",
   "StripeBankAccountTokenInputField.accountNumber.inline": "account number",
   "StripeBankAccountTokenInputField.accountNumber.label": "Bank account number",
-  "StripeBankAccountTokenInputField.accountNumber.placeholder":
-    "Type in bank account number…",
-  "StripeBankAccountTokenInputField.accountNumber.required":
-    "Bank account number is required",
+  "StripeBankAccountTokenInputField.accountNumber.placeholder": "Type in bank account number…",
+  "StripeBankAccountTokenInputField.accountNumber.required": "Bank account number is required",
   "StripeBankAccountTokenInputField.andBeforeLastItemInAList": " and",
   "StripeBankAccountTokenInputField.bsb.inline": "BSB",
   "StripeBankAccountTokenInputField.bsb.label": "BSB",
   "StripeBankAccountTokenInputField.bsb.placeholder": "Type in BSB…",
   "StripeBankAccountTokenInputField.bsb.required": "BSB is required",
-  "StripeBankAccountTokenInputField.genericStripeError":
-    "Could not connect account number. Please double-check that your {inputs} are valid in {country}",
-  "StripeBankAccountTokenInputField.genericStripeErrorIban":
-    "Could not connect account number. Please double-check that your account number is valid in {country}",
+  "StripeBankAccountTokenInputField.genericStripeError": "Could not connect account number. Please double-check that your {inputs} are valid in {country}",
+  "StripeBankAccountTokenInputField.genericStripeErrorIban": "Could not connect account number. Please double-check that your account number is valid in {country}",
   "StripeBankAccountTokenInputField.iban.inline": "IBAN",
   "StripeBankAccountTokenInputField.iban.label": "Bank account number (IBAN)",
-  "StripeBankAccountTokenInputField.iban.placeholder":
-    "DE89 3704 0044 0532 0130 00",
-  "StripeBankAccountTokenInputField.iban.required":
-    "Bank account number (IBAN) is required",
+  "StripeBankAccountTokenInputField.iban.placeholder": "DE89 3704 0044 0532 0130 00",
+  "StripeBankAccountTokenInputField.iban.required": "Bank account number (IBAN) is required",
   "StripeBankAccountTokenInputField.routingNumber.inline": "routing number",
   "StripeBankAccountTokenInputField.routingNumber.label": "Routing number",
-  "StripeBankAccountTokenInputField.routingNumber.placeholder":
-    "Type in routing number…",
-  "StripeBankAccountTokenInputField.routingNumber.required":
-    "Routing number is required",
+  "StripeBankAccountTokenInputField.routingNumber.placeholder": "Type in routing number…",
+  "StripeBankAccountTokenInputField.routingNumber.required": "Routing number is required",
   "StripeBankAccountTokenInputField.sortCode.inline": "sort code",
   "StripeBankAccountTokenInputField.sortCode.label": "Sort code",
   "StripeBankAccountTokenInputField.sortCode.placeholder": "Type in sort code…",
   "StripeBankAccountTokenInputField.sortCode.required": "Sort code is required",
-  "StripeBankAccountTokenInputField.unsupportedCountry":
-    "Country not supported: {country}",
+  "StripeBankAccountTokenInputField.unsupportedCountry": "Country not supported: {country}",
   "StripePaymentForm.creditCardDetails": "Credit card details",
-  "StripePaymentForm.genericError":
-    "Could not handle payment data. Please try again.",
+  "StripePaymentForm.genericError": "Could not handle payment data. Please try again.",
   "StripePaymentForm.messageHeading": "Message",
-  "StripePaymentForm.messageLabel":
-    "Say hello to the host {messageOptionalText}",
+  "StripePaymentForm.messageLabel": "Say hello to the host {messageOptionalText}",
   "StripePaymentForm.messageOptionalText": "• optional",
   "StripePaymentForm.messagePlaceholder": "Hello {name}! We look forward to...",
   "StripePaymentForm.paymentHeading": "Payment",
-  "StripePaymentForm.stripe.api_connection_error":
-    "Could not connect to Stripe API.",
+  "StripePaymentForm.stripe.api_connection_error": "Could not connect to Stripe API.",
   "StripePaymentForm.stripe.api_error": "Error in Stripe API.",
-  "StripePaymentForm.stripe.authentication_error":
-    "Could not authenticate with Stripe.",
+  "StripePaymentForm.stripe.authentication_error": "Could not authenticate with Stripe.",
   "StripePaymentForm.stripe.card_error": "Payment card cannot be handled.",
-  "StripePaymentForm.stripe.invalid_request_error":
-    "Invalid request to Stripe API.",
-  "StripePaymentForm.stripe.rate_limit_error":
-    "Too many requests to Stripe API.",
-  "StripePaymentForm.stripe.validation_error.card_declined":
-    "The card was declined.",
-  "StripePaymentForm.stripe.validation_error.expired_card":
-    "The card has expired.",
-  "StripePaymentForm.stripe.validation_error.incomplete_number":
-    "Your card number is incomplete.",
-  "StripePaymentForm.stripe.validation_error.incorrect_cvc":
-    "The card's security code is incorrect.",
-  "StripePaymentForm.stripe.validation_error.incorrect_number":
-    "The card number is incorrect.",
-  "StripePaymentForm.stripe.validation_error.incorrect_zip":
-    "The card's zip code failed validation.",
-  "StripePaymentForm.stripe.validation_error.invalid_cvc":
-    "The card's security code is invalid.",
-  "StripePaymentForm.stripe.validation_error.invalid_expiry_month":
-    "The card's expiration month is invalid.",
-  "StripePaymentForm.stripe.validation_error.invalid_expiry_month_past":
-    "Your card's expiration date is in the past.",
-  "StripePaymentForm.stripe.validation_error.invalid_expiry_year":
-    "The card's expiration year is invalid.",
-  "StripePaymentForm.stripe.validation_error.invalid_number":
-    "The card number is not a valid credit card number.",
-  "StripePaymentForm.stripe.validation_error.invalid_swipe_data":
-    "The card's swipe data is invalid.",
-  "StripePaymentForm.stripe.validation_error.missing":
-    "There is no card on a customer that is being charged.",
-  "StripePaymentForm.stripe.validation_error.processing_error":
-    "An error occurred while processing the card.",
-  "StripePaymentForm.submitPaymentInfo": "Send request",
+  "StripePaymentForm.stripe.invalid_request_error": "Invalid request to Stripe API.",
+  "StripePaymentForm.stripe.rate_limit_error": "Too many requests to Stripe API.",
+  "StripePaymentForm.stripe.validation_error.card_declined": "The card was declined.",
+  "StripePaymentForm.stripe.validation_error.expired_card": "The card has expired.",
+  "StripePaymentForm.stripe.validation_error.incomplete_number": "Your card number is incomplete.",
+  "StripePaymentForm.stripe.validation_error.incorrect_cvc": "The card's security code is incorrect.",
+  "StripePaymentForm.stripe.validation_error.incorrect_number": "The card number is incorrect.",
+  "StripePaymentForm.stripe.validation_error.incorrect_zip": "The card's zip code failed validation.",
+  "StripePaymentForm.stripe.validation_error.invalid_cvc": "The card's security code is invalid.",
+  "StripePaymentForm.stripe.validation_error.invalid_expiry_month": "The card's expiration month is invalid.",
+  "StripePaymentForm.stripe.validation_error.invalid_expiry_month_past": "Your card's expiration date is in the past.",
+  "StripePaymentForm.stripe.validation_error.invalid_expiry_year": "The card's expiration year is invalid.",
+  "StripePaymentForm.stripe.validation_error.invalid_number": "The card number is not a valid credit card number.",
+  "StripePaymentForm.stripe.validation_error.invalid_swipe_data": "The card's swipe data is invalid.",
+  "StripePaymentForm.stripe.validation_error.missing": "There is no card on a customer that is being charged.",
+  "StripePaymentForm.stripe.validation_error.processing_error": "An error occurred while processing the card.",
+  "StripePaymentForm.submitPaymentInfo": "Finalise booking",
   "TermsOfServicePage.heading": "Terms and Conditions",
   "TermsOfServicePage.privacyTabTitle": "Privacy Policy",
   "TermsOfServicePage.schemaTitle": "Terms and Conditions | {siteTitle}",
   "TermsOfServicePage.tosTabTitle": "Terms",
-  "Topbar.genericError":
-    "Oh no, something went wrong. Please check your network connection and try again.",
+  "Topbar.genericError": "Oh no, something went wrong. Please check your network connection and try again.",
   "Topbar.logoIcon": "Go to homepage",
   "Topbar.menuIcon": "Open menu",
-  "Topbar.mobileSearchHelp":
-    "Search suggestions will appear once you start typing.",
+  "Topbar.mobileSearchHelp": "Search suggestions will appear once you start typing.",
   "Topbar.searchIcon": "Open search",
   "TopbarDesktop.accountSettingsLink": "Account settings",
   "TopbarDesktop.createListing": "+ Add your experience",
@@ -1008,68 +812,61 @@
   "TopbarMobileMenu.profileSettingsLink": "Profile settings",
   "TopbarMobileMenu.signupLink": "Sign up",
   "TopbarMobileMenu.signupOrLogin": "{login}",
-  "TopbarMobileMenu.unauthorizedGreeting":
-    "Hello there,{lineBreak}would you like to {signupOrLogin}?",
+  "TopbarMobileMenu.unauthorizedGreeting": "Hello there,{lineBreak}would you like to {signupOrLogin}?",
   "TopbarMobileMenu.yourListingsLink": "Your listings",
   "TopbarSearchForm.placeholder": "Try 'Berlin'",
-  "TopbarSearchForm.searchHelp":
-    "Tip: You can also search experiences by city \"London\".",
+  "TopbarSearchForm.searchHelp": "Tip: You can also search experiences by city \"London\".",
   "TransactionPage.deletedListing": "deleted listing",
   "TransactionPage.fetchOrderFailed": "Fetching order data failed.",
   "TransactionPage.fetchSaleFailed": "Fetching sale data failed.",
   "TransactionPage.loadingOrderData": "Loading order data.",
   "TransactionPage.loadingSaleData": "Loading sale data.",
   "TransactionPage.title": "Sale details: {title}",
+  "TransactionPanel.contact": "{name} contact: {number}",
   "TransactionPanel.acceptButton": "Accept",
-  "TransactionPanel.acceptSaleFailed":
-    "Oops, accepting failed. Please try again.",
+  "TransactionPanel.acceptSaleFailed": "Oops, accepting failed. Please try again.",
   "TransactionPanel.activityHeading": "Activity",
   "TransactionPanel.bannedUserDisplayName": "Banned user",
   "TransactionPanel.bookingBreakdownTitle": "Booking breakdown",
-  "TransactionPanel.customerBannedStatus":
-    "The user made the request, but was later banned.",
+  "TransactionPanel.customerBannedStatus": "The user made the request, but was later banned.",
   "TransactionPanel.declineButton": "Decline",
-  "TransactionPanel.declineSaleFailed":
-    "Oops, declining failed. Please try again.",
+  "TransactionPanel.withdrawButton": "Withdraw",
+  "TransactionPanel.declineSaleFailed": "Oops, declining failed. Please try again.",
   "TransactionPanel.deletedListingOrderTitle": "a listing",
   "TransactionPanel.deletedListingTitle": "Deleted listing",
   "TransactionPanel.hostedBy": "Hosted by {name}",
-  "TransactionPanel.initialMessageFailed":
-    "Whoops, failed to send message from checkout.",
-  "TransactionPanel.messageDeletedListing":
-    "However, the listing is deleted and cannot be viewed anymore.",
-  "TransactionPanel.messageLoadingFailed":
-    "Something went wrong when loading messages. Please refresh the page and try again.",
-  "TransactionPanel.orderAcceptedSubtitle":
-    "Your booking for {listingLink} has been accepted.",
+  "TransactionPanel.initialMessageFailed": "Whoops, failed to send message from checkout.",
+  "TransactionPanel.messageDeletedListing": "However, the listing is deleted and cannot be viewed anymore.",
+  "TransactionPanel.messageLoadingFailed": "Something went wrong when loading messages. Please refresh the page and try again.",
+  "TransactionPanel.noteForDecline": "{noteText} if you decline, please explain why, and suggest a different {noteDateText}, {noteNumberPeopleText} (quantity) and {noteTimeText} in the message field.{newline}{newline}Booker will need to send a new request from the front page if they still wish to book this experience",
+  "TransactionPanel.noteText": "NOTE!",
+  "TransactionPanel.noteDateText": "date",
+  "TransactionPanel.noteNumberPeopleText": "number of people",
+  "TransactionPanel.noteTimeText": "time",
+  "TransactionPanel.noteForDeclineCustomer": "{noteText}{newline}{newline}if the non-profit declines your request, it may be because either the {noteDateText}, {noteNumberPeopleText} (quantity) or {noteTimeText} did not fit their schedule.{newline}{newline}In order to reach an agreement, please wait for non-profit to have suggested an alternative {noteDateText}, {noteNumberPeopleText} (quantity) or {noteTimeText}. If they have not responded within 48 hours, please get back to non-profit with an alternative {noteDateText}, {noteNumberPeopleText} (quantity) or {noteTimeText} in inbox. Once you have agreed on set values, go to the front page and make a new request.",
+  "TransactionPanel.noteTextCustomer": "If {providerName} declines",
+  "TransactionPanel.noteDateTextCustomer": "date",
+  "TransactionPanel.noteNumberPeopleTextCustomer": "number of people",
+  "TransactionPanel.noteTimeTextCustomer": "time",
+  "TransactionPanel.orderAcceptedSubtitle": "Your booking for {listingLink} has been accepted.",
   "TransactionPanel.orderAcceptedTitle": "Woohoo {customerName}!",
-  "TransactionPanel.orderCancelledTitle":
-    "{customerName}, your booking for {listingLink} has been cancelled.",
-  "TransactionPanel.orderDeclinedTitle":
-    "{customerName}, your booking for {listingLink} has been declined.",
-  "TransactionPanel.orderDeliveredTitle":
-    "{customerName}, your booking for {listingLink} has been completed.",
+  "TransactionPanel.orderCancelledTitle": "{customerName}, your booking for {listingLink} has been cancelled.",
+  "TransactionPanel.orderDeclinedTitle": "{customerName}, your booking for {listingLink} has been declined.",
+  "TransactionPanel.orderWithdrawTitle": "You have withdrawn your booking for {listingLink}",
+  "TransactionPanel.orderDeliveredTitle": "{customerName}, your booking for {listingLink} has been completed.",
   "TransactionPanel.orderEnquiredTitle": "You enquired about {listingLink}",
-  "TransactionPanel.orderPreauthorizedInfo":
-    "{providerName} has been notified about the booking request. Sit back and relax.",
-  "TransactionPanel.orderPreauthorizedSubtitle":
-    "You have requested to book {listingLink}.",
+  "TransactionPanel.orderPreauthorizedInfo": "{providerName} has been notified about the booking request. Sit back and relax.",
+  "TransactionPanel.orderPreauthorizedSubtitle": "You have requested to book {listingLink}.",
   "TransactionPanel.orderPreauthorizedTitle": "Great success, {customerName}!",
   "TransactionPanel.requestToBook": "Request to book",
-  "TransactionPanel.saleAcceptedTitle":
-    "You accepted a request from {customerName} to book {listingLink}.",
-  "TransactionPanel.saleCancelledTitle":
-    "The booking from {customerName} for {listingLink} has been cancelled.",
-  "TransactionPanel.saleDeclinedTitle":
-    "The request from {customerName} to book {listingLink} has been declined.",
-  "TransactionPanel.saleDeliveredTitle":
-    "The booking from {customerName} for {listingLink} has been completed.",
-  "TransactionPanel.saleEnquiredTitle":
-    "{customerName} enquired about {listingLink}",
-  "TransactionPanel.saleRequestedInfo":
-    "{customerName} is waiting for your response.",
-  "TransactionPanel.saleRequestedTitle":
-    "{customerName} has requested to book {listingLink}.",
+  "TransactionPanel.saleAcceptedTitle": "You accepted a request from {customerName} to book {listingLink}.",
+  "TransactionPanel.saleCancelledTitle": "The booking from {customerName} for {listingLink} has been cancelled.",
+  "TransactionPanel.saleDeclinedTitle": "The request from {customerName} to book {listingLink} has been declined.",
+  "TransactionPanel.withdrawTitle": "{customerName} has withdrawn the booking for {listingLink}.",
+  "TransactionPanel.saleDeliveredTitle": "The booking from {customerName} for {listingLink} has been completed.",
+  "TransactionPanel.saleEnquiredTitle": "{customerName} enquired about {listingLink}",
+  "TransactionPanel.saleRequestedInfo": "{customerName} is waiting for your response.",
+  "TransactionPanel.saleRequestedTitle": "{customerName} has requested to book {listingLink}.",
   "TransactionPanel.sendMessagePlaceholder": "Send a message.",
   "UserCard.contactUser": "Contact",
   "UserCard.heading": "Hello, we're {organisation}.",

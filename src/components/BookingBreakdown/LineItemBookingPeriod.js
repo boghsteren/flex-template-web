@@ -15,7 +15,8 @@ const BookingPeriod = props => {
   const dateFormatOptions = {
     weekday: "short",
     month: "short",
-    day: "numeric"
+    day: "numeric",
+    hour: '2-digit'
   };
 
   if (isSingleDay) {
@@ -44,7 +45,7 @@ const BookingPeriod = props => {
 const LineItemBookingPeriod = props => {
   const { transaction, booking, unitType, hourly } = props;
 
-  const { start: startDate, end: endDateRaw } = booking.attributes;
+  const { start: startDate, end: endDateRaw, displayStart, displayEnd } = booking.attributes;
   const localStartDate = dateFromAPIToLocalNoon(startDate);
   const localEndDateRaw = dateFromAPIToLocalNoon(endDateRaw);
 
@@ -63,6 +64,7 @@ const LineItemBookingPeriod = props => {
   );
 
   if (!unitPurchase) {
+    return null;
     throw new Error(`LineItemBookingPeriod: lineItem (${unitType}) missing`);
   }
 
@@ -77,8 +79,8 @@ const LineItemBookingPeriod = props => {
       <span className={css.itemLabel}>
         <BookingPeriod
           isSingleDay={isSingleDay}
-          startDate={localStartDate}
-          endDate={endDay}
+          startDate={displayStart}
+          endDate={displayEnd}
         />
       </span>
       {!hourly && <span className={css.itemValue}>{unitCountMessage}</span>}

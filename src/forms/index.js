@@ -69,5 +69,8 @@ export {
   default as StripePaymentForm
 } from "./StripePaymentForm/StripePaymentForm";
 export {
+  default as EnquiryCheckoutForm
+} from "./EnquiryCheckoutForm/EnquiryCheckoutForm";
+export {
   default as TopbarSearchForm
 } from "./TopbarSearchForm/TopbarSearchForm";

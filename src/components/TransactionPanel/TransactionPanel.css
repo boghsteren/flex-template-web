@@ -192,6 +192,13 @@
   position: relative;
 }
 
+.paymentForm {
+  margin-left: 24px;
+  margin-right: 24px;
+  flex-grow: 1;
+}
+
+
 .detailCardHeadings {
   display: none;
 
@@ -199,7 +206,7 @@
     display: block;
     margin-left: 48px;
     margin-right: 48px;
-    margin-bottom: 37px;
+    /* margin-bottom: 37px; */
   }
 }
 .detailCardHeadingsProvider {
@@ -260,6 +267,18 @@
     margin: 14px 48px 47px 48px;
   }
 }
+
+.contact {
+  display: none;
+  font-weight: bold;
+  @media (--viewportLarge) {
+    display: block;
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-bottom: 37px;
+  }
+}
+
 
 .feedContainer {
   margin: 46px 24px 0 24px;
@@ -371,6 +390,36 @@
       order: 1;
     }
   }
+}
+
+.noteForDecline {
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 20px;
+  color: var(--matterColorNear);
+}
+
+.noteText {
+  font-size: 15px;
+  color: var(--failColor);
+  font-weight: bold;
+}
+
+.strongText {
+  font-weight: bold;
+  color: var(--matterColor);
+}
+
+.noteForDeclineCustomer {
+  margin-top: 40px;
+  font-size: 17px;
+  font-weight: 100;
+}
+
+.noteTextCustomer {
+  color: var(--failColor);
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .messageError {

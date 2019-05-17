@@ -5,6 +5,7 @@ import moment from "moment";
  */
 export const START_DATE = "startDate";
 export const END_DATE = "endDate";
+export const TIME_OF_EVENT = 'timeOfEvent';
 
 /**
  * Convert date given by API to something meaningful noon on browser's timezone

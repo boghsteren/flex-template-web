@@ -5,7 +5,7 @@ import { FormattedMessage, injectIntl, intlShape } from "react-intl";
 import { Form as FinalForm } from "react-final-form";
 import classNames from "classnames";
 import * as validators from "../../util/validators";
-import { Form, PrimaryButton, FieldTextInput } from "../../components";
+import { Form, PrimaryButton, FieldTextInput, FieldPhoneNumberInput } from "../../components";
 
 import css from "./SignupForm.css";
 
@@ -97,6 +97,20 @@ const SignupFormComponent = props => (
       });
       const organisationRequired = validators.required(
         organisationRequiredMessage
+      );
+
+      //Phone
+      const phoneLabel = intl.formatMessage({
+        id: "SignupForm.phoneLabel"
+      });
+      const phonePlaceholder = intl.formatMessage({
+        id: "SignupForm.phonePlaceholder"
+      });
+      const phoneRequiredMessage = intl.formatMessage({
+        id: "SignupForm.phoneRequiredMessage"
+      });
+      const phoneRequired = validators.required(
+        phoneRequiredMessage
       );
 
       // firstName
@@ -195,6 +209,14 @@ const SignupFormComponent = props => (
                 validate={validators.composeValidators(organisationRequired)}
               />
             </div>
+
+            <FieldPhoneNumberInput
+                className={css.password}
+                name="phoneNumber"
+                id={'phoneNumber'}
+                label={phoneLabel}
+                placeholder={phonePlaceholder}
+              />
             <FieldTextInput
               className={css.password}
               type="password"

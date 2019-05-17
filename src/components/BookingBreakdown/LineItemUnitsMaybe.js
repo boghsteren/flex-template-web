@@ -7,7 +7,7 @@ import css from "./BookingBreakdown.css";
 const LineItemUnitsMaybe = props => {
   const { transaction, unitType } = props;
   const quantity =
-    unitType === "quantity"
+    unitType === "quantity" &&  transaction.attributes.lineItems[0]
       ? transaction.attributes.lineItems[0].quantity
       : transaction.attributes.protectedData.seats;
   const quantityUnit =

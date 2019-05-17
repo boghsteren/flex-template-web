@@ -6,7 +6,7 @@ import { intlShape, injectIntl, FormattedMessage } from "react-intl";
 import classNames from "classnames";
 import { propTypes } from "../../util/types";
 import { maxLength, required, composeValidators } from "../../util/validators";
-import { Form, Button, FieldTextInput, FieldSelect, CustomFieldRangeSlider } from "../../components";
+import { Form, Button, FieldTextInput, FieldSelect, CustomFieldRangeSlider, FieldPhoneNumberInput } from "../../components";
 import CustomCategorySelectFieldMaybe from "./CustomCategorySelectFieldMaybe";
 import config from "../../config";
 
@@ -75,6 +75,15 @@ const EditListingDescriptionFormComponent = props => (
       const contactPlaceholderMessage = intl.formatMessage({
         id: "EditListingDescriptionForm.contactPlaceholder"
       });
+      const contactNamePlaceholderMessage = intl.formatMessage({
+        id: "EditListingDescriptionForm.contactNamePlaceholderMessage"
+      });
+      const contactPhonePlaceholderMessage = intl.formatMessage({
+        id: "EditListingDescriptionForm.contactPhonePlaceholderMessage"
+      });
+      const contactEmailPlaceholderMessage = intl.formatMessage({
+        id: "EditListingDescriptionForm.contactEmailPlaceholderMessage"
+      }); 
       const durationPlaceholderMessage = intl.formatMessage({
         id: "EditListingDescriptionForm.durationPlaceholder"
       });
@@ -147,7 +156,7 @@ const EditListingDescriptionFormComponent = props => (
             oneDirection={false}
             isGroupSize={true}
             moreInfo={sliderInfoMess}
-            unitType={intl.formatMessage({id: "EditListingFeaturesForm.groupSizeUnit"})}
+            unitType={intl.formatMessage({ id: "EditListingFeaturesForm.groupSizeUnit" })}
           />
 
           {/* <CustomCategorySelectFieldMaybe
@@ -165,13 +174,29 @@ const EditListingDescriptionFormComponent = props => (
           />
 
           <FieldTextInput
-            id="contact"
-            name="contact"
+            id="contactName"
+            name="contactName"
             className={css.description}
             type="textarea"
             label={contactMessage}
-            placeholder={contactPlaceholderMessage}
+            placeholder={contactNamePlaceholderMessage}
           />
+
+          <FieldTextInput
+            id="contactEmail"
+            name="contactEmail"
+            className={css.description}
+            type="textarea"
+            placeholder={contactEmailPlaceholderMessage}
+          />
+
+          <FieldPhoneNumberInput
+            className={css.description}
+            name="contactNumber"
+            id={'contactNumber'}
+            placeholder={contactPhonePlaceholderMessage}
+          />
+
           <FieldSelect
             name="duration"
             id="duration"

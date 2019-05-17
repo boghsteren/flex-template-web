@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { injectIntl, intlShape, FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import { txIsEnquired, txIsRequested, propTypes } from "../../util/types";
+import { txIsEnquired, txIsRequested, propTypes, txIsAccepted, txIsDeclined } from "../../util/types";
 import { ensureListing, ensureTransaction, ensureUser } from "../../util/data";
 import { isMobileSafari } from "../../util/userAgent";
 import {
@@ -11,7 +11,7 @@ import {
   ResponsiveImage,
   ReviewModal
 } from "../../components";
-import { SendMessageForm } from "../../forms";
+import { SendMessageForm, StripePaymentForm } from "../../forms";
 
 // These are internal components that make this file more readable.
 import {
@@ -22,7 +22,9 @@ import {
   SaleActionButtonsMaybe,
   TransactionPageTitle,
   TransactionPageMessage,
-  displayNames
+  displayNames,
+  ContactMaybe,
+  WithdrawnButtonsMaybe
 } from "./TransactionPanel.helpers";
 
 import css from "./TransactionPanel.css";
@@ -33,7 +35,8 @@ export class TransactionPanelComponent extends Component {
     this.state = {
       sendMessageFormFocused: false,
       isReviewModalOpen: false,
-      reviewSubmitted: false
+      reviewSubmitted: false,
+      submitting: false,
     };
     this.isMobSaf = false;
     this.sendMessageFormName = "TransactionPanel.SendMessageForm";
@@ -44,6 +47,38 @@ export class TransactionPanelComponent extends Component {
     this.onSendMessageFormBlur = this.onSendMessageFormBlur.bind(this);
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.scrollToMessage = this.scrollToMessage.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+
+  handleSubmit(values) {
+    if (this.state.submitting) {
+      return;
+    }
+    this.setState({ submitting: true });
+
+    const cardToken = values.token;
+    const {
+      history,
+      onPaymentAfterEnquiry,
+      dispatch,
+      transaction
+    } = this.props;
+
+    // Create order aka transaction
+    // NOTE: if unit type is line-item/units, quantity needs to be added.
+    // The way to pass it to checkout page is through pageData.bookingData
+    const listing = transaction.listing;
+    const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
+    const { price_scheme, seats } = transaction.attributes.protectedData;
+    const quantity = price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats
+
+    const requestParams = {
+      quantity: quantity,
+      cardToken,
+    };
+
+    onPaymentAfterEnquiry(transaction.id, requestParams);
   }
 
   componentWillMount() {
@@ -135,6 +170,7 @@ export class TransactionPanelComponent extends Component {
       intl,
       onAcceptSale,
       onDeclineSale,
+      onWithdrawBooking,
       acceptInProgress,
       declineInProgress,
       acceptSaleError,
@@ -153,13 +189,15 @@ export class TransactionPanelComponent extends Component {
     const customerLoaded = !!currentCustomer.id;
     const isCustomerBanned =
       customerLoaded && currentCustomer.attributes.banned;
+    const canShowWithdrawnButtons =
+      isCustomer && txIsAccepted(currentTransaction);
     const canShowSaleButtons =
-      isProvider && txIsRequested(currentTransaction) && !isCustomerBanned;
+      isProvider && txIsEnquired(currentTransaction) && !isCustomerBanned;
     const isProviderLoaded = !!currentProvider.id;
     const isProviderBanned =
       isProviderLoaded && currentProvider.attributes.banned;
     const canShowBookButton =
-      isCustomer && txIsEnquired(currentTransaction) && !isProviderBanned;
+      isCustomer && txIsAccepted(currentTransaction) && !isProviderBanned;
 
     const bannedUserDisplayName = intl.formatMessage({
       id: "TransactionPanel.bannedUserDisplayName"
@@ -187,7 +225,7 @@ export class TransactionPanelComponent extends Component {
         : null;
 
     const actionButtonClasses = classNames(css.actionButtons);
-    const canShowActionButtons = canShowBookButton || canShowSaleButtons;
+    const canShowActionButtons = canShowSaleButtons;
 
     let actionButtons = null;
     if (canShowSaleButtons) {
@@ -204,15 +242,17 @@ export class TransactionPanelComponent extends Component {
           onDeclineSale={onDeclineSale}
         />
       );
-    } else if (canShowBookButton) {
-      actionButtons = (
-        <OrderActionButtonMaybe
-          rootClassName={actionButtonClasses}
-          canShowButtons={canShowBookButton}
-          listing={currentListing}
-        />
-      );
     }
+    const withdrawButton = canShowWithdrawnButtons ? (
+      <WithdrawnButtonsMaybe
+        rootClassName={actionButtonClasses}
+        canShowButtons={canShowWithdrawnButtons}
+        transaction={currentTransaction}
+        declineInProgress={declineInProgress}
+        declineSaleError={declineSaleError}
+        onWithdrawBooking={onWithdrawBooking}
+      />
+    ) : null;
 
     const sendMessagePlaceholder = intl.formatMessage({
       id: "TransactionPanel.sendMessagePlaceholder"
@@ -226,6 +266,39 @@ export class TransactionPanelComponent extends Component {
     const feedContainerClasses = classNames(css.feedContainer, {
       [css.feedContainerWithInfoAbove]: showInfoMessage
     });
+
+    const noteText = (
+      <span className={css.noteTextCustomer}>
+        <FormattedMessage id="TransactionPanel.noteTextCustomer" values={{ providerName: otherUserDisplayName }} />
+      </span>
+    );
+    const noteDateText = (
+      <span className={css.strongText}>
+        <FormattedMessage id="TransactionPanel.noteDateTextCustomer" />
+      </span>
+    );
+    const noteNumberPeopleText = (
+      <span className={css.strongText}>
+        <FormattedMessage id="TransactionPanel.noteNumberPeopleTextCustomer" />
+      </span>
+    );
+    const noteTimeText = (
+      <span className={css.strongText}>
+        <FormattedMessage id="TransactionPanel.noteTimeTextCustomer" />
+      </span>
+    );
+    const noteForDecline = (
+      <FormattedMessage
+        id="TransactionPanel.noteForDeclineCustomer"
+        values={{
+          noteText: noteText,
+          newline: (<br />),
+          noteDateText: noteDateText,
+          noteNumberPeopleText: noteNumberPeopleText,
+          noteTimeText: noteTimeText,
+        }}
+      />
+    );
 
     const classes = classNames(rootClassName || css.root, className);
 
@@ -281,6 +354,14 @@ export class TransactionPanelComponent extends Component {
                   currentListing={currentListing}
                 />
               </div>
+              <ContactMaybe
+                listing={currentListing}
+                transaction={currentTransaction}
+                isProvider={isProvider}
+                currentCustomer={currentCustomer}
+                currentProvider={currentProvider}
+                intl={intl}
+              />
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
@@ -312,9 +393,31 @@ export class TransactionPanelComponent extends Component {
               onBlur={this.onSendMessageFormBlur}
               onSubmit={this.onMessageSubmit}
             />
+
+            {isCustomer && txIsDeclined(transaction) &&
+              <div className={css.noteForDeclineCustomer}>
+                {noteForDecline}
+              </div>
+            }
+
+            {canShowBookButton ? (
+              <StripePaymentForm
+                className={css.paymentForm}
+                onSubmit={this.handleSubmit}
+                inProgress={this.state.submitting}
+                formId="CheckoutPagePaymentForm"
+                authorDisplayName={
+                  transaction.provider.attributes.profile.publicData.organisation
+                }
+              />
+            ) : null}
+
             {canShowActionButtons ? (
               <div className={css.mobileActionButtons}>{actionButtons}</div>
             ) : null}
+            {canShowWithdrawnButtons ? (
+                <div className={css.mobileActionButtons}>{withdrawButton}</div>
+              ) : null}
           </div>
 
           <div className={css.asideDesktop}>
@@ -350,14 +453,22 @@ export class TransactionPanelComponent extends Component {
                   />
                 </div>
               ) : (
-                <div className={css.detailCardHeadingsProvider}>
-                  <AddressLinkMaybe
-                    transaction={currentTransaction}
-                    transactionRole={transactionRole}
-                    currentListing={currentListing}
-                  />
-                </div>
-              )}
+                  <div className={css.detailCardHeadingsProvider}>
+                    <AddressLinkMaybe
+                      transaction={currentTransaction}
+                      transactionRole={transactionRole}
+                      currentListing={currentListing}
+                    />
+                  </div>
+                )}
+              <ContactMaybe
+                listing={currentListing}
+                isProvider={isProvider}
+                currentCustomer={currentCustomer}
+                currentProvider={currentProvider}
+                transaction={currentTransaction}
+                intl={intl}
+              />
               <BreakdownMaybe
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
@@ -365,6 +476,9 @@ export class TransactionPanelComponent extends Component {
               />
               {canShowActionButtons ? (
                 <div className={css.desktopActionButtons}>{actionButtons}</div>
+              ) : null}
+              {canShowWithdrawnButtons ? (
+                <div className={css.desktopActionButtons}>{withdrawButton}</div>
               ) : null}
             </div>
           </div>
@@ -419,6 +533,7 @@ TransactionPanelComponent.propTypes = {
   onShowMoreMessages: func.isRequired,
   onSendMessage: func.isRequired,
   onSendReview: func.isRequired,
+  onPaymentAfterEnquiry: func.isRequired,
 
   // Sale related props
   onAcceptSale: func.isRequired,

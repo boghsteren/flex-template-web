@@ -31,12 +31,13 @@ import {
   Page,
   ResponsiveImage
 } from "../../components";
-import { StripePaymentForm } from "../../forms";
+import { StripePaymentForm, EnquiryCheckoutForm } from "../../forms";
 import { isScrollingDisabled } from "../../ducks/UI.duck";
 import {
   initiateOrder,
   setInitialValues,
-  speculateTransaction
+  speculateTransaction,
+  sendEnquiryBooking
 } from "./CheckoutPage.duck";
 import config from "../../config";
 
@@ -87,7 +88,7 @@ export class CheckoutPageComponent extends Component {
       bookingDates,
       listing,
       fetchSpeculatedTransaction,
-      history
+      history,
     } = this.props;
     // Browser's back navigation should not rewrite data in session store.
     // Action is 'POP' on both history.back() and page refresh cases.
@@ -134,7 +135,9 @@ export class CheckoutPageComponent extends Component {
         protectedData: { pricing_scheme, hours, seats },
         listingId,
         bookingStart: bookingStartForAPI,
-        bookingEnd: bookingEndForAPI
+        bookingEnd: bookingEndForAPI,
+        bookingDisplayStart: bookingStart,
+        bookingDisplayEnd: bookingEnd
       });
     }
 
@@ -153,7 +156,10 @@ export class CheckoutPageComponent extends Component {
       history,
       sendOrderRequest,
       speculatedTransaction,
-      dispatch
+      dispatch,
+      isEnquiryOnly,
+      sendEnquiryBookingRequest,
+      currentUser
     } = this.props;
 
     // Create order aka transaction
@@ -165,15 +171,19 @@ export class CheckoutPageComponent extends Component {
         pricing_scheme: this.state.pageData.listing.attributes.publicData
           .pricing_scheme,
         hours: this.state.pageData.bookingData.hours,
-        seats: this.state.pageData.bookingData.seats
+        seats: this.state.pageData.bookingData.seats,
+        phoneNumber: currentUser.attributes.profile.protectedData.phoneNumber
       },
       listingId: this.state.pageData.listing.id,
       cardToken,
       bookingStart: speculatedTransaction.booking.attributes.start,
-      bookingEnd: speculatedTransaction.booking.attributes.end
+      bookingEnd: speculatedTransaction.booking.attributes.end,
+      bookingDisplayStart: speculatedTransaction.booking.attributes.displayStart,
+      bookingDisplayEnd: speculatedTransaction.booking.attributes.displayEnd,
     };
 
-    sendOrderRequest(requestParams, initialMessage)
+    const createOrder = isEnquiryOnly ? sendEnquiryBookingRequest : sendOrderRequest ;
+    createOrder(requestParams, initialMessage)
       .then(values => {
         const { orderId, initialMessageSuccess } = values;
         this.setState({ submitting: false });
@@ -209,7 +219,8 @@ export class CheckoutPageComponent extends Component {
       initiateOrderError,
       intl,
       params,
-      currentUser
+      currentUser,
+      isEnquiryOnly,
     } = this.props;
 
     // Since the listing data is already given from the ListingPage
@@ -453,8 +464,8 @@ export class CheckoutPageComponent extends Component {
               {initiateOrderErrorMessage}
               {listingNotFoundErrorMessage}
               {speculateErrorMessage}
-              {showPaymentForm ? (
-                <StripePaymentForm
+              {!showPaymentForm ? null : isEnquiryOnly ? (
+                <EnquiryCheckoutForm
                   className={css.paymentForm}
                   onSubmit={this.handleSubmit}
                   inProgress={this.state.submitting}
@@ -466,7 +477,20 @@ export class CheckoutPageComponent extends Component {
                     currentAuthor.attributes.profile.publicData.organisation
                   }
                 />
-              ) : null}
+              ) : (
+                  <StripePaymentForm
+                    className={css.paymentForm}
+                    onSubmit={this.handleSubmit}
+                    inProgress={this.state.submitting}
+                    formId="CheckoutPagePaymentForm"
+                    paymentInfo={intl.formatMessage({
+                      id: "CheckoutPage.paymentInfo"
+                    })}
+                    authorDisplayName={
+                      currentAuthor.attributes.profile.publicData.organisation
+                    }
+                  />
+                )}
             </section>
           </div>
 
@@ -512,10 +536,12 @@ CheckoutPageComponent.defaultProps = {
   bookingDates: null,
   speculateTransactionError: null,
   speculatedTransaction: null,
-  currentUser: null
+  currentUser: null,
+  isEnquiryOnly: true
 };
 
 CheckoutPageComponent.propTypes = {
+  isEnquiryOnly: bool.isRequired,
   scrollingDisabled: bool.isRequired,
   listing: propTypes.listing,
   bookingData: object,
@@ -575,6 +601,8 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
   sendOrderRequest: (params, initialMessage) =>
     dispatch(initiateOrder(params, initialMessage)),
+  sendEnquiryBookingRequest: (params, initialMessage) =>
+    dispatch(sendEnquiryBooking(params, initialMessage)),
   fetchSpeculatedTransaction: params => dispatch(speculateTransaction(params))
 });
 

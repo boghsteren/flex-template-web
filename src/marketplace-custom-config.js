@@ -99,3 +99,38 @@ export const groupSizeConfig = {
   step: STEP_GROUP_SIZE_SLIDER
 };
 
+// timeslot
+export const timeSlotList = [
+  {key: '08:00', label: '08:00', hour: 8, minute: 0, session: 0, internalIndex: 0},
+  {key: '08:30', label: '08:30', hour: 8, minute: 30, session: 0, internalIndex: 1},
+  {key: '09:00', label: '09:00', hour: 9, minute: 0, session: 0, internalIndex: 2},
+  {key: '09:30', label: '09:30', hour: 9, minute: 30, session: 0, internalIndex: 3},
+  {key: '10:00', label: '10:00', hour: 10, minute: 0, session: 0, internalIndex: 4},
+  {key: '10:30', label: '10:30', hour: 10, minute: 30, session: 0, internalIndex: 5},
+  {key: '11:00', label: '11:00', hour: 11, minute: 0, session: 0, internalIndex: 6},
+  {key: '11:30', label: '11:30', hour: 11, minute: 30, session: 0, internalIndex: 7},
+  {key: '12:00', label: '12:00', hour: 12, minute: 0, session: 0, internalIndex: 8},
+  {key: '12:30', label: '12:30', hour: 12, minute: 30, session: 0, internalIndex: 9},
+  {key: '13:00', label: '13:00', hour: 13, minute: 0, session: 0, internalIndex: 10},
+  {key: '13:30', label: '13:30', hour: 13, minute: 30, session: 0, internalIndex: 11},
+  {key: '14:00', label: '14:00', hour: 14, minute: 0, session: 0, internalIndex: 12},
+  {key: '14:30', label: '14:30', hour: 14, minute: 30, session: 0, internalIndex: 13},
+  {key: '15:00', label: '15:00', hour: 15, minute: 0, session: 0, internalIndex: 14},
+  {key: '15:30', label: '15:30', hour: 15, minute: 30, session: 0, internalIndex: 15},
+  {key: '16:00', label: '16:00', hour: 16, minute: 0, session: 0, internalIndex: 16},
+  {key: '16:30', label: '16:30', hour: 16, minute: 30, session: 0, internalIndex: 17},
+  {key: '17:00', label: '17:00', hour: 17, minute: 0, session: 0, internalIndex: 18},
+  {key: '17:30', label: '17:30', hour: 17, minute: 30, session: 0, internalIndex: 19},
+  {key: '18:00', label: '18:00', hour: 18, minute: 0, session: 0, internalIndex: 20},
+  {key: '18:30', label: '18:30', hour: 18, minute: 30, session: 0, internalIndex: 21},
+  {key: '19:00', label: '19:00', hour: 19, minute: 0, session: 0, internalIndex: 22},
+  {key: '19:30', label: '19:30', hour: 19, minute: 30, session: 0, internalIndex: 23},
+  {key: '20:00', label: '20:00', hour: 20, minute: 0, session: 0, internalIndex: 24},
+  {key: '20:30', label: '20:30', hour: 20, minute: 30, session: 0, internalIndex: 25},
+  {key: '21:00', label: '21:00', hour: 21, minute: 0, session: 0, internalIndex: 26},
+  {key: '21:30', label: '21:30', hour: 21, minute: 30, session: 0, internalIndex: 27},
+  {key: '22:00', label: '22:00', hour: 22, minute: 0, session: 0, internalIndex: 28},
+  {key: '22:30', label: '22:30', hour: 22, minute: 30, session: 0, internalIndex: 29},
+  {key: '23:00', label: '23:00', hour: 23, minute: 0, session: 0, internalIndex: 30},
+  {key: '23:30', label: '23:30', hour: 23, minute: 30, session: 0, internalIndex: 31}
+]

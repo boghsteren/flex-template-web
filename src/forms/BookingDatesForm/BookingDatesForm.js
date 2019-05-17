@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { string, bool, arrayOf } from "prop-types";
+import { string, bool, array } from "prop-types";
 import { compose } from "redux";
 import { Form as FinalForm } from "react-final-form";
 import { FormattedMessage, intlShape, injectIntl } from "react-intl";
@@ -18,7 +18,8 @@ import {
   PrimaryButton,
   FieldDateInput,
   FieldDateRangeInput,
-  FieldTextInput
+  FieldTextInput,
+  FieldTimeInput
 } from "../../components";
 import EstimatedBreakdownMaybe from "./EstimatedBreakdownMaybe";
 
@@ -72,6 +73,7 @@ export class BookingDatesFormComponent extends Component {
     return (
       <FinalForm
         {...rest}
+        initialValues={{seats: 1}}
         unitPrice={unitPrice}
         onSubmit={this.handleFormSubmit}
         render={fieldRenderProps => {
@@ -87,18 +89,24 @@ export class BookingDatesFormComponent extends Component {
             unitPrice,
             unitType,
             values,
+            invalid,
             timeSlots,
+            bookingTimePlaceholder,
             fetchTimeSlotsError
           } = fieldRenderProps;
           const price_scheme = listing && listing.attributes.publicData.pricing_scheme ? listing.attributes.publicData.pricing_scheme : 'person_seats';
-          const endDate =
+          let endDate =
             values && values.bookingDates
               ? values.bookingDates.endDate
               : values && values.bookingDate && values.bookingDate.date;
-          const startDate =
+          let startDate =
             values && values.bookingDates
               ? values.bookingDates.startDate
               : values && values.bookingDate && values.bookingDate.date;
+          const startTime = config.custom.timeSlotList.filter(slot => slot.key === values.bookingTime)[0];
+          startTime && startDate ? startDate.setHours(startTime.hour, startTime.minute, 0, 0) : null;
+          startTime && endDate ? endDate.setHours(startTime.hour, startTime.minute, 0, 0) : null;
+
           const seats = (values && parseInt(values.seats, 10)) || 1;
           const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
           const validQuantity = price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats;
@@ -142,13 +150,19 @@ export class BookingDatesFormComponent extends Component {
               <FormattedMessage id="BookingDatesForm.timeSlotsError" />
             </p>
           ) : null;
+
+          const bookingTimeLabel = intl.formatMessage({
+            id: "BookingDatesForm.bookingTimeLabel"
+          });
+          const requiredTimeMessage = intl.formatMessage({ id: 'BookingDatesForm.requiredTime' });
+
           const numberOfDays =
             startDate && endDate && moment(endDate).diff(startDate, "days");
           // This is the place to collect breakdown estimation data. See the
           // EstimatedBreakdownMaybe component to change the calculations
           // for customized payment processes.
           const bookingData =
-            startDate && endDate
+            startDate && endDate && startTime
               ? {
                 unitType,
                 unitPrice,
@@ -190,10 +204,17 @@ export class BookingDatesFormComponent extends Component {
           const submitButtonClasses = classNames(
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
+
+          const timeFormatOptions = {
+            hour: 'numeric',
+            minute: '2-digit',
+          };
+          const bookingTimePlaceholderText = bookingTimePlaceholder || intl.formatTime(today, timeFormatOptions);
           // Display date range picker if listing is a "per day" listing
           // Display date picker if listing is a "per hour" listing
           // Display hour number input if listing a "per hour" listing
           // Display number of people input if listing is a "per person (either per hour or per day)" listing
+
           return (
             <Form onSubmit={handleSubmit} className={classes}>
               {timeSlotsError}
@@ -201,12 +222,25 @@ export class BookingDatesFormComponent extends Component {
               <div>
                 <FieldDateInput
                   className={css.bookingDates}
-                  id="bookingDate"
+                  id={`${form}bookingDate`}
                   name="bookingDate"
                   label="Booking date"
                   placeholderText={bookingStartLabel}
                   validate={composeValidators(required(requiredMessage))}
                   value={moment()}
+                />
+                <FieldTimeInput
+                  className={classNames(css.bookingTime)}
+                  id={`${form}.bookingTime`}
+                  name="bookingTime"
+                  label={bookingTimeLabel}
+                  // focused={this.state.focusedInputName}
+                  placeholderText={bookingTimePlaceholderText.replace(" AM", "")}
+                  // availableTimeSlot={timeSlots}
+                  validate={composeValidators(
+                    required(requiredTimeMessage)
+                  )}
+                  form={form}
                 />
                 {price_scheme === 'person_seats' &&
                   <FieldTextInput
@@ -239,7 +273,7 @@ export class BookingDatesFormComponent extends Component {
                 />
               </p>
               <div className={submitButtonClasses}>
-                <PrimaryButton type="submit">
+                <PrimaryButton disabled={invalid} type="submit">
                   <FormattedMessage id="BookingDatesForm.requestToBook" />
                 </PrimaryButton>
               </div>
@@ -259,7 +293,7 @@ BookingDatesFormComponent.defaultProps = {
   isOwnListing: false,
   startDatePlaceholder: null,
   endDatePlaceholder: null,
-  timeSlots: null
+  timeSlots: config.custom.timeSlotList
 };
 
 BookingDatesFormComponent.propTypes = {
@@ -270,7 +304,7 @@ BookingDatesFormComponent.propTypes = {
   unitType: propTypes.bookingUnitType.isRequired,
   price: propTypes.money,
   isOwnListing: bool,
-  timeSlots: arrayOf(propTypes.timeSlot),
+  timeSlots: array,
 
   // from injectIntl
   intl: intlShape.isRequired,
