@@ -15,7 +15,8 @@ import {
   txIsEnquired,
   txIsRequested,
   txIsReviewed,
-  propTypes
+  propTypes,
+  txIsWithdraw
 } from "../../util/types";
 import { formatMoney } from "../../util/currency";
 import { ensureCurrentUser, userDisplayName } from "../../util/data";
@@ -69,7 +70,7 @@ const txState = (intl, tx, isOrder) => {
         id: "InboxPage.stateAccepted"
       })
     };
-  } else if (txIsDeclinedOrExpired(tx)) {
+  } else if (txIsDeclinedOrExpired(tx) || txIsWithdraw(tx)) {
     return {
       nameClassName: css.nameDeclined,
       bookingClassName: css.bookingDeclined,

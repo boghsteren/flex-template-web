@@ -23,7 +23,8 @@ import {
   TransactionPageTitle,
   TransactionPageMessage,
   displayNames,
-  ContactMaybe
+  ContactMaybe,
+  WithdrawnButtonsMaybe
 } from "./TransactionPanel.helpers";
 
 import css from "./TransactionPanel.css";
@@ -169,6 +170,7 @@ export class TransactionPanelComponent extends Component {
       intl,
       onAcceptSale,
       onDeclineSale,
+      onWithdrawBooking,
       acceptInProgress,
       declineInProgress,
       acceptSaleError,
@@ -187,6 +189,8 @@ export class TransactionPanelComponent extends Component {
     const customerLoaded = !!currentCustomer.id;
     const isCustomerBanned =
       customerLoaded && currentCustomer.attributes.banned;
+    const canShowWithdrawnButtons =
+      isCustomer && txIsAccepted(currentTransaction);
     const canShowSaleButtons =
       isProvider && txIsEnquired(currentTransaction) && !isCustomerBanned;
     const isProviderLoaded = !!currentProvider.id;
@@ -239,6 +243,16 @@ export class TransactionPanelComponent extends Component {
         />
       );
     }
+    const withdrawButton = canShowWithdrawnButtons ? (
+      <WithdrawnButtonsMaybe
+        rootClassName={actionButtonClasses}
+        canShowButtons={canShowWithdrawnButtons}
+        transaction={currentTransaction}
+        declineInProgress={declineInProgress}
+        declineSaleError={declineSaleError}
+        onWithdrawBooking={onWithdrawBooking}
+      />
+    ) : null;
 
     const sendMessagePlaceholder = intl.formatMessage({
       id: "TransactionPanel.sendMessagePlaceholder"
@@ -255,7 +269,7 @@ export class TransactionPanelComponent extends Component {
 
     const noteText = (
       <span className={css.noteTextCustomer}>
-        <FormattedMessage id="TransactionPanel.noteTextCustomer" values={{providerName: otherUserDisplayName}} />
+        <FormattedMessage id="TransactionPanel.noteTextCustomer" values={{ providerName: otherUserDisplayName }} />
       </span>
     );
     const noteDateText = (
@@ -401,6 +415,9 @@ export class TransactionPanelComponent extends Component {
             {canShowActionButtons ? (
               <div className={css.mobileActionButtons}>{actionButtons}</div>
             ) : null}
+            {canShowWithdrawnButtons ? (
+                <div className={css.mobileActionButtons}>{withdrawButton}</div>
+              ) : null}
           </div>
 
           <div className={css.asideDesktop}>
@@ -459,6 +476,9 @@ export class TransactionPanelComponent extends Component {
               />
               {canShowActionButtons ? (
                 <div className={css.desktopActionButtons}>{actionButtons}</div>
+              ) : null}
+              {canShowWithdrawnButtons ? (
+                <div className={css.desktopActionButtons}>{withdrawButton}</div>
               ) : null}
             </div>
           </div>

@@ -5,6 +5,12 @@ import { storableError } from '../../util/errors';
 import { TRANSITION_REQUEST, TRANSITION_ENQUIRE } from '../../util/types';
 import * as log from '../../util/log';
 import { fetchCurrentUserHasOrdersSuccess } from '../../ducks/user.duck';
+import AWS from 'aws-sdk';
+
+// ================ Email ================ //
+
+const ADMIN_EMAIL = `${process.env.REACT_APP_ADMIN_EMAIL}`;
+const ADMIN_RECEIVER_EMAIL = `${process.env.REACT_APP_ADMIN_RECEIVER_EMAIL}`;
 
 // ================ Action types ================ //
 
@@ -28,6 +34,41 @@ const initialState = {
   speculateTransactionError: null,
   speculatedTransaction: null,
   initiateOrderError: null,
+};
+
+
+const credential = new AWS.Config(
+  {
+    accessKeyId: `${process.env.REACT_APP_AWS_API_ACCESS_ID}`, 
+    secretAccessKey: `${process.env.REACT_APP_AWS_API_ACCESS_KEY}`,
+    region: `${process.env.REACT_APP_AWS_API_REGION}`
+  }
+);
+
+AWS.config.update(credential);
+
+const createEmailParams = (receiver, subject, content) => {
+  let newReceiver = receiver ? receiver : ADMIN_RECEIVER_EMAIL;
+  let toAddresses = Array.isArray(newReceiver) ? newReceiver : [newReceiver]
+  let body = {
+    Text: {
+      Charset: "UTF-8",
+      Data: content
+    }
+  }
+  return {
+    Destination: {
+      ToAddresses: toAddresses
+    },
+    Message: {
+      Body: body,
+      Subject: {
+        Charset: 'UTF-8',
+        Data: subject
+      }
+    },
+    Source: ADMIN_EMAIL,
+  };
 };
 
 export default function checkoutPageReducer(state = initialState, action = {}) {
@@ -192,6 +233,21 @@ export const speculateTransaction = params => (dispatch, getState, sdk) => {
     });
 };
 
+const sendEmailToAdmin = (orderId, orderParams) => {
+  AWS.config.update(credential);
+  const content = `A user has created a booking, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}`;
+  const params = createEmailParams('hello@gwexperiences.com', 'A user has created a booking', content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      //ok
+    }).catch(
+    function (err) {
+      console.error(err);
+    });
+}
+
 
 export const sendEnquiryBooking = (orderParams, initialMessage) => (dispatch, getState, sdk) => {
   dispatch(initiateOrderRequest());
@@ -206,6 +262,8 @@ export const sendEnquiryBooking = (orderParams, initialMessage) => (dispatch, ge
       const orderId = response.data.data.id;
       dispatch(initiateOrderSuccess(orderId));
       dispatch(fetchCurrentUserHasOrdersSuccess(true));
+
+      sendEmailToAdmin(orderId, orderParams);
 
       if (initialMessage) {
         return sdk.messages

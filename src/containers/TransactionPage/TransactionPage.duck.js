@@ -16,6 +16,7 @@ import {
   TRANSITION_CANCEL,
   TRANSITION_EXPIRE_ENQUIRY,
   TRANSITION_EXPIRE_ENQUIRY_ACCEPTED,
+  TRANSITION_WITHDRAW,
 } from '../../util/types';
 import * as log from '../../util/log';
 import {
@@ -27,6 +28,12 @@ import { addMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { fetchCurrentUserNotifications } from '../../ducks/user.duck';
 import config from '../../config';
 import { createProviderLineItems, createRefundLineItems } from './TransactionPage.helpers';
+import AWS from 'aws-sdk';
+
+// ================ Email ================ //
+
+const ADMIN_EMAIL = `${process.env.REACT_APP_ADMIN_EMAIL}`;
+const ADMIN_RECEIVER_EMAIL = `${process.env.REACT_APP_ADMIN_RECEIVER_EMAIL}`;
 
 const { UUID } = sdkTypes;
 
@@ -82,6 +89,40 @@ const initialState = {
   sendMessageError: null,
   sendReviewInProgress: false,
   sendReviewError: null,
+};
+
+const credential = new AWS.Config(
+  {
+    accessKeyId: `${process.env.REACT_APP_AWS_API_ACCESS_ID}`, 
+    secretAccessKey: `${process.env.REACT_APP_AWS_API_ACCESS_KEY}`,
+    region: `${process.env.REACT_APP_AWS_API_REGION}`
+  }
+);
+
+AWS.config.update(credential);
+
+const createEmailParams = (receiver, subject, content) => {
+  let newReceiver = receiver ? receiver : ADMIN_RECEIVER_EMAIL;
+  let toAddresses = Array.isArray(newReceiver) ? newReceiver : [newReceiver]
+  let body = {
+    Text: {
+      Charset: "UTF-8",
+      Data: content
+    }
+  }
+  return {
+    Destination: {
+      ToAddresses: toAddresses
+    },
+    Message: {
+      Body: body,
+      Subject: {
+        Charset: 'UTF-8',
+        Data: subject
+      }
+    },
+    Source: ADMIN_EMAIL,
+  };
 };
 
 // Merge entity arrays using ids, so that conflicting items in newer array (b) overwrite old values (a).
@@ -317,7 +358,8 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
         return listingResponse;
       } else if ((lastTransition === TRANSITION_CANCEL || lastTransition === TRANSITION_DECLINE ||
         lastTransition === TRANSITION_EXPIRE_ENQUIRY ||
-        lastTransition === TRANSITION_EXPIRE_ENQUIRY_ACCEPTED)) {
+        lastTransition === TRANSITION_EXPIRE_ENQUIRY_ACCEPTED ||
+        lastTransition === TRANSITION_WITHDRAW)) {
         const { lineItems, attributes } = createRefundLineItems(listingResponse, txResponse);
         txResponse.data.data.attributes.lineItems = lineItems;
         txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
@@ -340,6 +382,37 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
     });
 };
 
+
+const sendAcceptedEmailToAdmin = (orderId) => {
+  AWS.config.update(credential);
+  const content = `A booking has been accepted, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}`;
+  const params = createEmailParams('hello@gwexperiences.com', 'A booking has been accepted', content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      //ok
+    }).catch(
+    function (err) {
+      console.error(err);
+    });
+}
+
+const sendDeclinedEmailToAdmin = (orderId) => {
+  AWS.config.update(credential);
+  const content = `A booking has been declined, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}`;
+  const params = createEmailParams('hello@gwexperiences.com', 'A booking has been declined', content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      //ok
+    }).catch(
+    function (err) {
+      console.error(err);
+    });
+}
+
 export const acceptSale = (id, tx) => (dispatch, getState, sdk) => {
   if (acceptOrDeclineInProgress(getState())) {
     return Promise.reject(new Error('Accept or decline already in progress'));
@@ -349,6 +422,7 @@ export const acceptSale = (id, tx) => (dispatch, getState, sdk) => {
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })
     .then(response => {
+      sendAcceptedEmailToAdmin(id);
       let txResponse = response;
       const { lineItems, attributes } = createProviderLineItems({ data: { data: tx.listing } }, { data: { data: tx } });
       txResponse.data.data.attributes.lineItems = lineItems;
@@ -378,6 +452,7 @@ export const declineSale = (id, tx) => (dispatch, getState, sdk) => {
   return sdk.transactions
     .transition({ id, transition: TRANSITION_DECLINE, params: {} }, { expand: true })
     .then(response => {
+      sendDeclinedEmailToAdmin(id);
       let txResponse = response;
       const { lineItems, attributes } = createRefundLineItems({ data: { data: tx.listing } }, { data: { data: tx } });
       txResponse.data.data.attributes.lineItems = lineItems;
@@ -398,6 +473,53 @@ export const declineSale = (id, tx) => (dispatch, getState, sdk) => {
     });
 };
 
+
+export const withdrawBooking = (id, tx) => (dispatch, getState, sdk) => {
+  if (acceptOrDeclineInProgress(getState())) {
+    return Promise.reject(new Error('Accept or decline already in progress'));
+  }
+  dispatch(declineSaleRequest());
+
+  return sdk.transactions
+    .transition({ id, transition: TRANSITION_WITHDRAW, params: {} }, { expand: true })
+    .then(response => {
+      sendDeclinedEmailToAdmin(id);
+      let txResponse = response;
+      const { lineItems, attributes } = createRefundLineItems({ data: { data: tx.listing } }, { data: { data: tx } });
+      txResponse.data.data.attributes.lineItems = lineItems;
+      txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
+      txResponse.data.data.attributes.payoutTotal = attributes.payoutTotal;
+      dispatch(addMarketplaceEntities(response));
+      dispatch(declineSaleSuccess());
+      dispatch(fetchCurrentUserNotifications());
+      return response;
+    })
+    .catch(e => {
+      dispatch(declineSaleError(storableError(e)));
+      log.error(e, 'reject-sale-failed', {
+        txId: id,
+        transition: TRANSITION_DECLINE,
+      });
+      throw e;
+    });
+};
+
+const sendPaymentEmailToAdmin = (orderId) => {
+  AWS.config.update(credential);
+  const content = `A booking has been paid, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}`;
+  const params = createEmailParams('hello@gwexperiences.com', 'Travel Agent has paid for an activity', content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      //ok
+    }).catch(
+    function (err) {
+      console.error(err);
+    });
+}
+
+
 export const payment = (id, params) => (dispatch, getState, sdk) => {
   if (acceptOrDeclineInProgress(getState())) {
     return Promise.reject(new Error('Accept or decline already in progress'));
@@ -410,6 +532,7 @@ export const payment = (id, params) => (dispatch, getState, sdk) => {
   return sdk.transactions
     .transition({ id, transition: TRANSITION_REQUEST_AFTER_ENQUIRY, params: bodyParams }, { expand: true })
     .then(response => {
+      sendPaymentEmailToAdmin(id);
       dispatch(addMarketplaceEntities(response));
       dispatch(declineSaleSuccess());
       dispatch(fetchCurrentUserNotifications());

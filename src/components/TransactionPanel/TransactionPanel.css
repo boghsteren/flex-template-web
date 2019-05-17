@@ -192,6 +192,13 @@
   position: relative;
 }
 
+.paymentForm {
+  margin-left: 24px;
+  margin-right: 24px;
+  flex-grow: 1;
+}
+
+
 .detailCardHeadings {
   display: none;
 

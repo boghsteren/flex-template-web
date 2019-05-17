@@ -29,6 +29,7 @@ import {
   sendReview,
   fetchMoreMessages,
   payment,
+  withdrawBooking,
 } from './TransactionPage.duck';
 import css from './TransactionPage.css';
 
@@ -65,6 +66,7 @@ export const TransactionPageComponent = props => {
     declineSaleError,
     onAcceptSale,
     onDeclineSale,
+    onWithdrawBooking,
     onPaymentAfterEnquiry,
   } = props;
 
@@ -156,6 +158,7 @@ export const TransactionPageComponent = props => {
       transactionRole={transactionRole}
       onAcceptSale={onAcceptSale}
       onDeclineSale={onDeclineSale}
+      onWithdrawBooking={onWithdrawBooking}
       acceptInProgress={acceptInProgress}
       declineInProgress={declineInProgress}
       acceptSaleError={acceptSaleError}
@@ -210,6 +213,7 @@ TransactionPageComponent.propTypes = {
   declineInProgress: bool.isRequired,
   onAcceptSale: func.isRequired,
   onDeclineSale: func.isRequired,
+  onWithdrawBooking: func.isRequired,
   scrollingDisabled: bool.isRequired,
   transaction: propTypes.transaction,
   fetchMessagesError: propTypes.error,
@@ -249,7 +253,7 @@ const mapStateToProps = state => {
 
   const transactions = getMarketplaceEntities(state, transactionRef ? [transactionRef] : []);
   const transaction = transactions.length > 0 ? transactions[0] : null;
-
+  
   return {
     currentUser,
     fetchTransactionError,
@@ -277,6 +281,7 @@ const mapDispatchToProps = dispatch => {
     onPaymentAfterEnquiry: (transactionId, params) => dispatch(payment(transactionId, params)),
     onAcceptSale: (transactionId, tx) => dispatch(acceptSale(transactionId, tx)),
     onDeclineSale: (transactionId, tx) => dispatch(declineSale(transactionId, tx)),
+    onWithdrawBooking: (transactionId, tx) => dispatch(withdrawBooking(transactionId, tx)),
     onShowMoreMessages: txId => dispatch(fetchMoreMessages(txId)),
     onSendMessage: (txId, message) => dispatch(sendMessage(txId, message)),
     onManageDisableScrolling: (componentId, disableScrolling) =>

@@ -21,7 +21,9 @@ import {
   TX_TRANSITION_ACTOR_CUSTOMER,
   TX_TRANSITION_ACTOR_PROVIDER,
   areReviewsCompleted,
-  propTypes
+  propTypes,
+  TRANSITION_EXPIRE_ENQUIRY,
+  TRANSITION_EXPIRE_ENQUIRY_ACCEPTED
 } from "../../util/types";
 import * as log from "../../util/log";
 
@@ -98,6 +100,8 @@ const shouldRenderTransition = transition => {
     TRANSITION_EXPIRE,
     TRANSITION_REQUEST,
     TRANSITION_REQUEST_AFTER_ENQUIRY,
+    TRANSITION_EXPIRE_ENQUIRY,
+    TRANSITION_EXPIRE_ENQUIRY_ACCEPTED,
     TRANSITION_REVIEW_1_BY_CUSTOMER,
     TRANSITION_REVIEW_1_BY_PROVIDER,
     TRANSITION_REVIEW_2_BY_CUSTOMER,
@@ -149,43 +153,43 @@ const resolveTransitionMessage = (
           values={{ listingTitle }}
         />
       ) : (
-        <FormattedMessage
-          id="ActivityFeed.transitionRequest"
-          values={{ displayName, listingTitle }}
-        />
-      );
+          <FormattedMessage
+            id="ActivityFeed.transitionRequest"
+            values={{ displayName, listingTitle }}
+          />
+        );
     case TRANSITION_ACCEPT:
       return isOwnTransition ? (
         <FormattedMessage id="ActivityFeed.ownTransitionAccept" />
       ) : (
-        <FormattedMessage
-          id="ActivityFeed.transitionAccept"
-          values={{ displayName }}
-        />
-      );
+          <FormattedMessage
+            id="ActivityFeed.transitionAccept"
+            values={{ displayName }}
+          />
+        );
     case TRANSITION_DECLINE:
       const rememberText = (
         <span className={css.noteText}>
-          <FormattedMessage id="ActivityFeed.rememberText"/>
+          <FormattedMessage id="ActivityFeed.rememberText" />
         </span>
       );
       const noteDateText = (
         <span className={css.strongText}>
-          <FormattedMessage id="ActivityFeed.noteDateText"/>
+          <FormattedMessage id="ActivityFeed.noteDateText" />
         </span>
       );
       const noteNumberPeopleText = (
         <span className={css.strongText}>
-          <FormattedMessage id="ActivityFeed.noteNumberPeopleText"/>
+          <FormattedMessage id="ActivityFeed.noteNumberPeopleText" />
         </span>
       );
       const noteTimeText = (
         <span className={css.strongText}>
-          <FormattedMessage id="ActivityFeed.noteTimeText"/>
+          <FormattedMessage id="ActivityFeed.noteTimeText" />
         </span>
       );
       const noteForDecline = (
-        <FormattedMessage 
+        <FormattedMessage
           id="ActivityFeed.noteForDecline"
           values={{
             rememberText: rememberText,
@@ -196,24 +200,35 @@ const resolveTransitionMessage = (
           }}
         />
       );
-      
+
       return isOwnTransition ? (
         <span className={css.noteForDecline}>{noteForDecline}</span>
       ) : (
-        <FormattedMessage
-          id="ActivityFeed.transitionDecline"
-          values={{ displayName }}
-        />
-      );
+          <FormattedMessage
+            id="ActivityFeed.transitionDecline"
+            values={{ displayName }}
+          />
+        );
     case TRANSITION_EXPIRE:
+    case TRANSITION_EXPIRE_ENQUIRY:
       return ownRole === TX_TRANSITION_ACTOR_PROVIDER ? (
         <FormattedMessage id="ActivityFeed.ownTransitionExpire" />
       ) : (
+          <FormattedMessage
+            id="ActivityFeed.transitionExpire"
+            values={{ displayName }}
+          />
+        );
+    case TRANSITION_EXPIRE_ENQUIRY_ACCEPTED:
+      return ownRole === TX_TRANSITION_ACTOR_PROVIDER ? (
         <FormattedMessage
           id="ActivityFeed.transitionExpire"
           values={{ displayName }}
         />
-      );
+      ) : (
+          <FormattedMessage id="ActivityFeed.ownTransitionExpire" />
+
+        );
     case TRANSITION_CANCEL:
       return <FormattedMessage id="ActivityFeed.transitionCancel" />;
     case TRANSITION_COMPLETE:

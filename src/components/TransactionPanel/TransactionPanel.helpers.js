@@ -11,7 +11,8 @@ import {
   txIsEnquired,
   txIsExpired,
   txIsRequested,
-  txIsReviewed
+  txIsReviewed,
+  txIsWithdraw
 } from "../../util/types";
 import { userDisplayName } from "../../util/data";
 import { createSlug, stringify } from "../../util/urlHelpers";
@@ -335,6 +336,50 @@ export const SaleActionButtonsMaybe = props => {
   ) : null;
 };
 
+
+// Functional component as a helper to build ActionButtons for
+// provider when state is preauthorized
+export const WithdrawnButtonsMaybe = props => {
+  const {
+    className,
+    rootClassName,
+    canShowButtons,
+    transaction,
+    acceptInProgress,
+    declineInProgress,
+    declineSaleError,
+    onWithdrawBooking
+  } = props;
+
+  const buttonsDisabled = acceptInProgress || declineInProgress;
+
+  const declineErrorMessage = declineSaleError ? (
+    <p className={css.actionError}>
+      <FormattedMessage id="TransactionPanel.declineSaleFailed" />
+    </p>
+  ) : null;
+
+
+  const classes = classNames(rootClassName || css.actionButtons, className);
+
+  return canShowButtons ? (
+    <div className={classes}>
+      <div className={css.actionErrors}>
+        {declineErrorMessage}
+      </div>
+      <div className={css.actionButtonWrapper}>
+        <SecondaryButton
+          inProgress={declineInProgress}
+          disabled={buttonsDisabled}
+          onClick={() => onWithdrawBooking(transaction.id, transaction)}
+        >
+          <FormattedMessage id="TransactionPanel.withdrawButton" />
+        </SecondaryButton>
+      </div>
+    </div>
+  ) : null;
+};
+
 // Functional component as a helper to build order title
 export const OrderTitle = props => {
   const {
@@ -400,6 +445,15 @@ export const OrderTitle = props => {
         <FormattedMessage
           id="TransactionPanel.orderDeclinedTitle"
           values={{ customerName, listingLink }}
+        />
+      </h1>
+    );
+  } else if (txIsWithdraw(transaction)) {
+    return (
+      <h1 className={classes}>
+        <FormattedMessage
+          id="TransactionPanel.orderWithdrawTitle"
+          values={{ listingLink }}
         />
       </h1>
     );
@@ -518,6 +572,15 @@ export const SaleTitle = props => {
       <h1 className={classes}>
         <FormattedMessage
           id="TransactionPanel.saleDeclinedTitle"
+          values={{ customerName, listingLink }}
+        />
+      </h1>
+    );
+  } else if (txIsWithdraw(transaction)) {
+    return (
+      <h1 className={classes}>
+        <FormattedMessage
+          id="TransactionPanel.withdrawTitle"
           values={{ customerName, listingLink }}
         />
       </h1>

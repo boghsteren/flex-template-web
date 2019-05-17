@@ -136,6 +136,8 @@ export class CheckoutPageComponent extends Component {
         listingId,
         bookingStart: bookingStartForAPI,
         bookingEnd: bookingEndForAPI,
+        bookingDisplayStart: bookingStart,
+        bookingDisplayEnd: bookingEnd
       });
     }
 
@@ -176,6 +178,8 @@ export class CheckoutPageComponent extends Component {
       cardToken,
       bookingStart: speculatedTransaction.booking.attributes.start,
       bookingEnd: speculatedTransaction.booking.attributes.end,
+      bookingDisplayStart: speculatedTransaction.booking.attributes.displayStart,
+      bookingDisplayEnd: speculatedTransaction.booking.attributes.displayEnd,
     };
 
     const createOrder = isEnquiryOnly ? sendEnquiryBookingRequest : sendOrderRequest ;
