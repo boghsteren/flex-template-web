@@ -413,6 +413,21 @@ const sendDeclinedEmailToAdmin = (orderId) => {
     });
 }
 
+const sendWithdrawEmailToAdmin = (orderId) => {
+  AWS.config.update(credential);
+  const content = `A booking has been withdrawn, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}`;
+  const params = createEmailParams('hello@gwexperiences.com', 'A booking has been withdrawn', content);
+
+  const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  return sendPromise.then(
+    function (data) {
+      //ok
+    }).catch(
+    function (err) {
+      console.error(err);
+    });
+}
+
 export const acceptSale = (id, tx) => (dispatch, getState, sdk) => {
   if (acceptOrDeclineInProgress(getState())) {
     return Promise.reject(new Error('Accept or decline already in progress'));
@@ -483,7 +498,7 @@ export const withdrawBooking = (id, tx) => (dispatch, getState, sdk) => {
   return sdk.transactions
     .transition({ id, transition: TRANSITION_WITHDRAW, params: {} }, { expand: true })
     .then(response => {
-      sendDeclinedEmailToAdmin(id);
+      sendWithdrawEmailToAdmin(id);
       let txResponse = response;
       const { lineItems, attributes } = createRefundLineItems({ data: { data: tx.listing } }, { data: { data: tx } });
       txResponse.data.data.attributes.lineItems = lineItems;
