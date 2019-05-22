@@ -1,0 +1,16 @@
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY, HH:mm"}}
+{{~/inline~}}
+
+<html>
+  <body>
+    <h1>The booking request was withdrawn.</h1>
+
+    {{#with transaction}}
+      <p>Unfortunately {{customer.display-name}} decided to withdrawn the booking request for {{listing.title}} on {{> format-date date=booking.displayStart}}</p>
+      <p><a href="{{marketplace.url}}/sale/{{url-encode id}}/details">You can check for more details here</a></p>
+    {{/with}}
+
+  </body>
+</html>
