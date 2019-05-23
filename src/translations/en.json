@@ -709,7 +709,7 @@
   "SendMessageForm.sendFailed": "Failed to send. Please try again.",
   "SendMessageForm.sendMessage": "Send message",
   "SignupForm.phoneLabel": "Phone",
-  "SignupForm.phonePlaceholder": "Contact phone (+45)",
+  "SignupForm.phonePlaceholder": "Remember country code",
   "SignupForm.phoneRequiredMessage": "You need to fill in your phone number...",
   "SignupForm.organisationLabel": "Organisation",
   "SignupForm.organisationPlaceholder": "Enter the name here",
