@@ -81,9 +81,6 @@ class EnquiryCheckoutForm extends Component {
         <h3 className={css.messageHeading}>
           <FormattedMessage id="StripePaymentForm.messageHeading" />
         </h3>
-        <label className={css.messageLabel} htmlFor={`${formId}-message`}>
-          <FormattedMessage id="StripePaymentForm.messageLabel" values={{ messageOptionalText }} />
-        </label>
         <ExpandingTextarea
           id={`${formId}-message`}
           className={css.message}
@@ -92,14 +89,13 @@ class EnquiryCheckoutForm extends Component {
           onChange={handleMessageChange}
         />
         <div className={css.submitContainer}>
-          <p className={css.paymentInfo}>{paymentInfo}</p>
           <PrimaryButton
             className={css.submitButton}
             type="submit"
             inProgress={submitInProgress}
             disabled={submitDisabled}
           >
-            <FormattedMessage id="StripePaymentForm.submitPaymentInfo" />
+            <FormattedMessage id="StripePaymentForm.submitEnquiryPaymentInfo" />
           </PrimaryButton>
         </div>
       </Form>
