@@ -32,3 +32,18 @@
     margin-top: 0;
   }
 }
+
+.contactLine {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 22px;
+}
+
+.authorName {
+  //color: var(--colorTealLight);
+}
+
+.organisation, .teal {
+  color: var(--colorTealLight);
+}

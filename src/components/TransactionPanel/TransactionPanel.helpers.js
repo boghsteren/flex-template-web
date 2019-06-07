@@ -394,7 +394,21 @@ export const OrderTitle = props => {
 
   const classes = classNames(rootClassName || css.headingOrder, className);
 
+  const isEnquireWithoutBookingProcess = config.bookingProcessAliasForEnquiry.includes(transaction.attributes.processName);
+
   if (txIsEnquired(transaction)) {
+    if (isEnquireWithoutBookingProcess) {
+      return (
+        <h1 className={classes}>
+        <span className={css.mainTitle}>
+          <FormattedMessage
+            id="TransactionPanel.orderEnquiredTitle"
+            values={{ listingLink }}
+          />
+        </span>
+        </h1>
+      );
+    }
     return (
       <h1 className={classes}>
         <span className={css.mainTitle}>

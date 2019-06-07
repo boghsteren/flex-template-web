@@ -303,7 +303,8 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
       const lastTransition = txResponse.data.data.attributes.lastTransition;
       const currentUser = getState().user.currentUser;
       const isCustomer = currentUser && currentUser.id.uuid === txResponse.data.data.relationships.customer.data.id.uuid;
-      if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && isCustomer) {
+      const isEnquireWithoutBookingProcess = config.bookingProcessAliasForEnquiry.includes(txResponse.data.data.attributes.processName);
+      if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && isCustomer && !isEnquireWithoutBookingProcess) {
         const booking = txResponse.data.included.find(include => {
           return include.type === 'booking';
         });
@@ -345,7 +346,7 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
             dispatch(fetchTransactionSuccess(txResponse));
             return txResponse;
           })
-      } else if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && !isCustomer) {
+      } else if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && !isCustomer&& !isEnquireWithoutBookingProcess) {
 
         const { lineItems, attributes } = createProviderLineItems(listingResponse, txResponse);
         txResponse.data.data.attributes.lineItems = lineItems;
@@ -356,10 +357,10 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
         dispatch(addMarketplaceEntities(listingResponse));
         dispatch(fetchTransactionSuccess(txResponse));
         return listingResponse;
-      } else if ((lastTransition === TRANSITION_CANCEL || lastTransition === TRANSITION_DECLINE ||
+      } else if (((lastTransition === TRANSITION_CANCEL || lastTransition === TRANSITION_DECLINE ||
         lastTransition === TRANSITION_EXPIRE_ENQUIRY ||
         lastTransition === TRANSITION_EXPIRE_ENQUIRY_ACCEPTED ||
-        lastTransition === TRANSITION_WITHDRAW)) {
+        lastTransition === TRANSITION_WITHDRAW) && !isEnquireWithoutBookingProcess)) {
         const { lineItems, attributes } = createRefundLineItems(listingResponse, txResponse);
         txResponse.data.data.attributes.lineItems = lineItems;
         txResponse.data.data.attributes.payinTotal = attributes.payinTotal;

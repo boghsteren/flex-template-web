@@ -45,6 +45,8 @@ const SectionHost = props => {
           className={css.enquiryForm}
           submitButtonWrapperClassName={css.enquirySubmitButtonWrapper}
           listingTitle={title}
+          listingContactNumber={listing.attributes.publicData.contactNumber}
+          listingContactName={listing.attributes.publicData.contactName}
           authorDisplayName={authorDisplayName}
           sendEnquiryError={sendEnquiryError}
           onSubmit={onSubmitEnquiry}
