@@ -236,6 +236,7 @@ export class CheckoutPageComponent extends Component {
     const isLoading = !this.state.dataLoaded || speculateTransactionInProgress;
 
     const { listing, bookingDates } = this.state.pageData;
+
     const currentTransaction = ensureTransaction(
       speculatedTransaction,
       {},
@@ -261,6 +262,13 @@ export class CheckoutPageComponent extends Component {
     const hasRequiredData = hasListingAndAuthor && hasBookingDates;
     const canShowPage = hasRequiredData && !isOwnListing;
     const shouldRedirect = !isLoading && !canShowPage;
+
+    const showContact = currentListing &&
+      currentListing.id &&
+      currentListing.attributes.publicData.contactName &&
+      currentListing.attributes.publicData.contactName.length > 0 &&
+      currentListing.attributes.publicData.contactNumber &&
+      currentListing.attributes.publicData.contactNumber.length > 0;
 
     // Redirect back to ListingPage if data is missing.
     // Redirection must happen before any data format error is thrown (e.g. wrong currency)
@@ -516,6 +524,20 @@ export class CheckoutPageComponent extends Component {
                   }}
                 />
               </p>
+              {
+                showContact ? (
+                  <p className={<css className="contact"></css>}>
+                    <FormattedMessage
+                      id="TransactionPanel.contact"
+                      values={{
+                        name: currentListing.attributes.publicData.contactName,
+                        number: (<a href={`tel:${currentListing.attributes.publicData.contactNumber}`}>{currentListing.attributes.publicData.contactNumber}</a>)
+                      }}
+                    />
+                  </p>
+                ) : null
+              }
+
             </div>
             <h3 className={css.bookingBreakdownTitle}>
               <FormattedMessage id="CheckoutPage.priceBreakdownTitle" />
