@@ -181,15 +181,17 @@ export const ContactMaybe = props => {
   const classes = classNames(rootClassName || css.contact, className);
   const showContact = (!isProvider && listing.attributes.publicData.contactNumber) ||
     (isProvider && transaction.attributes.protectedData.phoneNumber);
+  const contactName = isProvider ? currentCustomer.attributes.profile.displayName :
+    currentProvider.attributes.profile.displayName;
+  const contactNumber =  isProvider ? transaction.attributes.protectedData.phoneNumber :
+    listing.attributes.publicData.contactNumber;
   return showContact ? (
     <div className={classes}>
       <FormattedMessage
         id="TransactionPanel.contact"
         values={{
-          name: isProvider ? currentCustomer.attributes.profile.displayName :
-            currentProvider.attributes.profile.displayName,
-          number: isProvider ? transaction.attributes.protectedData.phoneNumber :
-            listing.attributes.publicData.contactNumber
+          name: contactName,
+          number: (<a href={`tel:${contactNumber}`}>{contactNumber}</a>)
         }}
       />
     </div>
