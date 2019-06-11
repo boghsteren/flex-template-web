@@ -52,7 +52,7 @@ const LineItemBookingPeriod = props => {
   const isNightly = unitType === LINE_ITEM_NIGHT;
 
   const dayCount = daysBetween(localStartDate, localEndDateRaw) - 1;
-  const isSingleDay = !isNightly && dayCount === 1;
+  const isSingleDay = !isNightly && dayCount <= 1;
   const endDay = isNightly
     ? localEndDateRaw
     : moment(localEndDateRaw)
@@ -79,8 +79,8 @@ const LineItemBookingPeriod = props => {
       <span className={css.itemLabel}>
         <BookingPeriod
           isSingleDay={isSingleDay}
-          startDate={displayStart}
-          endDate={displayEnd}
+          startDate={displayStart || startDate}
+          endDate={displayEnd || endDateRaw}
         />
       </span>
       {!hourly && <span className={css.itemValue}>{unitCountMessage}</span>}

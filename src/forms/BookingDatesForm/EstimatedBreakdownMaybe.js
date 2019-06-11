@@ -113,16 +113,16 @@ const estimatedTransaction = (
   // The result is: local timestamp.subtract(12h).add(timezoneoffset) (in eg. -23 h)
 
   // local noon -> startOf('day') => 00:00 local => remove timezoneoffset => 00:00 API (UTC)
-  const serverDayStart = dateFromLocalToAPI(
-    moment(bookingStart)
-      .startOf("day")
-      .toDate()
-  );
-  const serverDayEnd = dateFromLocalToAPI(
-    moment(bookingEnd)
-      .startOf("day")
-      .toDate()
-  );
+  // const serverDayStart = dateFromLocalToAPI(
+  //   moment(bookingStart)
+  //     .startOf("day")
+  //     .toDate()
+  // );
+  // const serverDayEnd = dateFromLocalToAPI(
+  //   moment(bookingEnd)
+  //     .startOf("day")
+  //     .toDate()
+  // );
 
   return {
     id: new UUID("estimated-transaction"),
@@ -168,10 +168,8 @@ const estimatedTransaction = (
       id: new UUID("estimated-booking"),
       type: "booking",
       attributes: {
-        start: serverDayStart,
-        end: moment(serverDayEnd)
-          .add(1, "days")
-          .toDate()
+        start: bookingStart,
+        end: bookingEnd,
       }
     }
   };
@@ -196,6 +194,8 @@ const EstimatedBreakdownMaybe = props => {
     return null;
   }
 
+  // console.log({ bookingData: props.bookingData });
+
   const tx = estimatedTransaction(
     unitType,
     startDate,
@@ -206,6 +206,8 @@ const EstimatedBreakdownMaybe = props => {
     hours,
     seats,
   );
+
+  console.log({ tx });
 
   return (
     <BookingBreakdown
