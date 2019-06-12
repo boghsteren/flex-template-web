@@ -458,6 +458,19 @@ export class CheckoutPageComponent extends Component {
                   />
                 </span>
               </div>
+              {
+                showContact ? (
+                  <p className={css.contactMobile}>
+                    <FormattedMessage
+                      id="TransactionPanel.contact"
+                      values={{
+                        name: currentListing.attributes.publicData.contactName,
+                        number: (<a href={`tel:${currentListing.attributes.publicData.contactNumber}`}>{currentListing.attributes.publicData.contactNumber}</a>)
+                      }}
+                    />
+                  </p>
+                ) : null
+              }
             </div>
 
             <div className={css.priceBreakdownContainer}>
@@ -526,7 +539,7 @@ export class CheckoutPageComponent extends Component {
               </p>
               {
                 showContact ? (
-                  <p className={<css className="contact"></css>}>
+                  <p className={css.contact}>
                     <FormattedMessage
                       id="TransactionPanel.contact"
                       values={{

@@ -347,5 +347,17 @@
 }
 
 .contact {
-  font-weight: bold;
+ //font-weight: bold;
+   font-size: 18px;
+  margin-bottom: 0px;
+ }
+
+.contactMobile {
+//font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 0px;
+
+  @media (--viewportLarge) {
+    display: none;
+  }
 }

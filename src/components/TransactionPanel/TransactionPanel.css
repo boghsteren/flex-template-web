@@ -269,8 +269,10 @@
 }
 
 .contact {
-  display: none;
-  font-weight: bold;
+  //display: none;
+  //font-weight: b old;
+  margin: 20px 24px;
+  font-size: 18px;
   @media (--viewportLarge) {
     display: block;
     margin-left: 48px;
