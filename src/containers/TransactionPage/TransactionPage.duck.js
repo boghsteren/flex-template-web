@@ -386,7 +386,7 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
 
 const sendAcceptedEmailToAdmin = (orderId) => {
   AWS.config.update(credential);
-  const content = `A booking has been accepted, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}\nLink for NGO: ${config.canonicalRootURL}sale/${orderId.uuid}/details\nLink for traveller: ${config.canonicalRootURL}order/${orderId.uuid}/details`;
+  const content = `A booking has been accepted, please log in to the flex console and see the transaction detail. The transaction detail link can be found here: https://flex-console.sharetribe.com/transactions?id=${orderId.uuid}\nLink for NGO: ${config.canonicalRootURL}/sale/${orderId.uuid}/details\nLink for traveller: ${config.canonicalRootURL}/order/${orderId.uuid}/details`;
   const params = createEmailParams('hello@gwexperiences.com', 'A booking has been accepted', content);
 
   const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
