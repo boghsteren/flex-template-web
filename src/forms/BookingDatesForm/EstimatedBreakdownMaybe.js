@@ -207,7 +207,6 @@ const EstimatedBreakdownMaybe = props => {
     seats,
   );
 
-  console.log({ tx });
 
   return (
     <BookingBreakdown

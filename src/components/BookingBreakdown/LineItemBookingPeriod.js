@@ -10,17 +10,30 @@ import { daysBetween, dateFromAPIToLocalNoon } from "../../util/dates";
 
 import css from "./BookingBreakdown.css";
 
+const timeOption = {
+  hour: '2-digit',
+  hour12: true,
+  minute: '2-digit'
+};
+const timeFormatter = new Intl.DateTimeFormat('default', timeOption);
+
+
 const BookingPeriod = props => {
   const { isSingleDay, startDate, endDate } = props;
   const dateFormatOptions = {
     weekday: "short",
     month: "short",
     day: "numeric",
-    hour: '2-digit'
   };
-
+  
   if (isSingleDay) {
-    return <FormattedDate value={startDate} {...dateFormatOptions} />;
+    return <div>
+      <FormattedDate value={startDate} {...dateFormatOptions} />
+      {", "}
+      {
+        timeFormatter.format(startDate)
+      }
+    </div>;
   }
 
   return (
