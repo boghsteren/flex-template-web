@@ -183,7 +183,7 @@ export const ContactMaybe = props => {
     (isProvider && transaction.attributes.protectedData.phoneNumber);
   const contactName = isProvider ? currentCustomer.attributes.profile.displayName :
     currentProvider.attributes.profile.displayName;
-  const contactNumber =  isProvider ? transaction.attributes.protectedData.phoneNumber :
+  const contactNumber = isProvider ? transaction.attributes.protectedData.phoneNumber :
     listing.attributes.publicData.contactNumber;
   return showContact ? (
     <div className={classes}>
@@ -402,12 +402,12 @@ export const OrderTitle = props => {
     if (isEnquireWithoutBookingProcess) {
       return (
         <h1 className={classes}>
-        <span className={css.mainTitle}>
-          <FormattedMessage
-            id="TransactionPanel.orderEnquiredTitle"
-            values={{ listingLink }}
-          />
-        </span>
+          <span className={css.mainTitle}>
+            <FormattedMessage
+              id="TransactionPanel.orderEnquiredTitle"
+              values={{ listingLink }}
+            />
+          </span>
         </h1>
       );
     }
@@ -435,7 +435,7 @@ export const OrderTitle = props => {
           />
         </span>
         <FormattedMessage
-          id="TransactionPanel.orderPreauthorizedSubtitle"
+          id="TransactionPanel.orderPaidSubtitle"
           values={{ listingLink }}
         />
       </h1>
@@ -523,16 +523,7 @@ export const OrderMessage = props => {
     className
   );
 
-  if (!listingDeleted && txIsRequested(transaction)) {
-    return (
-      <p className={classes}>
-        <FormattedMessage
-          id="TransactionPanel.orderPreauthorizedInfo"
-          values={{ providerName }}
-        />
-      </p>
-    );
-  } else if (listingDeleted) {
+  if (listingDeleted) {
     return (
       <p className={classes}>
         <FormattedMessage id="TransactionPanel.messageDeletedListing" />
@@ -651,16 +642,7 @@ export const SaleMessage = props => {
     className
   );
 
-  if (!isCustomerBanned && txIsRequested(transaction)) {
-    return (
-      <p className={classes}>
-        <FormattedMessage
-          id="TransactionPanel.saleRequestedInfo"
-          values={{ customerName }}
-        />
-      </p>
-    );
-  } else if (isCustomerBanned) {
+  if (isCustomerBanned) {
     return (
       <p className={classes}>
         <FormattedMessage id="TransactionPanel.customerBannedStatus" />

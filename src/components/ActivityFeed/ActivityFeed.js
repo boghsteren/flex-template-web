@@ -23,7 +23,8 @@ import {
   areReviewsCompleted,
   propTypes,
   TRANSITION_EXPIRE_ENQUIRY,
-  TRANSITION_EXPIRE_ENQUIRY_ACCEPTED
+  TRANSITION_EXPIRE_ENQUIRY_ACCEPTED,
+  TRANSITION_ENQUIRE
 } from "../../util/types";
 import * as log from "../../util/log";
 
@@ -154,7 +155,7 @@ const resolveTransitionMessage = (
         />
       ) : (
           <FormattedMessage
-            id="ActivityFeed.transitionRequest"
+            id="ActivityFeed.transitionPaid"
             values={{ displayName, listingTitle }}
           />
         );
