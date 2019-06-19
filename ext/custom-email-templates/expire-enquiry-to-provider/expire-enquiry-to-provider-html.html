@@ -1,0 +1,21 @@
+
+{{~#*inline "format-money"~}}
+{{money-amount money}} {{money.currency}}
+{{~/inline~}}
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY HH:mm"}}
+{{~/inline~}}
+
+<html>
+  <body>
+    {{#with transaction}}
+    <h1>A request from {{customer.display-name}} has expired</h1>
+
+    <p>The request was about {{listing.title}} on {{> format-date date=booking.displayStart}}</p>
+
+    <p>If you want to get in contact with {{customer.display-name}} and explain why you have not replied, or ask them to make a new request, contact {{customer.display-name}} <a href="{{marketplace.url}}/sale/{{url-encode id}}/details">here</a>.</p>
+
+    {{/with}}
+  </body>
+</html>
