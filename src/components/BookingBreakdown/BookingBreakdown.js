@@ -35,7 +35,7 @@ export const BookingBreakdownComponent = props => {
     intl,
     listing
   } = props;
-
+  
   const isCustomer = userRole === "customer";
   const isProvider = userRole === "provider";
 
