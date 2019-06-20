@@ -876,6 +876,7 @@
   "TransactionPanel.saleRequestedTitle": "{customerName} has requested to book {listingLink}.",
   "TransactionPanel.salePaidTitle": "You have accepted the booking request from {customerName}",
   "TransactionPanel.sendMessagePlaceholder": "Send a message.",
+  "TransactionPanel.paidRequestedTitle": "{customerName} have successfully paid for the booking.",
   "UserCard.contactUser": "Contact",
   "UserCard.heading": "Hello, we're {organisation}.",
   "UserCard.showFullBioLink": "more",

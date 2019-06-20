@@ -560,7 +560,7 @@ export const SaleTitle = props => {
     return (
       <h1 className={classes}>
         <FormattedMessage
-          id="TransactionPanel.saleRequestedTitle"
+          id="TransactionPanel.paidRequestedTitle"
           values={{ customerName, listingLink }}
         />
       </h1>
