@@ -77,6 +77,9 @@ const Footer = props => {
                 <p className={css.organizationDescription}>
                   <FormattedMessage id="Footer.organizationDescription" />
                 </p>
+                <p className={css.organizationDescription}>
+                  <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a>
+                </p>
                 <p className={css.organizationCopyright}>
                   <NamedLink name="LandingPage" className={css.copyrightLink}>
                     <FormattedMessage id="Footer.copyright" />
@@ -102,18 +105,18 @@ const Footer = props => {
             </div>
             <div className={css.searches}>
               <ul className={css.list}>
-                <b>Join us</b>
+                <b>Help</b>
 
                 <li className={css.listItem}>
                   <NamedLink name="FAQPage" className={css.link}>
                     <FormattedMessage id="Footer.toFAQPage" />
                   </NamedLink>
                 </li>
-                <li className={css.listItem}>
-                  <NamedLink name="HowPage" className={css.link}>
-                    <FormattedMessage id="Footer.toHelpPage" />
-                  </NamedLink>
-                </li>
+                {/*<li className={css.listItem}>*/}
+                {/*  <NamedLink name="HowPage" className={css.link}>*/}
+                {/*    <FormattedMessage id="Footer.toHelpPage" />*/}
+                {/*  </NamedLink>*/}
+                {/*</li>*/}
               </ul>
             </div>
             <div className={css.searches}>

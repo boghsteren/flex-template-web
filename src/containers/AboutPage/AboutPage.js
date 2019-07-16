@@ -31,12 +31,12 @@ const AboutPage = () => {
     >
       <LayoutSingleColumn>
         <LayoutWrapperTopbar>
-          <TopbarContainer />
+          <TopbarContainer/>
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
           <h1 className={css.pageTitle}>Experience the unique Finnish home sauna.</h1>
-          <img className={css.coverImage} src={image} alt="My first ice cream." />
+          <img className={css.coverImage} src={image} alt="My first ice cream."/>
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
@@ -45,26 +45,33 @@ const AboutPage = () => {
 
             <div className={css.contentMain}>
               <h2>
-              If you're looking for a different and meaningful experience for a study trip, a teambuilding activity, or a company event – look no further.
+                If you're looking for a different and meaningful experience for a study trip, a teambuilding activity,
+                or a company event – look no further.
 
               </h2>
 
               <p>
-              At Goodwings Experiences you can find and book authentic social impact activities all over the world hosted by nonprofit organisations.
-</p><p>
-              You can interact directly with the hosts, and when you've found the experience you're interested in, it's easy to book and to make a secure payment.
-              </p>
+                At Goodwings Experiences you can find and book authentic social impact activities all over the world
+                hosted by nonprofit organisations.
+              </p><p>
+              You can interact directly with the hosts, and when you've found the experience you're interested in, it's
+              easy to book and to make a secure payment.
+            </p>
               <div className={css.contentSide}>
-              <p>About Goodwings
-              </p>
-            </div>
+                <p>About Goodwings
+                </p>
+              </div>
 
               <p>
-              We're a Danish company and besides Goodwings Experiences we run www.goodwings.com – a hotel booking platform for corporate travel where every booking results in a donation to a nonprofit. 
+                We're a Danish company and besides Goodwings Experiences we run www.goodwings.com – a hotel booking
+                platform for corporate travel where every booking results in a donation to a nonprofit.
               </p>
               <p>
-              We don't spend any money on advertising like the other large hotel booking sites. Instead, we have a global network of nonprofit partners and they act as our marketing channel, spreading the good news about Goodwings. In return, we donate part of our commission to them. That's how we're turning the travel industry into a force for positive and sustainable change. One hotel at a time.
-</p>
+                We don't spend any money on advertising like the other large hotel booking sites. Instead, we have a
+                global network of nonprofit partners and they act as our marketing channel, spreading the good news
+                about Goodwings. In return, we donate part of our commission to them. That's how we're turning the
+                travel industry into a force for positive and sustainable change. One hotel at a time.
+              </p>
 
 
               <h3 id="contact" className={css.subtitle}>
@@ -87,7 +94,7 @@ const AboutPage = () => {
         </LayoutWrapperMain>
 
         <LayoutWrapperFooter>
-          <Footer />
+          <Footer/>
         </LayoutWrapperFooter>
       </LayoutSingleColumn>
     </StaticPage>

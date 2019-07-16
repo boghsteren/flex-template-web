@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import { StaticPage, TopbarContainer } from "../../containers";
+import { StaticPage, TopbarContainer } from '../../containers';
 import {
   LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
   LayoutWrapperFooter,
-  Footer
-} from "../../components";
+  Footer,
+} from '../../components';
 
-import css from "./CompanyPage.css";
-import image from "./about-us-1440.jpg";
+import css from './CompanyPage.css';
+import image from './about-us-1440.jpg';
 
 const CompanyPage = () => {
   // prettier-ignore
@@ -26,12 +26,12 @@ const CompanyPage = () => {
     >
       <LayoutSingleColumn>
         <LayoutWrapperTopbar>
-          <TopbarContainer />
+          <TopbarContainer/>
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
           <h1 className={css.pageTitle}>About Goodwings Experiences</h1>
-          <img className={css.coverImage} src={image} alt="A world to explore." />
+          <img className={css.coverImage} src={image} alt="A world to explore."/>
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
@@ -40,46 +40,54 @@ const CompanyPage = () => {
 
             <div className={css.contentMain}>
               <h2>
-              If you're looking for a different and meaningful experience for a study trip, a teambuilding activity, or a company event – look no further.
+                If you're looking for a different and meaningful experience for a study trip, a teambuilding activity,
+                or a company event – look no further.
 
 
               </h2>
 
               <p>
-              At Goodwings Experiences you can find and book authentic social impact activities all over the world hosted by nonprofit organisations.
+                At Goodwings Experiences you can find and book authentic social impact activities all over the world
+                hosted by nonprofit organisations.
 
 
               </p>
-<p>You can interact directly with the hosts, and when you've found the experience you're interested in, it's easy to book and to make a secure payment.
-</p></div></div>
-<div className={css.contentWrapper}>
-<div className={css.contentSide}>
-<p>About Goodwings</p>
-</div>
-<div className={css.contentMain}>
+              <p>You can interact directly with the hosts, and when you've found the experience you're interested in,
+                it's easy to book and to make a secure payment.
+              </p></div>
+          </div>
+          <div className={css.contentWrapper}>
+            <div className={css.contentSide}>
+              <p>About Goodwings</p>
+            </div>
+            <div className={css.contentMain}>
 
               <p>
-              We're a Danish company and besides Goodwings Experiences we run <a href="https://www.goodwings.com">www.goodwings.com</a> – a hotel booking platform for corporate travel where every booking results in a donation to a nonprofit. 
+                Goodwings is an impact-driven, Denmark-based company built on partnerships. Besides Goodwings Experiences we run www.goodwings.com – a hotel booking platform for corporate travel where every booking results in a donation to a nonprofit.
               </p>
-<p>
-We don't spend any money on advertising like the other large hotel booking sites. Instead, we have a global network of nonprofit partners and they act as our marketing channel, spreading the good news about Goodwings. In return, we donate part of our commission to them. That's how we're turning the travel industry into a force for positive and sustainable change. One hotel at a time.
-</p>
-<p>
-<a href="https://www.goodwings.com/en-us/about-us/vision-mission">Read more about us.</a>
-</p>
-            </div></div>
-            <div className={css.contentWrapper}>
+              <p>
+                Instead of relying on mass media, our message is spread via social media and our charities. The money we save on marketing is given to these charities, who use it to fund their projects.
+              </p>
+              <p>
+                With Goodwings Experiences we want to offer an innovative service for the travel industry which makes it easy for our nonprofit partners to get access to a new stream of revenue and thereby fuel the fight for a more sustainable future.
+              </p>
+
+            </div>
+          </div>
+          <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-            <p>Contact us</p>
-</div>
+              <p>Contact us</p>
+            </div>
             <div className={css.contentMain}>
-<p>
-            Send us an email at <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a> or call + 45 60737475.</p>
-            </div></div>
+              <p>
+                Send us an email at <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a> or call + 45
+                60737475.</p>
+            </div>
+          </div>
         </LayoutWrapperMain>
 
         <LayoutWrapperFooter>
-          <Footer />
+          <Footer/>
         </LayoutWrapperFooter>
       </LayoutSingleColumn>
     </StaticPage>

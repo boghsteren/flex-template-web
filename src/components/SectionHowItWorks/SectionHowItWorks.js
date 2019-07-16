@@ -6,7 +6,9 @@ import classNames from "classnames";
 import css from "./SectionHowItWorks.css";
 
 const SectionHowItWorks = props => {
-  const { rootClassName, className } = props;
+  const { rootClassName, className, user } = props;
+
+  const isNGO = user && user.attributes && user.attributes.profile.publicData && user.attributes.profile.publicData.provider;
 
   const classes = classNames(rootClassName || css.root, className);
   return (
@@ -19,30 +21,30 @@ const SectionHowItWorks = props => {
         <div className={css.step}>
           <h3 className={css.numberTitle}>1</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id="SectionHowItWorks.part1Title" values={{newline: (<br />)}}/>
+            <FormattedMessage id={`SectionHowItWorks.part1Title${isNGO ? 'NGO' : ''}`} values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
-            <FormattedMessage id="SectionHowItWorks.part1Text" />
+            <FormattedMessage id={`SectionHowItWorks.part1Text${isNGO ? 'NGO' : ''}`} />
           </p>
         </div>
 
         <div className={css.step}>
           <h3 className={css.numberTitle}>2</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id="SectionHowItWorks.part2Title" values={{newline: (<br />)}}/>
+            <FormattedMessage id={`SectionHowItWorks.part2Title${isNGO ? 'NGO' : ''}`} values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
-            <FormattedMessage id="SectionHowItWorks.part2Text" />
+            <FormattedMessage id={`SectionHowItWorks.part2Text${isNGO ? 'NGO' : ''}`} />
           </p>
         </div>
 
         <div className={css.step}>
         <h3 className={css.numberTitle}>3</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id="SectionHowItWorks.part3Title" values={{newline: (<br />)}}/>
+            <FormattedMessage id={`SectionHowItWorks.part3Title${isNGO ? 'NGO' : ''}`} values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
-            <FormattedMessage id="SectionHowItWorks.part3Text" />
+            <FormattedMessage id={`SectionHowItWorks.part3Text${isNGO ? 'NGO' : ''}`} />
           </p>
         </div>
       </div>
