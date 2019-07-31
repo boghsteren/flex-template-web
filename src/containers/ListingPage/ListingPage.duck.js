@@ -168,7 +168,7 @@ const createEmailParams = (receiver, subject, content) => {
       Charset: "UTF-8",
       Data: content
     }
-  }
+  };
   return {
     Destination: {
       ToAddresses: toAddresses

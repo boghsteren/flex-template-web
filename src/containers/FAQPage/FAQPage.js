@@ -125,8 +125,8 @@ const FAQPage = props => {
           <p>
             Some of the most popular categories of experience includes guided tours, workshops, cooking classes,
             lectures, alternatively, you can look through some other experiences we offer on the platform for
-            inspiration. If you are still in doubt, you can look at this guide here:
-            <a href="https://www.get.gwexperiences.com/howto">https://www.get.gwexperiences.com/howto</a>
+            inspiration. If you are still in doubt, you can look at this guide here:&nbsp;
+            <a href="https://www.get.gwexperiences.com/howto">www.get.gwexperiences.com/howto</a>
           </p>
         </div>
       </div>
@@ -205,16 +205,19 @@ const FAQPage = props => {
         </div>
       </div>
 
+      <br/>
+
       <h2>
         For nonprofit organisations
       </h2>
-      <a href="https://www.get.gwexperiences.com/host">https://www.get.gwexperiences.com/host</a>
+      <a href="https://www.get.gwexperiences.com/host">www.get.gwexperiences.com/host</a>
 
       <h2>
         For Travel agents/ tour operators
       </h2>
-      <a href="https://www.get.gwexperiences.com/agent">https://www.get.gwexperiences.com/agent</a>
+      <a href="https://www.get.gwexperiences.com/agent">www.get.gwexperiences.com/agent</a>
 
+      <br/>
       <br/>
     </div>
   );
@@ -537,7 +540,7 @@ const FAQPage = props => {
           {isLogged ? null : notLoggedFaq}
           {isLogged && !isNGO ? agentFaq : null}
 
-          <p>Can’t find your answer? Contact the Goodwings Experiences team on&nbsp;
+          <p>Can’t find your answer? <br/> Contact the Goodwings Experiences team on&nbsp;
             <a href="mailto:hello@gwexperiences.com">hello@gwexperiences.com</a> or call&nbsp;<a
               href="tel:+ 45 60 73 74 75.">+45 60 73 74 75.</a></p>
 
