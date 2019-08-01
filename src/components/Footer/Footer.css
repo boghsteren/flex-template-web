@@ -230,8 +230,9 @@
   /* Layout */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  /*justify-content: flex-end;*/
   margin-bottom: 12px;
+  margin-top: 2px;
 }
 
 .tosAndPrivacy {
@@ -309,4 +310,8 @@
 
 .privacy {
   margin-right: 24px;
+}
+
+.paddingLeft {
+  padding-left: 15px;
 }

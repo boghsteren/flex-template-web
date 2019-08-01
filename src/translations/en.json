@@ -299,6 +299,7 @@
   "Footer.toFAQPage": "FAQ",
   "Footer.toHelpPage": "How it works",
   "Footer.toNewListingPage": "Add your experience",
+  "Footer.activityGuide": "Activity guide",
   "ImageCarousel.imageAltText": "Listing image {index}/{count}",
   "ImageFromFile.couldNotReadFile": "Could not read file",
   "InboxPage.bannedUserDisplayName": "Banned user",

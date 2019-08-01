@@ -1,5 +1,5 @@
 import React from "react";
-import { string } from "prop-types";
+import { string, any } from "prop-types";
 import { FormattedMessage, injectIntl, intlShape } from "react-intl";
 import classNames from "classnames";
 import { twitterPageURL } from "../../util/urlHelpers";
@@ -59,9 +59,10 @@ const renderSocialMediaLinks = intl => {
 };
 
 const Footer = props => {
-  const { rootClassName, className, intl } = props;
+  const { rootClassName, className, intl, user } = props;
   const socialMediaLinks = renderSocialMediaLinks(intl);
   const classes = classNames(rootClassName || css.root, className);
+  const isNGO = user && user.attributes && user.attributes.profile.publicData && user.attributes.profile.publicData.provider;
 
   return (
     <div className={classes}>
@@ -103,7 +104,7 @@ const Footer = props => {
                 </li>
               </ul>
             </div>
-            <div className={css.searches}>
+            <div className={classNames(css.searches, css.paddingLeft)}>
               <ul className={css.list}>
                 <b>Help</b>
 
@@ -112,6 +113,16 @@ const Footer = props => {
                     <FormattedMessage id="Footer.toFAQPage" />
                   </NamedLink>
                 </li>
+
+                {
+                  isNGO && (
+                    <li className={css.listItem}>
+                      <a href="https://www.get.gwexperiences.com/howto" className={css.link}>
+                        <FormattedMessage id="Footer.activityGuide" />
+                      </a>
+                    </li>
+                  )
+                }
                 {/*<li className={css.listItem}>*/}
                 {/*  <NamedLink name="HowPage" className={css.link}>*/}
                 {/*    <FormattedMessage id="Footer.toHelpPage" />*/}
@@ -183,7 +194,8 @@ Footer.defaultProps = {
 Footer.propTypes = {
   rootClassName: string,
   className: string,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  user: any,
 };
 
 export default injectIntl(Footer);

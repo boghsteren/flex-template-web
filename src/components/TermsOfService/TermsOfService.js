@@ -196,7 +196,7 @@ const TermsOfService = props => {
 
       
 
-      <p>12.2. Goodwings Experiences, its subsidiaries, employees, board members, cooperation partners and licensors shall not be liable under any circumstances for any loss or damage incurred by the User or any other party as a consequence of the use of the Website or the Service or in connection with the Experience. Goodwings Experiences is solely providing the User access to the Service and shall under no circumstances be seen as a provider of the Experience, see clause 19.2. Thus, any claims relating to the Experience, the quality of the Experience, liability or any other aspects relating to the Experience shall not be directed against Goodwings Experiences but shall be a matter between the NGO and the Travel Agent directly, see clause 19.2.</p>
+      <p>12.2. Goodwings Experiences, its subsidiaries, employees, board members, cooperation partners and licensors shall not be liable under any circumstances for any loss or damage incurred by the User or any other party as a consequence of the use of the Website or the Service or in connection with the Experience. Goodwings Experiences is solely providing the User access to the Service and shall under no circumstances be seen as a provider of the Experience, see clause 18.2. Thus, any claims relating to the Experience, the quality of the Experience, liability or any other aspects relating to the Experience shall not be directed against Goodwings Experiences but shall be a matter between the NGO and the Travel Agent directly, see clause 18.2.</p>
 
       
 

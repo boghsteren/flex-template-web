@@ -149,7 +149,7 @@ export const LandingPageComponent = props => {
           </ul>
         </LayoutWrapperMain>
         <LayoutWrapperFooter>
-          <Footer />
+          <Footer user={user}/>
         </LayoutWrapperFooter>
       </LayoutSingleColumn>
     </Page>
