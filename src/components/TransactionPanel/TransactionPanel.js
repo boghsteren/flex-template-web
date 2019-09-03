@@ -28,6 +28,7 @@ import {
 } from "./TransactionPanel.helpers";
 
 import css from "./TransactionPanel.css";
+import config from "../../config";
 
 export class TransactionPanelComponent extends Component {
   constructor(props) {
@@ -197,7 +198,7 @@ export class TransactionPanelComponent extends Component {
     const isProviderBanned =
       isProviderLoaded && currentProvider.attributes.banned;
     const canShowBookButton =
-      isCustomer && txIsAccepted(currentTransaction) && !isProviderBanned;
+      isCustomer && txIsAccepted(currentTransaction) && !isProviderBanned && config.havePayment;
 
     const bannedUserDisplayName = intl.formatMessage({
       id: "TransactionPanel.bannedUserDisplayName"

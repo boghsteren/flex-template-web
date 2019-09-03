@@ -343,12 +343,14 @@ const maps = {
   }
 };
 
+const havePayment = false;
 // NOTE: only expose configuration that should be visible in the
 // client side, don't add any server secrets in this file.
 const config = {
   env,
   dev,
   locale,
+  havePayment,
   bookingProcessAlias,
   bookingProcessAliasForEnquiry,
   customerCommissionPercentage,
