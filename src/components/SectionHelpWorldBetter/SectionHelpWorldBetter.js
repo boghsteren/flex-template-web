@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import screenTrans from '../../assets/landingPage/helpWorldBetter.png';
+import screenTrans from '../../assets/landingPage/global-goals.png';
 
 import css from "./SectionHelpWorldBetter.css";
 
@@ -17,15 +17,15 @@ const SectionHelpWorldBetter = props => {
           <FormattedMessage id="SectionHelpWorldBetter.titleLineOne" />
         </div>
         <div className={css.paragraph}>
-          <FormattedMessage 
+          <FormattedMessage
             id="SectionHelpWorldBetter.paraPart1"
           />
           <strong>
-            <FormattedMessage 
+            <FormattedMessage
               id="SectionHelpWorldBetter.paraPart2"
             />
           </strong>
-          <FormattedMessage 
+          <FormattedMessage
             id="SectionHelpWorldBetter.paraPart3"
           />
         </div>
@@ -35,9 +35,6 @@ const SectionHelpWorldBetter = props => {
           className={css.screenTrans}
           src={screenTrans}
         />
-        <div className={css.screenTransText}>
-          <FormattedMessage id="SectionHelpWorldBetter.theGlobalGoalText"/>
-        </div>
       </div>
     </div>
   );

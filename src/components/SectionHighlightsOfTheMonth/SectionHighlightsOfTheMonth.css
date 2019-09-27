@@ -16,6 +16,7 @@
 
 .listingCard {
   margin-bottom: 36px;
+  margin-right: 40px;
   flex-basis: 100%;
 
   @media (--viewportLarge) {
@@ -64,14 +65,8 @@
  * Here we take margin-right away, but we don't want it affect the next column breakpoint.
  */
 
-.listingCard:last-of-type(2n) {
-  @media screen and (min-width: 1024px) and (max-width: 1920px) {
-    margin-right: 0;
-  }
-}
-
-.listingCard:last-of-type(3n) {
-  @media (--viewportXLarge) {
+.listingCard:nth-child(3n) {
+  @media (--viewportMedium) {
     margin-right: 0;
   }
 }

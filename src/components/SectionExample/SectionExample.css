@@ -21,6 +21,7 @@
 .listingCard {
   /* margin-bottom: 36px; */
   flex-basis: 100%;
+  margin-right: 20px;
 
   @media (--viewportLarge) {
     /**
@@ -57,7 +58,7 @@
      * flex-basis: calc((100%/columnCount) - (guttersBetweenColumns / columnCount))
      */
 
-    flex-basis: calc(33.33% - 20px);
+    flex-basis: calc(33.33% - 16px);
     margin-right: 24px;
   }
 }
@@ -68,14 +69,10 @@
  * Here we take margin-right away, but we don't want it affect the next column breakpoint.
  */
 
-.listingCard:last-of-type(2n) {
-  @media screen and (min-width: 1024px) and (max-width: 1920px) {
-    margin-right: 0;
-  }
-}
 
-.listingCard:last-of-type(3n) {
-  @media (--viewportXLarge) {
+
+.listingCard:nth-child(3n) {
+  @media (--viewportMedium) {
     margin-right: 0;
   }
 }
@@ -97,11 +94,11 @@
 .locations {
   display: flex;
   flex-direction: column;
-  margin-top: 0px;
+  margin-top: 0;
 
   @media (--viewportMedium) {
     flex-direction: row;
-    margin-top: 0px;
+    margin-top: 0;
   }
 }
 

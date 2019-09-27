@@ -4,9 +4,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
-import { isScrollingDisabled } from "../../ducks/UI.duck";
-import { searchListings } from "../../containers/SearchPage/SearchPage.duck";
-import { getMarketplaceEntities } from "../../ducks/marketplaceData.duck";
+import { isScrollingDisabled, manageDisableScrolling } from '../../ducks/UI.duck';
 import { loadData } from "./LandingPage.duck";
 import classNames from 'classnames';
 import certificateLogo from './B-Corp.21a3074a.svg'
@@ -23,6 +21,8 @@ import {
   SectionWhatIsIt,
   SectionExample,
   SectionHelpWorldBetter,
+  SectionValuesYourClients,
+  SectionSocialImpact,
   LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
@@ -36,7 +36,7 @@ import twitterImage from "../../assets/experiencesTwitter-600x314.jpg";
 import css from "./LandingPage.css";
 
 export const LandingPageComponent = props => {
-  const { history, intl, location, scrollingDisabled, user, listings, unauthListings } = props;
+  const { history, intl, location, scrollingDisabled, user, listings, unauthListings, onManageDisableScrolling } = props;
 
   // Schema for search engines (helps them to understand what this page is about)
   // http://schema.org
@@ -50,7 +50,7 @@ export const LandingPageComponent = props => {
     id: "LandingPage.schemaDescription"
   });
   const schemaImage = `${config.canonicalRootURL}${facebookImage}`;
-
+  const isTA = !!(user && !user.attributes.profile.publicData.provider);
   return (
     <Page
       className={css.root}
@@ -81,40 +81,18 @@ export const LandingPageComponent = props => {
         <LayoutWrapperMain>
           <div className={css.heroContainer}>
             <SectionHero
+              currentUser={user}
               className={css.hero}
               history={history}
               location={location}
             />
             <a className={css.certificateLogoContainer} href="/">
-              <img className={css.certificateLogoImage} src={certificateLogo}></img>
+              <img className={css.certificateLogoImage} src={certificateLogo}/>
             </a>
           </div>
 
           <ul className={css.sections}>
-            {user && (
-              <div>
-                <li className={css.section}>
-                  <div className={css.sectionContent}>
-                    <SectionLocations />
-                  </div>
-                </li>
-                <li className={css.section}>
-                  <div className={css.sectionContent}>
-                    <SectionHighlightsOfTheMonth listings={listings} user={user}/>
-                  </div>
-                </li>
-                <li className={css.section}>
-                  <div className={css.sectionContent}>
-                    <SectionAllOverTheWorld />
-                  </div>
-                </li>
-                <li className={classNames(css.section, css.sectionContentGray)}>
-                  <div className={css.sectionContent}>
-                    <SectionHowItWorks user={user} />
-                  </div>
-                </li>
-              </div>
-            )}
+            {/*for non user*/}
             {!user && (
               <div>
                 <li className={classNames(css.section, css.sectionWhatIsIt)}>
@@ -124,7 +102,7 @@ export const LandingPageComponent = props => {
                 </li>
                 <li className={classNames(css.section, css.sectionExample)}>
                   <div className={classNames(css.sectionContent, css.sectionExampleContent)}>
-                    <SectionExample 
+                    <SectionExample
                       listings={unauthListings}
                     />
                   </div>
@@ -139,9 +117,58 @@ export const LandingPageComponent = props => {
                     <SectionHowItWorks />
                   </div>
                 </li>
-                <li className={classNames(css.section, css.sectionTarget)}>
+                <li className={classNames(css.section, css.sectionContentGray)}>
                   <div className={css.sectionContent}>
-                    <SectionTargetGroup />
+                    <SectionTargetGroup
+                      className={css.SectionTargetGroup}
+                    />
+                  </div>
+                </li>
+              </div>
+            )}
+            {/*for NGO*/}
+            {!isTA && user && (
+              <div>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionLocations />
+                  </div>
+                </li>
+                <li className={css.section}>
+                  <div className={classNames(css.sectionContent, css.paddingTop0)}>
+                    <SectionHighlightsOfTheMonth listings={listings} user={user}/>
+                  </div>
+                </li>
+                <li className={css.section}>
+                  <div className={classNames(css.sectionContent, css.reSpacing)}>
+                    <SectionAllOverTheWorld />
+                  </div>
+                </li>
+                <li className={classNames(css.section, css.sectionContentGray)}>
+                  <div className={classNames(css.sectionContent, css.reSpacing)}>
+                    <SectionHowItWorks user={user} />
+                  </div>
+                </li>
+              </div>
+            )}
+            {/*for TA*/}
+            {isTA && user && (
+              <div>
+                <li className={css.section}>
+                  <div className={css.sectionContent}>
+                    <SectionValuesYourClients
+                      onManageDisableScrolling={onManageDisableScrolling}
+                    />
+                  </div>
+                </li>
+                <li className={classNames(css.section, css.sectionContentGray)}>
+                  <div className={css.sectionContent}>
+                    <SectionHowItWorks user={user} />
+                  </div>
+                </li>
+                <li className={classNames(css.section, css.socialImpactContainer)}>
+                  <div className={classNames(css.socialImpactTitle)}>
+                    <SectionSocialImpact user={user} />
                   </div>
                 </li>
               </div>
@@ -180,17 +207,22 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  onManageDisableScrolling: (componentId, disableScrolling) =>
+    dispatch(manageDisableScrolling(componentId, disableScrolling)),
+});
+
 // Note: it is important that the withRouter HOC is **outside** the
 // connect HOC, otherwise React Router won't rerender any Route
 // components since connect implements a shouldComponentUpdate
 // lifecycle hook.
 //
 // See: https://github.com/ReactTraining/react-router/issues/4671
-const LandingPage = compose(withRouter, connect(mapStateToProps), injectIntl)(
+const LandingPage = compose(withRouter, connect(mapStateToProps, mapDispatchToProps), injectIntl)(
   LandingPageComponent
 );
 
-LandingPage.loadData = params => {
+LandingPage.loadData = () => {
   return loadData();
 };
 

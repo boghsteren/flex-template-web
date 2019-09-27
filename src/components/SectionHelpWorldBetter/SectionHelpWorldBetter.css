@@ -34,14 +34,14 @@
   margin-bottom: 60px;
 
   @media (--viewportLarge) {
-    margin: 0px;
+    margin: 0;
     flex-direction: row;
     padding-bottom: 30px;
   }
 }
 
 .textContainer {
-  flex-basis: 43%;
+  flex-basis: 47%;
   text-align: center;
 }
 
@@ -59,7 +59,7 @@
 
 .paragraph span {
   display: block;
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
 }
 
 .imageWrapper {
@@ -68,12 +68,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 53%;
-  padding: 0px;
-
-  @media (--viewportMedium) {
-    padding: 50px 80px;
-  }
+  flex-basis: 45%;
+  padding: 0;
 }
 
 .screenTrans {
@@ -84,7 +80,7 @@
   background-color: var(--colorTealDark);
 
   @media (--viewportLarge) {
-    
+
   }
 
   @media (--viewportMLarge) {
@@ -110,7 +106,7 @@
   }
 
   @media (--viewportLarge) {
-    bottom: 160px;  
+    bottom: 160px;
     padding: 80px 100px;
   }
 

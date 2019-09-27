@@ -3,9 +3,10 @@
 .title {
   @apply --marketplaceH1FontStyles;
   margin-top: 0;
+  color: var(--matterColorLight);
 }
 
-.steps {
+.steps10 {
   display: flex;
   margin-top: 30px;
   flex-direction: column;
@@ -17,114 +18,54 @@
     justify-content: space-between;
   }
 }
-.stepContainer {
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px -24px;
+  color: white;
+  justify-content: space-between;
   @media (--viewportMedium) {
-    flex-basis: 48%;
+    margin: 30px 0;
+  }
+}
+.stepContainer {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  margin-bottom: 20px;
+  @media (--viewportMedium) {
+    width: 48%;
   }
 }
 
 .stepContainer2 {
   @media (--viewportMedium) {
-    flex-basis: 48%;    
+    flex-basis: 48%;
   }
 }
 
-.step1, .step2 {
+.step {
+  padding: 20px;
+  background-color: rgba(23, 23, 23, .5);
+  border-radius: 4px;
+  text-align: center;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: 0.3s;
+  &:hover {
+     transform: scale(1.02);
+    transition: 0.3s;
+   }
 }
 
-.step1Container {
-  display: block;
+
+.step1Background {
   background-image: url('../../assets/landingPage/join-us-left-box.jpg');
-  background-position: center;
-  background-size: cover;
 }
 
-.step1 {
-  /* width: 324px; */
-  /* height: 200px; */
-  width: 100%;
-  background-color: rgba(23, 23, 23, 0.5); 
-  text-align: center;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  @media (--viewportMedium) {
-    padding: 20px 30px;
-    /* width: 480px; */
-    margin-bottom: 10px;
-    flex-basis: 40%;
-    flex-shrink: 1;
-  }
 
-  @media screen and (max-width: 1000px) {
-    width: 324px;
-  }
-
-  &:hover {
-    transform: scale(1.02);}
-}
-
-.step2Container {
-  display: block;
+.step2Background{
   background-image: url('../../assets/landingPage/join-us-right-box.jpg');
-  background-position: center;
-  background-size: cover;
-}
-
-.step2 {
-  /* width: 324px; */
-  /* height: 200px; */
-  width: 100%;
-  background-color: rgba(23, 23, 23, 0.5); 
-  text-align: center;
-  font-size: 30px;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  @media (--viewportMedium) {
-    padding: 20px 30px;
-    /* width: 480px; */
-    margin-bottom: 10px;
-    flex-basis: 40%;
-    flex-shrink: 1;
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 324px;
-  }
-
-  &:hover {
-    transform: scale(1.02);}
-}
-
-
-.step3 {
-  width: 324px;
-  height: 200px;
-  background-color: #7da234;
-  @media (--viewportMedium) {
-    margin-right: 0;
-  }
-  text-align: center;
-  font-size: 30px;
-  padding: 10px;
-  border-radius: 4px;
-  &:hover {
-    transform: scale(1.02);}
-}
-
-.stepTitle {
-  margin-top: 18px;
-  margin-bottom: 18px;
-
-  @media (--viewportMedium) {
-    margin-top: 21px;
-    margin-bottom: 18px;
-  }
 }
 
 .createListingLink {

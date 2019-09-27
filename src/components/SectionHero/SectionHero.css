@@ -51,7 +51,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  border-radius: 0px;
+  border-radius: 0;
   border: none;
 
   /* Text positioning is done with paddings */
@@ -78,11 +78,11 @@
 
   @media screen and (min-width: 1200px) {
     background-size: cover;
-    background-position: 0px -80px;
+    background-position: 0 -80px;
   }
 }
 
-.heroMainTitle {
+.heroMainTitle, .heroMainTitleTA {
   @apply --marketplaceHeroTitleFontStyles;
   position: relative;
   z-index: 6;
@@ -94,6 +94,11 @@
   @media (--viewportMedium) {
     max-width: var(--SectionHero_desktopTitleMaxWidth);
   }
+}
+
+.heroMainTitleTA {
+  font-size: 32px;
+  word-spacing: 5.5px;
 }
 
 .heroSubTitle {
