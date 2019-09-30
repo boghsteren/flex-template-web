@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
+import config from "../../config";
 
 import css from "./SectionWhatIsIt.css";
 
@@ -30,7 +31,7 @@ const SectionWhatIsIt = props => {
         </div>
       </div>
       <div className={css.imageWrapper}>
-        <iframe className={css.video} src="https://www.youtube.com/embed/yCXCVTQx3pw?autoplay=1">
+        <iframe className={css.video} src={config.custom.promoVideo}>
         </iframe>
       </div>
     </div>

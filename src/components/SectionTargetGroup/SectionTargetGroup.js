@@ -22,10 +22,6 @@ const SectionTargetGroup = props => {
         <div className={classNames(css.stepContainer, css.step1Background)}>
           <a
             href="https://get.gwexperiences.com/agent"
-            style={{
-              color: "white",
-              textDecoration: "none"
-            }}
           >
             <div className={css.step}>
               <h2>
@@ -37,7 +33,6 @@ const SectionTargetGroup = props => {
         <div className={classNames(css.stepContainer, css.step2Background)}>
           <a
             href="https://get.gwexperiences.com/host"
-            style={{ color: "white", textDecoration: "none" }}
           >
             <div className={css.step}>
               <h2>

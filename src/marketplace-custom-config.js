@@ -81,12 +81,12 @@ export const typeOfGroupContactEmail = [
   {key: 'businessGroup', label: 'Business group'},
   {key: 'studentGroup', label: 'Student group'},
   {key: 'otherGroup', label: 'Other group'},
-]
+];
 
 export const moreOfferContactEmail = [
   {key: true, label: 'Yes'},
   {key: false, label: 'No'},
-]
+];
 
 export const MIN_GROUP_SIZE_SLIDER = 1;
 export const MAX_GROUP_SIZE_SLIDER = 100;
@@ -133,4 +133,8 @@ export const timeSlotList = [
   {key: '22:30', label: '22:30', hour: 22, minute: 30, session: 0, internalIndex: 29},
   {key: '23:00', label: '23:00', hour: 23, minute: 0, session: 0, internalIndex: 30},
   {key: '23:30', label: '23:30', hour: 23, minute: 30, session: 0, internalIndex: 31}
-]
+];
+
+export const promoVideo = "https://www.youtube.com/embed/yCXCVTQx3pw?autoplay=1";
+
+export const tutorialVideo = "https://www.youtube.com/embed/C3d2XEHL090?autoplay=1";

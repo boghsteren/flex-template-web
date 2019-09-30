@@ -29,6 +29,15 @@
   }
 }
 
+.stepContainer a {
+  color: var(--matterColorLight);
+  text-decoration: none;
+  &:hover {
+    color: var(--matterColorLight);
+    text-decoration: none;
+  }
+}
+
 .stepContainer2 {
   @media (--viewportMedium) {
     flex-basis: 48%;
@@ -46,10 +55,9 @@
 
   &:hover {
      transform: scale(1.02);
-    transition: 0.3s;
-   }
+     transition: 0.3s;
+  }
 }
-
 
 .step1Background {
   background-image: url('../../assets/landingPage/join-us-left-box.jpg');

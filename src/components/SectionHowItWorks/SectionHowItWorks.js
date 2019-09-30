@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
+import config from "../../config";
 
 import css from "./SectionHowItWorks.css";
 
@@ -52,11 +53,11 @@ const SectionHowItWorks = props => {
       </div>
       { isTA && <div className={css.videoContainer}>
         <div className={css.video}>
-          <iframe className={css.video} src="https://www.youtube.com/embed/yCXCVTQx3pw?autoplay=1">
+          <iframe className={css.video} src={config.custom.promoVideo}>
           </iframe>
         </div>
         <div className={css.video}>
-          <iframe className={css.video} src="https://www.youtube.com/embed/C3d2XEHL090?autoplay=1">
+          <iframe className={css.video} src={config.custom.tutorialVideo}>
           </iframe>
         </div>
       </div>}
