@@ -33,13 +33,13 @@
   margin-top: 60px;
 
   @media (--viewportLarge) {
-    margin-top: 0px;
+    margin-top: 0;
     flex-direction: row;
   }
 }
 
 .textContainer {
-  flex-basis: 43%;
+  flex-basis: 47%;
   text-align: center;
 }
 
@@ -57,12 +57,24 @@
 
 .paragraph span {
   display: block;
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
 }
 
 .imageWrapper {
   position: relative;
-  flex-basis: 53%;
+  flex-basis: 47%;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px 0;
+}
+
+.video {
+  width: 100%;
+  height: 50vw;
+
+  @media (--viewportLarge) {
+    height: 90%;
+  }
 }
 
 .screenTrans {

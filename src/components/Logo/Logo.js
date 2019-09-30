@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import config from "../../config";
 import IconLogo from "./IconLogo";
-import LogoImage from "./experiences-logo.png";
+import LogoImage from "./GWexperience_logo.png";
 import css from "./Logo.css";
 
 const Logo = props => {

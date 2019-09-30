@@ -1,0 +1,78 @@
+@import '../../marketplace.css';
+
+.sectionContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
+}
+
+.content, .impactReport {
+  font-size: 24px;
+  margin-bottom: 20px;
+  width: 100%;
+
+  @media (--viewportMedium) {
+    width: 47%;
+  }
+
+  @media (--viewportLarge) {
+    width: 35%;
+  }
+}
+
+.impactReport {
+  background-color: var(--matterColorAnti);
+}
+
+.impactReport img{
+  width: 100%;
+
+}
+
+.reportModalContainer {
+  height: 100vh;
+  margin: auto;
+  width: 100vw;
+
+  @media (--viewportLarge) {
+    width: 90vw;
+  }
+}
+
+.reportEmbed {
+  width: 100%;
+  height: 100%;
+}
+
+.reportModalContent {
+  width: 100%;
+  height: 90vh;
+}
+
+.btnClose {
+  cursor: pointer;
+  color: var(--matterColorLight);
+  background-color: var(--matterColorDark);
+  border: none;
+  float: right;
+  padding: 5px 10px 10px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 26px;
+  padding: 10px 0;
+}
+
+.valuesList {
+  list-style-type: disc;
+}
+
+.valuesList li {
+  padding: 10px 0;
+}
+
+
+
+

@@ -77,9 +77,6 @@
 /* Every other section has a light background */
 .section:nth-of-type(2n) {
   background-color: var(--matterColorLight);
-  @media (--viewportMedium) {
-    border-radius: 4px;
-  }
 }
 
 .sectionContent {
@@ -92,7 +89,7 @@
   @media (--viewportLarge) {
     max-width: calc(1052px + 36px + 36px);
     margin: var(--LandingPage_sectionMarginTopLarge) auto 15px auto;
-    padding: 0 36px 0 36px;
+    padding: 50px 36px 0;
   }
 }
 
@@ -101,14 +98,14 @@
 }
 
 .sectionExampleContent {
-  margin: 0px 24px 20px 24px;
+  margin: 0 24px 20px 24px;
 
   @media (--viewportMedium) {
     margin: 30px 7.5vw 30px 7.5vw;
   }
 
   @media (--viewportLarge) {
-    margin: 0px auto 0px auto;
+    margin: var(--LandingPage_sectionMarginTopLarge) auto 0 auto;
   }
 }
 
@@ -146,7 +143,7 @@
 }
 
 .sectionWhatIsIt .sectionContent {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .sectionHelpWorldBetter {
@@ -157,6 +154,61 @@
   background-color: var(--matterColorShine) !important;
 }
 
-.sectionTarget {
-  background-color: var(--matterColorShine) !important;
+.SectionTargetGroup {
+  color: var(--matterColorLight);
+  padding-bottom: 50px;
+}
+
+.socialImpactContainer {
+  background: url('../../assets/background_imageTA.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media (--viewportMedium) {
+    height: 35vw;
+  }
+}
+
+.socialImpactContainer:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.27);
+  z-index: 0;
+}
+
+.socialImpactTitle {
+  z-index: 1;
+  max-width: 1124px;
+  width: 100%;
+  text-align: right;
+  margin: var(--LandingPage_sectionMarginTop) 24px 20px 24px;
+
+  @media (--viewportMedium) {
+    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 30px 7.5vw;
+  }
+
+  @media (--viewportLarge) {
+    max-width: calc(1052px + 36px + 36px);
+    margin: auto;
+    padding: 0 36px;
+  }
+}
+
+.reSpacing {
+  padding-top: 0;
+  padding-bottom: 50px;
+}
+
+.paddingTop0 {
+  padding-top: 0;
 }

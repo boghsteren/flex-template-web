@@ -45,9 +45,6 @@
     margin: 0 auto;
   }
 
-  @media (--viewportLarge) {
-    padding: 0 24px;
-  }
 }
 
 /* Mobile only social media links */
@@ -86,7 +83,7 @@
 /* Desktop: logo and organization stuff */
 .organization {
   flex-shrink: 0;
-  flex-basis: 220px;
+  flex-basis: 250px;
   display: none;
   margin-right: 24px;
   margin-bottom: 24px;

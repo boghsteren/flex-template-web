@@ -22,10 +22,10 @@
     @media (--viewportMedium) {
       margin: 24px 0;
     }
-  }
+  };
 
   --TopbarDesktop_linkHover: {
-    border-bottom: 0px solid;
+    border-bottom: 0 solid;
     transition: var(--transitionStyleButton);
 
     &:hover {
@@ -68,18 +68,18 @@
   height: 100%;
 
   @media (min-width: 1024px) {
-    padding: 21px 36px 21px 36px;
+    padding: 19px;
   }
 }
 
 .logo {
   /* If height is increased, change link paddings accordingly */
-  height: 27px;
+  height: 35px;
 
   /* Good aspect ratio should be less than 160/27 (width/height) */
   /* NOTE: extremely wide logos, need special handling. */
   width: auto;
-  max-width: 220px;
+  max-width: 350px;
   object-fit: contain;
   object-position: left center;
 }
@@ -266,7 +266,7 @@
 .menuItemBorder {
   position: absolute;
   top: 2px;
-  left: 0px;
+  left: 0;
   height: calc(100% - 4px);
   width: 0;
   transition: width var(--transitionStyleButton);

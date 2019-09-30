@@ -6,20 +6,23 @@ import { Button, NamedLink } from "../../components";
 import css from "./SectionHero.css";
 
 const SectionHero = props => {
-  const { rootClassName, className, history } = props;
-  const classes = classNames(rootClassName || css.root, className);
+  const { rootClassName, className, currentUser } = props;
+  const isTA = currentUser && !currentUser.attributes.profile.publicData.provider;
+  const classes = classNames(rootClassName || css.root, className, isTA ? css.backgroundTA : css.background);
 
   return (
-    <div className={classes}>
-      <h1 className={css.heroMainTitle}>
-        <FormattedMessage id="SectionHero.title" />
+    <div
+      className={classes}
+    >
+      <h1 className={ isTA ? css.heroMainTitleTA : css.heroMainTitle}>
+        <FormattedMessage id={ isTA ? "SectionHero.titleTA" : "SectionHero.title"} />
       </h1>
       <h2 className={css.heroSubTitle}>
-        <FormattedMessage id="SectionHero.subTitle" />
+        <FormattedMessage id={ isTA ? "SectionHero.subTitleTA" : "SectionHero.subTitle"} />
       </h2>
       <NamedLink name="SearchPage" className={css.wrapperGetStarted}>
         <Button className={css.deskTopButton} >
-          Get started
+          <FormattedMessage id={ isTA ? "SectionHero.buttonTA" : "SectionHero.button"} />
         </Button>
       </NamedLink>
     </div>

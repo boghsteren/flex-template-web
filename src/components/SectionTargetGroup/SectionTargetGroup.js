@@ -19,30 +19,23 @@ const SectionTargetGroup = props => {
       </div>
 
       <div className={css.steps}>
-        <div className={css.stepContainer}>
+        <div className={classNames(css.stepContainer, css.step1Background)}>
           <a
-            className={css.step1Container}
             href="https://get.gwexperiences.com/agent"
-            style={{
-              color: "white",
-              textDecoration: "none"
-            }}
           >
-            <div className={css.step1}>
-              <h2 className={css.innerText}>
+            <div className={css.step}>
+              <h2>
                 <FormattedMessage id="SectionTargetGroup.part1Text" />
               </h2>
             </div>
           </a>
         </div>
-        <div className={css.stepContainer}>
+        <div className={classNames(css.stepContainer, css.step2Background)}>
           <a
-            className={css.step2Container}
             href="https://get.gwexperiences.com/host"
-            style={{ color: "white", textDecoration: "none" }}
           >
-            <div className={css.step2}>
-              <h2 className={css.innerText}>
+            <div className={css.step}>
+              <h2>
                 <FormattedMessage id="SectionTargetGroup.part2Text" />
               </h2>
             </div>
