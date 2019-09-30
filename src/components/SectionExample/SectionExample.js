@@ -25,7 +25,7 @@ class SectionExample extends Component {
 
     const newListing = listings.filter((listing, index) => {
       return index < 3;
-    })
+    });
 
     return (
       <div className={classes} key="somekey">

@@ -6,33 +6,24 @@
   color: var(--matterColorLight);
 }
 
-.steps10 {
-  display: flex;
-  margin-top: 30px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  @media (--viewportMedium) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
 .steps {
   display: flex;
   flex-wrap: wrap;
   margin: 30px -24px;
-  color: white;
+  color: var(--matterColorLight);
   justify-content: space-between;
+
   @media (--viewportMedium) {
     margin: 30px 0;
   }
 }
+
 .stepContainer {
   background-position: center;
   background-size: cover;
   width: 100%;
   margin-bottom: 20px;
+
   @media (--viewportMedium) {
     width: 48%;
   }
@@ -52,6 +43,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+
   &:hover {
      transform: scale(1.02);
     transition: 0.3s;
@@ -89,6 +81,7 @@
 /* An image wrapper that defines the images aspect ratio */
 .aspectWrapper {
   padding-bottom: calc(13 / 13 * 100%); /* 13:6 Aspect Ratio */
+
   @media (--viewportMedium) {
     padding-bottom: calc(3 / 3 * 100%); /* 3:2 Aspect Ratio */
   }

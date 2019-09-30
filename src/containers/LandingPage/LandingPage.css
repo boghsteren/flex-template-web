@@ -168,6 +168,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   @media (--viewportMedium) {
     height: 35vw;
   }
@@ -195,6 +196,7 @@
   @media (--viewportMedium) {
     margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 30px 7.5vw;
   }
+
   @media (--viewportLarge) {
     max-width: calc(1052px + 36px + 36px);
     margin: auto;

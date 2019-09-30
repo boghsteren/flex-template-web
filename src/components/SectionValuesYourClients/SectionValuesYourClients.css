@@ -11,16 +11,18 @@
   font-size: 24px;
   margin-bottom: 20px;
   width: 100%;
+
   @media (--viewportMedium) {
     width: 47%;
   }
+
   @media (--viewportLarge) {
     width: 35%;
   }
 }
 
 .impactReport {
-  background-color: gray;
+  background-color: var(--matterColorAnti);
 }
 
 .impactReport img{
@@ -32,6 +34,7 @@
   height: 100vh;
   margin: auto;
   width: 100vw;
+
   @media (--viewportLarge) {
     width: 90vw;
   }
@@ -49,8 +52,8 @@
 
 .btnClose {
   cursor: pointer;
-  color: white;
-  background-color: black;
+  color: var(--matterColorLight);
+  background-color: var(--matterColorDark);
   border: none;
   float: right;
   padding: 5px 10px 10px;

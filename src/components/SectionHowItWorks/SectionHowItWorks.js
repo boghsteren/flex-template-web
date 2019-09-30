@@ -22,7 +22,7 @@ const SectionHowItWorks = props => {
         <div className={css.step}>
           <h3 className={css.numberTitle}>1</h3>
           <h2 className={css.stepTitle}>
-            <FormattedMessage id={ `SectionHowItWorks.part1Title${isNGO ? 'NGO' : isTA ? 'TA' : ''}`} values={{newline: (<br />)}}/>
+            <FormattedMessage id={`SectionHowItWorks.part1Title${isNGO ? 'NGO' : isTA ? 'TA' : ''}`} values={{newline: (<br />)}}/>
           </h2>
           <p className={css.stepText}>
             <FormattedMessage id={`SectionHowItWorks.part1Text${isNGO ? 'NGO' : isTA ? 'TA' : ''}`} />

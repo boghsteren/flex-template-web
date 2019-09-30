@@ -28,7 +28,7 @@ const SectionTargetGroup = props => {
             }}
           >
             <div className={css.step}>
-              <h2 className={css.innerText2}>
+              <h2>
                 <FormattedMessage id="SectionTargetGroup.part1Text" />
               </h2>
             </div>
@@ -40,7 +40,7 @@ const SectionTargetGroup = props => {
             style={{ color: "white", textDecoration: "none" }}
           >
             <div className={css.step}>
-              <h2 className={css.innerText2}>
+              <h2>
                 <FormattedMessage id="SectionTargetGroup.part2Text" />
               </h2>
             </div>

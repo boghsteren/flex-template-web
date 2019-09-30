@@ -5,15 +5,18 @@
   font-size: 22px;
   line-height: 26px;
   color: var(--matterColorLight);
+
   @media (--viewportLarge) {
     font-size: 26px;
     line-height: 30px;
   }
+
   @media (--viewportXLarge) {
     font-size: 40px;
     line-height: 46px;
   }
 }
+
 .highLight {
   color: var(--successColor);
 }

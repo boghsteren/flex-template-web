@@ -42,7 +42,6 @@
 .root {
   position: relative;
   @apply --backgroundImage;
-  background: url("../../assets/background-1440.jpg");
   background-color: var(--colorTealLight);
   background-repeat: no-repeat;
   background-size: contain;
@@ -80,6 +79,20 @@
     background-size: cover;
     background-position: 0 -80px;
   }
+}
+
+.background {
+  background: url('../../assets/background-1440.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.backgroundTA {
+  background: url('../../assets/new_background_logged_in_TA.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .heroMainTitle, .heroMainTitleTA {

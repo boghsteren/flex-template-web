@@ -71,6 +71,7 @@
 .video {
   width: 100%;
   height: 50vw;
+
   @media (--viewportLarge) {
     height: 90%;
   }

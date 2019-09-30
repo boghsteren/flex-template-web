@@ -5,22 +5,15 @@ import classNames from "classnames";
 import { Button, NamedLink } from "../../components";
 import css from "./SectionHero.css";
 
-import newBg from '../../assets/new_background_logged_in_TA.jpg'
-
 const SectionHero = props => {
   const { rootClassName, className, currentUser } = props;
-  const classes = classNames(rootClassName || css.root, className);
-
   const isTA = currentUser && !currentUser.attributes.profile.publicData.provider;
-  const style = isTA ? {
-    background: `url(${newBg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  } : null;
+  const classes = classNames(rootClassName || css.root, className, isTA ? css.backgroundTA : css.background);
+
   return (
     <div
       className={classes}
-      style={style}>
+    >
       <h1 className={ isTA ? css.heroMainTitleTA : css.heroMainTitle}>
         <FormattedMessage id={ isTA ? "SectionHero.titleTA" : "SectionHero.title"} />
       </h1>
