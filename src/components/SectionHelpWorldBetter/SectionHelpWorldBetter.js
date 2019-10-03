@@ -11,30 +11,32 @@ const SectionHelpWorldBetter = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   return (
-    <div className={classes}>
-      <div className={css.textContainer}>
-        <div className={css.title}>
-          <FormattedMessage id="SectionHelpWorldBetter.titleLineOne" />
-        </div>
-        <div className={css.paragraph}>
-          <FormattedMessage
-            id="SectionHelpWorldBetter.paraPart1"
-          />
-          <strong>
-            <FormattedMessage
-              id="SectionHelpWorldBetter.paraPart2"
-            />
-          </strong>
-          <FormattedMessage
-            id="SectionHelpWorldBetter.paraPart3"
-          />
-        </div>
+    <div>
+      <div className={css.title}>
+        <FormattedMessage id="SectionHelpWorldBetter.titleLineOne" />
       </div>
-      <div className={css.imageWrapper}>
-        <img
-          className={css.screenTrans}
-          src={screenTrans}
-        />
+      <div className={classes}>
+        <div className={css.textContainer}>
+          <div className={css.paragraph}>
+            <FormattedMessage
+              id="SectionHelpWorldBetter.paraPart1"
+            />
+            <strong>
+              <FormattedMessage
+                id="SectionHelpWorldBetter.paraPart2"
+              />
+            </strong>
+            <FormattedMessage
+              id="SectionHelpWorldBetter.paraPart3"
+            />
+          </div>
+        </div>
+        <div className={css.imageWrapper}>
+          <img
+            className={css.screenTrans}
+            src={screenTrans}
+          />
+        </div>
       </div>
     </div>
   );

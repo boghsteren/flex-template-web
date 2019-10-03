@@ -13,16 +13,18 @@
   width: 100%;
 
   @media (--viewportMedium) {
-    width: 47%;
+    width: 45%;
+    margin-bottom: 0;
   }
 
   @media (--viewportLarge) {
-    width: 35%;
+    width: 40%;
   }
 }
 
 .impactReport {
-  background-color: var(--matterColorAnti);
+  display: flex;
+  align-items: flex-end;
 }
 
 .impactReport img{
@@ -63,14 +65,31 @@
   font-weight: bold;
   font-size: 26px;
   padding: 10px 0;
+
+  @media (--viewportMedium) {
+    font-size: 34px;
+    line-height: 38px;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 40px;
+    line-height: 44px;
+    padding: 15px 0;
+  }
 }
 
 .valuesList {
   list-style-type: disc;
+  padding-left: 20px;
 }
 
 .valuesList li {
   padding: 10px 0;
+
+  @media (--viewportLarge) {
+    font-size: 22px;
+    line-height: 27px;
+  }
 }
 
 

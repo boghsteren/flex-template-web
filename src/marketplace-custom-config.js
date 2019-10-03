@@ -135,6 +135,6 @@ export const timeSlotList = [
   {key: '23:30', label: '23:30', hour: 23, minute: 30, session: 0, internalIndex: 31}
 ];
 
-export const promoVideo = "https://www.youtube.com/embed/yCXCVTQx3pw?autoplay=1";
+export const promoVideo = "https://www.youtube.com/embed/yCXCVTQx3pw?autoplay=0";
 
-export const tutorialVideo = "https://www.youtube.com/embed/C3d2XEHL090?autoplay=1";
+export const tutorialVideo = "https://www.youtube.com/embed/C3d2XEHL090?autoplay=0";

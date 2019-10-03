@@ -49,6 +49,11 @@
   @apply --marketplaceH1FontStyles;
   margin-top: 0;
   text-align: left;
+  width: 100%;
+
+  @media (--viewportLarge) {
+    width: 47%;
+  }
 }
 
 .paragraph {
@@ -78,14 +83,6 @@
   position: relative;
   width: 100%;
   background-color: var(--colorTealDark);
-
-  @media (--viewportLarge) {
-
-  }
-
-  @media (--viewportMLarge) {
-    margin-top: 80px;
-  }
 }
 
 .screenTransText {

@@ -9,16 +9,17 @@ const SectionHero = props => {
   const { rootClassName, className, currentUser } = props;
   const isTA = currentUser && !currentUser.attributes.profile.publicData.provider;
   const classes = classNames(rootClassName || css.root, className, isTA ? css.backgroundTA : css.background);
+  const highLight = <span className={css.highLight}><FormattedMessage id="SectionHero.subTitleHighLightTA"/></span>;
 
   return (
     <div
       className={classes}
     >
       <h1 className={ isTA ? css.heroMainTitleTA : css.heroMainTitle}>
-        <FormattedMessage id={ isTA ? "SectionHero.titleTA" : "SectionHero.title"} />
+        <FormattedMessage id={ isTA ? "SectionHero.titleTA" : "SectionHero.title"} values={{newline: (<br />)}}/>
       </h1>
       <h2 className={css.heroSubTitle}>
-        <FormattedMessage id={ isTA ? "SectionHero.subTitleTA" : "SectionHero.subTitle"} />
+        <FormattedMessage id={ isTA ? "SectionHero.subTitleTA" : "SectionHero.subTitle"} values={{highLight}} />
       </h2>
       <NamedLink name="SearchPage" className={css.wrapperGetStarted}>
         <Button className={css.deskTopButton} >

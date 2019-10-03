@@ -110,8 +110,7 @@
 }
 
 .heroMainTitleTA {
-  font-size: 32px;
-  word-spacing: 5.5px;
+  max-width: none;
 }
 
 .heroSubTitle {
@@ -187,4 +186,8 @@
     display: block;
     width: 300px;
   }
+}
+
+.highLight {
+  color: var(--successColor);
 }
