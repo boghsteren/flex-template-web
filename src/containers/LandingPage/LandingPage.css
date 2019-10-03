@@ -190,7 +190,7 @@
   z-index: 1;
   max-width: 1124px;
   width: 100%;
-  text-align: right;
+  text-align: center;
   margin: var(--LandingPage_sectionMarginTop) 24px 20px 24px;
 
   @media (--viewportMedium) {

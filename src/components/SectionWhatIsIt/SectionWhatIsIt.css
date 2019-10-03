@@ -30,7 +30,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 30px;
 
   @media (--viewportLarge) {
     margin-top: 0;
@@ -64,8 +64,11 @@
   position: relative;
   flex-basis: 47%;
   display: flex;
-  align-items: flex-end;
-  padding: 20px 0;
+  align-items: flex-start;
+  padding-bottom: 50px;
+  @media (--viewportMedium) {
+    padding: 0;
+  }
 }
 
 .video {

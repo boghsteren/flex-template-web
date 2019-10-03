@@ -12,3 +12,13 @@ export const isMobileSafari = () => {
   // an extra condition.
   return iOS && webkit;
 };
+
+export const isTablet = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  // https://stackoverflow.com/a/29696509
+  const ua = window.navigator.userAgent;
+  return !!ua.match(/iPad/i);
+};
