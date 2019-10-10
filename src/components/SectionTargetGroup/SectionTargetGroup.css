@@ -1,9 +1,14 @@
 @import "../../marketplace.css";
 
 .title {
+  text-align: center;
   @apply --marketplaceH1FontStyles;
   margin-top: 0;
   color: var(--matterColorLight);
+}
+
+.titleLineTwo {
+  text-align: center;
 }
 
 .steps {

@@ -44,8 +44,8 @@
 }
 
 .numberTitle {
-  font-size: 120px;
-  margin-bottom: 80px;
+  font-size: 48px;
+  margin-bottom: 40px;
   margin-top: 50px;
   text-align: center;
   color: var(--matterColorLight);

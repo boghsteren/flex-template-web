@@ -23,6 +23,7 @@
 }
 
 .impactReport {
+  cursor: pointer;
   display: flex;
   align-items: flex-end;
 }
