@@ -10,7 +10,7 @@ import { compose } from 'redux';
 import { withViewport } from '../../util/contextHelpers';
 import { isTablet } from '../../util/userAgent';
 
-const DEVICE_BREAKPOINT = 1025;
+const DEVICE_BREAKPOINT = 1024;
 
 class SectionValuesYourClients extends React.Component {
   constructor(props){
@@ -28,7 +28,7 @@ class SectionValuesYourClients extends React.Component {
   render() {
     const { rootClassName, className, onManageDisableScrolling, viewport } = this.props;
     const isTabletDevice = isTablet();
-    const isMobileLayout = viewport.width < DEVICE_BREAKPOINT || isTabletDevice;
+    const isMobileLayout = viewport.width <= DEVICE_BREAKPOINT || isTabletDevice;
     const classes = classNames(rootClassName || css.root, className, css.sectionContainer);
 
     return (

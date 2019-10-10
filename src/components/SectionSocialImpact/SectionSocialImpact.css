@@ -6,14 +6,19 @@
   line-height: 26px;
   color: var(--matterColorLight);
 
+  @media (--viewportMedium) {
+    font-size: 33px;
+    line-height: 37px;
+  }
+
   @media (--viewportLarge) {
-    font-size: 26px;
-    line-height: 30px;
+    font-size: 48px;
+    line-height: 52px;
   }
 
   @media (--viewportXLarge) {
-    font-size: 40px;
-    line-height: 46px;
+    font-size: 48px;
+    line-height: 52px;
   }
 }
 

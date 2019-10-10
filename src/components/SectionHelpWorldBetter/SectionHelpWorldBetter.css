@@ -42,7 +42,6 @@
 
 .textContainer {
   flex-basis: 47%;
-  text-align: center;
 }
 
 .title {
@@ -59,22 +58,26 @@
 .paragraph {
   font-size: 18px;
   line-height: 1.5em;
-  text-align: left;
+  margin-bottom: 24px;
 }
 
-.paragraph span {
-  display: block;
-  margin-bottom: 24px;
+.paragraph:last-child {
+  margin-bottom: 0;
 }
 
 .imageWrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   flex-basis: 45%;
-  padding: 0;
+  background-color: var(--colorTealDark);
+  margin-top: 30px;
+  padding: 20px 0;
+
+  @media (--viewportLarge) {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .screenTrans {
@@ -110,4 +113,8 @@
   @media (--viewportMLarge) {
     bottom: 40px;
   }
+}
+
+.marginBot0 {
+  margin-bottom: 0;
 }

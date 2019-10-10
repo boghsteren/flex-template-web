@@ -14,7 +14,7 @@ const SectionTargetGroup = props => {
       <div className={css.title}>
         <FormattedMessage id="SectionTargetGroup.titleLineOne" />
       </div>
-      <div>
+      <div className={css.titleLineTwo}>
         <FormattedMessage id="SectionTargetGroup.titleLineTwo" />
       </div>
 

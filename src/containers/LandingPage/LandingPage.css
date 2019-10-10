@@ -186,7 +186,7 @@
   z-index: 0;
 }
 
-.socialImpactTitle {
+/*.socialImpactTitle {
   z-index: 1;
   max-width: 1124px;
   width: 100%;
@@ -202,6 +202,12 @@
     margin: auto;
     padding: 0 36px;
   }
+}*/
+
+.socialImpactTitle {
+  z-index: 1;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .reSpacing {

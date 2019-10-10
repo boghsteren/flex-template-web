@@ -21,11 +21,15 @@ const SectionHelpWorldBetter = props => {
             <FormattedMessage
               id="SectionHelpWorldBetter.paraPart1"
             />
+          </div>
+          <div className={css.paragraph}>
             <strong>
               <FormattedMessage
                 id="SectionHelpWorldBetter.paraPart2"
               />
             </strong>
+          </div>
+          <div className={css.paragraph}>
             <FormattedMessage
               id="SectionHelpWorldBetter.paraPart3"
             />
