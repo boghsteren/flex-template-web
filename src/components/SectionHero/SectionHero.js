@@ -8,7 +8,7 @@ import css from "./SectionHero.css";
 const SectionHero = props => {
   const { rootClassName, className, currentUser } = props;
   const isTA = currentUser && !currentUser.attributes.profile.publicData.provider;
-  const classes = classNames(rootClassName || css.root, className, isTA ? css.backgroundTA : css.background);
+  const classes = classNames(rootClassName || css.root, className, css.background);
   const highLight = <span className={css.highLight}><FormattedMessage id="SectionHero.subTitleHighLightTA"/></span>;
 
   return (
@@ -19,7 +19,9 @@ const SectionHero = props => {
         <FormattedMessage id={ isTA ? "SectionHero.titleTA" : "SectionHero.title"} values={{newline: (<br />)}}/>
       </h1>
       <h2 className={css.heroSubTitle}>
-        <FormattedMessage id={ isTA ? "SectionHero.subTitleTA" : "SectionHero.subTitle"} values={{highLight}} />
+        {isTA &&
+          <FormattedMessage id="SectionHero.subTitleTA" values={{ highLight }}/>
+        }
       </h2>
       <NamedLink name="SearchPage" className={css.wrapperGetStarted}>
         <Button className={css.deskTopButton} >
