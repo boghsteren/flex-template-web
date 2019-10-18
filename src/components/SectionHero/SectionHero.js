@@ -18,11 +18,11 @@ const SectionHero = props => {
       <h1 className={ isTA ? css.heroMainTitleTA : css.heroMainTitle}>
         <FormattedMessage id={ isTA ? "SectionHero.titleTA" : "SectionHero.title"} values={{newline: (<br />)}}/>
       </h1>
-      <h2 className={css.heroSubTitle}>
-        {isTA &&
+      {isTA &&
+        <h2 className={css.heroSubTitle}>
           <FormattedMessage id="SectionHero.subTitleTA" values={{ highLight }}/>
-        }
-      </h2>
+        </h2>
+      }
       <NamedLink name="SearchPage" className={css.wrapperGetStarted}>
         <Button className={css.deskTopButton} >
           <FormattedMessage id={ isTA ? "SectionHero.buttonTA" : "SectionHero.button"} />

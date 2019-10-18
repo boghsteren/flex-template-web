@@ -12,13 +12,13 @@
   }
 
   @media (--viewportLarge) {
-    font-size: 42px;
-    line-height: 48px;
+    font-size: 38px;
+    line-height: 42px;
   }
 
   @media (--viewportXLarge) {
-    font-size: 48px;
-    line-height: 52px;
+    font-size: 44px;
+    line-height: 48px;
   }
 }
 
