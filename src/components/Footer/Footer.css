@@ -152,6 +152,7 @@
   margin-bottom: 6px;
 
   @media (--viewportMedium) {
+    margin-top: 11px;
     margin-bottom: 0;
   }
 }

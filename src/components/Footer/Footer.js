@@ -144,7 +144,7 @@ const Footer = props => {
               <div className={css.someLinks}>{socialMediaLinks}</div>
               <div className={css.legalMatters}>
                 <ul className={css.tosAndPrivacy}>
-                  <li>
+                  <li className={css.listItem}>
                     <NamedLink
                       name="TermsOfServicePage"
                       className={css.legalLink}
