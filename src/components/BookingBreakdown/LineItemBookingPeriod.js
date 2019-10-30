@@ -25,7 +25,7 @@ const BookingPeriod = props => {
     month: "short",
     day: "numeric",
   };
-  
+
   if (isSingleDay) {
     return <div>
       <FormattedDate value={startDate} {...dateFormatOptions} />
@@ -57,11 +57,9 @@ const BookingPeriod = props => {
 
 const LineItemBookingPeriod = props => {
   const { transaction, booking, unitType, hourly } = props;
-
   const { start: startDate, end: endDateRaw, displayStart, displayEnd } = booking.attributes;
   const localStartDate = dateFromAPIToLocalNoon(startDate);
   const localEndDateRaw = dateFromAPIToLocalNoon(endDateRaw);
-
   const isNightly = unitType === LINE_ITEM_NIGHT;
 
   const dayCount = daysBetween(localStartDate, localEndDateRaw) - 1;
@@ -75,6 +73,8 @@ const LineItemBookingPeriod = props => {
   const unitPurchase = transaction.attributes.lineItems.find(
     item => item.code === unitType && !item.reversal
   );
+
+  // console.log(transaction, unitPurchase)
 
   if (!unitPurchase) {
     return null;

@@ -93,7 +93,7 @@ const initialState = {
 
 const credential = new AWS.Config(
   {
-    accessKeyId: `${process.env.REACT_APP_AWS_API_ACCESS_ID}`, 
+    accessKeyId: `${process.env.REACT_APP_AWS_API_ACCESS_ID}`,
     secretAccessKey: `${process.env.REACT_APP_AWS_API_ACCESS_KEY}`,
     region: `${process.env.REACT_APP_AWS_API_REGION}`
   }
@@ -304,55 +304,56 @@ export const fetchTransaction = id => (dispatch, getState, sdk) => {
       const currentUser = getState().user.currentUser;
       const isCustomer = currentUser && currentUser.id.uuid === txResponse.data.data.relationships.customer.data.id.uuid;
       const isEnquireWithoutBookingProcess = config.bookingProcessAliasForEnquiry.includes(txResponse.data.data.attributes.processName);
-      if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && isCustomer && !isEnquireWithoutBookingProcess) {
-        const booking = txResponse.data.included.find(include => {
-          return include.type === 'booking';
-        });
-        const listing = txResponse.data.included.find(include => {
-          return include.type === 'listing';
-        });
-        const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
-        const { price_scheme, seats } = txResponse.data.data.attributes.protectedData;
-        const params = {
-          bookingEnd: booking.attributes.end,
-          bookingStart: booking.attributes.start,
-          bookingDisplayStart: booking.attributes.displayStart,
-          bookingDisplayEnd: booking.attributes.displayEnd,
-          listingId: listingId,
-          protectedData: txResponse.data.data.attributes.protectedData,
-          quantity: price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats,
-        };
-        const bodyParams = {
-          transition: TRANSITION_REQUEST,
-          processAlias: config.bookingProcessAlias,
-          params: {
-            ...params,
-            cardToken: 'CheckoutPage_speculative_card_token',
-          },
-        };
-        const queryParams = {
-          include: ['booking', 'provider'],
-          expand: true,
-        };
-        return sdk.transactions
-          .initiateSpeculative(bodyParams, queryParams)
-          .then(response => {
-            txResponse.data.data.attributes.lineItems = response.data.data.attributes.lineItems;
-            txResponse.data.data.attributes.payinTotal = response.data.data.attributes.payinTotal;
-            txResponse.data.data.attributes.payoutTotal = response.data.data.attributes.payoutTotal;
-
-            dispatch(addMarketplaceEntities(txResponse));
-            dispatch(addMarketplaceEntities(listingResponse));
-            dispatch(fetchTransactionSuccess(txResponse));
-            return txResponse;
-          })
-      } else if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && !isCustomer&& !isEnquireWithoutBookingProcess) {
+      // if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && isCustomer && !isEnquireWithoutBookingProcess) {
+      //   const booking = txResponse.data.included.find(include => {
+      //     return include.type === 'booking';
+      //   });
+      //   const listing = txResponse.data.included.find(include => {
+      //     return include.type === 'listing';
+      //   });
+      //   const groupSizeMax = listing && listing.attributes.publicData.group_size_max ? listing.attributes.publicData.group_size_max : 1;
+      //   const { price_scheme, seats } = txResponse.data.data.attributes.protectedData;
+      //   const params = {
+      //     bookingEnd: booking.attributes.end,
+      //     bookingStart: booking.attributes.start,
+      //     bookingDisplayStart: booking.attributes.displayStart,
+      //     bookingDisplayEnd: booking.attributes.displayEnd,
+      //     listingId: listingId,
+      //     protectedData: txResponse.data.data.attributes.protectedData,
+      //     quantity: price_scheme === 'group_seats' ? (parseInt(seats / groupSizeMax) + (seats % groupSizeMax !== 0 ? 1 : 0)) : seats,
+      //   };
+      //   const bodyParams = {
+      //     transition: TRANSITION_REQUEST,
+      //     processAlias: config.bookingProcessAlias,
+      //     params: {
+      //       ...params,
+      //       cardToken: 'CheckoutPage_speculative_card_token',
+      //     },
+      //   };
+      //   const queryParams = {
+      //     include: ['booking', 'provider'],
+      //     expand: true,
+      //   };
+      //   return sdk.transactions
+      //     .initiateSpeculative(bodyParams, queryParams)
+      //     .then(response => {
+      //       txResponse.data.data.attributes.lineItems = response.data.data.attributes.lineItems;
+      //       txResponse.data.data.attributes.payinTotal = response.data.data.attributes.payinTotal;
+      //       txResponse.data.data.attributes.payoutTotal = response.data.data.attributes.payoutTotal;
+      //
+      //       dispatch(addMarketplaceEntities(txResponse));
+      //       dispatch(addMarketplaceEntities(listingResponse));
+      //       dispatch(fetchTransactionSuccess(txResponse));
+      //       return txResponse;
+      //     })
+      // } else
+        if ((lastTransition === TRANSITION_ENQUIRE || lastTransition === TRANSITION_ACCEPT) && !isEnquireWithoutBookingProcess) {
 
         const { lineItems, attributes } = createProviderLineItems(listingResponse, txResponse);
         txResponse.data.data.attributes.lineItems = lineItems;
         txResponse.data.data.attributes.payinTotal = attributes.payinTotal;
         txResponse.data.data.attributes.payoutTotal = attributes.payoutTotal;
-
+        // console.log(txResponse)
         dispatch(addMarketplaceEntities(txResponse));
         dispatch(addMarketplaceEntities(listingResponse));
         dispatch(fetchTransactionSuccess(txResponse));
